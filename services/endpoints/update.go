@@ -1,0 +1,13 @@
+package endpoints
+
+import internalhttp "github.com/vobiz/all-vobiz-sdk/go-sdk/internal/http"
+
+// Update modifies an endpoint.
+func (s *Service) Update(endpointID string, params UpdateParams) (*UpdateResponse, error) {
+	req, err := s.r.NewRequest("POST", params, "Endpoint/%s", endpointID)
+	if err != nil {
+		return nil, err
+	}
+	resp := &UpdateResponse{}
+	return resp, s.r.ExecuteRequest(req, resp, internalhttp.IsVoiceRequest())
+}
