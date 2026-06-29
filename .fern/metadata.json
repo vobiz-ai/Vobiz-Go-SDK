@@ -1,0 +1,14 @@
+{
+  "cliVersion": "5.50.5",
+  "generatorName": "fernapi/fern-go-sdk",
+  "generatorVersion": "1.46.0",
+  "generatorConfig": {
+    "module": {
+      "path": "github.com/vobiz-ai/Vobiz-Go-SDK"
+    },
+    "packageName": "vobiz"
+  },
+  "originGitCommit": "61f6825e03eee90849ee14c9259fcb4599f74b02",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "manual"
+}

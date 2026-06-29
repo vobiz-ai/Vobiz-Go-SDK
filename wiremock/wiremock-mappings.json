@@ -1,0 +1,4208 @@
+{
+  "mappings": [
+    {
+      "id": "e9ff8e79-0680-4937-84f4-8b956e3c79d7",
+      "name": "Retrieve account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/auth/me",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"type\": \"account\",\n  \"id\": \"500000\",\n  \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"name\": \"Acme Corp\",\n  \"email\": \"admin@example.com\",\n  \"phone\": \"+919876543210\",\n  \"description\": \"description\",\n  \"auth_id\": \"MA_XXXXXXXX\",\n  \"auth_secret\": \"<redacted>\",\n  \"auth_token_expire_time\": null,\n  \"country\": \"IN\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"city\": \"Bengaluru\",\n  \"state\": \"KA\",\n  \"address\": \"123 Example Street, Bengaluru\",\n  \"zip_code\": \"560001\",\n  \"company\": \"Acme Corp\",\n  \"account_type\": \"standard\",\n  \"postpaid\": false,\n  \"auto_recharge\": true,\n  \"auto_recharge_config\": null,\n  \"enabled\": true,\n  \"carrier_type\": null,\n  \"customer_type\": null,\n  \"credit_limit\": 0,\n  \"cps_limit\": 11,\n  \"concurrent_calls_limit\": 10,\n  \"base_cps_limit\": 1,\n  \"base_concurrent_calls_limit\": 10,\n  \"purchased_cps\": 10,\n  \"purchased_concurrent_calls\": 0,\n  \"risk_rating\": 0,\n  \"risk_status\": null,\n  \"features\": {\n    \"call_queue\": true\n  },\n  \"ip_auth_enabled\": false,\n  \"ip_whitelist_rules\": {\n    \"key\": \"value\"\n  },\n  \"allow_aws_ips\": false,\n  \"role\": \"admin\",\n  \"is_active\": true,\n  \"is_verified\": false,\n  \"is_trial_account\": false,\n  \"created_at\": \"2025-09-30T08:33:24.700542+00:00\",\n  \"updated_at\": \"2026-05-12T05:41:41.892287+00:00\",\n  \"last_login\": \"2026-05-12T05:41:42.601005+00:00\",\n  \"pricing_tier_id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n  \"pricing_tier\": {\n    \"id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n    \"name\": \"Standard\",\n    \"description\": \"description\",\n    \"currency\": \"INR\",\n    \"rate_per_minute\": 0.45,\n    \"billing_increment_seconds\": 60,\n    \"minimum_duration_seconds\": 0,\n    \"is_active\": true,\n    \"is_default\": false\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "e9ff8e79-0680-4937-84f4-8b956e3c79d7",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "ed7141bf-b14b-433c-abb6-f55aa681544e",
+      "name": "Get concurrency limits - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/concurrency",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"concurrent_calls\": 0,\n  \"max_concurrent\": 46,\n  \"utilization_pct\": 0,\n  \"request_id\": \"aabbccdd1234567890abcdef12345678\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ed7141bf-b14b-433c-abb6-f55aa681544e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f9614927-6edd-4e67-a45f-3ed423634333",
+      "name": "Get balance - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/balance/{currency}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "currency": {
+            "equalTo": "INR"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"currency\": \"INR\",\n  \"balance\": 23906.83,\n  \"reserved_funds\": 0,\n  \"promotional_balance\": 0,\n  \"promotional_reserved_balance\": 0,\n  \"available_balance\": 23906.83,\n  \"credit_limit\": 1000,\n  \"is_postpaid\": true,\n  \"credit_limit_type\": \"soft\",\n  \"low_balance_threshold\": 50,\n  \"status\": \"active\",\n  \"created_at\": \"2026-01-19T18:39:15.050543Z\",\n  \"updated_at\": \"2026-05-11T06:59:32.802705Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f9614927-6edd-4e67-a45f-3ed423634333",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "937d0fe5-31bb-4e74-9fa1-e8b0b9d638a0",
+      "name": "List transactions - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/transactions",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"balance_id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n      \"type\": \"debit\",\n      \"amount\": 0.08,\n      \"currency\": \"INR\",\n      \"description\": \"Call to 919876543210 (1s)\",\n      \"reference\": \"cdr:99887766-aabb-ccdd-eeff-001122334455\",\n      \"reference_type\": \"cdr\",\n      \"status\": \"completed\",\n      \"processed_at\": \"2026-05-11T06:59:32.806790Z\",\n      \"created_at\": \"2026-05-11T06:59:32.806790Z\",\n      \"updated_at\": \"2026-05-11T06:59:32.806790Z\"\n    }\n  ],\n  \"summary\": {\n    \"total_transactions\": 5657,\n    \"total_debit\": 138901.97,\n    \"total_credit\": 350806,\n    \"net_amount\": 211904.03,\n    \"by_reference_type\": [\n      {\n        \"reference_type\": \"cdr\",\n        \"total_debit\": 932.93,\n        \"total_credit\": 0,\n        \"count\": 1866\n      },\n      {\n        \"reference_type\": \"did_rental\",\n        \"total_debit\": 18100,\n        \"total_credit\": 0,\n        \"count\": 44\n      },\n      {\n        \"reference_type\": \"manual_adjustment\",\n        \"total_debit\": 0,\n        \"total_credit\": 2455,\n        \"count\": 6\n      }\n    ]\n  },\n  \"total\": 5657,\n  \"page\": 1,\n  \"per_page\": 50,\n  \"total_pages\": 114\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "937d0fe5-31bb-4e74-9fa1-e8b0b9d638a0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3dd1548f-06de-429d-a7ef-db4ba91deb18",
+      "name": "List queued calls - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        },
+        "queryParameters": {
+          "status": {
+            "equalTo": "live"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"c9527676-5839-11e1-86da-6ff39efcb949\",\n  \"calls\": [\n    \"eac94337-b1cd-499b-82d1-b39bca50dc31\",\n    \"0a70a7fb-168e-4944-a846-4f3f4d2f96f1\"\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3dd1548f-06de-429d-a7ef-db4ba91deb18",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ea8fddfb-13ae-4ac8-bd8d-afbf52f1bcdc",
+      "name": "List live calls - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        },
+        "queryParameters": {
+          "status": {
+            "equalTo": "live"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"c9527676-5839-11e1-86da-6ff39efcb949\",\n  \"calls\": [\n    \"eac94337-b1cd-499b-82d1-b39bca50dc31\",\n    \"0a70a7fb-168e-4944-a846-4f3f4d2f96f1\"\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ea8fddfb-13ae-4ac8-bd8d-afbf52f1bcdc",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0db5278f-b3a9-44b4-bf34-52e89cf1d310",
+      "name": "Retrieve a live call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "cdr_XXXXXXXXXX"
+          }
+        },
+        "queryParameters": {
+          "status": {
+            "equalTo": "live"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"c9cab827-d7e6-4ab8-b521-f29e593a1c26\",\n  \"call_status\": \"in-progress\",\n  \"call_uuid\": \"2ded13fe-4f9b-4958-9bfb-093ea2f29f91\",\n  \"caller_name\": \"\",\n  \"direction\": \"outbound\",\n  \"from\": \"919262171438\",\n  \"request_uuid\": \"2ded13fe-4f9b-4958-9bfb-093ea2f29f91\",\n  \"session_start\": \"2026-06-11 16:03:28.586839\",\n  \"stir_attestation\": \"Not Applicable\",\n  \"stir_verification\": \"Not Applicable\",\n  \"to\": \"919148227303\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0db5278f-b3a9-44b4-bf34-52e89cf1d310",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f76f9734-11ae-4d3e-87ea-46dda805a658",
+      "name": "Hang up a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f76f9734-11ae-4d3e-87ea-46dda805a658",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7ba8079b-56c9-44c9-9bd9-43732faeb8ae",
+      "name": "Retrieve a queued call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "cdr_XXXXXXXXXX"
+          }
+        },
+        "queryParameters": {
+          "status": {
+            "equalTo": "live"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"45223222-74f8-11e1-8ea7-12313806be9a\",\n  \"call_status\": \"queued\",\n  \"call_uuid\": \"6653422-91b6-4716-9fad-9463daaeeec2\",\n  \"request_uuid\": \"6653422-91b6-4716-9fad-9463daaeeec2\",\n  \"caller_name\": \"+15856338537\",\n  \"direction\": \"outbound\",\n  \"from\": \"15856338537\",\n  \"to\": \"14154290945\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7ba8079b-56c9-44c9-9bd9-43732faeb8ae",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "eb2afb89-d912-4e54-a6bb-d2d503211fd0",
+      "name": "Make an outbound call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"5a9fcfee-3d4c-11ef-bef9-0242ac110005\",\n  \"message\": \"Call fired\",\n  \"request_uuid\": \"5a9fd4a0-3d4c-11ef-bef9-0242ac110005\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "eb2afb89-d912-4e54-a6bb-d2d503211fd0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a95e3bd3-8044-40d5-824a-a36550bdfde3",
+      "name": "List call records - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        },
+        "queryParameters": {
+          "from_number": {
+            "equalTo": "9876543210"
+          },
+          "to_number": {
+            "equalTo": "1234567890"
+          },
+          "start_date": {
+            "equalTo": "2026-03-01"
+          },
+          "end_date": {
+            "equalTo": "2026-03-17"
+          },
+          "min_duration": {
+            "equalTo": "10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"count\": 2,\n  \"data\": [\n    {\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"answer_time\": \"2026-03-25T10:00:01Z\",\n      \"billsec\": 42,\n      \"bridge_uuid\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"call_direction\": \"outbound\",\n      \"caller_id_name\": \"John Doe\",\n      \"caller_id_number\": \"+919876543210\",\n      \"campaign_id\": null,\n      \"carrier_ip\": \"10.0.0.1\",\n      \"codec\": \"PCMU\",\n      \"context\": \"voice-api\",\n      \"cost\": 0.45,\n      \"created_at\": \"2026-03-25T10:00:42Z\",\n      \"currency\": \"INR\",\n      \"customer_endpoint\": null,\n      \"destination_number\": \"+918012345678\",\n      \"duration\": 47,\n      \"end_time\": \"2026-03-25T10:00:42Z\",\n      \"failure_code\": null,\n      \"failure_reason\": null,\n      \"hangup_cause\": \"NORMAL_CLEARING\",\n      \"hangup_cause_code\": 4000,\n      \"hangup_cause_name\": \"Normal Hangup\",\n      \"hangup_disposition\": \"send_bye\",\n      \"hangup_source\": \"Caller\",\n      \"id\": 18000000,\n      \"jitter\": 0.2,\n      \"mos\": 4.5,\n      \"network_addr\": \"10.0.0.1\",\n      \"origination_region\": \"mumbai\",\n      \"packet_loss\": 0.1,\n      \"progress_time\": \"2026-03-25T10:00:00Z\",\n      \"region\": \"ap-south-1\",\n      \"ring_time\": 5,\n      \"sip_call_id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n      \"sip_user_agent\": \"Vobiz\",\n      \"start_time\": \"2026-03-25T10:00:00Z\",\n      \"streaming_cost\": 0,\n      \"terminated_to\": null,\n      \"total_cost\": 0.45,\n      \"trunk_id\": null,\n      \"updated_at\": \"2026-03-25T10:00:42Z\",\n      \"uuid\": \"aabbccdd-1234-5678-90ab-cdef12345678\"\n    },\n    {\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"answer_time\": null,\n      \"billsec\": 0,\n      \"bridge_uuid\": null,\n      \"call_direction\": \"inbound\",\n      \"caller_id_name\": \"\",\n      \"caller_id_number\": \"+919876543210\",\n      \"campaign_id\": null,\n      \"carrier_ip\": null,\n      \"codec\": \"PCMU\",\n      \"context\": \"voice-api\",\n      \"cost\": 0,\n      \"created_at\": \"2026-03-25T09:30:12Z\",\n      \"currency\": \"INR\",\n      \"customer_endpoint\": null,\n      \"destination_number\": \"+918012345678\",\n      \"duration\": 12,\n      \"end_time\": \"2026-03-25T09:30:12Z\",\n      \"failure_code\": \"16\",\n      \"failure_reason\": \"NO_ANSWER\",\n      \"hangup_cause\": \"NO_ANSWER\",\n      \"hangup_cause_code\": 4100,\n      \"hangup_cause_name\": \"No Answer\",\n      \"hangup_disposition\": \"send_cancel\",\n      \"hangup_source\": \"Callee\",\n      \"id\": 18000001,\n      \"jitter\": 0,\n      \"mos\": 0,\n      \"network_addr\": \"10.0.0.1\",\n      \"origination_region\": \"mumbai\",\n      \"packet_loss\": 0,\n      \"progress_time\": \"2026-03-25T09:30:00Z\",\n      \"region\": \"ap-south-1\",\n      \"ring_time\": 12,\n      \"sip_call_id\": \"99887766-5544-3322-1100-aabbccddeeff\",\n      \"sip_user_agent\": \"Vobiz\",\n      \"start_time\": \"2026-03-25T09:30:00Z\",\n      \"streaming_cost\": 0,\n      \"terminated_to\": null,\n      \"total_cost\": 0,\n      \"trunk_id\": null,\n      \"updated_at\": \"2026-03-25T09:30:12Z\",\n      \"uuid\": \"11223344-5566-7788-99aa-bbccddeeff00\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total\": 4500,\n    \"pages\": 225,\n    \"has_next\": true,\n    \"has_prev\": false\n  },\n  \"success\": true,\n  \"summary\": {\n    \"answerRate\": 48.2,\n    \"answeredCalls\": 2171,\n    \"avgCallDuration\": \"28s\",\n    \"last_call_at\": \"2026-03-25T10:00:00Z\",\n    \"totalCalls\": 4500,\n    \"total_billable_seconds\": 61211,\n    \"total_cost\": 1564.51,\n    \"total_duration_seconds\": 118234\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a95e3bd3-8044-40d5-824a-a36550bdfde3",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ed5458ae-50d8-4725-83d3-52058e1f21f0",
+      "name": "Search CDRs with filter summary - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/search",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        },
+        "queryParameters": {
+          "from_number": {
+            "equalTo": "9876543210"
+          },
+          "to_number": {
+            "equalTo": "1234567890"
+          },
+          "start_date": {
+            "equalTo": "2026-03-01"
+          },
+          "end_date": {
+            "equalTo": "2026-03-17"
+          },
+          "min_duration": {
+            "equalTo": "10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"count\": 1,\n  \"data\": [\n    {\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"answer_time\": \"2026-03-25T10:00:01Z\",\n      \"billsec\": 42,\n      \"bridge_uuid\": \"55667788-1122-3344-5566-77889900aabb\",\n      \"call_direction\": \"outbound\",\n      \"caller_id_name\": \"John Doe\",\n      \"caller_id_number\": \"+919876543210\",\n      \"campaign_id\": null,\n      \"carrier_ip\": \"10.0.0.1\",\n      \"codec\": \"PCMU\",\n      \"context\": \"voice-api\",\n      \"cost\": 0.45,\n      \"created_at\": \"2026-03-25T10:00:42Z\",\n      \"currency\": \"INR\",\n      \"customer_endpoint\": null,\n      \"destination_number\": \"+918012345678\",\n      \"duration\": 47,\n      \"end_time\": \"2026-03-25T10:00:42Z\",\n      \"failure_code\": null,\n      \"failure_reason\": null,\n      \"hangup_cause\": \"NORMAL_CLEARING\",\n      \"hangup_cause_code\": 4000,\n      \"hangup_cause_name\": \"Normal Hangup\",\n      \"hangup_disposition\": \"send_bye\",\n      \"hangup_source\": \"Caller\",\n      \"id\": 18000002,\n      \"jitter\": 0.2,\n      \"mos\": 4.5,\n      \"network_addr\": \"10.0.0.1\",\n      \"origination_region\": \"mumbai\",\n      \"packet_loss\": 0.1,\n      \"progress_time\": \"2026-03-25T10:00:00Z\",\n      \"region\": \"ap-south-1\",\n      \"ring_time\": 5,\n      \"sip_call_id\": \"55667788-1122-3344-5566-77889900aabb\",\n      \"sip_user_agent\": \"Vobiz\",\n      \"start_time\": \"2026-03-25T10:00:00Z\",\n      \"streaming_cost\": 0,\n      \"terminated_to\": null,\n      \"total_cost\": 0.45,\n      \"trunk_id\": null,\n      \"updated_at\": \"2026-03-25T10:00:42Z\",\n      \"uuid\": \"55667788-1122-3344-5566-77889900aabb\"\n    }\n  ],\n  \"filters\": {\n    \"call_direction\": \"outbound\",\n    \"from_number\": \"+919876543210\",\n    \"hangup_cause\": \"\",\n    \"to_number\": \"\"\n  },\n  \"pagination\": {\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total\": 1,\n    \"pages\": 1,\n    \"has_next\": false,\n    \"has_prev\": false\n  },\n  \"success\": true,\n  \"summary\": {\n    \"answerRate\": 100,\n    \"answeredCalls\": 1,\n    \"avgCallDuration\": \"47s\",\n    \"last_call_at\": \"2026-03-25T10:00:00Z\",\n    \"totalCalls\": 1,\n    \"total_billable_seconds\": 42,\n    \"total_cost\": 0.45,\n    \"total_duration_seconds\": 47\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ed5458ae-50d8-4725-83d3-52058e1f21f0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "95469b48-dee8-401f-a5d9-49e520408503",
+      "name": "Get the most recent CDRs - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/recent",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        },
+        "queryParameters": {
+          "limit": {
+            "equalTo": "50"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"count\": 1,\n  \"data\": [\n    {\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"answer_time\": \"2026-03-25T10:00:01Z\",\n      \"billsec\": 42,\n      \"bridge_uuid\": \"99887766-5544-3322-1100-aabbccddeeff\",\n      \"call_direction\": \"outbound\",\n      \"caller_id_name\": \"John Doe\",\n      \"caller_id_number\": \"+919876543210\",\n      \"campaign_id\": null,\n      \"carrier_ip\": \"10.0.0.1\",\n      \"codec\": \"PCMU\",\n      \"context\": \"voice-api\",\n      \"cost\": 0.45,\n      \"created_at\": \"2026-03-25T10:00:42Z\",\n      \"currency\": \"INR\",\n      \"customer_endpoint\": null,\n      \"destination_number\": \"+918012345678\",\n      \"duration\": 47,\n      \"end_time\": \"2026-03-25T10:00:42Z\",\n      \"failure_code\": null,\n      \"failure_reason\": null,\n      \"hangup_cause\": \"NORMAL_CLEARING\",\n      \"hangup_cause_code\": 4000,\n      \"hangup_cause_name\": \"Normal Hangup\",\n      \"hangup_disposition\": \"send_bye\",\n      \"hangup_source\": \"Caller\",\n      \"id\": 18000003,\n      \"jitter\": 0.2,\n      \"mos\": 4.5,\n      \"network_addr\": \"10.0.0.1\",\n      \"origination_region\": \"mumbai\",\n      \"packet_loss\": 0.1,\n      \"progress_time\": \"2026-03-25T10:00:00Z\",\n      \"region\": \"ap-south-1\",\n      \"ring_time\": 5,\n      \"sip_call_id\": \"99887766-5544-3322-1100-aabbccddeeff\",\n      \"sip_user_agent\": \"Vobiz\",\n      \"start_time\": \"2026-03-25T10:00:00Z\",\n      \"streaming_cost\": 0,\n      \"terminated_to\": null,\n      \"total_cost\": 0.45,\n      \"trunk_id\": null,\n      \"updated_at\": \"2026-03-25T10:00:42Z\",\n      \"uuid\": \"99887766-5544-3322-1100-aabbccddeeff\"\n    }\n  ],\n  \"success\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "95469b48-dee8-401f-a5d9-49e520408503",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0b5a6390-f2dc-4fe7-8852-563e299a90ff",
+      "name": "Retrieve a CDR by call ID - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/{call_id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_id": {
+            "equalTo": "abc123-def456-ghi789"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"data\": {\n    \"account_id\": \"MA_XXXXXXXX\",\n    \"answer_time\": \"2026-03-25T10:00:01Z\",\n    \"billsec\": 42,\n    \"bridge_uuid\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n    \"call_direction\": \"outbound\",\n    \"caller_id_name\": \"John Doe\",\n    \"caller_id_number\": \"+919876543210\",\n    \"campaign_id\": null,\n    \"carrier_ip\": \"10.0.0.1\",\n    \"codec\": \"PCMU\",\n    \"context\": \"voice-api\",\n    \"cost\": 0.45,\n    \"created_at\": \"2026-03-25T10:00:42Z\",\n    \"currency\": \"INR\",\n    \"customer_endpoint\": null,\n    \"destination_number\": \"+918012345678\",\n    \"duration\": 47,\n    \"end_time\": \"2026-03-25T10:00:42Z\",\n    \"failure_code\": null,\n    \"failure_reason\": null,\n    \"hangup_cause\": \"NORMAL_CLEARING\",\n    \"hangup_cause_code\": 4000,\n    \"hangup_cause_name\": \"Normal Hangup\",\n    \"hangup_disposition\": \"send_bye\",\n    \"hangup_source\": \"Caller\",\n    \"id\": 18000004,\n    \"jitter\": 0,\n    \"mos\": 4.5,\n    \"network_addr\": \"10.0.0.1\",\n    \"origination_region\": \"mumbai\",\n    \"packet_loss\": 0,\n    \"progress_time\": \"2026-03-25T10:00:00Z\",\n    \"region\": \"ap-south-1\",\n    \"ring_time\": 5,\n    \"sip_call_id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n    \"sip_user_agent\": \"Vobiz\",\n    \"start_time\": \"2026-03-25T10:00:00Z\",\n    \"streaming_cost\": 0,\n    \"terminated_to\": null,\n    \"total_cost\": 0.45,\n    \"trunk_id\": null,\n    \"updated_at\": \"2026-03-25T10:00:42Z\",\n    \"uuid\": \"aabbccdd-1234-5678-90ab-cdef12345678\"\n  },\n  \"success\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0b5a6390-f2dc-4fe7-8852-563e299a90ff",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "4f6566e7-44dc-404e-b880-a192d6d1815e",
+      "name": "List sub-accounts - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"sub_accounts\": [\n    {\n      \"name\": \"Acme Corp\",\n      \"email\": null,\n      \"phone\": null,\n      \"description\": null,\n      \"permissions\": null,\n      \"rate_limit\": 1000,\n      \"id\": \"500001\",\n      \"parent_account_id\": \"500000\",\n      \"parent_auth_id\": \"MA_XXXXXXXX\",\n      \"auth_id\": \"SA_XXXXXXXX\",\n      \"auth_token\": \"<redacted>\",\n      \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"email_verified\": false,\n      \"enabled\": true,\n      \"created\": \"2026-03-25\",\n      \"modified\": \"2026-03-25\",\n      \"is_active\": true,\n      \"created_at\": \"2026-03-25T08:33:24.700542Z\",\n      \"updated_at\": \"2026-03-25T08:33:24.700542Z\",\n      \"last_used\": null,\n      \"account\": \"/v1/Account/MA_XXXXXXXX/\",\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Subaccount/SA_XXXXXXXX/\"\n    },\n    {\n      \"name\": \"John Doe\",\n      \"email\": \"john@example.com\",\n      \"phone\": null,\n      \"description\": null,\n      \"permissions\": {\n        \"cdr\": true,\n        \"calls\": true\n      },\n      \"rate_limit\": 5000,\n      \"id\": \"500002\",\n      \"parent_account_id\": \"500000\",\n      \"parent_auth_id\": \"MA_XXXXXXXX\",\n      \"auth_id\": \"SA_YYYYYYYY\",\n      \"auth_token\": \"<redacted>\",\n      \"api_id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n      \"email_verified\": false,\n      \"enabled\": true,\n      \"created\": \"2026-03-25\",\n      \"modified\": \"2026-03-25\",\n      \"is_active\": true,\n      \"created_at\": \"2026-03-25T11:56:03.796409Z\",\n      \"updated_at\": \"2026-03-25T11:56:03.796409Z\",\n      \"last_used\": null,\n      \"account\": \"/v1/Account/MA_XXXXXXXX/\",\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Subaccount/SA_YYYYYYYY/\"\n    }\n  ],\n  \"total\": 28,\n  \"page\": 1,\n  \"size\": 10\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "4f6566e7-44dc-404e-b880-a192d6d1815e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "74ba6c71-0571-42dd-8714-c6687aed8ce5",
+      "name": "Create a sub-account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"message\": \"message\",\n  \"sub_account\": {\n    \"name\": \"name\",\n    \"email\": {\n      \"key\": \"value\"\n    },\n    \"phone\": {\n      \"key\": \"value\"\n    },\n    \"description\": {\n      \"key\": \"value\"\n    },\n    \"permissions\": {\n      \"key\": \"value\"\n    },\n    \"rate_limit\": 1,\n    \"id\": \"id\",\n    \"parent_account_id\": \"parent_account_id\",\n    \"parent_auth_id\": \"parent_auth_id\",\n    \"auth_id\": \"auth_id\",\n    \"auth_token\": \"auth_token\",\n    \"api_id\": \"api_id\",\n    \"email_verified\": true,\n    \"enabled\": true,\n    \"created\": \"created\",\n    \"modified\": \"modified\",\n    \"is_active\": true,\n    \"created_at\": \"created_at\",\n    \"updated_at\": \"updated_at\",\n    \"last_used\": {\n      \"key\": \"value\"\n    },\n    \"account\": \"account\",\n    \"resource_uri\": \"resource_uri\"\n  },\n  \"auth_credentials\": {\n    \"auth_id\": \"auth_id\",\n    \"auth_token\": \"auth_token\"\n  },\n  \"tokens\": {\n    \"access_token\": \"access_token\",\n    \"refresh_token\": \"refresh_token\",\n    \"token_type\": \"token_type\",\n    \"expires_in\": 1\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "74ba6c71-0571-42dd-8714-c6687aed8ce5",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3f5eb6bb-de5f-45ea-9ada-2ba30e15a169",
+      "name": "Retrieve a sub-account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"name\": \"Acme Sub-Account\",\n  \"email\": null,\n  \"phone\": null,\n  \"description\": null,\n  \"permissions\": null,\n  \"rate_limit\": 1000,\n  \"id\": \"500001\",\n  \"parent_account_id\": \"510762\",\n  \"parent_auth_id\": \"MA_XXXXXXXX\",\n  \"auth_id\": \"SA_XXXXXXXX\",\n  \"auth_token\": \"<redacted>\",\n  \"api_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n  \"email_verified\": false,\n  \"enabled\": true,\n  \"created\": \"2026-03-25\",\n  \"modified\": \"2026-03-25\",\n  \"is_active\": true,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:00:00Z\",\n  \"last_used\": null,\n  \"account\": \"/v1/Account/MA_XXXXXXXX/\",\n  \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Subaccount/SA_XXXXXXXX/\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3f5eb6bb-de5f-45ea-9ada-2ba30e15a169",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0b49ca75-fe7f-4a37-b817-46e9c5f3c565",
+      "name": "Update a sub-account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "sub_auth_id": {
+            "equalTo": "sub_auth_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"name\": \"Acme Sub-Account Updated\",\n  \"email\": null,\n  \"phone\": null,\n  \"description\": null,\n  \"permissions\": null,\n  \"rate_limit\": 1000,\n  \"id\": \"500001\",\n  \"parent_account_id\": \"510762\",\n  \"parent_auth_id\": \"MA_XXXXXXXX\",\n  \"auth_id\": \"SA_XXXXXXXX\",\n  \"auth_token\": \"<redacted>\",\n  \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"email_verified\": false,\n  \"enabled\": false,\n  \"created\": \"2026-03-25\",\n  \"modified\": \"2026-03-25\",\n  \"is_active\": true,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:30:00Z\",\n  \"last_used\": null,\n  \"account\": \"/v1/Account/MA_XXXXXXXX/\",\n  \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Subaccount/SA_XXXXXXXX/\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0b49ca75-fe7f-4a37-b817-46e9c5f3c565",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0a8e6fed-d6b8-4211-b4dd-f0f7b5262b1e",
+      "name": "Delete a sub-account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "sub_auth_id": {
+            "equalTo": "sub_auth_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"message\": \"message\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0a8e6fed-d6b8-4211-b4dd-f0f7b5262b1e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f4fbbad4-0a66-4cd8-861e-cd950eed006f",
+      "name": "Get sub-account KYC status - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/status",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"sub_account_id\": \"SA_XXXXXX\",\n  \"kyc_mode\": \"customer_use\",\n  \"business_type\": \"private_limited\",\n  \"overall_status\": \"pending\",\n  \"kyc_calls_blocked\": true,\n  \"verifications\": {\n    \"pan\": \"verified\",\n    \"gst\": \"pending\",\n    \"aadhaar\": \"not_started\",\n    \"cin\": \"not_started\"\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f4fbbad4-0a66-4cd8-861e-cd950eed006f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "62d07cc6-036d-42a7-a974-69bd3947b29a",
+      "name": "Verify PAN - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/verify-pan",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"pan\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "62d07cc6-036d-42a7-a974-69bd3947b29a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "749cd6a9-bb09-4fcd-8808-a464f5c33171",
+      "name": "Verify GST - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/verify-gst",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"gst\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "749cd6a9-bb09-4fcd-8808-a464f5c33171",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "bf550df1-3a0a-42b8-bb63-d1d19cf5f1e7",
+      "name": "CIN search - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/cin/search",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"matches\": [\n    {\n      \"cin\": \"U72900KA2024PTC123456\",\n      \"company_name\": \"ACME PRIVATE LIMITED\",\n      \"status\": \"Active\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "bf550df1-3a0a-42b8-bb63-d1d19cf5f1e7",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "53560825-e7e9-470e-8e50-5b018ede3291",
+      "name": "CIN confirm - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/cin/confirm",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"cin\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "53560825-e7e9-470e-8e50-5b018ede3291",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d0bea423-a2aa-486b-b969-7a6ed64abb4f",
+      "name": "DigiLocker initiate - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/digilocker/initiate",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"auth_url\": \"https://api.digitallocker.gov.in/public/oauth2/1/authorize?...\",\n  \"access_request_id\": \"AR_xxxxxxxx\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d0bea423-a2aa-486b-b969-7a6ed64abb4f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "dab1697f-6281-4c70-bb29-bdab936123a1",
+      "name": "DigiLocker verify - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/digilocker/verify",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"aadhaar\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "dab1697f-6281-4c70-bb29-bdab936123a1",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "8f1e0d0f-10d6-46f1-86e1-1179dbc84849",
+      "name": "Create a hosted KYC session - Email flow (Vobiz emails the link)",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc-sessions",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"session_id\": \"a5f8da3c-b47f-40c3-a3e6-d2c9a0f27065\",\n  \"account_auth_id\": \"SA_XXXXXX\",\n  \"customer_email\": \"customer@example.com\",\n  \"status\": \"email_sent\",\n  \"expires_at\": \"2026-06-24T19:37:01.316686Z\",\n  \"message\": \"KYC email dispatched successfully\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8f1e0d0f-10d6-46f1-86e1-1179dbc84849",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "9cdc3ee3-9922-4f38-b45d-7400340f2666",
+      "name": "Mock verify PAN - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/verify-pan",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"pan\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "9cdc3ee3-9922-4f38-b45d-7400340f2666",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "b465ac8f-c581-443a-8088-0c38f871ddbd",
+      "name": "Mock verify GST - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/verify-gst",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"gst\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "b465ac8f-c581-443a-8088-0c38f871ddbd",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3d9f0e9e-0575-4f2d-9755-3a34792117bd",
+      "name": "Mock CIN search - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/cin/search",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"matches\": [\n    {\n      \"cin\": \"U72900KA2024PTC123456\",\n      \"company_name\": \"ACME PRIVATE LIMITED\",\n      \"status\": \"Active\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3d9f0e9e-0575-4f2d-9755-3a34792117bd",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "1b8f126a-f003-491c-958a-a9066a8a50e8",
+      "name": "Mock CIN confirm - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/cin/confirm",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"cin\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "1b8f126a-f003-491c-958a-a9066a8a50e8",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "6ffda54e-03a3-4234-a228-37b17914f93f",
+      "name": "Mock DigiLocker initiate - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/digilocker/initiate",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"auth_url\": \"https://kyc.vobiz.ai/mock/digilocker\",\n  \"access_request_id\": \"MOCK_AR_SUCCESS\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6ffda54e-03a3-4234-a228-37b17914f93f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "18c6afde-b46f-440b-8c58-584ac6339f7d",
+      "name": "Mock DigiLocker verify - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/digilocker/verify",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"aadhaar\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "18c6afde-b46f-440b-8c58-584ac6339f7d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ec590681-74ba-4e4f-9456-b376a9c6877e",
+      "name": "Mock finalize pending - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/finalize-pending",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "sub_auth_id": {
+            "equalTo": "SA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"verification_type\": \"pan\",\n  \"status\": \"verified\",\n  \"kyc_calls_blocked\": true,\n  \"mock\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ec590681-74ba-4e4f-9456-b376a9c6877e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ec7b973c-ff4a-4111-8243-7f9362228f05",
+      "name": "List phone numbers - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"items\": [\n    {\n      \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"e164\": \"+919876543210\",\n      \"country\": \"IN\",\n      \"region\": \"Karnataka\",\n      \"capabilities\": {\n        \"voice\": true,\n        \"sms\": false,\n        \"mms\": false,\n        \"fax\": false\n      },\n      \"status\": \"active\",\n      \"provider\": \"\",\n      \"setup_fee\": 100,\n      \"monthly_fee\": 300,\n      \"currency\": \"INR\",\n      \"application_id\": \"20577609616603585\",\n      \"voice_enabled\": true,\n      \"tags\": [\n        \"tags\"\n      ],\n      \"purchased_at\": \"2026-03-25T06:58:38.796024Z\",\n      \"is_blocked\": false,\n      \"created_at\": \"2026-03-25T18:30:00Z\",\n      \"updated_at\": \"2026-03-25T06:58:54.752187Z\",\n      \"is_trial_number\": false,\n      \"last_billing_date\": \"2026-03-25T06:58:38.796024Z\",\n      \"next_billing_date\": \"2026-04-25T06:58:38.796024Z\",\n      \"minimum_commitment_months\": 0,\n      \"aadhaar_verification_required\": false,\n      \"aadhaar_verified\": false,\n      \"source\": \"purchased\",\n      \"released_at\": \"released_at\",\n      \"trunk_group_id\": \"trunk_group_id\"\n    },\n    {\n      \"id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"e164\": \"+912271263984\",\n      \"country\": \"IN\",\n      \"region\": \"Mumbai\",\n      \"capabilities\": {\n        \"voice\": true,\n        \"sms\": false,\n        \"mms\": false,\n        \"fax\": false\n      },\n      \"status\": \"active\",\n      \"provider\": \"\",\n      \"setup_fee\": 100,\n      \"monthly_fee\": 200,\n      \"currency\": \"INR\",\n      \"application_id\": \"31985999331899218\",\n      \"voice_enabled\": true,\n      \"tags\": [\n        \"tags\"\n      ],\n      \"purchased_at\": \"2026-03-25T10:25:30.672202Z\",\n      \"is_blocked\": false,\n      \"created_at\": \"2026-03-25T09:30:04.541115Z\",\n      \"updated_at\": \"2026-03-25T10:29:35.330503Z\",\n      \"is_trial_number\": false,\n      \"last_billing_date\": \"2026-03-25T10:25:30.672202Z\",\n      \"next_billing_date\": \"2026-04-25T10:25:30.672202Z\",\n      \"minimum_commitment_months\": 0,\n      \"aadhaar_verification_required\": false,\n      \"aadhaar_verified\": false,\n      \"source\": \"purchased\",\n      \"released_at\": \"released_at\",\n      \"trunk_group_id\": \"trunk_group_id\"\n    }\n  ],\n  \"page\": 1,\n  \"per_page\": 25,\n  \"total\": 24\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ec7b973c-ff4a-4111-8243-7f9362228f05",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "81750261-4d53-44b3-bad0-926a512231e0",
+      "name": "Unrent a number - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{e164}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "e164": {
+            "equalTo": "919876543210"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "81750261-4d53-44b3-bad0-926a512231e0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3b09dd56-7fd9-4c3b-b182-935f38e69641",
+      "name": "List Inventory Numbers - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/inventory/numbers",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        },
+        "queryParameters": {
+          "country": {
+            "equalTo": "IN"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"items\": [\n    {\n      \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"account_id\": \"account_id\",\n      \"e164\": \"+14155551234\",\n      \"country\": \"US\",\n      \"capabilities\": {\n        \"voice\": true,\n        \"sms\": true,\n        \"mms\": true,\n        \"fax\": true\n      },\n      \"status\": \"active\",\n      \"provider\": \"provider\",\n      \"setup_fee\": 0,\n      \"monthly_fee\": 1,\n      \"currency\": \"INR\",\n      \"voice_enabled\": true,\n      \"tags\": {\n        \"key\": \"value\"\n      },\n      \"is_blocked\": true,\n      \"created_at\": \"2025-01-15T10:00:00Z\",\n      \"updated_at\": \"2025-01-15T10:00:00Z\",\n      \"is_trial_number\": true,\n      \"minimum_commitment_months\": 1,\n      \"aadhaar_verification_required\": true,\n      \"aadhaar_verified\": true,\n      \"region\": \"CA\"\n    }\n  ],\n  \"page\": 1,\n  \"per_page\": 25,\n  \"total\": 500\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3b09dd56-7fd9-4c3b-b182-935f38e69641",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "18bc7900-7184-4a7a-9fb8-fb8cea4685e2",
+      "name": "Purchase from Inventory - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/purchase-from-inventory",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"message\": \"Number purchased successfully\",\n  \"number\": {\n    \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n    \"account_id\": \"MA_XXXXXXXX\",\n    \"e164\": \"+919876543210\",\n    \"country\": \"IN\",\n    \"region\": \"Karnataka\",\n    \"capabilities\": {\n      \"voice\": true,\n      \"sms\": false,\n      \"mms\": false,\n      \"fax\": false\n    },\n    \"status\": \"active\",\n    \"provider\": \"\",\n    \"setup_fee\": 100,\n    \"monthly_fee\": 1,\n    \"currency\": \"INR\",\n    \"voice_enabled\": true,\n    \"purchased_at\": \"2026-03-25T10:00:00Z\",\n    \"is_blocked\": false,\n    \"created_at\": \"2026-03-25T10:00:00Z\",\n    \"updated_at\": \"2026-03-25T10:00:00Z\",\n    \"is_trial_number\": false,\n    \"minimum_commitment_months\": 0,\n    \"aadhaar_verification_required\": false,\n    \"aadhaar_verified\": false,\n    \"source\": \"inventory\"\n  },\n  \"items\": [\n    {\n      \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"e164\": \"+919876543210\",\n      \"country\": \"IN\",\n      \"region\": \"Karnataka\",\n      \"capabilities\": {\n        \"voice\": true,\n        \"sms\": false,\n        \"mms\": false,\n        \"fax\": false\n      },\n      \"status\": \"active\",\n      \"monthly_fee\": 1,\n      \"currency\": \"INR\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "18bc7900-7184-4a7a-9fb8-fb8cea4685e2",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "84681679-9a91-49ac-8595-11f979ce03f4",
+      "name": "Assign Number to Trunk - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{phone_number}/assign",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "phone_number": {
+            "equalTo": "%2B912271264217"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "84681679-9a91-49ac-8595-11f979ce03f4",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "58268925-f7c1-4ad4-b460-2e111005a866",
+      "name": "Unassign Number from Trunk - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{phone_number}/assign",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "phone_number": {
+            "equalTo": "%2B912271264217"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "58268925-f7c1-4ad4-b460-2e111005a866",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7a31f2ab-5566-49ac-a71f-344079a2d866",
+      "name": "Assign DID to a sub-account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/assign-subaccount",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "e164": {
+            "equalTo": "%2B919876543210"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7a31f2ab-5566-49ac-a71f-344079a2d866",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ad8681bf-f598-4348-8922-722232da9bab",
+      "name": "Unassign DID (15-day cool-off enforced) - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/assign-subaccount",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "e164": {
+            "equalTo": "%2B919876543210"
+          }
+        },
+        "queryParameters": {
+          "force": {
+            "equalTo": "true"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ad8681bf-f598-4348-8922-722232da9bab",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "983b143f-299a-4e6b-ba1b-a4778e96e09f",
+      "name": "List trunks - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"meta\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total\": 2\n  },\n  \"objects\": [\n    {\n      \"trunk_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"name\": \"My Outbound Trunk\",\n      \"trunk_domain\": \"aabbccdd-1234-5678-90ab-cdef12345678.sip.vobiz.ai\",\n      \"trunk_status\": \"active\",\n      \"secure\": false,\n      \"trunk_direction\": \"outbound\",\n      \"concurrent_calls_limit\": 10,\n      \"cps_limit\": 2,\n      \"credential_uuid\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n      \"description\": \"\",\n      \"transport\": \"udp\",\n      \"recording\": true,\n      \"enable_transcription\": true,\n      \"pii_redaction\": false,\n      \"webhook_method\": \"POST\",\n      \"recording_webhook_enabled\": false,\n      \"created_at\": \"2026-03-25T08:52:02.383938Z\",\n      \"updated_at\": \"2026-03-25T08:52:02.383938Z\",\n      \"primary_uri_uuid\": \"primary_uri_uuid\",\n      \"inbound_destination\": \"inbound_destination\",\n      \"pii_entity_types\": \"pii_entity_types\",\n      \"webhook_url\": \"webhook_url\"\n    },\n    {\n      \"trunk_id\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"name\": \"Acme Production Trunk\",\n      \"trunk_domain\": \"99887766-1234-5678-90ab-cdef12345678.sip.vobiz.ai\",\n      \"trunk_status\": \"active\",\n      \"secure\": false,\n      \"trunk_direction\": \"inbound\",\n      \"concurrent_calls_limit\": 10,\n      \"cps_limit\": 2,\n      \"credential_uuid\": \"credential_uuid\",\n      \"description\": \"\",\n      \"transport\": \"udp\",\n      \"recording\": true,\n      \"enable_transcription\": true,\n      \"pii_redaction\": false,\n      \"webhook_method\": \"POST\",\n      \"recording_webhook_enabled\": false,\n      \"created_at\": \"2026-03-25T10:28:06.112095Z\",\n      \"updated_at\": \"2026-03-25T10:28:06.112095Z\",\n      \"primary_uri_uuid\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"inbound_destination\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"pii_entity_types\": \"\",\n      \"webhook_url\": \"https://webhook.site/example\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "983b143f-299a-4e6b-ba1b-a4778e96e09f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7914389a-52e0-48dd-ad63-e4b4322d6f4d",
+      "name": "Create a trunk - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"trunk_id\": \"trunk_id\",\n  \"account_id\": \"account_id\",\n  \"name\": \"name\",\n  \"trunk_domain\": \"trunk_domain\",\n  \"trunk_status\": \"trunk_status\",\n  \"secure\": true,\n  \"trunk_direction\": \"trunk_direction\",\n  \"concurrent_calls_limit\": 1,\n  \"cps_limit\": 1,\n  \"description\": \"description\",\n  \"transport\": \"transport\",\n  \"recording\": true,\n  \"enable_transcription\": true,\n  \"pii_redaction\": true,\n  \"webhook_method\": \"webhook_method\",\n  \"recording_webhook_enabled\": true,\n  \"created_at\": \"created_at\",\n  \"updated_at\": \"updated_at\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7914389a-52e0-48dd-ad63-e4b4322d6f4d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "fb480c11-67e5-4628-a5a4-1843c1ebf4b6",
+      "name": "Retrieve a trunk - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "trunk_id": {
+            "equalTo": "trunk_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"trunk_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"name\": \"Acme Production Trunk\",\n  \"trunk_domain\": \"11223344-1234-5678-90ab-cdef12345678.sip.vobiz.ai\",\n  \"trunk_status\": \"active\",\n  \"secure\": false,\n  \"trunk_direction\": \"both\",\n  \"concurrent_calls_limit\": 10,\n  \"cps_limit\": 2,\n  \"description\": \"\",\n  \"transport\": \"udp\",\n  \"recording\": false,\n  \"enable_transcription\": false,\n  \"pii_redaction\": false,\n  \"webhook_method\": \"POST\",\n  \"recording_webhook_enabled\": false,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "fb480c11-67e5-4628-a5a4-1843c1ebf4b6",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "14d1d3c8-3dd9-4fe7-b6fb-e9f8ced9443d",
+      "name": "Update a trunk - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "trunk_id": {
+            "equalTo": "trunk_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"trunk_id\": \"99887766-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"name\": \"Acme Production Trunk Updated\",\n  \"trunk_domain\": \"99887766-1234-5678-90ab-cdef12345678.sip.vobiz.ai\",\n  \"trunk_status\": \"active\",\n  \"secure\": false,\n  \"trunk_direction\": \"both\",\n  \"concurrent_calls_limit\": 10,\n  \"cps_limit\": 2,\n  \"description\": \"\",\n  \"transport\": \"udp\",\n  \"recording\": false,\n  \"enable_transcription\": false,\n  \"pii_redaction\": false,\n  \"webhook_method\": \"POST\",\n  \"recording_webhook_enabled\": false,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:05:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "14d1d3c8-3dd9-4fe7-b6fb-e9f8ced9443d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "fa47f284-5e40-4e1c-b29e-fa350480e8cc",
+      "name": "Delete a trunk - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "trunk_id": {
+            "equalTo": "trunk_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "fa47f284-5e40-4e1c-b29e-fa350480e8cc",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ff28d88e-72d6-4aa0-8e07-c3068c5c1fec",
+      "name": "Kick a conference member - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Kick/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"message\": \"Member kicked from conference\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ff28d88e-72d6-4aa0-8e07-c3068c5c1fec",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3d6012e9-5195-41a8-bd3a-93e720f2331f",
+      "name": "Hang up a member - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3d6012e9-5195-41a8-bd3a-93e720f2331f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "13667cf4-530e-451a-bd1d-dcd2c863ce15",
+      "name": "Play audio to a member - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "13667cf4-530e-451a-bd1d-dcd2c863ce15",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "59e3af14-6a85-4699-89fd-ac9b2de53c2e",
+      "name": "Stop audio for a member - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "59e3af14-6a85-4699-89fd-ac9b2de53c2e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3dce9097-02fe-4f28-8dd7-ac57ae3f8b97",
+      "name": "Mute a member's audio - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3dce9097-02fe-4f28-8dd7-ac57ae3f8b97",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "97b5ab1c-7d6f-4f75-b65e-09efe5eea357",
+      "name": "Unmute a member's audio - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "97b5ab1c-7d6f-4f75-b65e-09efe5eea357",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0c452547-00a5-4687-ba47-15be28091640",
+      "name": "Start recording a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Record/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "cdr_XXXXXXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"recording_id\": \"rec_XXXXXXXXXX\",\n  \"message\": \"Recording started\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0c452547-00a5-4687-ba47-15be28091640",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "2865a948-6dd4-4cba-8e06-6b7fc60c0aed",
+      "name": "Stop recording a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Record/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2865a948-6dd4-4cba-8e06-6b7fc60c0aed",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7e80bef1-9f08-45f5-b417-5e9ac156b122",
+      "name": "Play audio to a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Play/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7e80bef1-9f08-45f5-b417-5e9ac156b122",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "6bd90f4e-7b4e-471d-b4b3-9d945676d65c",
+      "name": "Stop audio playback on a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Play/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6bd90f4e-7b4e-471d-b4b3-9d945676d65c",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "28083074-2538-41bc-96f0-1ece15d8ede6",
+      "name": "Speak text on a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Speak/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "28083074-2538-41bc-96f0-1ece15d8ede6",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "006bc537-5e1c-4f90-84fe-d614c58870e6",
+      "name": "Stop text-to-speech on a call - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Speak/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "006bc537-5e1c-4f90-84fe-d614c58870e6",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "68486cc4-502c-4292-b473-237af41a97f0",
+      "name": "Send DTMF tones - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/DTMF/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "68486cc4-502c-4292-b473-237af41a97f0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "2eb53910-e8c4-4d5c-9a0d-dc496ffc278b",
+      "name": "List audio streams - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2eb53910-e8c4-4d5c-9a0d-dc496ffc278b",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "cd6be789-d140-4833-876b-6771ba9a30a6",
+      "name": "Start audio stream - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"stream_id\": \"str_XXXXXXXXXX\",\n  \"message\": \"Stream started\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "cd6be789-d140-4833-876b-6771ba9a30a6",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "9ba36f74-15e3-4dc9-af17-cf1996c30cc7",
+      "name": "Retrieve a stream - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/{stream_id}/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          },
+          "stream_id": {
+            "equalTo": "stream_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "9ba36f74-15e3-4dc9-af17-cf1996c30cc7",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "963f9bc6-1544-48b4-a19f-e7ce30bf637c",
+      "name": "Stop a stream - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/{stream_id}/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "call_uuid": {
+            "equalTo": "call_uuid"
+          },
+          "stream_id": {
+            "equalTo": "stream_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "963f9bc6-1544-48b4-a19f-e7ce30bf637c",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "9a16d0fc-a68f-4d24-ae2c-7c7402a02aee",
+      "name": "List conferences - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"api_id\",\n  \"conferences\": [\n    {\n      \"key\": \"value\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "9a16d0fc-a68f-4d24-ae2c-7c7402a02aee",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "4d0c380b-2efe-45d9-80e6-3c5949b73eaa",
+      "name": "Delete all conferences - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "4d0c380b-2efe-45d9-80e6-3c5949b73eaa",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "8bfb3c65-6bed-4078-904f-3129a673a764",
+      "name": "Retrieve a conference - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "My Conf Room"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"conference_name\": \"My Conf Room\",\n  \"member_count\": 3,\n  \"members\": [\n    {\n      \"member_id\": \"1\",\n      \"muted\": false,\n      \"deaf\": false\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8bfb3c65-6bed-4078-904f-3129a673a764",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0a0a5c4a-0de8-492b-9b29-48b3d9517dab",
+      "name": "Delete a conference - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0a0a5c4a-0de8-492b-9b29-48b3d9517dab",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "377980dc-8057-4fbf-b96f-27f8aef29e6a",
+      "name": "Mute a conference member - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "377980dc-8057-4fbf-b96f-27f8aef29e6a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d20e86cc-ece5-4c84-afe3-434075dd57eb",
+      "name": "Unmute a conference member - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          },
+          "member_id": {
+            "equalTo": "member_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d20e86cc-ece5-4c84-afe3-434075dd57eb",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d1fa082a-8547-4a61-ac66-d368d3893451",
+      "name": "Start conference recording - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Record/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d1fa082a-8547-4a61-ac66-d368d3893451",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c9576bd8-9296-4025-87b8-98dbd68e1b06",
+      "name": "Stop conference recording - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Record/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "conference_name": {
+            "equalTo": "conference_name"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c9576bd8-9296-4025-87b8-98dbd68e1b06",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "04fa68ca-7938-4e4d-8e53-fb83c31887bb",
+      "name": "List recordings - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"api_id\",\n  \"meta\": {\n    \"limit\": 1,\n    \"next\": \"next\",\n    \"offset\": 1,\n    \"previous\": {\n      \"key\": \"value\"\n    },\n    \"total_count\": 1\n  },\n  \"objects\": [\n    {\n      \"add_time\": \"add_time\",\n      \"call_uuid\": \"call_uuid\",\n      \"conference_name\": \"conference_name\",\n      \"from_number\": \"from_number\",\n      \"monthly_recording_storage_amount\": 1,\n      \"recording_duration_ms\": \"recording_duration_ms\",\n      \"recording_end_ms\": \"recording_end_ms\",\n      \"recording_format\": \"recording_format\",\n      \"recording_id\": \"rec_XXXXXXXXXX\",\n      \"recording_start_ms\": \"recording_start_ms\",\n      \"recording_storage_duration\": 1,\n      \"recording_storage_rate\": 1.1,\n      \"recording_type\": \"recording_type\",\n      \"recording_url\": \"https://storage.vobiz.ai/recordings/rec_XXXXXXXXXX.mp3\",\n      \"resource_uri\": \"resource_uri\",\n      \"rounded_recording_duration\": 1,\n      \"to_number\": \"to_number\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "04fa68ca-7938-4e4d-8e53-fb83c31887bb",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d486f829-cc5a-4600-a2b3-ef7ccbab5073",
+      "name": "Retrieve a recording - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/{recording_id}/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "recording_id": {
+            "equalTo": "rec_XXXXXXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"add_time\": \"2026-03-25 10:00:00.000000+05:30\",\n  \"api_id\": \"55667788-1234-5678-90ab-cdef12345678\",\n  \"call_uuid\": \"55667788-1234-5678-90ab-cdef12345678\",\n  \"conference_name\": null,\n  \"from_number\": \"+919876543210\",\n  \"monthly_recording_storage_amount\": 0,\n  \"recording_duration_ms\": \"7880.00000\",\n  \"recording_end_ms\": null,\n  \"recording_format\": \"wav\",\n  \"recording_id\": \"55667788-1234-5678-90ab-cdef12345678\",\n  \"recording_start_ms\": null,\n  \"recording_storage_duration\": 6,\n  \"recording_storage_rate\": 0.005,\n  \"recording_type\": \"trunk\",\n  \"recording_url\": \"https://recordings.vobiz.ai/example/abc123.mp3\",\n  \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Recording/55667788-1234-5678-90ab-cdef12345678/\",\n  \"rounded_recording_duration\": 60,\n  \"to_number\": \"+918012345678\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d486f829-cc5a-4600-a2b3-ef7ccbab5073",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c40fff56-d7e1-4fdb-8e52-214381190c86",
+      "name": "Delete a recording - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/{recording_id}/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "recording_id": {
+            "equalTo": "recording_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c40fff56-d7e1-4fdb-8e52-214381190c86",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0a51a07c-5fd2-4f8c-a33b-ff83bf163ec7",
+      "name": "Create a credential - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"username\": \"acme_sip_user_01\",\n  \"password\": \"<redacted>\",\n  \"realm\": \"MA_XXXXXXXX.sip.vobiz.ai\",\n  \"enabled\": true,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0a51a07c-5fd2-4f8c-a33b-ff83bf163ec7",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "990160de-7f8f-42fd-92aa-54bf22a8b6be",
+      "name": "List credentials - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/credentials",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"meta\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total\": 3\n  },\n  \"objects\": [\n    {\n      \"id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"username\": \"acme_sip_user_01\",\n      \"password\": \"<redacted>\",\n      \"realm\": \"MA_XXXXXXXX.sip.vobiz.ai\",\n      \"enabled\": true,\n      \"created_at\": \"2026-03-25T10:00:00Z\",\n      \"updated_at\": \"2026-03-25T10:00:00Z\"\n    },\n    {\n      \"id\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"username\": \"office_phone_03\",\n      \"password\": \"<redacted>\",\n      \"realm\": \"MA_XXXXXXXX.sip.vobiz.ai\",\n      \"enabled\": true,\n      \"created_at\": \"2026-03-20T08:15:00Z\",\n      \"updated_at\": \"2026-03-20T08:15:00Z\"\n    },\n    {\n      \"id\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"username\": \"sipuser_demo\",\n      \"password\": \"<redacted>\",\n      \"realm\": \"MA_XXXXXXXX.sip.vobiz.ai\",\n      \"enabled\": true,\n      \"created_at\": \"2026-03-15T14:42:00Z\",\n      \"updated_at\": \"2026-03-15T14:42:00Z\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "990160de-7f8f-42fd-92aa-54bf22a8b6be",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f17ea4fa-8c1e-489d-be70-c9ee4120c42e",
+      "name": "Update a credential - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials/{credential_id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "credential_id": {
+            "equalTo": "credential_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"username\": \"acme_sip_user_01\",\n  \"password\": \"<redacted>\",\n  \"realm\": \"MA_XXXXXXXX.sip.vobiz.ai\",\n  \"enabled\": true,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T11:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f17ea4fa-8c1e-489d-be70-c9ee4120c42e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "bc9fb053-03d1-4820-98ae-58f8eb7c55aa",
+      "name": "Delete a credential - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials/{credential_id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "credential_id": {
+            "equalTo": "credential_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "bc9fb053-03d1-4820-98ae-58f8eb7c55aa",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "bc294603-a731-4fbb-ac21-ed5ea8240d20",
+      "name": "Create an IP ACL - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"ip_address\": \"10.20.30.0/24\",\n  \"description\": \"\",\n  \"enabled\": true,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "bc294603-a731-4fbb-ac21-ed5ea8240d20",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "08e4930d-2465-4541-ab70-23ffe871250a",
+      "name": "List IP ACLs - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/ip-acl",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"meta\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total\": 3\n  },\n  \"objects\": [\n    {\n      \"id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"ip_address\": \"10.20.30.0/24\",\n      \"description\": \"Office IP\",\n      \"enabled\": true,\n      \"created_at\": \"2026-03-25T10:00:00Z\",\n      \"updated_at\": \"2026-03-25T10:00:00Z\"\n    },\n    {\n      \"id\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"ip_address\": \"192.168.1.0/24\",\n      \"description\": \"Datacenter ACL\",\n      \"enabled\": true,\n      \"created_at\": \"2026-03-22T09:00:00Z\",\n      \"updated_at\": \"2026-03-22T09:00:00Z\"\n    },\n    {\n      \"id\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"ip_address\": \"203.0.113.0/24\",\n      \"description\": \"Production SBC\",\n      \"enabled\": true,\n      \"created_at\": \"2026-03-18T14:41:41Z\",\n      \"updated_at\": \"2026-03-18T14:41:41Z\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "08e4930d-2465-4541-ab70-23ffe871250a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "8705b946-b8ef-41d6-a699-96b54a6bd06d",
+      "name": "Update an IP ACL - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl/{ip_acl_id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "ip_acl_id": {
+            "equalTo": "ip_acl_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"ip_address\": \"192.168.1.0/24\",\n  \"description\": \"Datacenter ACL\",\n  \"enabled\": true,\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T11:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8705b946-b8ef-41d6-a699-96b54a6bd06d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a9a1737d-0b4a-4209-a7ac-9db64d2c6850",
+      "name": "Delete an IP ACL - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl/{ip_acl_id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "ip_acl_id": {
+            "equalTo": "ip_acl_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a9a1737d-0b4a-4209-a7ac-9db64d2c6850",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "727b8f7d-1fc2-4cd0-9cd5-e43155e66e2a",
+      "name": "Create an origination URI - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"uri\": \"sip:sbc1.example.com\",\n  \"priority\": 1,\n  \"weight\": 10,\n  \"enabled\": true,\n  \"transport\": \"TCP\",\n  \"description\": \"Primary SBC\",\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "727b8f7d-1fc2-4cd0-9cd5-e43155e66e2a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3e9b3782-84d0-43e7-bdb0-ff51fe4d097d",
+      "name": "List origination URIs - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/origination-uris",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"meta\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total\": 3\n  },\n  \"objects\": [\n    {\n      \"id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"uri\": \"sip:sbc1.example.com\",\n      \"priority\": 1,\n      \"weight\": 10,\n      \"enabled\": true,\n      \"transport\": \"udp\",\n      \"description\": \"Primary SBC\",\n      \"created_at\": \"2026-03-25T10:00:00Z\",\n      \"updated_at\": \"2026-03-25T10:00:00Z\"\n    },\n    {\n      \"id\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"uri\": \"sip:sbc2.example.com\",\n      \"priority\": 2,\n      \"weight\": 10,\n      \"enabled\": true,\n      \"transport\": \"tcp\",\n      \"description\": \"US East SBC\",\n      \"created_at\": \"2026-03-22T09:00:00Z\",\n      \"updated_at\": \"2026-03-22T09:00:00Z\"\n    },\n    {\n      \"id\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"uri\": \"sip:sbc3.example.com\",\n      \"priority\": 10,\n      \"weight\": 10,\n      \"enabled\": true,\n      \"transport\": \"tls\",\n      \"description\": \"\",\n      \"created_at\": \"2026-03-18T14:41:41Z\",\n      \"updated_at\": \"2026-03-18T14:41:41Z\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3e9b3782-84d0-43e7-bdb0-ff51fe4d097d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c5315895-a6b9-4649-b436-bf7c83dc259e",
+      "name": "Update an origination URI - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris/{uri_id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "uri_id": {
+            "equalTo": "uri_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"uri\": \"sip:sbc1.example.com\",\n  \"priority\": 2,\n  \"weight\": 10,\n  \"enabled\": true,\n  \"transport\": \"TCP\",\n  \"description\": \"Primary SBC\",\n  \"created_at\": \"2026-03-25T10:00:00Z\",\n  \"updated_at\": \"2026-03-25T11:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c5315895-a6b9-4649-b436-bf7c83dc259e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c3b53fc2-971b-463f-92fb-0852119f24d9",
+      "name": "Delete an origination URI - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris/{uri_id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "uri_id": {
+            "equalTo": "uri_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c3b53fc2-971b-463f-92fb-0852119f24d9",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "bca4bd94-c6c3-4d16-abf1-be26609ff857",
+      "name": "List All Applications - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"meta\": {\n    \"limit\": 20,\n    \"next\": \"/v1/Account/MA_XXXXXXXX/Application/?limit=20&offset=20\",\n    \"offset\": 0,\n    \"previous\": null,\n    \"total_count\": 23\n  },\n  \"objects\": [\n    {\n      \"answer_method\": \"POST\",\n      \"answer_url\": \"https://example.com/answer\",\n      \"app_id\": \"12345678901234567\",\n      \"app_name\": \"My Voice App\",\n      \"application_type\": \"XML\",\n      \"created_at\": \"2026-04-02 12:11:19.740666+00:00\",\n      \"default_app\": true,\n      \"default_endpoint_app\": false,\n      \"enabled\": true,\n      \"fallback_answer_url\": null,\n      \"fallback_method\": \"POST\",\n      \"hangup_method\": \"POST\",\n      \"hangup_url\": \"https://example.com/hangup\",\n      \"log_incoming_message\": true,\n      \"message_method\": \"POST\",\n      \"message_url\": null,\n      \"public_uri\": false,\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Application/12345678901234567/\",\n      \"sip_transfer_method\": \"POST\",\n      \"sip_transfer_url\": null,\n      \"sip_uri\": \"sip:12345678901234567@app.vobiz.ai\",\n      \"sub_account\": null,\n      \"updated_at\": \"2026-04-02 12:11:19.740666+00:00\"\n    },\n    {\n      \"answer_method\": \"POST\",\n      \"answer_url\": \"https://example.com/answer\",\n      \"app_id\": \"11223344556677889\",\n      \"app_name\": \"Acme Voice Application\",\n      \"application_type\": \"XML\",\n      \"created_at\": \"2026-03-25 09:33:08.869648+00:00\",\n      \"default_app\": false,\n      \"default_endpoint_app\": false,\n      \"enabled\": true,\n      \"fallback_answer_url\": null,\n      \"fallback_method\": \"POST\",\n      \"hangup_method\": \"POST\",\n      \"hangup_url\": \"https://example.com/hangup\",\n      \"log_incoming_message\": true,\n      \"message_method\": \"POST\",\n      \"message_url\": null,\n      \"public_uri\": false,\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Application/11223344556677889/\",\n      \"sip_transfer_method\": \"POST\",\n      \"sip_transfer_url\": null,\n      \"sip_uri\": \"sip:11223344556677889@app.vobiz.ai\",\n      \"sub_account\": null,\n      \"updated_at\": \"2026-03-25 09:33:08.869648+00:00\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "bca4bd94-c6c3-4d16-abf1-be26609ff857",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "143e254d-96ae-42f4-9924-e9cf99f6fb47",
+      "name": "Create an Application - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"app_id\": \"12345678901234567\",\n  \"message\": \"created\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "143e254d-96ae-42f4-9924-e9cf99f6fb47",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "fed9d468-5e8f-495f-adef-abe1884da460",
+      "name": "Retrieve an Application - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "app_id": {
+            "equalTo": "12345678"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"answer_method\": \"GET\",\n  \"answer_url\": \"https://example.com/answer\",\n  \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"app_id\": \"12345678901234567\",\n  \"app_name\": \"My Voice App\",\n  \"application_type\": \"XML\",\n  \"created_at\": \"2026-03-25 10:00:00.000000+00:00\",\n  \"default_app\": true,\n  \"default_endpoint_app\": false,\n  \"enabled\": true,\n  \"fallback_answer_url\": null,\n  \"fallback_method\": \"POST\",\n  \"hangup_method\": \"POST\",\n  \"hangup_url\": \"https://example.com/hangup\",\n  \"log_incoming_message\": true,\n  \"message_method\": \"POST\",\n  \"message_url\": null,\n  \"public_uri\": false,\n  \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Application/12345678901234567/\",\n  \"sip_transfer_method\": \"POST\",\n  \"sip_transfer_url\": null,\n  \"sip_uri\": \"sip:12345678901234567@app.vobiz.ai\",\n  \"sub_account\": null,\n  \"updated_at\": \"2026-03-25 10:00:00.000000+00:00\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "fed9d468-5e8f-495f-adef-abe1884da460",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "6025582a-b394-4f20-985d-a134e3948458",
+      "name": "Update an Application - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "app_id": {
+            "equalTo": "12345678"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"11223344-5566-7788-99aa-bbccddeeff00\",\n  \"message\": \"changed\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6025582a-b394-4f20-985d-a134e3948458",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7bacb2a2-c44e-4247-a42c-6090e60bc9b3",
+      "name": "Delete an Application - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "app_id": {
+            "equalTo": "12345678"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7bacb2a2-c44e-4247-a42c-6090e60bc9b3",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "07648b2e-3abe-4b0a-8a5b-925cb2f6a797",
+      "name": "List All Endpoints - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n  \"meta\": {\n    \"limit\": 20,\n    \"offset\": 0,\n    \"total_count\": 4,\n    \"next\": null,\n    \"previous\": null\n  },\n  \"objects\": [\n    {\n      \"alias\": \"Acme Desktop Phone\",\n      \"application\": \"/v1/Account/MA_XXXXXXXX/Application/12345678901234567/\",\n      \"endpoint_id\": \"147322537258167\",\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Endpoint/147322537258167/\",\n      \"sip_registered\": \"false\",\n      \"sip_uri\": \"sip:acme_sip_user_01@registrar.vobiz.ai\",\n      \"sub_account\": null,\n      \"username\": \"acme_sip_user_01\"\n    },\n    {\n      \"alias\": \"SIP Demo Phone\",\n      \"application\": null,\n      \"endpoint_id\": \"125649946800674\",\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Endpoint/125649946800674/\",\n      \"sip_registered\": \"false\",\n      \"sip_uri\": \"sip:sipuser_demo@registrar.vobiz.ai\",\n      \"sub_account\": null,\n      \"username\": \"sipuser_demo\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "07648b2e-3abe-4b0a-8a5b-925cb2f6a797",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "e90379ee-d900-410d-b4a5-c9e2b744fd20",
+      "name": "Create an Endpoint - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"alias\": \"Acme Desktop Phone\",\n  \"endpoint_id\": \"193962768711692\",\n  \"username\": \"acme_sip_user_01\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "e90379ee-d900-410d-b4a5-c9e2b744fd20",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "b2aa2461-66e0-459f-8d74-1cc86afedbe2",
+      "name": "Retrieve an Endpoint - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "endpoint_id": {
+            "equalTo": "87654321"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"alias\": \"Acme Desktop Phone\",\n  \"application\": \"/v1/Account/MA_XXXXXXXX/Application/12345678901234567/\",\n  \"endpoint_id\": \"147322537258167\",\n  \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/Endpoint/147322537258167/\",\n  \"sip_registered\": \"false\",\n  \"sip_uri\": \"sip:acme_sip_user_01@registrar.vobiz.ai\",\n  \"sub_account\": null,\n  \"username\": \"acme_sip_user_01\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "b2aa2461-66e0-459f-8d74-1cc86afedbe2",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "96eb9dec-cbc1-4176-9817-a119e40316b1",
+      "name": "Update an Endpoint - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "endpoint_id": {
+            "equalTo": "87654321"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "96eb9dec-cbc1-4176-9817-a119e40316b1",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "e04b885c-e7d4-4a80-9321-f1fb882c7a01",
+      "name": "Delete an Endpoint - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "endpoint_id": {
+            "equalTo": "87654321"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "e04b885c-e7d4-4a80-9321-f1fb882c7a01",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "1edb9296-f619-46c6-bc8a-44f41cee6eb5",
+      "name": "Get partner profile - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/me",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"id\",\n  \"account_id\": 1,\n  \"name\": \"Acme Reseller\",\n  \"slug\": \"slug\",\n  \"company\": \"company\",\n  \"auth_id\": \"PA_ABC123\",\n  \"email\": \"partner@acme.com\",\n  \"phone\": \"phone\",\n  \"billing_model\": \"billing_model\",\n  \"is_active\": true,\n  \"is_verified\": true,\n  \"max_accounts\": 1,\n  \"can_create_accounts\": true,\n  \"can_create_pricing_tiers\": true,\n  \"can_view_cdrs\": true,\n  \"can_transfer_balance\": true,\n  \"default_pricing_tier_id\": \"default_pricing_tier_id\",\n  \"account_count\": 1,\n  \"balance\": \"balance\",\n  \"created_at\": \"2025-01-15T10:00:00Z\",\n  \"updated_at\": \"updated_at\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "1edb9296-f619-46c6-bc8a-44f41cee6eb5",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "1a96c132-e7ef-448f-a9cb-4215ce572975",
+      "name": "Get dashboard summary - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/dashboard",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"partner\": {\n    \"id\": \"id\",\n    \"account_id\": 1,\n    \"name\": \"name\",\n    \"slug\": \"slug\",\n    \"company\": \"company\",\n    \"auth_id\": \"auth_id\",\n    \"email\": \"email\",\n    \"phone\": \"phone\",\n    \"billing_model\": \"billing_model\",\n    \"is_active\": true,\n    \"is_verified\": true,\n    \"max_accounts\": 1,\n    \"can_create_accounts\": true,\n    \"can_create_pricing_tiers\": true,\n    \"can_view_cdrs\": true,\n    \"can_transfer_balance\": true,\n    \"default_pricing_tier_id\": \"default_pricing_tier_id\",\n    \"account_count\": 1,\n    \"balance\": {\n      \"key\": \"value\"\n    },\n    \"created_at\": \"created_at\",\n    \"updated_at\": \"updated_at\"\n  },\n  \"period\": {\n    \"from\": \"from\",\n    \"to\": \"to\"\n  },\n  \"accounts\": {\n    \"total\": 1,\n    \"active\": 1,\n    \"customers\": [\n      {\n        \"auth_id\": \"auth_id\",\n        \"name\": \"name\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"is_active\": true,\n        \"created_at\": \"created_at\"\n      }\n    ]\n  },\n  \"total_balance\": \"total_balance\",\n  \"currency\": \"INR\",\n  \"calls\": {\n    \"total_calls\": 1,\n    \"answered_calls\": 1,\n    \"total_minutes\": 1.1,\n    \"total_cost\": \"total_cost\"\n  },\n  \"traffic\": {\n    \"inbound\": {\n      \"total_calls\": 1,\n      \"answered_calls\": 1,\n      \"total_minutes\": 1.1,\n      \"total_cost\": \"total_cost\"\n    },\n    \"outbound\": {\n      \"total_calls\": 1,\n      \"answered_calls\": 1,\n      \"total_minutes\": 1.1,\n      \"total_cost\": \"total_cost\"\n    }\n  },\n  \"by_product\": {\n    \"sip_trunking\": {\n      \"total_calls\": 1,\n      \"answered_calls\": 1,\n      \"total_minutes\": 1,\n      \"total_cost\": \"total_cost\"\n    },\n    \"voice_api\": {\n      \"total_calls\": 1,\n      \"answered_calls\": 1,\n      \"total_minutes\": 1.1,\n      \"total_cost\": \"total_cost\"\n    }\n  },\n  \"time_series\": [\n    {\n      \"date\": \"date\",\n      \"total_calls\": 1,\n      \"answered_calls\": 1,\n      \"total_minutes\": 1.1,\n      \"total_cost\": \"total_cost\",\n      \"inbound\": {\n        \"total_calls\": 1,\n        \"answered_calls\": 1,\n        \"total_minutes\": 1.1\n      },\n      \"outbound\": {\n        \"total_calls\": 1,\n        \"answered_calls\": 1,\n        \"total_minutes\": 1.1\n      }\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "1a96c132-e7ef-448f-a9cb-4215ce572975",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "b722d9e8-62a7-45b8-a141-f6e7ba8ba944",
+      "name": "List customer accounts - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/accounts",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"accounts\": [\n    {\n      \"name\": \"Acme Corp\",\n      \"email\": \"admin@acme-corp.com\",\n      \"phone\": \"+919876543210\",\n      \"description\": null,\n      \"gstin\": null,\n      \"gst_status\": null,\n      \"tds_enabled\": false,\n      \"tds_percentage\": 2,\n      \"business_type\": \"individual\",\n      \"id\": \"500000\",\n      \"auth_id\": \"MA_XXXXXXXX\",\n      \"api_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_type\": \"standard\",\n      \"role\": \"user\",\n      \"postpaid\": false,\n      \"address\": \"221B Baker Street\",\n      \"city\": \"Mumbai\",\n      \"state\": null,\n      \"timezone\": \"Asia/Kolkata\",\n      \"country\": \"IN\",\n      \"zip_code\": \"400001\",\n      \"company\": \"Acme Corp\",\n      \"billing_mode\": \"prepaid\",\n      \"auto_recharge\": false,\n      \"cash_credits\": \"1300.00000\",\n      \"cps_limit\": 1,\n      \"concurrent_calls_limit\": 4,\n      \"base_cps_limit\": null,\n      \"base_concurrent_calls_limit\": null,\n      \"purchased_cps\": null,\n      \"purchased_concurrent_calls\": null,\n      \"is_active\": true,\n      \"is_verified\": false,\n      \"is_trial_account\": false,\n      \"enabled\": true,\n      \"kyc_status\": \"pending\",\n      \"google_id\": null,\n      \"referral_code\": null,\n      \"referral_disabled\": false,\n      \"custom_referrer_reward_amount\": null,\n      \"custom_referee_reward_amount\": null,\n      \"created_at\": \"2026-03-25T10:00:00Z\",\n      \"updated_at\": \"2026-03-26T11:54:13Z\",\n      \"last_login\": \"2026-03-25T10:16:47Z\",\n      \"pricing_tier_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"pricing_tier\": {\n        \"id\": \"11223344-1234-5678-90ab-cdef12345678\",\n        \"name\": \"Standard\",\n        \"currency\": \"INR\",\n        \"rate_per_minute\": 0.45,\n        \"streaming_rate_per_minute\": 0.2,\n        \"recording_rate_per_minute\": 0.1,\n        \"whatsapp_voice_rate\": 0.45,\n        \"transcription_rate_per_minute\": 0.1,\n        \"pii_redaction_rate_per_minute\": 0.3,\n        \"charge_non_connected_calls\": true,\n        \"non_connected_call_fee\": 0.02,\n        \"did_release_fee\": 700,\n        \"is_active\": true,\n        \"is_default\": false,\n        \"partner_id\": null\n      },\n      \"partner_id\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"auto_recharge_config\": null,\n      \"resource_uri\": \"/v1/Account/MA_XXXXXXXX/\",\n      \"auth_token\": \"<redacted>\"\n    },\n    {\n      \"name\": \"John Doe\",\n      \"email\": \"john@example.com\",\n      \"phone\": \"+918012345678\",\n      \"description\": null,\n      \"gstin\": null,\n      \"gst_status\": null,\n      \"tds_enabled\": false,\n      \"tds_percentage\": 2,\n      \"business_type\": \"individual\",\n      \"id\": \"500001\",\n      \"auth_id\": \"MA_YYYYYYYY\",\n      \"api_id\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"account_type\": \"standard\",\n      \"role\": \"user\",\n      \"postpaid\": false,\n      \"address\": null,\n      \"city\": null,\n      \"state\": null,\n      \"timezone\": null,\n      \"country\": \"IN\",\n      \"zip_code\": null,\n      \"company\": \"Acme Corp\",\n      \"billing_mode\": \"prepaid\",\n      \"auto_recharge\": false,\n      \"cash_credits\": \"1107.00000\",\n      \"cps_limit\": 1,\n      \"concurrent_calls_limit\": 3,\n      \"base_cps_limit\": null,\n      \"base_concurrent_calls_limit\": null,\n      \"purchased_cps\": null,\n      \"purchased_concurrent_calls\": null,\n      \"is_active\": true,\n      \"is_verified\": false,\n      \"is_trial_account\": false,\n      \"enabled\": true,\n      \"kyc_status\": \"pending\",\n      \"google_id\": null,\n      \"referral_code\": null,\n      \"referral_disabled\": false,\n      \"custom_referrer_reward_amount\": null,\n      \"custom_referee_reward_amount\": null,\n      \"created_at\": \"2026-03-20T05:58:46Z\",\n      \"updated_at\": \"2026-03-21T05:13:16Z\",\n      \"last_login\": null,\n      \"pricing_tier_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"pricing_tier\": {\n        \"id\": \"11223344-1234-5678-90ab-cdef12345678\",\n        \"name\": \"Standard\",\n        \"currency\": \"INR\",\n        \"rate_per_minute\": 0.45,\n        \"streaming_rate_per_minute\": 0.2,\n        \"recording_rate_per_minute\": 0.1,\n        \"whatsapp_voice_rate\": 0.45,\n        \"transcription_rate_per_minute\": 0.1,\n        \"pii_redaction_rate_per_minute\": 0.3,\n        \"charge_non_connected_calls\": true,\n        \"non_connected_call_fee\": 0.02,\n        \"did_release_fee\": 700,\n        \"is_active\": true,\n        \"is_default\": false,\n        \"partner_id\": null\n      },\n      \"partner_id\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"auto_recharge_config\": null,\n      \"resource_uri\": \"/v1/Account/MA_YYYYYYYY/\",\n      \"auth_token\": \"<redacted>\"\n    }\n  ],\n  \"total\": 2,\n  \"page\": 1,\n  \"size\": 20\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "b722d9e8-62a7-45b8-a141-f6e7ba8ba944",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "8bc8f35a-08ce-402a-a3d8-7284aabd275d",
+      "name": "Create customer account - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/accounts",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"auth_id\": \"MA_ZKITB8Z2\",\n  \"auth_token\": \"your_auth_token_here\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"status\": \"active\",\n  \"balance\": 0,\n  \"currency\": \"INR\",\n  \"country\": \"IN\",\n  \"created_at\": \"2026-03-25T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8bc8f35a-08ce-402a-a3d8-7284aabd275d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "72d2f90f-4458-4140-b647-a0b0e656ff4e",
+      "name": "Transfer balance to customer - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/transfer-balance",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "customer_auth_id": {
+            "equalTo": "MA_ZKITB8Z2"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"transaction_id\": \"txn_aabbccdd1234\",\n  \"from_account\": \"PA_XXXXXXXX\",\n  \"to_account\": \"MA_XXXXXXXX\",\n  \"amount\": 500,\n  \"currency\": \"INR\",\n  \"description\": \"April recharge\",\n  \"status\": \"completed\",\n  \"partner_balance_after\": 47750,\n  \"customer_balance_after\": 2950,\n  \"timestamp\": \"2026-03-25T11:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "72d2f90f-4458-4140-b647-a0b0e656ff4e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "64f52f2b-897b-4d12-b67b-14aec853ef42",
+      "name": "List customer transactions - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/transactions",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "customer_auth_id": {
+            "equalTo": "customer_auth_id"
+          }
+        },
+        "queryParameters": {
+          "from_date": {
+            "equalTo": "2026-03-01"
+          },
+          "to_date": {
+            "equalTo": "2026-03-31"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"balance_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"type\": \"credit\",\n      \"amount\": 200,\n      \"currency\": \"INR\",\n      \"description\": \"Transfer from partner Acme: Balance transfer\",\n      \"reference\": \"ptc:99887766-1234-5678-90ab-cdef12345678:MA_XXXXXXXX:1778140310\",\n      \"status\": \"completed\",\n      \"processed_at\": \"2026-03-25T10:00:00Z\",\n      \"created_at\": \"2026-03-25T10:00:00Z\",\n      \"updated_at\": \"2026-03-25T10:00:00Z\"\n    },\n    {\n      \"id\": \"55667788-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"balance_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"type\": \"credit\",\n      \"amount\": 100,\n      \"currency\": \"INR\",\n      \"description\": \"Transfer from partner Acme: Balance transfer\",\n      \"reference\": \"ptc:99887766-1234-5678-90ab-cdef12345678:MA_XXXXXXXX:1778051898\",\n      \"status\": \"completed\",\n      \"processed_at\": \"2026-03-24T07:18:18Z\",\n      \"created_at\": \"2026-03-24T07:18:18Z\",\n      \"updated_at\": \"2026-03-24T07:18:18Z\"\n    },\n    {\n      \"id\": \"aabbccdd-9999-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"balance_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"type\": \"credit\",\n      \"amount\": 1000,\n      \"currency\": \"INR\",\n      \"description\": \"Transfer from partner Acme: Balance transfer\",\n      \"reference\": \"ptc:99887766-1234-5678-90ab-cdef12345678:MA_XXXXXXXX:1778051770\",\n      \"status\": \"completed\",\n      \"processed_at\": \"2026-03-24T07:16:10Z\",\n      \"created_at\": \"2026-03-24T07:16:10Z\",\n      \"updated_at\": \"2026-03-24T07:16:10Z\"\n    }\n  ],\n  \"summary\": {\n    \"total_transactions\": 3,\n    \"total_debit\": 0,\n    \"total_credit\": 1300,\n    \"net_amount\": 1300,\n    \"by_reference_type\": [\n      {\n        \"reference_type\": \"unknown\",\n        \"total_debit\": 0,\n        \"total_credit\": 1300,\n        \"count\": 3\n      }\n    ]\n  },\n  \"total\": 3,\n  \"page\": 1,\n  \"per_page\": 20,\n  \"total_pages\": 1,\n  \"account_auth_id\": \"MA_XXXXXXXX\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "64f52f2b-897b-4d12-b67b-14aec853ef42",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "07da389f-a0c8-4c9a-9832-174b88bf0bed",
+      "name": "List customer CDRs - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/cdrs",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "customer_auth_id": {
+            "equalTo": "customer_auth_id"
+          }
+        },
+        "queryParameters": {
+          "hangup_cause": {
+            "equalTo": "NO_ANSWER"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"account_id\": \"MA_XXXXXXXX\",\n  \"count\": 2,\n  \"data\": [\n    {\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"answer_time\": \"2026-03-25T06:59:31Z\",\n      \"billsec\": 1,\n      \"bridge_uuid\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"call_direction\": \"outbound\",\n      \"caller_id_name\": \"Acme Corp\",\n      \"caller_id_number\": \"+918012345678\",\n      \"codec\": \"PCMU\",\n      \"context\": \"voice-api\",\n      \"cost\": 0.3,\n      \"created_at\": \"2026-03-25T06:59:32Z\",\n      \"currency\": \"INR\",\n      \"destination_number\": \"+919876543210\",\n      \"duration\": 6,\n      \"end_time\": \"2026-03-25T06:59:32Z\",\n      \"hangup_cause\": \"NORMAL_CLEARING\",\n      \"hangup_cause_code\": 4000,\n      \"hangup_cause_name\": \"Normal Hangup\",\n      \"hangup_disposition\": \"send_bye\",\n      \"hangup_source\": \"Caller\",\n      \"id\": 18600001,\n      \"jitter\": 0,\n      \"mos\": 4.5,\n      \"network_addr\": \"3.110.99.6\",\n      \"origination_region\": \"mumbai\",\n      \"packet_loss\": 0,\n      \"progress_time\": \"2026-03-25T06:59:26Z\",\n      \"region\": \"ap-south-1\",\n      \"ring_time\": 5,\n      \"sip_call_id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"sip_user_agent\": \"Vobiz\",\n      \"start_time\": \"2026-03-25T06:59:26Z\",\n      \"streaming_cost\": 0,\n      \"total_cost\": 0.3,\n      \"updated_at\": \"2026-03-25T06:59:32Z\",\n      \"uuid\": \"55667788-1234-5678-90ab-cdef12345678\"\n    },\n    {\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"answer_time\": \"2026-03-25T07:10:11Z\",\n      \"billsec\": 4,\n      \"bridge_uuid\": \"99887766-1234-5678-90ab-cdef12345678\",\n      \"call_direction\": \"inbound\",\n      \"caller_id_name\": \"+919876543210\",\n      \"caller_id_number\": \"+919876543210\",\n      \"codec\": \"PCMU\",\n      \"context\": \"voice-api\",\n      \"cost\": 0.45,\n      \"created_at\": \"2026-03-25T07:10:15Z\",\n      \"currency\": \"INR\",\n      \"destination_number\": \"+918012345678\",\n      \"duration\": 9,\n      \"end_time\": \"2026-03-25T07:10:15Z\",\n      \"hangup_cause\": \"NORMAL_CLEARING\",\n      \"hangup_cause_code\": 4010,\n      \"hangup_cause_name\": \"End Of XML Instructions\",\n      \"hangup_disposition\": \"send_bye\",\n      \"hangup_source\": \"Vobiz\",\n      \"id\": 18600002,\n      \"jitter\": 0,\n      \"mos\": 4.5,\n      \"network_addr\": \"13.203.7.132\",\n      \"origination_region\": \"mumbai\",\n      \"packet_loss\": 0,\n      \"progress_time\": \"2026-03-25T07:10:06Z\",\n      \"region\": \"ap-south-1\",\n      \"ring_time\": 5,\n      \"sip_call_id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"sip_user_agent\": \"Vobiz\",\n      \"start_time\": \"2026-03-25T07:10:06Z\",\n      \"streaming_cost\": 0,\n      \"total_cost\": 0.45,\n      \"updated_at\": \"2026-03-25T07:10:15Z\",\n      \"uuid\": \"aabbccdd-9999-5678-90ab-cdef12345678\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 1,\n    \"per_page\": 20,\n    \"total\": 2,\n    \"pages\": 1,\n    \"has_next\": false,\n    \"has_prev\": false\n  },\n  \"success\": true,\n  \"summary\": {\n    \"answerRate\": 100,\n    \"answeredCalls\": 2,\n    \"avgCallDuration\": \"7s\",\n    \"last_call_at\": \"2026-03-25T07:10:15Z\",\n    \"totalCalls\": 2,\n    \"total_billable_seconds\": 15,\n    \"total_cost\": 1,\n    \"total_duration_seconds\": 15\n  },\n  \"account_auth_id\": \"MA_XXXXXXXX\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "07da389f-a0c8-4c9a-9832-174b88bf0bed",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "b5d59fd4-12cb-4d2c-8789-2a8caabfb3ac",
+      "name": "List customer numbers - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/numbers",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "customer_auth_id": {
+            "equalTo": "customer_auth_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"items\": [\n    {\n      \"id\": \"aabbccdd-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"e164\": \"+918012345678\",\n      \"country\": \"IN\",\n      \"region\": \"Karnataka\",\n      \"capabilities\": {\n        \"voice\": true,\n        \"sms\": false,\n        \"mms\": false,\n        \"fax\": false\n      },\n      \"status\": \"active\",\n      \"provider\": \"\",\n      \"setup_fee\": 100,\n      \"monthly_fee\": 300,\n      \"currency\": \"INR\",\n      \"application_id\": \"20577609616603585\",\n      \"voice_enabled\": true,\n      \"purchased_at\": \"2026-03-25T06:58:38Z\",\n      \"is_blocked\": false,\n      \"created_at\": \"2025-03-31T18:30:00Z\",\n      \"updated_at\": \"2026-03-25T06:58:54Z\",\n      \"is_trial_number\": false,\n      \"last_billing_date\": \"2026-03-25T06:58:38Z\",\n      \"next_billing_date\": \"2026-04-25T06:58:38Z\",\n      \"minimum_commitment_months\": 0,\n      \"aadhaar_verification_required\": false,\n      \"aadhaar_verified\": false,\n      \"source\": \"purchased\"\n    },\n    {\n      \"id\": \"11223344-1234-5678-90ab-cdef12345678\",\n      \"account_id\": \"MA_XXXXXXXX\",\n      \"e164\": \"+919876543210\",\n      \"country\": \"IN\",\n      \"region\": \"Mumbai\",\n      \"capabilities\": {\n        \"voice\": true,\n        \"sms\": false,\n        \"mms\": false,\n        \"fax\": false\n      },\n      \"status\": \"active\",\n      \"provider\": \"\",\n      \"setup_fee\": 100,\n      \"monthly_fee\": 200,\n      \"currency\": \"INR\",\n      \"application_id\": \"31985999331899218\",\n      \"voice_enabled\": true,\n      \"purchased_at\": \"2026-02-17T10:25:30Z\",\n      \"is_blocked\": false,\n      \"created_at\": \"2026-02-14T09:30:04Z\",\n      \"updated_at\": \"2026-02-17T10:29:35Z\",\n      \"is_trial_number\": false,\n      \"last_billing_date\": \"2026-02-17T10:25:30Z\",\n      \"next_billing_date\": \"2026-03-17T10:25:30Z\",\n      \"minimum_commitment_months\": 0,\n      \"aadhaar_verification_required\": false,\n      \"aadhaar_verified\": false,\n      \"source\": \"purchased\"\n    }\n  ],\n  \"page\": 1,\n  \"per_page\": 20,\n  \"total\": 2,\n  \"account_auth_id\": \"MA_XXXXXXXX\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "b5d59fd4-12cb-4d2c-8789-2a8caabfb3ac",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d4dee90c-6970-4c35-8843-5266ac2d9e4a",
+      "name": "List KYC sessions - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/kyc-sessions",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"sessions\": [\n    {\n      \"id\": \"kycs_aabbccdd1234\",\n      \"account_auth_id\": \"MA_XXXXXXXX\",\n      \"customer_email\": null,\n      \"kyc_type\": null,\n      \"status\": \"opened\",\n      \"expires_at\": \"2026-04-08T08:32:48Z\",\n      \"first_opened_at\": \"2026-03-25T08:33:01Z\",\n      \"completed_at\": null,\n      \"webhook_url\": null,\n      \"redirect_url\": \"https://console.vobiz.ai/kyc-complete\",\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": null,\n      \"created_at\": \"2026-03-25T08:32:48Z\",\n      \"updated_at\": \"2026-03-25T08:33:01Z\"\n    },\n    {\n      \"id\": \"kycs_11223344abcd\",\n      \"account_auth_id\": \"MA_XXXXXXXX\",\n      \"customer_email\": \"admin@example.com\",\n      \"kyc_type\": null,\n      \"status\": \"revoked\",\n      \"expires_at\": \"2026-04-24T07:12:48Z\",\n      \"first_opened_at\": null,\n      \"completed_at\": null,\n      \"webhook_url\": null,\n      \"redirect_url\": null,\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": null,\n      \"created_at\": \"2026-03-25T07:12:48Z\",\n      \"updated_at\": \"2026-03-25T08:32:48Z\"\n    },\n    {\n      \"id\": \"kycs_55667788ef01\",\n      \"account_auth_id\": \"MA_YYYYYYYY\",\n      \"customer_email\": \"sarah@acme-corp.com\",\n      \"kyc_type\": null,\n      \"status\": \"opened\",\n      \"expires_at\": \"2026-04-24T07:07:38Z\",\n      \"first_opened_at\": \"2026-03-25T07:07:59Z\",\n      \"completed_at\": null,\n      \"webhook_url\": null,\n      \"redirect_url\": null,\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": null,\n      \"created_at\": \"2026-03-25T07:07:38Z\",\n      \"updated_at\": \"2026-03-25T07:07:59Z\"\n    },\n    {\n      \"id\": \"kycs_99887766abcd\",\n      \"account_auth_id\": \"MA_YYYYYYYY\",\n      \"customer_email\": \"sarah@acme-corp.com\",\n      \"kyc_type\": \"individual\",\n      \"status\": \"revoked\",\n      \"expires_at\": \"2026-04-23T06:00:52Z\",\n      \"first_opened_at\": \"2026-03-24T06:02:17Z\",\n      \"completed_at\": null,\n      \"webhook_url\": null,\n      \"redirect_url\": null,\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": {\n        \"pan_type\": \"individual\",\n        \"pan_number\": \"GTBPDXXXXX\",\n        \"pan_name_match\": true,\n        \"completed_steps\": [\n          \"pan\"\n        ],\n        \"pan_registered_name\": \"Sarah Smith\"\n      },\n      \"created_at\": \"2026-03-24T06:00:52Z\",\n      \"updated_at\": \"2026-03-25T07:07:38Z\"\n    },\n    {\n      \"id\": \"kycs_aabbcc998877\",\n      \"account_auth_id\": \"MA_ZZZZZZZZ\",\n      \"customer_email\": \"john@example.com\",\n      \"kyc_type\": \"individual\",\n      \"status\": \"kyc_completed\",\n      \"expires_at\": \"2026-04-23T05:45:48Z\",\n      \"first_opened_at\": \"2026-03-24T05:46:23Z\",\n      \"completed_at\": \"2026-03-24T06:19:52Z\",\n      \"webhook_url\": null,\n      \"redirect_url\": null,\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": {\n        \"gender\": \"MALE\",\n        \"address\": \"221B Baker Street, Mumbai, Maharashtra, 400001, India\",\n        \"aadhaar_dob\": \"2001-02-05\",\n        \"aadhaar_name\": \"John Doe\",\n        \"masked_aadhaar\": \"9942\"\n      },\n      \"created_at\": \"2026-03-24T05:45:48Z\",\n      \"updated_at\": \"2026-03-24T06:19:52Z\"\n    },\n    {\n      \"id\": \"kycs_5566778899aa\",\n      \"account_auth_id\": \"MA_WWWWWWWW\",\n      \"customer_email\": \"demo@example.com\",\n      \"kyc_type\": null,\n      \"status\": \"email_sent\",\n      \"expires_at\": \"2026-04-22T04:11:19Z\",\n      \"first_opened_at\": null,\n      \"completed_at\": null,\n      \"webhook_url\": null,\n      \"redirect_url\": null,\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": null,\n      \"created_at\": \"2026-03-23T04:11:19Z\",\n      \"updated_at\": \"2026-03-23T04:11:19Z\"\n    },\n    {\n      \"id\": \"kycs_99aabbccdd11\",\n      \"account_auth_id\": \"MA_VVVVVVVV\",\n      \"customer_email\": \"demo@example.com\",\n      \"kyc_type\": \"individual\",\n      \"status\": \"in_progress\",\n      \"expires_at\": \"2026-04-19T12:12:58Z\",\n      \"first_opened_at\": \"2026-03-20T12:13:18Z\",\n      \"completed_at\": null,\n      \"webhook_url\": null,\n      \"redirect_url\": null,\n      \"reminder_schedule\": [\n        {\n          \"value\": 1,\n          \"trigger\": \"trigger\"\n        }\n      ],\n      \"metadata\": null,\n      \"verified_data\": {\n        \"pan_type\": \"individual\",\n        \"pan_number\": \"IMBPKXXXXX\",\n        \"pan_name_match\": true,\n        \"completed_steps\": [\n          \"pan\"\n        ],\n        \"pan_registered_name\": \"John Doe\"\n      },\n      \"created_at\": \"2026-03-20T12:12:58Z\",\n      \"updated_at\": \"2026-03-20T12:52:21Z\"\n    }\n  ],\n  \"total\": 7,\n  \"page\": 1,\n  \"size\": 20\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d4dee90c-6970-4c35-8843-5266ac2d9e4a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "d0490cf0-b01e-48a4-b6d5-55ba2b5cd6e5",
+      "name": "Initiate KYC session - Email-flow response",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/kyc-sessions",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"session_id\": \"a5f8da3c-b47f-40c3-a3e6-d2c9a0f27065\",\n  \"account_auth_id\": \"MA_E31MAU98\",\n  \"customer_email\": \"customer@example.com\",\n  \"email_dispatched_to\": \"c***@example.com\",\n  \"status\": \"email_sent\",\n  \"expires_at\": \"2026-05-15T19:37:01.316686Z\",\n  \"message\": \"KYC email dispatched successfully\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d0490cf0-b01e-48a4-b6d5-55ba2b5cd6e5",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "26449282-762d-46fe-9c71-27c762c42ef0",
+      "name": "Get KYC session - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "session_id": {
+            "equalTo": "session_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "26449282-762d-46fe-9c71-27c762c42ef0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d5788b1c-4ae6-4064-a734-f3a21a61bd29",
+      "name": "Revoke KYC session - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "session_id": {
+            "equalTo": "session_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"message\": \"Session revoked\",\n  \"session_id\": \"1a0f7da5-2abb-47bf-a6c3-eb5cff7feda5\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d5788b1c-4ae6-4064-a734-f3a21a61bd29",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d6c392d7-0833-49e7-8795-b38cbfaeaf87",
+      "name": "Resend KYC email - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}/resend",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "session_id": {
+            "equalTo": "session_id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d6c392d7-0833-49e7-8795-b38cbfaeaf87",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "total": 110
+  }
+}
