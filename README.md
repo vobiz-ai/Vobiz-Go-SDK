@@ -1,345 +1,214 @@
-# Vobiz Go SDK
+# Vobiz Go Library
 
-The official Go SDK for [Vobiz](https://vobiz.ai) — an AI-first voice and telephony API platform for builders. Use it to make and control calls, manage SIP trunks, provision phone numbers, run conferences, and capture recordings, all from idiomatic, type-safe Go. This SDK provides a comprehensive, production-ready interface to the Vobiz API, enabling you to integrate powerful voice capabilities into your Go applications with ease.
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Vobiz%2FGo)
 
-## Quick links
+The Vobiz Go library provides convenient access to the Vobiz APIs from Go.
 
-- **Documentation:** [docs.vobiz.ai](https://docs.vobiz.ai)
-- **Dashboard / Console:** [console.vobiz.ai](https://console.vobiz.ai)
-- **Full API reference:** [`./reference.md`](./reference.md)
+## Table of Contents
 
-## Features
+- [Reference](#reference)
+- [Usage](#usage)
+- [Environments](#environments)
+- [Errors](#errors)
+- [Request Options](#request-options)
+- [Advanced](#advanced)
+  - [Response Headers](#response-headers)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Explicit Null](#explicit-null)
+- [Contributing](#contributing)
 
-The Vobiz Go SDK provides access to the full suite of Vobiz API capabilities, including:
+## Reference
 
-- **Programmatic Call Control:** Initiate outbound calls, manage live calls (hang up, transfer), and respond to inbound call events.
-- **SIP Trunk Management:** Create, retrieve, update, and delete SIP trunks for flexible voice routing.
-- **Phone Number Provisioning:** List available numbers, purchase new numbers, and manage number assignments to trunks or sub-accounts.
-- **Conference Management:** Create and control multi-party conference calls, including muting, deafening, and kicking participants.
-- **Call Recording:** Start and stop call recordings, retrieve recording details, and manage stored recordings.
-- **Audio Manipulation & TTS:** Play audio files or convert text-to-speech (TTS) into live calls.
-- **DTMF Tones:** Send Dual-Tone Multi-Frequency (DTMF) tones during active calls.
-- **Sub-Account & KYC Management:** Programmatically manage sub-accounts, run PAN/GSTIN/DigiLocker KYC verifications, or test with mock KYC sessions.
+A full reference for this library is available [here](./reference.md).
 
-## Requirements
+## Usage
 
-The Vobiz Go SDK requires Go version **`1.21`** or later.
-
-## Installation
-
-To add the Vobiz Go SDK to your project, use `go get`:
-
-```sh
-go get github.com/vobiz-ai/Vobiz-Go-SDK
-```
-
-## Authentication
-
-Vobiz authenticates requests using an **Auth ID** and an **Auth Token**. You can find your unique credentials in the [Vobiz Console](https://console.vobiz.ai).
-
-To configure the client, use `option.WithAPIKey` for your Auth ID and `option.WithAuthToken` for your Auth Token. These options map internally to the `X-Auth-ID` and `X-Auth-Token` HTTP headers. For production environments, it is highly recommended to load your credentials from environment variables:
+Instantiate and use the client with the following:
 
 ```go
-package main
+package example
 
 import (
-    "os"
-
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
-)
-
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
-    )
-    
-    // Your API calls here
-}
-```
-
-## Quickstart
-
-This quickstart demonstrates how to make an outbound call using the Vobiz Go SDK. When the call connects, Vobiz will fetch XML instructions from your specified `AnswerURL`.
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "log"
-    "os"
+    context "context"
 
     vobiz "github.com/vobiz-ai/Vobiz-Go-SDK"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
+    client "github.com/vobiz-ai/Vobiz-Go-SDK/client"
+    option "github.com/vobiz-ai/Vobiz-Go-SDK/option"
 )
 
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
+func do() {
+    client := client.NewClient(
+        option.WithAPIKey(
+            "<value>",
+        ),
+        option.WithAuthToken(
+            "<X-Auth-Token>",
+        ),
     )
-
-    response, err := c.Calls.MakeCall(context.TODO(), &vobiz.MakeCallRequest{
-        AuthID:       os.Getenv("VOBIZ_AUTH_ID"),
-        From:         "14155551234",
-        To:           "+919876543210",
-        AnswerURL:    "https://example.com/answer",
+    request := &vobiz.MakeCallRequest{
+        AuthID: "MA_XXXXXX",
+        From: "14155551234",
+        To: "+919876543210",
+        AnswerURL: "https://example.com/answer",
         AnswerMethod: "POST",
-    })
-    if err != nil {
-        log.Fatalf("Error making call: %v", err)
     }
-
-    fmt.Printf("Call queued successfully: %+v\n", response)
-}
-```
-
-## Common operations
-
-### Retrieve account balance
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "log"
-    "os"
-
-    vobiz "github.com/vobiz-ai/Vobiz-Go-SDK"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
-)
-
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
+    client.Calls.MakeCall(
+        context.TODO(),
+        request,
     )
-
-    balanceResponse, err := c.Balance.GetBalance(context.TODO(), &vobiz.GetBalanceRequest{
-        AuthID:   os.Getenv("VOBIZ_AUTH_ID"),
-        Currency: "USD",
-    })
-    if err != nil {
-        log.Fatalf("Error retrieving balance: %v", err)
-    }
-
-    fmt.Printf("Account Balance: %+v\n", balanceResponse)
 }
 ```
 
-### List Call Detail Records (CDRs) with filters
+## Environments
+
+You can choose between different environments by using the `option.WithBaseURL` option. You can configure any arbitrary base
+URL, which is particularly useful in test environments.
 
 ```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "log"
-    "os"
-
-    vobiz "github.com/vobiz-ai/Vobiz-Go-SDK"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
+client := client.NewClient(
+    option.WithBaseURL(vobiz.Environments.Production),
 )
-
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
-    )
-
-    request := &vobiz.ListCdrsRequest{
-        AuthID:     os.Getenv("VOBIZ_AUTH_ID"),
-        FromNumber: vobiz.String("9876543210"),
-        ToNumber:   vobiz.String("1234567890"),
-        StartDate: vobiz.Time(
-            vobiz.MustParseDate("2026-03-01"),
-        ),
-        EndDate: vobiz.Time(
-            vobiz.MustParseDate("2026-03-17"),
-        ),
-        MinDuration: vobiz.Int(10),
-    }
-
-    response, err := c.Cdr.ListCdrs(context.TODO(), request)
-    if err != nil {
-        log.Fatalf("Error listing CDRs: %v", err)
-    }
-
-    fmt.Printf("CDRs: %+v\n", response)
-}
 ```
 
-### Create a SIP Trunk
+## Errors
+
+Structured error types are returned from API calls that return non-success status codes. These errors are compatible
+with the `errors.Is` and `errors.As` APIs, so you can access the error like so:
 
 ```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "log"
-    "os"
-
-    vobiz "github.com/vobiz-ai/Vobiz-Go-SDK"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
-)
-
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
-    )
-
-    request := &vobiz.CreateTrunkRequest{
-        AuthID:             os.Getenv("VOBIZ_AUTH_ID"),
-        Name:               "My Outbound Trunk",
-        TrunkType:          "OUTBOUND",
-        MaxConcurrentCalls: 10,
-    }
-
-    response, err := c.Trunks.CreateTrunk(context.TODO(), request)
-    if err != nil {
-        log.Fatalf("Error creating SIP trunk: %v", err)
-    }
-
-    fmt.Printf("Trunk created: %+v\n", response)
-}
-```
-
-### Verify Sub-Account PAN (KYC)
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "log"
-    "os"
-
-    vobiz "github.com/vobiz-ai/Vobiz-Go-SDK"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
-)
-
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
-    )
-
-    request := &vobiz.VerifySubaccountPanRequest{
-        SubAuthID: "SA_XXXXXX",
-        Pan:       "ABCDE1234F",
-    }
-
-    result, err := c.SubAccountKyc.VerifySubaccountPan(context.TODO(), request)
-    if err != nil {
-        log.Fatalf("Error verifying PAN: %v", err)
-    }
-
-    fmt.Printf("Verification Result: %+v\n", result)
-}
-```
-
-## Configuration
-
-The Vobiz Go SDK client is designed to be highly configurable. You can pass functional options to `client.NewClient()` to customize the client's behavior.
-
-### Timeouts and Contexts
-
-All API methods accept a standard Go `context.Context` as their first parameter. This allows you to easily manage request timeouts, cancellations, and deadlines within your application flow:
-
-```go
-package main
-
-import (
-    "context"
-    "log"
-    "os"
-    "time"
-
-    vobiz "github.com/vobiz-ai/Vobiz-Go-SDK"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/client"
-    "github.com/vobiz-ai/Vobiz-Go-SDK/option"
-)
-
-func main() {
-    c := client.NewClient(
-        option.WithAPIKey(os.Getenv("VOBIZ_AUTH_ID")),
-        option.WithAuthToken(os.Getenv("VOBIZ_AUTH_TOKEN")),
-    )
-
-    // Set a strict 5-second timeout for the API call
-    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-    defer cancel()
-
-    _, err := c.Balance.GetBalance(ctx, &vobiz.GetBalanceRequest{
-        AuthID:   os.Getenv("VOBIZ_AUTH_ID"),
-        Currency: "USD",
-    })
-    if err != nil {
-        log.Fatalf("Request failed or timed out: %v", err)
-    }
-}
-```
-
-## Error handling
-
-The Vobiz Go SDK returns standard Go `error` values. If the API returns a non-2xx HTTP status code, the SDK returns an error detailing the failure. Always check the returned `err` value before attempting to access the response object.
-
-```go
-response, err := c.Balance.GetBalance(context.TODO(), &vobiz.GetBalanceRequest{
-    AuthID:   os.Getenv("VOBIZ_AUTH_ID"),
-    Currency: "USD",
-})
+response, err := client.Calls.MakeCall(...)
 if err != nil {
-    // Handle error (e.g., network timeout, invalid credentials, or API-side validation error)
-    log.Printf("API call failed: %v", err)
-    return
+    var apiError *core.APIError
+    if errors.As(err, apiError) {
+        // Do something with the API error ...
+    }
+    return err
 }
 ```
 
-## Pagination
+## Request Options
 
-List endpoints (such as `Cdr.ListCdrs`, `Balance.ListTransactions`, `PhoneNumbers.ListNumbers`, etc.) support pagination via `limit`, `offset`, `page`, and `perPage` parameters.
+A variety of request options are included to adapt the behavior of the library, which includes configuring
+authorization tokens, or providing your own instrumented `*http.Client`.
+
+These request options can either be
+specified on the client so that they're applied on every request, or for an individual request, like so:
+
+> Providing your own `*http.Client` is recommended. Otherwise, the `http.DefaultClient` will be used,
+> and your client will wait indefinitely for a response (unless the per-request, context-based timeout
+> is used).
 
 ```go
-request := &vobiz.ListCdrsRequest{
-    AuthID:  os.Getenv("VOBIZ_AUTH_ID"),
-    Page:    vobiz.Int(2),
-    PerPage: vobiz.Int(50),
-}
+// Specify default options applied on every request.
+client := client.NewClient(
+    option.WithToken("<YOUR_API_KEY>"),
+    option.WithHTTPClient(
+        &http.Client{
+            Timeout: 5 * time.Second,
+        },
+    ),
+)
+
+// Specify options for an individual request.
+response, err := client.Calls.MakeCall(
+    ...,
+    option.WithToken("<YOUR_API_KEY>"),
+)
 ```
 
-## Other Vobiz SDKs
+## Advanced
 
-Vobiz provides official SDKs for several popular programming languages:
+### Response Headers
 
-| Language | Repository |
-| :--- | :--- |
-| **TypeScript / Node.js** | [vobiz-ai/Vobiz-Node-SDK](https://github.com/vobiz-ai/Vobiz-Node-SDK) |
-| **Python** | [vobiz-ai/Vobiz-Python-SDK](https://github.com/vobiz-ai/Vobiz-Python-SDK) |
-| **Ruby** | [vobiz-ai/Vobiz-Ruby-SDK](https://github.com/vobiz-ai/Vobiz-Ruby-SDK) |
-| **C# (.NET)** | [vobiz-ai/Vobiz-Csharp-sdk](https://github.com/vobiz-ai/Vobiz-Csharp-sdk) |
-| **Java** | [vobiz-ai/Vobiz-Java-SDK](https://github.com/vobiz-ai/Vobiz-Java-SDK) |
-| **PHP** | [vobiz-ai/Vobiz-PHP-SDK](https://github.com/vobiz-ai/Vobiz-PHP-SDK) |
+You can access the raw HTTP response data by using the `WithRawResponse` field on the client. This is useful
+when you need to examine the response headers received from the API call. (When the endpoint is paginated,
+the raw HTTP response data will be included automatically in the Page response object.)
 
-## Support
+```go
+response, err := client.Calls.WithRawResponse.MakeCall(...)
+if err != nil {
+    return err
+}
+fmt.Printf("Got response headers: %v", response.Header)
+fmt.Printf("Got status code: %d", response.StatusCode)
+```
 
-- **Detailed Documentation:** [docs.vobiz.ai](https://docs.vobiz.ai)
-- **Vobiz Console:** [console.vobiz.ai](https://console.vobiz.ai)
+### Retries
 
-## License
+The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
+as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
+retry limit (default: 2).
 
-This SDK is distributed under the [MIT License](LICENSE).
+Which status codes are retried depends on the `retryStatusCodes` generator configuration:
+
+**`legacy`** (current default): retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (All server errors, including 500)
+
+**`recommended`**: retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [502](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502) (Bad Gateway)
+- [503](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) (Service Unavailable)
+- [504](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) (Gateway Timeout)
+
+If the `Retry-After` header is present in the response, the SDK will prioritize respecting its value exactly
+over the default exponential backoff.
+
+Use the `option.WithMaxAttempts` option to configure this behavior for the entire client or an individual request:
+
+```go
+client := client.NewClient(
+    option.WithMaxAttempts(1),
+)
+
+response, err := client.Calls.MakeCall(
+    ...,
+    option.WithMaxAttempts(1),
+)
+```
+
+### Timeouts
+
+Setting a timeout for each individual request is as simple as using the standard context library. Setting a one second timeout for an individual API call looks like the following:
+
+```go
+ctx, cancel := context.WithTimeout(ctx, time.Second)
+defer cancel()
+
+response, err := client.Calls.MakeCall(ctx, ...)
+```
+
+### Explicit Null
+
+If you want to send the explicit `null` JSON value through an optional parameter, you can use the setters\
+that come with every object. Calling a setter method for a property will flip a bit in the `explicitFields`
+bitfield for that setter's object; during serialization, any property with a flipped bit will have its
+omittable status stripped, so zero or `nil` values will be sent explicitly rather than omitted altogether:
+
+```go
+type ExampleRequest struct {
+    // An optional string parameter.
+    Name *string `json:"name,omitempty" url:"-"`
+
+    // Private bitmask of fields set to an explicit value and therefore not to be omitted
+    explicitFields *big.Int `json:"-" url:"-"`
+}
+
+request := &ExampleRequest{}
+request.SetName(nil)
+
+response, err := client.Calls.MakeCall(ctx, request, ...)
+```
+
+## Contributing
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!
