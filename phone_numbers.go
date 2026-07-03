@@ -7,6 +7,7 @@ import (
 	fmt "fmt"
 	internal "github.com/vobiz-ai/Vobiz-Go-SDK/internal"
 	big "math/big"
+	time "time"
 )
 
 var (
@@ -140,6 +141,62 @@ func (a *AssignNumberToTrunkRequest) MarshalJSON() ([]byte, error) {
 	}
 	explicitMarshaler := internal.HandleExplicitFields(marshaler, a.explicitFields)
 	return json.Marshal(explicitMarshaler)
+}
+
+var (
+	getNumberHealthRequestFieldAuthID      = big.NewInt(1 << 0)
+	getNumberHealthRequestFieldE164        = big.NewInt(1 << 1)
+	getNumberHealthRequestFieldGranularity = big.NewInt(1 << 2)
+	getNumberHealthRequestFieldDays        = big.NewInt(1 << 3)
+)
+
+type GetNumberHealthRequest struct {
+	// Your account Auth ID
+	AuthID string `json:"-" url:"-"`
+	// The number in E.164, URL-encoded (use %2B instead of +).
+	E164 string `json:"-" url:"-"`
+	// Snapshot granularity.
+	Granularity *GetNumberHealthRequestGranularity `json:"-" url:"granularity,omitempty"`
+	// Size of the window (in days) for the summary and snapshots.
+	Days *int `json:"-" url:"days,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (g *GetNumberHealthRequest) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetAuthID sets the AuthID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthRequest) SetAuthID(authID string) {
+	g.AuthID = authID
+	g.require(getNumberHealthRequestFieldAuthID)
+}
+
+// SetE164 sets the E164 field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthRequest) SetE164(e164 string) {
+	g.E164 = e164
+	g.require(getNumberHealthRequestFieldE164)
+}
+
+// SetGranularity sets the Granularity field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthRequest) SetGranularity(granularity *GetNumberHealthRequestGranularity) {
+	g.Granularity = granularity
+	g.require(getNumberHealthRequestFieldGranularity)
+}
+
+// SetDays sets the Days field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthRequest) SetDays(days *int) {
+	g.Days = days
+	g.require(getNumberHealthRequestFieldDays)
 }
 
 var (
@@ -315,6 +372,593 @@ func (p *PurchaseFromInventoryRequest) MarshalJSON() ([]byte, error) {
 	}
 	explicitMarshaler := internal.HandleExplicitFields(marshaler, p.explicitFields)
 	return json.Marshal(explicitMarshaler)
+}
+
+type GetNumberHealthRequestGranularity string
+
+const (
+	GetNumberHealthRequestGranularityDaily  GetNumberHealthRequestGranularity = "daily"
+	GetNumberHealthRequestGranularityHourly GetNumberHealthRequestGranularity = "hourly"
+)
+
+func NewGetNumberHealthRequestGranularityFromString(s string) (GetNumberHealthRequestGranularity, error) {
+	switch s {
+	case "daily":
+		return GetNumberHealthRequestGranularityDaily, nil
+	case "hourly":
+		return GetNumberHealthRequestGranularityHourly, nil
+	}
+	var t GetNumberHealthRequestGranularity
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (g GetNumberHealthRequestGranularity) Ptr() *GetNumberHealthRequestGranularity {
+	return &g
+}
+
+var (
+	getNumberHealthResponseFieldE164        = big.NewInt(1 << 0)
+	getNumberHealthResponseFieldStatus      = big.NewInt(1 << 1)
+	getNumberHealthResponseFieldUsageStatus = big.NewInt(1 << 2)
+	getNumberHealthResponseFieldIsSpam      = big.NewInt(1 << 3)
+	getNumberHealthResponseFieldGranularity = big.NewInt(1 << 4)
+	getNumberHealthResponseFieldSummary     = big.NewInt(1 << 5)
+	getNumberHealthResponseFieldSnapshots   = big.NewInt(1 << 6)
+)
+
+type GetNumberHealthResponse struct {
+	E164   *string `json:"e164,omitempty" url:"e164,omitempty"`
+	Status *string `json:"status,omitempty" url:"status,omitempty"`
+	// Reputation/usage rating for the number.
+	UsageStatus *string                                 `json:"usage_status,omitempty" url:"usage_status,omitempty"`
+	IsSpam      *bool                                   `json:"is_spam,omitempty" url:"is_spam,omitempty"`
+	Granularity *string                                 `json:"granularity,omitempty" url:"granularity,omitempty"`
+	Summary     *GetNumberHealthResponseSummary         `json:"summary,omitempty" url:"summary,omitempty"`
+	Snapshots   []*GetNumberHealthResponseSnapshotsItem `json:"snapshots,omitempty" url:"snapshots,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (g *GetNumberHealthResponse) GetE164() *string {
+	if g == nil {
+		return nil
+	}
+	return g.E164
+}
+
+func (g *GetNumberHealthResponse) GetStatus() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Status
+}
+
+func (g *GetNumberHealthResponse) GetUsageStatus() *string {
+	if g == nil {
+		return nil
+	}
+	return g.UsageStatus
+}
+
+func (g *GetNumberHealthResponse) GetIsSpam() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.IsSpam
+}
+
+func (g *GetNumberHealthResponse) GetGranularity() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Granularity
+}
+
+func (g *GetNumberHealthResponse) GetSummary() *GetNumberHealthResponseSummary {
+	if g == nil {
+		return nil
+	}
+	return g.Summary
+}
+
+func (g *GetNumberHealthResponse) GetSnapshots() []*GetNumberHealthResponseSnapshotsItem {
+	if g == nil {
+		return nil
+	}
+	return g.Snapshots
+}
+
+func (g *GetNumberHealthResponse) GetExtraProperties() map[string]interface{} {
+	if g == nil {
+		return nil
+	}
+	return g.extraProperties
+}
+
+func (g *GetNumberHealthResponse) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetE164 sets the E164 field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetE164(e164 *string) {
+	g.E164 = e164
+	g.require(getNumberHealthResponseFieldE164)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetStatus(status *string) {
+	g.Status = status
+	g.require(getNumberHealthResponseFieldStatus)
+}
+
+// SetUsageStatus sets the UsageStatus field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetUsageStatus(usageStatus *string) {
+	g.UsageStatus = usageStatus
+	g.require(getNumberHealthResponseFieldUsageStatus)
+}
+
+// SetIsSpam sets the IsSpam field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetIsSpam(isSpam *bool) {
+	g.IsSpam = isSpam
+	g.require(getNumberHealthResponseFieldIsSpam)
+}
+
+// SetGranularity sets the Granularity field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetGranularity(granularity *string) {
+	g.Granularity = granularity
+	g.require(getNumberHealthResponseFieldGranularity)
+}
+
+// SetSummary sets the Summary field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetSummary(summary *GetNumberHealthResponseSummary) {
+	g.Summary = summary
+	g.require(getNumberHealthResponseFieldSummary)
+}
+
+// SetSnapshots sets the Snapshots field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponse) SetSnapshots(snapshots []*GetNumberHealthResponseSnapshotsItem) {
+	g.Snapshots = snapshots
+	g.require(getNumberHealthResponseFieldSnapshots)
+}
+
+func (g *GetNumberHealthResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetNumberHealthResponse
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*g = GetNumberHealthResponse(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *g)
+	if err != nil {
+		return err
+	}
+	g.extraProperties = extraProperties
+	g.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (g *GetNumberHealthResponse) MarshalJSON() ([]byte, error) {
+	type embed GetNumberHealthResponse
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*g),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, g.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (g *GetNumberHealthResponse) String() string {
+	if g == nil {
+		return "<nil>"
+	}
+	if len(g.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(g.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(g); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", g)
+}
+
+var (
+	getNumberHealthResponseSnapshotsItemFieldID            = big.NewInt(1 << 0)
+	getNumberHealthResponseSnapshotsItemFieldTs            = big.NewInt(1 << 1)
+	getNumberHealthResponseSnapshotsItemFieldTotalCalls    = big.NewInt(1 << 2)
+	getNumberHealthResponseSnapshotsItemFieldAnsweredCalls = big.NewInt(1 << 3)
+	getNumberHealthResponseSnapshotsItemFieldFailedCalls   = big.NewInt(1 << 4)
+	getNumberHealthResponseSnapshotsItemFieldAnswerRate    = big.NewInt(1 << 5)
+	getNumberHealthResponseSnapshotsItemFieldTotalDuration = big.NewInt(1 << 6)
+	getNumberHealthResponseSnapshotsItemFieldAvgDuration   = big.NewInt(1 << 7)
+	getNumberHealthResponseSnapshotsItemFieldTotalMinutes  = big.NewInt(1 << 8)
+)
+
+type GetNumberHealthResponseSnapshotsItem struct {
+	ID            *string    `json:"id,omitempty" url:"id,omitempty"`
+	Ts            *time.Time `json:"ts,omitempty" url:"ts,omitempty"`
+	TotalCalls    *int       `json:"total_calls,omitempty" url:"total_calls,omitempty"`
+	AnsweredCalls *int       `json:"answered_calls,omitempty" url:"answered_calls,omitempty"`
+	FailedCalls   *int       `json:"failed_calls,omitempty" url:"failed_calls,omitempty"`
+	AnswerRate    *float64   `json:"answer_rate,omitempty" url:"answer_rate,omitempty"`
+	TotalDuration *float64   `json:"total_duration,omitempty" url:"total_duration,omitempty"`
+	AvgDuration   *float64   `json:"avg_duration,omitempty" url:"avg_duration,omitempty"`
+	TotalMinutes  *float64   `json:"total_minutes,omitempty" url:"total_minutes,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ID
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetTs() *time.Time {
+	if g == nil {
+		return nil
+	}
+	return g.Ts
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetTotalCalls() *int {
+	if g == nil {
+		return nil
+	}
+	return g.TotalCalls
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetAnsweredCalls() *int {
+	if g == nil {
+		return nil
+	}
+	return g.AnsweredCalls
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetFailedCalls() *int {
+	if g == nil {
+		return nil
+	}
+	return g.FailedCalls
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetAnswerRate() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.AnswerRate
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetTotalDuration() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.TotalDuration
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetAvgDuration() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.AvgDuration
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetTotalMinutes() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.TotalMinutes
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) GetExtraProperties() map[string]interface{} {
+	if g == nil {
+		return nil
+	}
+	return g.extraProperties
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetID sets the ID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetID(id *string) {
+	g.ID = id
+	g.require(getNumberHealthResponseSnapshotsItemFieldID)
+}
+
+// SetTs sets the Ts field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetTs(ts *time.Time) {
+	g.Ts = ts
+	g.require(getNumberHealthResponseSnapshotsItemFieldTs)
+}
+
+// SetTotalCalls sets the TotalCalls field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetTotalCalls(totalCalls *int) {
+	g.TotalCalls = totalCalls
+	g.require(getNumberHealthResponseSnapshotsItemFieldTotalCalls)
+}
+
+// SetAnsweredCalls sets the AnsweredCalls field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetAnsweredCalls(answeredCalls *int) {
+	g.AnsweredCalls = answeredCalls
+	g.require(getNumberHealthResponseSnapshotsItemFieldAnsweredCalls)
+}
+
+// SetFailedCalls sets the FailedCalls field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetFailedCalls(failedCalls *int) {
+	g.FailedCalls = failedCalls
+	g.require(getNumberHealthResponseSnapshotsItemFieldFailedCalls)
+}
+
+// SetAnswerRate sets the AnswerRate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetAnswerRate(answerRate *float64) {
+	g.AnswerRate = answerRate
+	g.require(getNumberHealthResponseSnapshotsItemFieldAnswerRate)
+}
+
+// SetTotalDuration sets the TotalDuration field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetTotalDuration(totalDuration *float64) {
+	g.TotalDuration = totalDuration
+	g.require(getNumberHealthResponseSnapshotsItemFieldTotalDuration)
+}
+
+// SetAvgDuration sets the AvgDuration field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetAvgDuration(avgDuration *float64) {
+	g.AvgDuration = avgDuration
+	g.require(getNumberHealthResponseSnapshotsItemFieldAvgDuration)
+}
+
+// SetTotalMinutes sets the TotalMinutes field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSnapshotsItem) SetTotalMinutes(totalMinutes *float64) {
+	g.TotalMinutes = totalMinutes
+	g.require(getNumberHealthResponseSnapshotsItemFieldTotalMinutes)
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) UnmarshalJSON(data []byte) error {
+	type embed GetNumberHealthResponseSnapshotsItem
+	var unmarshaler = struct {
+		embed
+		Ts *internal.DateTime `json:"ts,omitempty"`
+	}{
+		embed: embed(*g),
+	}
+	if err := json.Unmarshal(data, &unmarshaler); err != nil {
+		return err
+	}
+	*g = GetNumberHealthResponseSnapshotsItem(unmarshaler.embed)
+	g.Ts = unmarshaler.Ts.TimePtr()
+	extraProperties, err := internal.ExtractExtraProperties(data, *g)
+	if err != nil {
+		return err
+	}
+	g.extraProperties = extraProperties
+	g.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) MarshalJSON() ([]byte, error) {
+	type embed GetNumberHealthResponseSnapshotsItem
+	var marshaler = struct {
+		embed
+		Ts *internal.DateTime `json:"ts,omitempty"`
+	}{
+		embed: embed(*g),
+		Ts:    internal.NewOptionalDateTime(g.Ts),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, g.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (g *GetNumberHealthResponseSnapshotsItem) String() string {
+	if g == nil {
+		return "<nil>"
+	}
+	if len(g.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(g.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(g); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", g)
+}
+
+var (
+	getNumberHealthResponseSummaryFieldPeriodDays    = big.NewInt(1 << 0)
+	getNumberHealthResponseSummaryFieldTotalCalls    = big.NewInt(1 << 1)
+	getNumberHealthResponseSummaryFieldAnsweredCalls = big.NewInt(1 << 2)
+	getNumberHealthResponseSummaryFieldAnswerRate    = big.NewInt(1 << 3)
+	getNumberHealthResponseSummaryFieldTotalMinutes  = big.NewInt(1 << 4)
+	getNumberHealthResponseSummaryFieldAvgDuration   = big.NewInt(1 << 5)
+)
+
+type GetNumberHealthResponseSummary struct {
+	PeriodDays    *int     `json:"period_days,omitempty" url:"period_days,omitempty"`
+	TotalCalls    *int     `json:"total_calls,omitempty" url:"total_calls,omitempty"`
+	AnsweredCalls *int     `json:"answered_calls,omitempty" url:"answered_calls,omitempty"`
+	AnswerRate    *float64 `json:"answer_rate,omitempty" url:"answer_rate,omitempty"`
+	TotalMinutes  *float64 `json:"total_minutes,omitempty" url:"total_minutes,omitempty"`
+	AvgDuration   *float64 `json:"avg_duration,omitempty" url:"avg_duration,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (g *GetNumberHealthResponseSummary) GetPeriodDays() *int {
+	if g == nil {
+		return nil
+	}
+	return g.PeriodDays
+}
+
+func (g *GetNumberHealthResponseSummary) GetTotalCalls() *int {
+	if g == nil {
+		return nil
+	}
+	return g.TotalCalls
+}
+
+func (g *GetNumberHealthResponseSummary) GetAnsweredCalls() *int {
+	if g == nil {
+		return nil
+	}
+	return g.AnsweredCalls
+}
+
+func (g *GetNumberHealthResponseSummary) GetAnswerRate() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.AnswerRate
+}
+
+func (g *GetNumberHealthResponseSummary) GetTotalMinutes() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.TotalMinutes
+}
+
+func (g *GetNumberHealthResponseSummary) GetAvgDuration() *float64 {
+	if g == nil {
+		return nil
+	}
+	return g.AvgDuration
+}
+
+func (g *GetNumberHealthResponseSummary) GetExtraProperties() map[string]interface{} {
+	if g == nil {
+		return nil
+	}
+	return g.extraProperties
+}
+
+func (g *GetNumberHealthResponseSummary) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetPeriodDays sets the PeriodDays field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSummary) SetPeriodDays(periodDays *int) {
+	g.PeriodDays = periodDays
+	g.require(getNumberHealthResponseSummaryFieldPeriodDays)
+}
+
+// SetTotalCalls sets the TotalCalls field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSummary) SetTotalCalls(totalCalls *int) {
+	g.TotalCalls = totalCalls
+	g.require(getNumberHealthResponseSummaryFieldTotalCalls)
+}
+
+// SetAnsweredCalls sets the AnsweredCalls field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSummary) SetAnsweredCalls(answeredCalls *int) {
+	g.AnsweredCalls = answeredCalls
+	g.require(getNumberHealthResponseSummaryFieldAnsweredCalls)
+}
+
+// SetAnswerRate sets the AnswerRate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSummary) SetAnswerRate(answerRate *float64) {
+	g.AnswerRate = answerRate
+	g.require(getNumberHealthResponseSummaryFieldAnswerRate)
+}
+
+// SetTotalMinutes sets the TotalMinutes field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSummary) SetTotalMinutes(totalMinutes *float64) {
+	g.TotalMinutes = totalMinutes
+	g.require(getNumberHealthResponseSummaryFieldTotalMinutes)
+}
+
+// SetAvgDuration sets the AvgDuration field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetNumberHealthResponseSummary) SetAvgDuration(avgDuration *float64) {
+	g.AvgDuration = avgDuration
+	g.require(getNumberHealthResponseSummaryFieldAvgDuration)
+}
+
+func (g *GetNumberHealthResponseSummary) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetNumberHealthResponseSummary
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*g = GetNumberHealthResponseSummary(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *g)
+	if err != nil {
+		return err
+	}
+	g.extraProperties = extraProperties
+	g.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (g *GetNumberHealthResponseSummary) MarshalJSON() ([]byte, error) {
+	type embed GetNumberHealthResponseSummary
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*g),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, g.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (g *GetNumberHealthResponseSummary) String() string {
+	if g == nil {
+		return "<nil>"
+	}
+	if len(g.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(g.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(g); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", g)
 }
 
 var (

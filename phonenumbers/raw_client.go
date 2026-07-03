@@ -314,6 +314,59 @@ func (r *RawClient) UnassignNumberFromTrunk(
 	}, nil
 }
 
+func (r *RawClient) GetNumberHealth(
+	ctx context.Context,
+	request *vobiz.GetNumberHealthRequest,
+	opts ...option.RequestOption,
+) (*core.Response[*vobiz.GetNumberHealthResponse], error) {
+	options := core.NewRequestOptions(opts...)
+	baseURL := internal.ResolveBaseURL(
+		options.BaseURL,
+		r.baseURL,
+		"https://api.vobiz.ai",
+	)
+	endpointURL := internal.EncodeURL(
+		baseURL+"/api/v1/account/%v/numbers/%v/health",
+		request.AuthID,
+		request.E164,
+	)
+	queryParams, err := internal.QueryValues(request)
+	if err != nil {
+		return nil, err
+	}
+	if len(queryParams) > 0 {
+		endpointURL += "?" + queryParams.Encode()
+	}
+	headers := internal.MergeHeaders(
+		r.options.ToHeader(),
+		options.ToHeader(),
+	)
+	var response *vobiz.GetNumberHealthResponse
+	raw, err := r.caller.Call(
+		ctx,
+		&internal.CallParams{
+			URL:             endpointURL,
+			Method:          http.MethodGet,
+			Headers:         headers,
+			MaxAttempts:     options.MaxAttempts,
+			DisableRetries:  options.DisableRetries,
+			BodyProperties:  options.BodyProperties,
+			QueryParameters: options.QueryParameters,
+			Client:          options.HTTPClient,
+			Response:        &response,
+			ErrorDecoder:    internal.NewErrorDecoder(vobiz.ErrorCodes),
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+	return &core.Response[*vobiz.GetNumberHealthResponse]{
+		StatusCode: raw.StatusCode,
+		Header:     raw.Header,
+		Body:       response,
+	}, nil
+}
+
 func (r *RawClient) AssignDidToSubaccount(
 	ctx context.Context,
 	request *vobiz.AssignDidToSubaccountRequest,

@@ -769,6 +769,21 @@ request := &vobiz.ListCdrsRequest{
         MinDuration: vobiz.Int(
             10,
         ),
+        SipCallID: vobiz.String(
+            "dD1qwu5VZ5iK3ed5u3uspjY5RKL",
+        ),
+        BridgeUUID: vobiz.String(
+            "4b7ae653-f40d-42f1-b582-6b05dfcd0c0a",
+        ),
+        HangupCause: vobiz.String(
+            "NORMAL_CLEARING",
+        ),
+        HangupDisposition: vobiz.String(
+            "send_refuse",
+        ),
+        Context: vobiz.String(
+            "sip-trunking",
+        ),
     }
 client.Cdr.ListCdrs(
         context.TODO(),
@@ -845,6 +860,62 @@ client.Cdr.ListCdrs(
 <dl>
 <dd>
 
+**sipCallID:** `*string` — Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bridgeUUID:** `*string` — Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupCause:** `*string` — Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupDisposition:** `*string` — Filter by how the leg was released, e.g. send_refuse.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**context:** `*string` — Filter by the call context, e.g. sip-trunking.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**campaignID:** `*string` — Filter by the campaign identifier associated with the call.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `*string` — Free-text search across CDR fields (numbers, IDs, etc.).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **page:** `*int` — Page number for paginated results.
     
 </dd>
@@ -913,6 +984,21 @@ request := &vobiz.SearchCdrsRequest{
         ),
         MinDuration: vobiz.Int(
             10,
+        ),
+        SipCallID: vobiz.String(
+            "dD1qwu5VZ5iK3ed5u3uspjY5RKL",
+        ),
+        BridgeUUID: vobiz.String(
+            "4b7ae653-f40d-42f1-b582-6b05dfcd0c0a",
+        ),
+        HangupCause: vobiz.String(
+            "NORMAL_CLEARING",
+        ),
+        HangupDisposition: vobiz.String(
+            "send_refuse",
+        ),
+        Context: vobiz.String(
+            "sip-trunking",
         ),
     }
 client.Cdr.SearchCdrs(
@@ -983,6 +1069,62 @@ client.Cdr.SearchCdrs(
 <dd>
 
 **minDuration:** `*int` — Minimum call duration in seconds. Excludes calls shorter than this value.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sipCallID:** `*string` — Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**bridgeUUID:** `*string` — Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupCause:** `*string` — Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupDisposition:** `*string` — Filter by how the leg was released, e.g. send_refuse.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**context:** `*string` — Filter by the call context, e.g. sip-trunking.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**campaignID:** `*string` — Filter by the campaign identifier associated with the call.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `*string` — Free-text search across CDR fields (numbers, IDs, etc.).
     
 </dd>
 </dl>
@@ -3227,6 +3369,98 @@ client.PhoneNumbers.UnassignNumberFromTrunk(
 <dd>
 
 **phoneNumber:** `string` — The phone number to unassign, URL-encoded (use %2B instead of +).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PhoneNumbers.GetNumberHealth(AuthID, E164) -> *vobiz.GetNumberHealthResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the health & analytics dashboard for one of your numbers: current
+status, spam flag, and call metrics over the selected window (total and
+answered calls, answer rate, minutes, average duration) plus a per-period
+time series of snapshots.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```go
+request := &vobiz.GetNumberHealthRequest{
+        AuthID: "MA_XXXXXX",
+        E164: "%2B919876543210",
+        Days: vobiz.Int(
+            30,
+        ),
+    }
+client.PhoneNumbers.GetNumberHealth(
+        context.TODO(),
+        request,
+    )
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**authID:** `string` — Your account Auth ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**e164:** `string` — The number in E.164, URL-encoded (use %2B instead of +).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**granularity:** `*vobiz.GetNumberHealthRequestGranularity` — Snapshot granularity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**days:** `*int` — Size of the window (in days) for the summary and snapshots.
     
 </dd>
 </dl>

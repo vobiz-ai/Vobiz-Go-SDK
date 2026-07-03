@@ -146,6 +146,26 @@ func (c *Client) UnassignNumberFromTrunk(
 	return nil
 }
 
+// Returns the health & analytics dashboard for one of your numbers: current
+// status, spam flag, and call metrics over the selected window (total and
+// answered calls, answer rate, minutes, average duration) plus a per-period
+// time series of snapshots.
+func (c *Client) GetNumberHealth(
+	ctx context.Context,
+	request *vobiz.GetNumberHealthRequest,
+	opts ...option.RequestOption,
+) (*vobiz.GetNumberHealthResponse, error) {
+	response, err := c.WithRawResponse.GetNumberHealth(
+		ctx,
+		request,
+		opts...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return response.Body, nil
+}
+
 // Assign a parent-pool DID to a sub-account.
 func (c *Client) AssignDidToSubaccount(
 	ctx context.Context,

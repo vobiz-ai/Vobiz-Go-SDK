@@ -11,13 +11,20 @@ import (
 )
 
 var (
-	exportCdrsRequestFieldAuthID        = big.NewInt(1 << 0)
-	exportCdrsRequestFieldFromNumber    = big.NewInt(1 << 1)
-	exportCdrsRequestFieldToNumber      = big.NewInt(1 << 2)
-	exportCdrsRequestFieldStartDate     = big.NewInt(1 << 3)
-	exportCdrsRequestFieldEndDate       = big.NewInt(1 << 4)
-	exportCdrsRequestFieldCallDirection = big.NewInt(1 << 5)
-	exportCdrsRequestFieldMinDuration   = big.NewInt(1 << 6)
+	exportCdrsRequestFieldAuthID            = big.NewInt(1 << 0)
+	exportCdrsRequestFieldFromNumber        = big.NewInt(1 << 1)
+	exportCdrsRequestFieldToNumber          = big.NewInt(1 << 2)
+	exportCdrsRequestFieldStartDate         = big.NewInt(1 << 3)
+	exportCdrsRequestFieldEndDate           = big.NewInt(1 << 4)
+	exportCdrsRequestFieldCallDirection     = big.NewInt(1 << 5)
+	exportCdrsRequestFieldMinDuration       = big.NewInt(1 << 6)
+	exportCdrsRequestFieldSipCallID         = big.NewInt(1 << 7)
+	exportCdrsRequestFieldBridgeUUID        = big.NewInt(1 << 8)
+	exportCdrsRequestFieldHangupCause       = big.NewInt(1 << 9)
+	exportCdrsRequestFieldHangupDisposition = big.NewInt(1 << 10)
+	exportCdrsRequestFieldContext           = big.NewInt(1 << 11)
+	exportCdrsRequestFieldCampaignID        = big.NewInt(1 << 12)
+	exportCdrsRequestFieldSearch            = big.NewInt(1 << 13)
 )
 
 type ExportCdrsRequest struct {
@@ -35,6 +42,20 @@ type ExportCdrsRequest struct {
 	CallDirection *ExportCdrsRequestCallDirection `json:"-" url:"call_direction,omitempty"`
 	// Minimum call duration in seconds. Excludes calls shorter than this value.
 	MinDuration *int `json:"-" url:"min_duration,omitempty"`
+	// Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+	SipCallID *string `json:"-" url:"sip_call_id,omitempty"`
+	// Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+	BridgeUUID *string `json:"-" url:"bridge_uuid,omitempty"`
+	// Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+	HangupCause *string `json:"-" url:"hangup_cause,omitempty"`
+	// Filter by how the leg was released, e.g. send_refuse.
+	HangupDisposition *string `json:"-" url:"hangup_disposition,omitempty"`
+	// Filter by the call context, e.g. sip-trunking.
+	Context *string `json:"-" url:"context,omitempty"`
+	// Filter by the campaign identifier associated with the call.
+	CampaignID *string `json:"-" url:"campaign_id,omitempty"`
+	// Free-text search across CDR fields (numbers, IDs, etc.).
+	Search *string `json:"-" url:"search,omitempty"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -96,6 +117,55 @@ func (e *ExportCdrsRequest) SetMinDuration(minDuration *int) {
 	e.require(exportCdrsRequestFieldMinDuration)
 }
 
+// SetSipCallID sets the SipCallID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetSipCallID(sipCallID *string) {
+	e.SipCallID = sipCallID
+	e.require(exportCdrsRequestFieldSipCallID)
+}
+
+// SetBridgeUUID sets the BridgeUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetBridgeUUID(bridgeUUID *string) {
+	e.BridgeUUID = bridgeUUID
+	e.require(exportCdrsRequestFieldBridgeUUID)
+}
+
+// SetHangupCause sets the HangupCause field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetHangupCause(hangupCause *string) {
+	e.HangupCause = hangupCause
+	e.require(exportCdrsRequestFieldHangupCause)
+}
+
+// SetHangupDisposition sets the HangupDisposition field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetHangupDisposition(hangupDisposition *string) {
+	e.HangupDisposition = hangupDisposition
+	e.require(exportCdrsRequestFieldHangupDisposition)
+}
+
+// SetContext sets the Context field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetContext(context *string) {
+	e.Context = context
+	e.require(exportCdrsRequestFieldContext)
+}
+
+// SetCampaignID sets the CampaignID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetCampaignID(campaignID *string) {
+	e.CampaignID = campaignID
+	e.require(exportCdrsRequestFieldCampaignID)
+}
+
+// SetSearch sets the Search field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (e *ExportCdrsRequest) SetSearch(search *string) {
+	e.Search = search
+	e.require(exportCdrsRequestFieldSearch)
+}
+
 var (
 	getCdrRequestFieldAuthID = big.NewInt(1 << 0)
 	getCdrRequestFieldCallID = big.NewInt(1 << 1)
@@ -133,15 +203,22 @@ func (g *GetCdrRequest) SetCallID(callID string) {
 }
 
 var (
-	listCdrsRequestFieldAuthID        = big.NewInt(1 << 0)
-	listCdrsRequestFieldFromNumber    = big.NewInt(1 << 1)
-	listCdrsRequestFieldToNumber      = big.NewInt(1 << 2)
-	listCdrsRequestFieldStartDate     = big.NewInt(1 << 3)
-	listCdrsRequestFieldEndDate       = big.NewInt(1 << 4)
-	listCdrsRequestFieldCallDirection = big.NewInt(1 << 5)
-	listCdrsRequestFieldMinDuration   = big.NewInt(1 << 6)
-	listCdrsRequestFieldPage          = big.NewInt(1 << 7)
-	listCdrsRequestFieldPerPage       = big.NewInt(1 << 8)
+	listCdrsRequestFieldAuthID            = big.NewInt(1 << 0)
+	listCdrsRequestFieldFromNumber        = big.NewInt(1 << 1)
+	listCdrsRequestFieldToNumber          = big.NewInt(1 << 2)
+	listCdrsRequestFieldStartDate         = big.NewInt(1 << 3)
+	listCdrsRequestFieldEndDate           = big.NewInt(1 << 4)
+	listCdrsRequestFieldCallDirection     = big.NewInt(1 << 5)
+	listCdrsRequestFieldMinDuration       = big.NewInt(1 << 6)
+	listCdrsRequestFieldSipCallID         = big.NewInt(1 << 7)
+	listCdrsRequestFieldBridgeUUID        = big.NewInt(1 << 8)
+	listCdrsRequestFieldHangupCause       = big.NewInt(1 << 9)
+	listCdrsRequestFieldHangupDisposition = big.NewInt(1 << 10)
+	listCdrsRequestFieldContext           = big.NewInt(1 << 11)
+	listCdrsRequestFieldCampaignID        = big.NewInt(1 << 12)
+	listCdrsRequestFieldSearch            = big.NewInt(1 << 13)
+	listCdrsRequestFieldPage              = big.NewInt(1 << 14)
+	listCdrsRequestFieldPerPage           = big.NewInt(1 << 15)
 )
 
 type ListCdrsRequest struct {
@@ -159,6 +236,20 @@ type ListCdrsRequest struct {
 	CallDirection *ListCdrsRequestCallDirection `json:"-" url:"call_direction,omitempty"`
 	// Minimum call duration in seconds. Excludes calls shorter than this value.
 	MinDuration *int `json:"-" url:"min_duration,omitempty"`
+	// Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+	SipCallID *string `json:"-" url:"sip_call_id,omitempty"`
+	// Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+	BridgeUUID *string `json:"-" url:"bridge_uuid,omitempty"`
+	// Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+	HangupCause *string `json:"-" url:"hangup_cause,omitempty"`
+	// Filter by how the leg was released, e.g. send_refuse.
+	HangupDisposition *string `json:"-" url:"hangup_disposition,omitempty"`
+	// Filter by the call context, e.g. sip-trunking.
+	Context *string `json:"-" url:"context,omitempty"`
+	// Filter by the campaign identifier associated with the call.
+	CampaignID *string `json:"-" url:"campaign_id,omitempty"`
+	// Free-text search across CDR fields (numbers, IDs, etc.).
+	Search *string `json:"-" url:"search,omitempty"`
 	// Page number for paginated results.
 	Page *int `json:"-" url:"page,omitempty"`
 	// Number of records per page. Max: 100.
@@ -224,6 +315,55 @@ func (l *ListCdrsRequest) SetMinDuration(minDuration *int) {
 	l.require(listCdrsRequestFieldMinDuration)
 }
 
+// SetSipCallID sets the SipCallID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetSipCallID(sipCallID *string) {
+	l.SipCallID = sipCallID
+	l.require(listCdrsRequestFieldSipCallID)
+}
+
+// SetBridgeUUID sets the BridgeUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetBridgeUUID(bridgeUUID *string) {
+	l.BridgeUUID = bridgeUUID
+	l.require(listCdrsRequestFieldBridgeUUID)
+}
+
+// SetHangupCause sets the HangupCause field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetHangupCause(hangupCause *string) {
+	l.HangupCause = hangupCause
+	l.require(listCdrsRequestFieldHangupCause)
+}
+
+// SetHangupDisposition sets the HangupDisposition field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetHangupDisposition(hangupDisposition *string) {
+	l.HangupDisposition = hangupDisposition
+	l.require(listCdrsRequestFieldHangupDisposition)
+}
+
+// SetContext sets the Context field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetContext(context *string) {
+	l.Context = context
+	l.require(listCdrsRequestFieldContext)
+}
+
+// SetCampaignID sets the CampaignID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetCampaignID(campaignID *string) {
+	l.CampaignID = campaignID
+	l.require(listCdrsRequestFieldCampaignID)
+}
+
+// SetSearch sets the Search field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListCdrsRequest) SetSearch(search *string) {
+	l.Search = search
+	l.require(listCdrsRequestFieldSearch)
+}
+
 // SetPage sets the Page field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
 func (l *ListCdrsRequest) SetPage(page *int) {
@@ -275,15 +415,22 @@ func (l *ListRecentCdrsRequest) SetLimit(limit *int) {
 }
 
 var (
-	searchCdrsRequestFieldAuthID        = big.NewInt(1 << 0)
-	searchCdrsRequestFieldFromNumber    = big.NewInt(1 << 1)
-	searchCdrsRequestFieldToNumber      = big.NewInt(1 << 2)
-	searchCdrsRequestFieldStartDate     = big.NewInt(1 << 3)
-	searchCdrsRequestFieldEndDate       = big.NewInt(1 << 4)
-	searchCdrsRequestFieldCallDirection = big.NewInt(1 << 5)
-	searchCdrsRequestFieldMinDuration   = big.NewInt(1 << 6)
-	searchCdrsRequestFieldPage          = big.NewInt(1 << 7)
-	searchCdrsRequestFieldPerPage       = big.NewInt(1 << 8)
+	searchCdrsRequestFieldAuthID            = big.NewInt(1 << 0)
+	searchCdrsRequestFieldFromNumber        = big.NewInt(1 << 1)
+	searchCdrsRequestFieldToNumber          = big.NewInt(1 << 2)
+	searchCdrsRequestFieldStartDate         = big.NewInt(1 << 3)
+	searchCdrsRequestFieldEndDate           = big.NewInt(1 << 4)
+	searchCdrsRequestFieldCallDirection     = big.NewInt(1 << 5)
+	searchCdrsRequestFieldMinDuration       = big.NewInt(1 << 6)
+	searchCdrsRequestFieldSipCallID         = big.NewInt(1 << 7)
+	searchCdrsRequestFieldBridgeUUID        = big.NewInt(1 << 8)
+	searchCdrsRequestFieldHangupCause       = big.NewInt(1 << 9)
+	searchCdrsRequestFieldHangupDisposition = big.NewInt(1 << 10)
+	searchCdrsRequestFieldContext           = big.NewInt(1 << 11)
+	searchCdrsRequestFieldCampaignID        = big.NewInt(1 << 12)
+	searchCdrsRequestFieldSearch            = big.NewInt(1 << 13)
+	searchCdrsRequestFieldPage              = big.NewInt(1 << 14)
+	searchCdrsRequestFieldPerPage           = big.NewInt(1 << 15)
 )
 
 type SearchCdrsRequest struct {
@@ -301,6 +448,20 @@ type SearchCdrsRequest struct {
 	CallDirection *SearchCdrsRequestCallDirection `json:"-" url:"call_direction,omitempty"`
 	// Minimum call duration in seconds. Excludes calls shorter than this value.
 	MinDuration *int `json:"-" url:"min_duration,omitempty"`
+	// Filter by the SIP Call-ID of the call (matches the cdr's sip_call_id field).
+	SipCallID *string `json:"-" url:"sip_call_id,omitempty"`
+	// Filter by the UUID of the bridged leg (matches the cdr's bridge_uuid field).
+	BridgeUUID *string `json:"-" url:"bridge_uuid,omitempty"`
+	// Filter by telephony hangup cause, e.g. NORMAL_CLEARING.
+	HangupCause *string `json:"-" url:"hangup_cause,omitempty"`
+	// Filter by how the leg was released, e.g. send_refuse.
+	HangupDisposition *string `json:"-" url:"hangup_disposition,omitempty"`
+	// Filter by the call context, e.g. sip-trunking.
+	Context *string `json:"-" url:"context,omitempty"`
+	// Filter by the campaign identifier associated with the call.
+	CampaignID *string `json:"-" url:"campaign_id,omitempty"`
+	// Free-text search across CDR fields (numbers, IDs, etc.).
+	Search *string `json:"-" url:"search,omitempty"`
 	// Page number for paginated results.
 	Page *int `json:"-" url:"page,omitempty"`
 	// Number of records per page. Max: 100.
@@ -364,6 +525,55 @@ func (s *SearchCdrsRequest) SetCallDirection(callDirection *SearchCdrsRequestCal
 func (s *SearchCdrsRequest) SetMinDuration(minDuration *int) {
 	s.MinDuration = minDuration
 	s.require(searchCdrsRequestFieldMinDuration)
+}
+
+// SetSipCallID sets the SipCallID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetSipCallID(sipCallID *string) {
+	s.SipCallID = sipCallID
+	s.require(searchCdrsRequestFieldSipCallID)
+}
+
+// SetBridgeUUID sets the BridgeUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetBridgeUUID(bridgeUUID *string) {
+	s.BridgeUUID = bridgeUUID
+	s.require(searchCdrsRequestFieldBridgeUUID)
+}
+
+// SetHangupCause sets the HangupCause field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetHangupCause(hangupCause *string) {
+	s.HangupCause = hangupCause
+	s.require(searchCdrsRequestFieldHangupCause)
+}
+
+// SetHangupDisposition sets the HangupDisposition field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetHangupDisposition(hangupDisposition *string) {
+	s.HangupDisposition = hangupDisposition
+	s.require(searchCdrsRequestFieldHangupDisposition)
+}
+
+// SetContext sets the Context field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetContext(context *string) {
+	s.Context = context
+	s.require(searchCdrsRequestFieldContext)
+}
+
+// SetCampaignID sets the CampaignID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetCampaignID(campaignID *string) {
+	s.CampaignID = campaignID
+	s.require(searchCdrsRequestFieldCampaignID)
+}
+
+// SetSearch sets the Search field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (s *SearchCdrsRequest) SetSearch(search *string) {
+	s.Search = search
+	s.require(searchCdrsRequestFieldSearch)
 }
 
 // SetPage sets the Page field and marks it as non-optional;

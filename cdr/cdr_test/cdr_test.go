@@ -109,6 +109,21 @@ func TestCdrListCdrsWithWireMock(
 		MinDuration: vobiz.Int(
 			10,
 		),
+		SipCallID: vobiz.String(
+			"dD1qwu5VZ5iK3ed5u3uspjY5RKL",
+		),
+		BridgeUUID: vobiz.String(
+			"4b7ae653-f40d-42f1-b582-6b05dfcd0c0a",
+		),
+		HangupCause: vobiz.String(
+			"NORMAL_CLEARING",
+		),
+		HangupDisposition: vobiz.String(
+			"send_refuse",
+		),
+		Context: vobiz.String(
+			"sip-trunking",
+		),
 	}
 	_, invocationErr := client.Cdr.ListCdrs(
 		context.TODO(),
@@ -119,7 +134,7 @@ func TestCdrListCdrsWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestCdrListCdrsWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/cdr", map[string]interface{}{"from_number": "9876543210", "to_number": "1234567890", "start_date": "2026-03-01", "end_date": "2026-03-17", "min_duration": "10"}, 1)
+	VerifyRequestCount(t, "TestCdrListCdrsWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/cdr", map[string]interface{}{"from_number": "9876543210", "to_number": "1234567890", "start_date": "2026-03-01", "end_date": "2026-03-17", "min_duration": "10", "sip_call_id": "dD1qwu5VZ5iK3ed5u3uspjY5RKL", "bridge_uuid": "4b7ae653-f40d-42f1-b582-6b05dfcd0c0a", "hangup_cause": "NORMAL_CLEARING", "hangup_disposition": "send_refuse", "context": "sip-trunking"}, 1)
 }
 
 func TestCdrSearchCdrsWithWireMock(
@@ -154,6 +169,21 @@ func TestCdrSearchCdrsWithWireMock(
 		MinDuration: vobiz.Int(
 			10,
 		),
+		SipCallID: vobiz.String(
+			"dD1qwu5VZ5iK3ed5u3uspjY5RKL",
+		),
+		BridgeUUID: vobiz.String(
+			"4b7ae653-f40d-42f1-b582-6b05dfcd0c0a",
+		),
+		HangupCause: vobiz.String(
+			"NORMAL_CLEARING",
+		),
+		HangupDisposition: vobiz.String(
+			"send_refuse",
+		),
+		Context: vobiz.String(
+			"sip-trunking",
+		),
 	}
 	_, invocationErr := client.Cdr.SearchCdrs(
 		context.TODO(),
@@ -164,7 +194,7 @@ func TestCdrSearchCdrsWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestCdrSearchCdrsWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/cdr/search", map[string]interface{}{"from_number": "9876543210", "to_number": "1234567890", "start_date": "2026-03-01", "end_date": "2026-03-17", "min_duration": "10"}, 1)
+	VerifyRequestCount(t, "TestCdrSearchCdrsWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/cdr/search", map[string]interface{}{"from_number": "9876543210", "to_number": "1234567890", "start_date": "2026-03-01", "end_date": "2026-03-17", "min_duration": "10", "sip_call_id": "dD1qwu5VZ5iK3ed5u3uspjY5RKL", "bridge_uuid": "4b7ae653-f40d-42f1-b582-6b05dfcd0c0a", "hangup_cause": "NORMAL_CLEARING", "hangup_disposition": "send_refuse", "context": "sip-trunking"}, 1)
 }
 
 func TestCdrListRecentCdrsWithWireMock(

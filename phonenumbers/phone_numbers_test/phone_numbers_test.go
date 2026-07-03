@@ -244,6 +244,36 @@ func TestPhoneNumbersUnassignNumberFromTrunkWithWireMock(
 	VerifyRequestCount(t, "TestPhoneNumbersUnassignNumberFromTrunkWithWireMock", "DELETE", "/api/v1/Account/MA_XXXXXX/numbers/%2B912271264217/assign", nil, 1)
 }
 
+func TestPhoneNumbersGetNumberHealthWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithAPIKey("test-value"),
+	)
+	request := &vobiz.GetNumberHealthRequest{
+		AuthID: "MA_XXXXXX",
+		E164:   "%2B919876543210",
+		Days: vobiz.Int(
+			30,
+		),
+	}
+	_, invocationErr := client.PhoneNumbers.GetNumberHealth(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestPhoneNumbersGetNumberHealthWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestPhoneNumbersGetNumberHealthWithWireMock", "GET", "/api/v1/account/MA_XXXXXX/numbers/%2B919876543210/health", map[string]interface{}{"days": "30"}, 1)
+}
+
 func TestPhoneNumbersAssignDidToSubaccountWithWireMock(
 	t *testing.T,
 ) {
