@@ -3739,6 +3739,10 @@ request := &vobiz.CreateTrunkRequest{
         Name: "My Outbound Trunk",
         TrunkType: "OUTBOUND",
         MaxConcurrentCalls: 10,
+        WebhookURL: vobiz.String(
+            "https://your-app.example.com/trunk-webhook",
+        ),
+        WebhookMethod: vobiz.CreateTrunkRequestWebhookMethodPost.Ptr(),
     }
 client.Trunks.CreateTrunk(
         context.TODO(),
@@ -3784,6 +3788,26 @@ client.Trunks.CreateTrunk(
 <dd>
 
 **maxConcurrentCalls:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhookURL:** `*string` 
+
+HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
+and `Hangup`) for this trunk. Max 500 characters; private, localhost,
+and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhookMethod:** `*vobiz.CreateTrunkRequestWebhookMethod` — HTTP method for the webhook callback. Defaults to `POST`.
     
 </dd>
 </dl>
@@ -3951,6 +3975,22 @@ client.Trunks.UpdateTrunk(
 <dd>
 
 **enabled:** `bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhookURL:** `*string` — HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhookMethod:** `*vobiz.UpdateTrunkRequestWebhookMethod` — HTTP method for the webhook callback. Defaults to `POST`.
     
 </dd>
 </dl>

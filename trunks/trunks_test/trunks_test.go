@@ -119,6 +119,10 @@ func TestTrunksCreateTrunkWithWireMock(
 		Name:               "My Outbound Trunk",
 		TrunkType:          "OUTBOUND",
 		MaxConcurrentCalls: 10,
+		WebhookURL: vobiz.String(
+			"https://your-app.example.com/trunk-webhook",
+		),
+		WebhookMethod: vobiz.CreateTrunkRequestWebhookMethodPost.Ptr(),
 	}
 	_, invocationErr := client.Trunks.CreateTrunk(
 		context.TODO(),

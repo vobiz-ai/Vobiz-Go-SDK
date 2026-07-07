@@ -42,6 +42,22 @@ func TestSettersCreateTrunkRequest(t *testing.T) {
 		assert.NotNil(t, obj.explicitFields)
 	})
 
+	t.Run("SetWebhookURL", func(t *testing.T) {
+		obj := &CreateTrunkRequest{}
+		var fernTestValueWebhookURL *string
+		obj.SetWebhookURL(fernTestValueWebhookURL)
+		assert.Equal(t, fernTestValueWebhookURL, obj.WebhookURL)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetWebhookMethod", func(t *testing.T) {
+		obj := &CreateTrunkRequest{}
+		var fernTestValueWebhookMethod *CreateTrunkRequestWebhookMethod
+		obj.SetWebhookMethod(fernTestValueWebhookMethod)
+		assert.Equal(t, fernTestValueWebhookMethod, obj.WebhookMethod)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
 }
 
 func TestSettersMarkExplicitCreateTrunkRequest(t *testing.T) {
@@ -146,6 +162,68 @@ func TestSettersMarkExplicitCreateTrunkRequest(t *testing.T) {
 
 		// Act
 		obj.SetMaxConcurrentCalls(fernTestValueMaxConcurrentCalls)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetWebhookURL_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &CreateTrunkRequest{}
+		var fernTestValueWebhookURL *string
+
+		// Act
+		obj.SetWebhookURL(fernTestValueWebhookURL)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetWebhookMethod_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &CreateTrunkRequest{}
+		var fernTestValueWebhookMethod *CreateTrunkRequestWebhookMethod
+
+		// Act
+		obj.SetWebhookMethod(fernTestValueWebhookMethod)
 
 		// Assert - object with explicitly set field can be marshaled/unmarshaled
 		bytes, err := json.Marshal(obj)
@@ -5633,6 +5711,22 @@ func TestSettersUpdateTrunkRequest(t *testing.T) {
 		assert.NotNil(t, obj.explicitFields)
 	})
 
+	t.Run("SetWebhookURL", func(t *testing.T) {
+		obj := &UpdateTrunkRequest{}
+		var fernTestValueWebhookURL *string
+		obj.SetWebhookURL(fernTestValueWebhookURL)
+		assert.Equal(t, fernTestValueWebhookURL, obj.WebhookURL)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetWebhookMethod", func(t *testing.T) {
+		obj := &UpdateTrunkRequest{}
+		var fernTestValueWebhookMethod *UpdateTrunkRequestWebhookMethod
+		obj.SetWebhookMethod(fernTestValueWebhookMethod)
+		assert.Equal(t, fernTestValueWebhookMethod, obj.WebhookMethod)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
 }
 
 func TestSettersMarkExplicitUpdateTrunkRequest(t *testing.T) {
@@ -5768,6 +5862,68 @@ func TestSettersMarkExplicitUpdateTrunkRequest(t *testing.T) {
 
 		// Act
 		obj.SetEnabled(fernTestValueEnabled)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetWebhookURL_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &UpdateTrunkRequest{}
+		var fernTestValueWebhookURL *string
+
+		// Act
+		obj.SetWebhookURL(fernTestValueWebhookURL)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetWebhookMethod_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &UpdateTrunkRequest{}
+		var fernTestValueWebhookMethod *UpdateTrunkRequestWebhookMethod
+
+		// Act
+		obj.SetWebhookMethod(fernTestValueWebhookMethod)
 
 		// Assert - object with explicitly set field can be marshaled/unmarshaled
 		bytes, err := json.Marshal(obj)
@@ -6084,6 +6240,64 @@ func TestStringUpdateTrunkResponse(t *testing.T) {
 		var obj *UpdateTrunkResponse
 		result := obj.String()
 		assert.Equal(t, "<nil>", result, "String() should return <nil> for nil receiver")
+	})
+}
+
+func TestEnumCreateTrunkRequestWebhookMethod(t *testing.T) {
+	t.Run("NewFromString_POST", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewCreateTrunkRequestWebhookMethodFromString("POST")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, CreateTrunkRequestWebhookMethod("POST"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_GET", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewCreateTrunkRequestWebhookMethodFromString("GET")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, CreateTrunkRequestWebhookMethod("GET"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewCreateTrunkRequestWebhookMethodFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewCreateTrunkRequestWebhookMethodFromString("POST")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
+	})
+}
+
+func TestEnumUpdateTrunkRequestWebhookMethod(t *testing.T) {
+	t.Run("NewFromString_POST", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewUpdateTrunkRequestWebhookMethodFromString("POST")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, UpdateTrunkRequestWebhookMethod("POST"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_GET", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewUpdateTrunkRequestWebhookMethodFromString("GET")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, UpdateTrunkRequestWebhookMethod("GET"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewUpdateTrunkRequestWebhookMethodFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewUpdateTrunkRequestWebhookMethodFromString("POST")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
 	})
 }
 

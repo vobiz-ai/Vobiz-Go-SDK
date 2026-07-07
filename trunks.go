@@ -14,6 +14,8 @@ var (
 	createTrunkRequestFieldName               = big.NewInt(1 << 1)
 	createTrunkRequestFieldTrunkType          = big.NewInt(1 << 2)
 	createTrunkRequestFieldMaxConcurrentCalls = big.NewInt(1 << 3)
+	createTrunkRequestFieldWebhookURL         = big.NewInt(1 << 4)
+	createTrunkRequestFieldWebhookMethod      = big.NewInt(1 << 5)
 )
 
 type CreateTrunkRequest struct {
@@ -22,6 +24,12 @@ type CreateTrunkRequest struct {
 	Name               string `json:"name" url:"-"`
 	TrunkType          string `json:"trunk_type" url:"-"`
 	MaxConcurrentCalls int    `json:"max_concurrent_calls" url:"-"`
+	// HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
+	// and `Hangup`) for this trunk. Max 500 characters; private, localhost,
+	// and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+	WebhookURL *string `json:"webhook_url,omitempty" url:"-"`
+	// HTTP method for the webhook callback. Defaults to `POST`.
+	WebhookMethod *CreateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -60,6 +68,20 @@ func (c *CreateTrunkRequest) SetTrunkType(trunkType string) {
 func (c *CreateTrunkRequest) SetMaxConcurrentCalls(maxConcurrentCalls int) {
 	c.MaxConcurrentCalls = maxConcurrentCalls
 	c.require(createTrunkRequestFieldMaxConcurrentCalls)
+}
+
+// SetWebhookURL sets the WebhookURL field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetWebhookURL(webhookURL *string) {
+	c.WebhookURL = webhookURL
+	c.require(createTrunkRequestFieldWebhookURL)
+}
+
+// SetWebhookMethod sets the WebhookMethod field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetWebhookMethod(webhookMethod *CreateTrunkRequestWebhookMethod) {
+	c.WebhookMethod = webhookMethod
+	c.require(createTrunkRequestFieldWebhookMethod)
 }
 
 func (c *CreateTrunkRequest) UnmarshalJSON(data []byte) error {
@@ -177,6 +199,29 @@ func (r *RetrieveTrunkRequest) SetAuthID(authID string) {
 func (r *RetrieveTrunkRequest) SetTrunkID(trunkID string) {
 	r.TrunkID = trunkID
 	r.require(retrieveTrunkRequestFieldTrunkID)
+}
+
+// HTTP method for the webhook callback. Defaults to `POST`.
+type CreateTrunkRequestWebhookMethod string
+
+const (
+	CreateTrunkRequestWebhookMethodPost CreateTrunkRequestWebhookMethod = "POST"
+	CreateTrunkRequestWebhookMethodGet  CreateTrunkRequestWebhookMethod = "GET"
+)
+
+func NewCreateTrunkRequestWebhookMethodFromString(s string) (CreateTrunkRequestWebhookMethod, error) {
+	switch s {
+	case "POST":
+		return CreateTrunkRequestWebhookMethodPost, nil
+	case "GET":
+		return CreateTrunkRequestWebhookMethodGet, nil
+	}
+	var t CreateTrunkRequestWebhookMethod
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CreateTrunkRequestWebhookMethod) Ptr() *CreateTrunkRequestWebhookMethod {
+	return &c
 }
 
 var (
@@ -1543,6 +1588,29 @@ func (r *RetrieveTrunkResponse) String() string {
 	return fmt.Sprintf("%#v", r)
 }
 
+// HTTP method for the webhook callback. Defaults to `POST`.
+type UpdateTrunkRequestWebhookMethod string
+
+const (
+	UpdateTrunkRequestWebhookMethodPost UpdateTrunkRequestWebhookMethod = "POST"
+	UpdateTrunkRequestWebhookMethodGet  UpdateTrunkRequestWebhookMethod = "GET"
+)
+
+func NewUpdateTrunkRequestWebhookMethodFromString(s string) (UpdateTrunkRequestWebhookMethod, error) {
+	switch s {
+	case "POST":
+		return UpdateTrunkRequestWebhookMethodPost, nil
+	case "GET":
+		return UpdateTrunkRequestWebhookMethodGet, nil
+	}
+	var t UpdateTrunkRequestWebhookMethod
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (u UpdateTrunkRequestWebhookMethod) Ptr() *UpdateTrunkRequestWebhookMethod {
+	return &u
+}
+
 var (
 	updateTrunkResponseFieldTrunkID                 = big.NewInt(1 << 0)
 	updateTrunkResponseFieldAccountID               = big.NewInt(1 << 1)
@@ -1905,6 +1973,8 @@ var (
 	updateTrunkRequestFieldName               = big.NewInt(1 << 2)
 	updateTrunkRequestFieldMaxConcurrentCalls = big.NewInt(1 << 3)
 	updateTrunkRequestFieldEnabled            = big.NewInt(1 << 4)
+	updateTrunkRequestFieldWebhookURL         = big.NewInt(1 << 5)
+	updateTrunkRequestFieldWebhookMethod      = big.NewInt(1 << 6)
 )
 
 type UpdateTrunkRequest struct {
@@ -1914,6 +1984,10 @@ type UpdateTrunkRequest struct {
 	Name               string `json:"name" url:"-"`
 	MaxConcurrentCalls int    `json:"max_concurrent_calls" url:"-"`
 	Enabled            bool   `json:"enabled" url:"-"`
+	// HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+	WebhookURL *string `json:"webhook_url,omitempty" url:"-"`
+	// HTTP method for the webhook callback. Defaults to `POST`.
+	WebhookMethod *UpdateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -1959,6 +2033,20 @@ func (u *UpdateTrunkRequest) SetMaxConcurrentCalls(maxConcurrentCalls int) {
 func (u *UpdateTrunkRequest) SetEnabled(enabled bool) {
 	u.Enabled = enabled
 	u.require(updateTrunkRequestFieldEnabled)
+}
+
+// SetWebhookURL sets the WebhookURL field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetWebhookURL(webhookURL *string) {
+	u.WebhookURL = webhookURL
+	u.require(updateTrunkRequestFieldWebhookURL)
+}
+
+// SetWebhookMethod sets the WebhookMethod field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetWebhookMethod(webhookMethod *UpdateTrunkRequestWebhookMethod) {
+	u.WebhookMethod = webhookMethod
+	u.require(updateTrunkRequestFieldWebhookMethod)
 }
 
 func (u *UpdateTrunkRequest) UnmarshalJSON(data []byte) error {
