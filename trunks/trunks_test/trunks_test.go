@@ -115,12 +115,30 @@ func TestTrunksCreateTrunkWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.CreateTrunkRequest{
-		AuthID:             "MA_XXXXXX",
-		Name:               "My Outbound Trunk",
-		TrunkType:          "OUTBOUND",
-		MaxConcurrentCalls: 10,
+		AuthID:         "MA_XXXXXX",
+		Name:           "Retell AI SIP",
+		TrunkDirection: vobiz.CreateTrunkRequestTrunkDirectionOutbound.Ptr(),
+		Transport:      vobiz.CreateTrunkRequestTransportUDP.Ptr(),
+		ConcurrentCallsLimit: vobiz.Int(
+			50,
+		),
+		CpsLimit: vobiz.Int(
+			15,
+		),
+		CredentialUUID: vobiz.String(
+			"b1e2...",
+		),
+		IpaclUUID: vobiz.String(
+			"c3d4...",
+		),
+		Recording: vobiz.Bool(
+			true,
+		),
+		EnableTranscription: vobiz.Bool(
+			true,
+		),
 		WebhookURL: vobiz.String(
-			"https://your-app.example.com/trunk-webhook",
+			"https://example.com/vobiz/webhook",
 		),
 		WebhookMethod: vobiz.CreateTrunkRequestWebhookMethodPost.Ptr(),
 	}
@@ -175,11 +193,8 @@ func TestTrunksUpdateTrunkWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.UpdateTrunkRequest{
-		AuthID:             "MA_XXXXXX",
-		TrunkID:            "trunk_id",
-		Name:               "name",
-		MaxConcurrentCalls: 1,
-		Enabled:            true,
+		AuthID:  "MA_XXXXXX",
+		TrunkID: "trunk_id",
 	}
 	_, invocationErr := client.Trunks.UpdateTrunk(
 		context.TODO(),

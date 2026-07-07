@@ -8,7 +8,7 @@
     },
     "packageName": "vobiz"
   },
-  "originGitCommit": "07fcc016f4d17e9412f0a91daec880abe77ea864",
+  "originGitCommit": "063c324662f4d6313b4d8c28b306b189ee6c0ac0",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
   "ciProvider": "github"

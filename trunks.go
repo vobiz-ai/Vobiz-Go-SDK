@@ -10,26 +10,83 @@ import (
 )
 
 var (
-	createTrunkRequestFieldAuthID             = big.NewInt(1 << 0)
-	createTrunkRequestFieldName               = big.NewInt(1 << 1)
-	createTrunkRequestFieldTrunkType          = big.NewInt(1 << 2)
-	createTrunkRequestFieldMaxConcurrentCalls = big.NewInt(1 << 3)
-	createTrunkRequestFieldWebhookURL         = big.NewInt(1 << 4)
-	createTrunkRequestFieldWebhookMethod      = big.NewInt(1 << 5)
+	createTrunkRequestFieldAuthID                  = big.NewInt(1 << 0)
+	createTrunkRequestFieldName                    = big.NewInt(1 << 1)
+	createTrunkRequestFieldTrunkDirection          = big.NewInt(1 << 2)
+	createTrunkRequestFieldTrunkStatus             = big.NewInt(1 << 3)
+	createTrunkRequestFieldSecure                  = big.NewInt(1 << 4)
+	createTrunkRequestFieldTrunkDomain             = big.NewInt(1 << 5)
+	createTrunkRequestFieldTransport               = big.NewInt(1 << 6)
+	createTrunkRequestFieldInboundDestination      = big.NewInt(1 << 7)
+	createTrunkRequestFieldDescription             = big.NewInt(1 << 8)
+	createTrunkRequestFieldConcurrentCallsLimit    = big.NewInt(1 << 9)
+	createTrunkRequestFieldCpsLimit                = big.NewInt(1 << 10)
+	createTrunkRequestFieldCredentialUUID          = big.NewInt(1 << 11)
+	createTrunkRequestFieldIpaclUUID               = big.NewInt(1 << 12)
+	createTrunkRequestFieldPrimaryUriUuid          = big.NewInt(1 << 13)
+	createTrunkRequestFieldFallbackUriUuid         = big.NewInt(1 << 14)
+	createTrunkRequestFieldRecording               = big.NewInt(1 << 15)
+	createTrunkRequestFieldEnableTranscription     = big.NewInt(1 << 16)
+	createTrunkRequestFieldPiiRedaction            = big.NewInt(1 << 17)
+	createTrunkRequestFieldPiiEntityTypes          = big.NewInt(1 << 18)
+	createTrunkRequestFieldWebhookURL              = big.NewInt(1 << 19)
+	createTrunkRequestFieldWebhookMethod           = big.NewInt(1 << 20)
+	createTrunkRequestFieldRecordingWebhookEnabled = big.NewInt(1 << 21)
+	createTrunkRequestFieldUsername                = big.NewInt(1 << 22)
+	createTrunkRequestFieldPassword                = big.NewInt(1 << 23)
+	createTrunkRequestFieldIPWhitelist             = big.NewInt(1 << 24)
 )
 
 type CreateTrunkRequest struct {
 	// Your account Auth ID
-	AuthID             string `json:"-" url:"-"`
-	Name               string `json:"name" url:"-"`
-	TrunkType          string `json:"trunk_type" url:"-"`
-	MaxConcurrentCalls int    `json:"max_concurrent_calls" url:"-"`
-	// HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
-	// and `Hangup`) for this trunk. Max 500 characters; private, localhost,
-	// and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+	AuthID string `json:"-" url:"-"`
+	// Trunk name.
+	Name string `json:"name" url:"-"`
+	// Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
+	TrunkDirection *CreateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
+	// Trunk status — `enabled` or `disabled` (note: not `active`).
+	TrunkStatus *CreateTrunkRequestTrunkStatus `json:"trunk_status,omitempty" url:"-"`
+	Secure      *bool                          `json:"secure,omitempty" url:"-"`
+	// SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
+	TrunkDomain        *string                      `json:"trunk_domain,omitempty" url:"-"`
+	Transport          *CreateTrunkRequestTransport `json:"transport,omitempty" url:"-"`
+	InboundDestination *string                      `json:"inbound_destination,omitempty" url:"-"`
+	Description        *string                      `json:"description,omitempty" url:"-"`
+	// Stored on the trunk. The **enforced** concurrency limit is account-level (account base + channel subscriptions), not this field.
+	ConcurrentCallsLimit *int `json:"concurrent_calls_limit,omitempty" url:"-"`
+	// Stored on the trunk. The **enforced** CPS is account-level, not this field.
+	CpsLimit *int `json:"cps_limit,omitempty" url:"-"`
+	// Attach an existing SIP credential (username / password / realm) by UUID.
+	CredentialUUID *string `json:"credential_uuid,omitempty" url:"-"`
+	// Attach an existing IP access-control list (IP-based auth) by UUID.
+	IpaclUUID *string `json:"ipacl_uuid,omitempty" url:"-"`
+	// Primary origination URI UUID.
+	PrimaryUriUuid *string `json:"primary_uri_uuid,omitempty" url:"-"`
+	// Fallback origination URI UUID.
+	FallbackUriUuid *string `json:"fallback_uri_uuid,omitempty" url:"-"`
+	// Enable call recording.
+	Recording *bool `json:"recording,omitempty" url:"-"`
+	// Auto-transcribe recordings when `recording=true`.
+	EnableTranscription *bool `json:"enable_transcription,omitempty" url:"-"`
+	// Redact PII from transcriptions.
+	PiiRedaction *bool `json:"pii_redaction,omitempty" url:"-"`
+	// Comma-separated list of entity types to redact.
+	PiiEntityTypes *string `json:"pii_entity_types,omitempty" url:"-"`
+	// Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
+	// Must be a valid **public** http/https URL. SSRF-validated — localhost,
+	// private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
+	// rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
 	WebhookURL *string `json:"webhook_url,omitempty" url:"-"`
-	// HTTP method for the webhook callback. Defaults to `POST`.
+	// HTTP method for the webhook callback.
 	WebhookMethod *CreateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`
+	// Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
+	RecordingWebhookEnabled *bool `json:"recording_webhook_enabled,omitempty" url:"-"`
+	// Deprecated — use `credential_uuid`.
+	Username *string `json:"username,omitempty" url:"-"`
+	// Deprecated — use `credential_uuid`.
+	Password *string `json:"password,omitempty" url:"-"`
+	// Deprecated — use `ipacl_uuid`.
+	IPWhitelist []string `json:"ip_whitelist,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -56,18 +113,123 @@ func (c *CreateTrunkRequest) SetName(name string) {
 	c.require(createTrunkRequestFieldName)
 }
 
-// SetTrunkType sets the TrunkType field and marks it as non-optional;
+// SetTrunkDirection sets the TrunkDirection field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CreateTrunkRequest) SetTrunkType(trunkType string) {
-	c.TrunkType = trunkType
-	c.require(createTrunkRequestFieldTrunkType)
+func (c *CreateTrunkRequest) SetTrunkDirection(trunkDirection *CreateTrunkRequestTrunkDirection) {
+	c.TrunkDirection = trunkDirection
+	c.require(createTrunkRequestFieldTrunkDirection)
 }
 
-// SetMaxConcurrentCalls sets the MaxConcurrentCalls field and marks it as non-optional;
+// SetTrunkStatus sets the TrunkStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CreateTrunkRequest) SetMaxConcurrentCalls(maxConcurrentCalls int) {
-	c.MaxConcurrentCalls = maxConcurrentCalls
-	c.require(createTrunkRequestFieldMaxConcurrentCalls)
+func (c *CreateTrunkRequest) SetTrunkStatus(trunkStatus *CreateTrunkRequestTrunkStatus) {
+	c.TrunkStatus = trunkStatus
+	c.require(createTrunkRequestFieldTrunkStatus)
+}
+
+// SetSecure sets the Secure field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetSecure(secure *bool) {
+	c.Secure = secure
+	c.require(createTrunkRequestFieldSecure)
+}
+
+// SetTrunkDomain sets the TrunkDomain field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetTrunkDomain(trunkDomain *string) {
+	c.TrunkDomain = trunkDomain
+	c.require(createTrunkRequestFieldTrunkDomain)
+}
+
+// SetTransport sets the Transport field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetTransport(transport *CreateTrunkRequestTransport) {
+	c.Transport = transport
+	c.require(createTrunkRequestFieldTransport)
+}
+
+// SetInboundDestination sets the InboundDestination field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetInboundDestination(inboundDestination *string) {
+	c.InboundDestination = inboundDestination
+	c.require(createTrunkRequestFieldInboundDestination)
+}
+
+// SetDescription sets the Description field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetDescription(description *string) {
+	c.Description = description
+	c.require(createTrunkRequestFieldDescription)
+}
+
+// SetConcurrentCallsLimit sets the ConcurrentCallsLimit field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetConcurrentCallsLimit(concurrentCallsLimit *int) {
+	c.ConcurrentCallsLimit = concurrentCallsLimit
+	c.require(createTrunkRequestFieldConcurrentCallsLimit)
+}
+
+// SetCpsLimit sets the CpsLimit field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetCpsLimit(cpsLimit *int) {
+	c.CpsLimit = cpsLimit
+	c.require(createTrunkRequestFieldCpsLimit)
+}
+
+// SetCredentialUUID sets the CredentialUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetCredentialUUID(credentialUUID *string) {
+	c.CredentialUUID = credentialUUID
+	c.require(createTrunkRequestFieldCredentialUUID)
+}
+
+// SetIpaclUUID sets the IpaclUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetIpaclUUID(ipaclUUID *string) {
+	c.IpaclUUID = ipaclUUID
+	c.require(createTrunkRequestFieldIpaclUUID)
+}
+
+// SetPrimaryUriUuid sets the PrimaryUriUuid field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetPrimaryUriUuid(primaryUriUuid *string) {
+	c.PrimaryUriUuid = primaryUriUuid
+	c.require(createTrunkRequestFieldPrimaryUriUuid)
+}
+
+// SetFallbackUriUuid sets the FallbackUriUuid field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetFallbackUriUuid(fallbackUriUuid *string) {
+	c.FallbackUriUuid = fallbackUriUuid
+	c.require(createTrunkRequestFieldFallbackUriUuid)
+}
+
+// SetRecording sets the Recording field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetRecording(recording *bool) {
+	c.Recording = recording
+	c.require(createTrunkRequestFieldRecording)
+}
+
+// SetEnableTranscription sets the EnableTranscription field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetEnableTranscription(enableTranscription *bool) {
+	c.EnableTranscription = enableTranscription
+	c.require(createTrunkRequestFieldEnableTranscription)
+}
+
+// SetPiiRedaction sets the PiiRedaction field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetPiiRedaction(piiRedaction *bool) {
+	c.PiiRedaction = piiRedaction
+	c.require(createTrunkRequestFieldPiiRedaction)
+}
+
+// SetPiiEntityTypes sets the PiiEntityTypes field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetPiiEntityTypes(piiEntityTypes *string) {
+	c.PiiEntityTypes = piiEntityTypes
+	c.require(createTrunkRequestFieldPiiEntityTypes)
 }
 
 // SetWebhookURL sets the WebhookURL field and marks it as non-optional;
@@ -82,6 +244,34 @@ func (c *CreateTrunkRequest) SetWebhookURL(webhookURL *string) {
 func (c *CreateTrunkRequest) SetWebhookMethod(webhookMethod *CreateTrunkRequestWebhookMethod) {
 	c.WebhookMethod = webhookMethod
 	c.require(createTrunkRequestFieldWebhookMethod)
+}
+
+// SetRecordingWebhookEnabled sets the RecordingWebhookEnabled field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetRecordingWebhookEnabled(recordingWebhookEnabled *bool) {
+	c.RecordingWebhookEnabled = recordingWebhookEnabled
+	c.require(createTrunkRequestFieldRecordingWebhookEnabled)
+}
+
+// SetUsername sets the Username field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetUsername(username *string) {
+	c.Username = username
+	c.require(createTrunkRequestFieldUsername)
+}
+
+// SetPassword sets the Password field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetPassword(password *string) {
+	c.Password = password
+	c.require(createTrunkRequestFieldPassword)
+}
+
+// SetIPWhitelist sets the IPWhitelist field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateTrunkRequest) SetIPWhitelist(ipWhitelist []string) {
+	c.IPWhitelist = ipWhitelist
+	c.require(createTrunkRequestFieldIPWhitelist)
 }
 
 func (c *CreateTrunkRequest) UnmarshalJSON(data []byte) error {
@@ -201,7 +391,78 @@ func (r *RetrieveTrunkRequest) SetTrunkID(trunkID string) {
 	r.require(retrieveTrunkRequestFieldTrunkID)
 }
 
-// HTTP method for the webhook callback. Defaults to `POST`.
+type CreateTrunkRequestTransport string
+
+const (
+	CreateTrunkRequestTransportUDP CreateTrunkRequestTransport = "udp"
+	CreateTrunkRequestTransportTCP CreateTrunkRequestTransport = "tcp"
+	CreateTrunkRequestTransportTLS CreateTrunkRequestTransport = "tls"
+)
+
+func NewCreateTrunkRequestTransportFromString(s string) (CreateTrunkRequestTransport, error) {
+	switch s {
+	case "udp":
+		return CreateTrunkRequestTransportUDP, nil
+	case "tcp":
+		return CreateTrunkRequestTransportTCP, nil
+	case "tls":
+		return CreateTrunkRequestTransportTLS, nil
+	}
+	var t CreateTrunkRequestTransport
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CreateTrunkRequestTransport) Ptr() *CreateTrunkRequestTransport {
+	return &c
+}
+
+// Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
+type CreateTrunkRequestTrunkDirection string
+
+const (
+	CreateTrunkRequestTrunkDirectionInbound  CreateTrunkRequestTrunkDirection = "inbound"
+	CreateTrunkRequestTrunkDirectionOutbound CreateTrunkRequestTrunkDirection = "outbound"
+)
+
+func NewCreateTrunkRequestTrunkDirectionFromString(s string) (CreateTrunkRequestTrunkDirection, error) {
+	switch s {
+	case "inbound":
+		return CreateTrunkRequestTrunkDirectionInbound, nil
+	case "outbound":
+		return CreateTrunkRequestTrunkDirectionOutbound, nil
+	}
+	var t CreateTrunkRequestTrunkDirection
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CreateTrunkRequestTrunkDirection) Ptr() *CreateTrunkRequestTrunkDirection {
+	return &c
+}
+
+// Trunk status — `enabled` or `disabled` (note: not `active`).
+type CreateTrunkRequestTrunkStatus string
+
+const (
+	CreateTrunkRequestTrunkStatusEnabled  CreateTrunkRequestTrunkStatus = "enabled"
+	CreateTrunkRequestTrunkStatusDisabled CreateTrunkRequestTrunkStatus = "disabled"
+)
+
+func NewCreateTrunkRequestTrunkStatusFromString(s string) (CreateTrunkRequestTrunkStatus, error) {
+	switch s {
+	case "enabled":
+		return CreateTrunkRequestTrunkStatusEnabled, nil
+	case "disabled":
+		return CreateTrunkRequestTrunkStatusDisabled, nil
+	}
+	var t CreateTrunkRequestTrunkStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CreateTrunkRequestTrunkStatus) Ptr() *CreateTrunkRequestTrunkStatus {
+	return &c
+}
+
+// HTTP method for the webhook callback.
 type CreateTrunkRequestWebhookMethod string
 
 const (
@@ -1588,7 +1849,76 @@ func (r *RetrieveTrunkResponse) String() string {
 	return fmt.Sprintf("%#v", r)
 }
 
-// HTTP method for the webhook callback. Defaults to `POST`.
+type UpdateTrunkRequestTransport string
+
+const (
+	UpdateTrunkRequestTransportUDP UpdateTrunkRequestTransport = "udp"
+	UpdateTrunkRequestTransportTCP UpdateTrunkRequestTransport = "tcp"
+	UpdateTrunkRequestTransportTLS UpdateTrunkRequestTransport = "tls"
+)
+
+func NewUpdateTrunkRequestTransportFromString(s string) (UpdateTrunkRequestTransport, error) {
+	switch s {
+	case "udp":
+		return UpdateTrunkRequestTransportUDP, nil
+	case "tcp":
+		return UpdateTrunkRequestTransportTCP, nil
+	case "tls":
+		return UpdateTrunkRequestTransportTLS, nil
+	}
+	var t UpdateTrunkRequestTransport
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (u UpdateTrunkRequestTransport) Ptr() *UpdateTrunkRequestTransport {
+	return &u
+}
+
+// Direction of the trunk — `inbound` or `outbound` only.
+type UpdateTrunkRequestTrunkDirection string
+
+const (
+	UpdateTrunkRequestTrunkDirectionInbound  UpdateTrunkRequestTrunkDirection = "inbound"
+	UpdateTrunkRequestTrunkDirectionOutbound UpdateTrunkRequestTrunkDirection = "outbound"
+)
+
+func NewUpdateTrunkRequestTrunkDirectionFromString(s string) (UpdateTrunkRequestTrunkDirection, error) {
+	switch s {
+	case "inbound":
+		return UpdateTrunkRequestTrunkDirectionInbound, nil
+	case "outbound":
+		return UpdateTrunkRequestTrunkDirectionOutbound, nil
+	}
+	var t UpdateTrunkRequestTrunkDirection
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (u UpdateTrunkRequestTrunkDirection) Ptr() *UpdateTrunkRequestTrunkDirection {
+	return &u
+}
+
+type UpdateTrunkRequestTrunkStatus string
+
+const (
+	UpdateTrunkRequestTrunkStatusEnabled  UpdateTrunkRequestTrunkStatus = "enabled"
+	UpdateTrunkRequestTrunkStatusDisabled UpdateTrunkRequestTrunkStatus = "disabled"
+)
+
+func NewUpdateTrunkRequestTrunkStatusFromString(s string) (UpdateTrunkRequestTrunkStatus, error) {
+	switch s {
+	case "enabled":
+		return UpdateTrunkRequestTrunkStatusEnabled, nil
+	case "disabled":
+		return UpdateTrunkRequestTrunkStatusDisabled, nil
+	}
+	var t UpdateTrunkRequestTrunkStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (u UpdateTrunkRequestTrunkStatus) Ptr() *UpdateTrunkRequestTrunkStatus {
+	return &u
+}
+
 type UpdateTrunkRequestWebhookMethod string
 
 const (
@@ -1968,26 +2298,58 @@ func (u *UpdateTrunkResponse) String() string {
 }
 
 var (
-	updateTrunkRequestFieldAuthID             = big.NewInt(1 << 0)
-	updateTrunkRequestFieldTrunkID            = big.NewInt(1 << 1)
-	updateTrunkRequestFieldName               = big.NewInt(1 << 2)
-	updateTrunkRequestFieldMaxConcurrentCalls = big.NewInt(1 << 3)
-	updateTrunkRequestFieldEnabled            = big.NewInt(1 << 4)
-	updateTrunkRequestFieldWebhookURL         = big.NewInt(1 << 5)
-	updateTrunkRequestFieldWebhookMethod      = big.NewInt(1 << 6)
+	updateTrunkRequestFieldAuthID                  = big.NewInt(1 << 0)
+	updateTrunkRequestFieldTrunkID                 = big.NewInt(1 << 1)
+	updateTrunkRequestFieldName                    = big.NewInt(1 << 2)
+	updateTrunkRequestFieldTrunkDirection          = big.NewInt(1 << 3)
+	updateTrunkRequestFieldTrunkStatus             = big.NewInt(1 << 4)
+	updateTrunkRequestFieldSecure                  = big.NewInt(1 << 5)
+	updateTrunkRequestFieldTrunkDomain             = big.NewInt(1 << 6)
+	updateTrunkRequestFieldTransport               = big.NewInt(1 << 7)
+	updateTrunkRequestFieldInboundDestination      = big.NewInt(1 << 8)
+	updateTrunkRequestFieldDescription             = big.NewInt(1 << 9)
+	updateTrunkRequestFieldConcurrentCallsLimit    = big.NewInt(1 << 10)
+	updateTrunkRequestFieldCpsLimit                = big.NewInt(1 << 11)
+	updateTrunkRequestFieldCredentialUUID          = big.NewInt(1 << 12)
+	updateTrunkRequestFieldIpaclUUID               = big.NewInt(1 << 13)
+	updateTrunkRequestFieldPrimaryUriUuid          = big.NewInt(1 << 14)
+	updateTrunkRequestFieldFallbackUriUuid         = big.NewInt(1 << 15)
+	updateTrunkRequestFieldRecording               = big.NewInt(1 << 16)
+	updateTrunkRequestFieldEnableTranscription     = big.NewInt(1 << 17)
+	updateTrunkRequestFieldPiiRedaction            = big.NewInt(1 << 18)
+	updateTrunkRequestFieldPiiEntityTypes          = big.NewInt(1 << 19)
+	updateTrunkRequestFieldWebhookURL              = big.NewInt(1 << 20)
+	updateTrunkRequestFieldWebhookMethod           = big.NewInt(1 << 21)
+	updateTrunkRequestFieldRecordingWebhookEnabled = big.NewInt(1 << 22)
 )
 
 type UpdateTrunkRequest struct {
 	// Your account Auth ID
-	AuthID             string `json:"-" url:"-"`
-	TrunkID            string `json:"-" url:"-"`
-	Name               string `json:"name" url:"-"`
-	MaxConcurrentCalls int    `json:"max_concurrent_calls" url:"-"`
-	Enabled            bool   `json:"enabled" url:"-"`
-	// HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
-	WebhookURL *string `json:"webhook_url,omitempty" url:"-"`
-	// HTTP method for the webhook callback. Defaults to `POST`.
-	WebhookMethod *UpdateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`
+	AuthID  string  `json:"-" url:"-"`
+	TrunkID string  `json:"-" url:"-"`
+	Name    *string `json:"name,omitempty" url:"-"`
+	// Direction of the trunk — `inbound` or `outbound` only.
+	TrunkDirection       *UpdateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
+	TrunkStatus          *UpdateTrunkRequestTrunkStatus    `json:"trunk_status,omitempty" url:"-"`
+	Secure               *bool                             `json:"secure,omitempty" url:"-"`
+	TrunkDomain          *string                           `json:"trunk_domain,omitempty" url:"-"`
+	Transport            *UpdateTrunkRequestTransport      `json:"transport,omitempty" url:"-"`
+	InboundDestination   *string                           `json:"inbound_destination,omitempty" url:"-"`
+	Description          *string                           `json:"description,omitempty" url:"-"`
+	ConcurrentCallsLimit *int                              `json:"concurrent_calls_limit,omitempty" url:"-"`
+	CpsLimit             *int                              `json:"cps_limit,omitempty" url:"-"`
+	CredentialUUID       *string                           `json:"credential_uuid,omitempty" url:"-"`
+	IpaclUUID            *string                           `json:"ipacl_uuid,omitempty" url:"-"`
+	PrimaryUriUuid       *string                           `json:"primary_uri_uuid,omitempty" url:"-"`
+	FallbackUriUuid      *string                           `json:"fallback_uri_uuid,omitempty" url:"-"`
+	Recording            *bool                             `json:"recording,omitempty" url:"-"`
+	EnableTranscription  *bool                             `json:"enable_transcription,omitempty" url:"-"`
+	PiiRedaction         *bool                             `json:"pii_redaction,omitempty" url:"-"`
+	PiiEntityTypes       *string                           `json:"pii_entity_types,omitempty" url:"-"`
+	// Customer webhook for call-admission events (`CallInitiated` / `Hangup`). Public http/https URL; SSRF-validated. See [Trunk Webhooks](/trunks/webhook).
+	WebhookURL              *string                          `json:"webhook_url,omitempty" url:"-"`
+	WebhookMethod           *UpdateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`
+	RecordingWebhookEnabled *bool                            `json:"recording_webhook_enabled,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -2016,23 +2378,128 @@ func (u *UpdateTrunkRequest) SetTrunkID(trunkID string) {
 
 // SetName sets the Name field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateTrunkRequest) SetName(name string) {
+func (u *UpdateTrunkRequest) SetName(name *string) {
 	u.Name = name
 	u.require(updateTrunkRequestFieldName)
 }
 
-// SetMaxConcurrentCalls sets the MaxConcurrentCalls field and marks it as non-optional;
+// SetTrunkDirection sets the TrunkDirection field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateTrunkRequest) SetMaxConcurrentCalls(maxConcurrentCalls int) {
-	u.MaxConcurrentCalls = maxConcurrentCalls
-	u.require(updateTrunkRequestFieldMaxConcurrentCalls)
+func (u *UpdateTrunkRequest) SetTrunkDirection(trunkDirection *UpdateTrunkRequestTrunkDirection) {
+	u.TrunkDirection = trunkDirection
+	u.require(updateTrunkRequestFieldTrunkDirection)
 }
 
-// SetEnabled sets the Enabled field and marks it as non-optional;
+// SetTrunkStatus sets the TrunkStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateTrunkRequest) SetEnabled(enabled bool) {
-	u.Enabled = enabled
-	u.require(updateTrunkRequestFieldEnabled)
+func (u *UpdateTrunkRequest) SetTrunkStatus(trunkStatus *UpdateTrunkRequestTrunkStatus) {
+	u.TrunkStatus = trunkStatus
+	u.require(updateTrunkRequestFieldTrunkStatus)
+}
+
+// SetSecure sets the Secure field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetSecure(secure *bool) {
+	u.Secure = secure
+	u.require(updateTrunkRequestFieldSecure)
+}
+
+// SetTrunkDomain sets the TrunkDomain field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetTrunkDomain(trunkDomain *string) {
+	u.TrunkDomain = trunkDomain
+	u.require(updateTrunkRequestFieldTrunkDomain)
+}
+
+// SetTransport sets the Transport field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetTransport(transport *UpdateTrunkRequestTransport) {
+	u.Transport = transport
+	u.require(updateTrunkRequestFieldTransport)
+}
+
+// SetInboundDestination sets the InboundDestination field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetInboundDestination(inboundDestination *string) {
+	u.InboundDestination = inboundDestination
+	u.require(updateTrunkRequestFieldInboundDestination)
+}
+
+// SetDescription sets the Description field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetDescription(description *string) {
+	u.Description = description
+	u.require(updateTrunkRequestFieldDescription)
+}
+
+// SetConcurrentCallsLimit sets the ConcurrentCallsLimit field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetConcurrentCallsLimit(concurrentCallsLimit *int) {
+	u.ConcurrentCallsLimit = concurrentCallsLimit
+	u.require(updateTrunkRequestFieldConcurrentCallsLimit)
+}
+
+// SetCpsLimit sets the CpsLimit field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetCpsLimit(cpsLimit *int) {
+	u.CpsLimit = cpsLimit
+	u.require(updateTrunkRequestFieldCpsLimit)
+}
+
+// SetCredentialUUID sets the CredentialUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetCredentialUUID(credentialUUID *string) {
+	u.CredentialUUID = credentialUUID
+	u.require(updateTrunkRequestFieldCredentialUUID)
+}
+
+// SetIpaclUUID sets the IpaclUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetIpaclUUID(ipaclUUID *string) {
+	u.IpaclUUID = ipaclUUID
+	u.require(updateTrunkRequestFieldIpaclUUID)
+}
+
+// SetPrimaryUriUuid sets the PrimaryUriUuid field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetPrimaryUriUuid(primaryUriUuid *string) {
+	u.PrimaryUriUuid = primaryUriUuid
+	u.require(updateTrunkRequestFieldPrimaryUriUuid)
+}
+
+// SetFallbackUriUuid sets the FallbackUriUuid field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetFallbackUriUuid(fallbackUriUuid *string) {
+	u.FallbackUriUuid = fallbackUriUuid
+	u.require(updateTrunkRequestFieldFallbackUriUuid)
+}
+
+// SetRecording sets the Recording field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetRecording(recording *bool) {
+	u.Recording = recording
+	u.require(updateTrunkRequestFieldRecording)
+}
+
+// SetEnableTranscription sets the EnableTranscription field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetEnableTranscription(enableTranscription *bool) {
+	u.EnableTranscription = enableTranscription
+	u.require(updateTrunkRequestFieldEnableTranscription)
+}
+
+// SetPiiRedaction sets the PiiRedaction field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetPiiRedaction(piiRedaction *bool) {
+	u.PiiRedaction = piiRedaction
+	u.require(updateTrunkRequestFieldPiiRedaction)
+}
+
+// SetPiiEntityTypes sets the PiiEntityTypes field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetPiiEntityTypes(piiEntityTypes *string) {
+	u.PiiEntityTypes = piiEntityTypes
+	u.require(updateTrunkRequestFieldPiiEntityTypes)
 }
 
 // SetWebhookURL sets the WebhookURL field and marks it as non-optional;
@@ -2047,6 +2514,13 @@ func (u *UpdateTrunkRequest) SetWebhookURL(webhookURL *string) {
 func (u *UpdateTrunkRequest) SetWebhookMethod(webhookMethod *UpdateTrunkRequestWebhookMethod) {
 	u.WebhookMethod = webhookMethod
 	u.require(updateTrunkRequestFieldWebhookMethod)
+}
+
+// SetRecordingWebhookEnabled sets the RecordingWebhookEnabled field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateTrunkRequest) SetRecordingWebhookEnabled(recordingWebhookEnabled *bool) {
+	u.RecordingWebhookEnabled = recordingWebhookEnabled
+	u.require(updateTrunkRequestFieldRecordingWebhookEnabled)
 }
 
 func (u *UpdateTrunkRequest) UnmarshalJSON(data []byte) error {

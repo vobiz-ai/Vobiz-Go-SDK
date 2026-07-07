@@ -3736,11 +3736,29 @@ Create a new SIP trunk for inbound or outbound calling.
 ```go
 request := &vobiz.CreateTrunkRequest{
         AuthID: "MA_XXXXXX",
-        Name: "My Outbound Trunk",
-        TrunkType: "OUTBOUND",
-        MaxConcurrentCalls: 10,
+        Name: "Retell AI SIP",
+        TrunkDirection: vobiz.CreateTrunkRequestTrunkDirectionOutbound.Ptr(),
+        Transport: vobiz.CreateTrunkRequestTransportUDP.Ptr(),
+        ConcurrentCallsLimit: vobiz.Int(
+            50,
+        ),
+        CpsLimit: vobiz.Int(
+            15,
+        ),
+        CredentialUUID: vobiz.String(
+            "b1e2...",
+        ),
+        IpaclUUID: vobiz.String(
+            "c3d4...",
+        ),
+        Recording: vobiz.Bool(
+            true,
+        ),
+        EnableTranscription: vobiz.Bool(
+            true,
+        ),
         WebhookURL: vobiz.String(
-            "https://your-app.example.com/trunk-webhook",
+            "https://example.com/vobiz/webhook",
         ),
         WebhookMethod: vobiz.CreateTrunkRequestWebhookMethodPost.Ptr(),
     }
@@ -3771,7 +3789,7 @@ client.Trunks.CreateTrunk(
 <dl>
 <dd>
 
-**name:** `string` 
+**name:** `string` — Trunk name.
     
 </dd>
 </dl>
@@ -3779,7 +3797,7 @@ client.Trunks.CreateTrunk(
 <dl>
 <dd>
 
-**trunkType:** `string` 
+**trunkDirection:** `*vobiz.CreateTrunkRequestTrunkDirection` — Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
     
 </dd>
 </dl>
@@ -3787,7 +3805,127 @@ client.Trunks.CreateTrunk(
 <dl>
 <dd>
 
-**maxConcurrentCalls:** `int` 
+**trunkStatus:** `*vobiz.CreateTrunkRequestTrunkStatus` — Trunk status — `enabled` or `disabled` (note: not `active`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**secure:** `*bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**trunkDomain:** `*string` — SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transport:** `*vobiz.CreateTrunkRequestTransport` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inboundDestination:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concurrentCallsLimit:** `*int` — Stored on the trunk. The **enforced** concurrency limit is account-level (account base + channel subscriptions), not this field.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cpsLimit:** `*int` — Stored on the trunk. The **enforced** CPS is account-level, not this field.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credentialUUID:** `*string` — Attach an existing SIP credential (username / password / realm) by UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ipaclUUID:** `*string` — Attach an existing IP access-control list (IP-based auth) by UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primaryUriUuid:** `*string` — Primary origination URI UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fallbackUriUuid:** `*string` — Fallback origination URI UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording:** `*bool` — Enable call recording.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enableTranscription:** `*bool` — Auto-transcribe recordings when `recording=true`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**piiRedaction:** `*bool` — Redact PII from transcriptions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**piiEntityTypes:** `*string` — Comma-separated list of entity types to redact.
     
 </dd>
 </dl>
@@ -3797,9 +3935,10 @@ client.Trunks.CreateTrunk(
 
 **webhookURL:** `*string` 
 
-HTTPS URL to receive real-time call-event webhooks (`CallInitiated`
-and `Hangup`) for this trunk. Max 500 characters; private, localhost,
-and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
+Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
+Must be a valid **public** http/https URL. SSRF-validated — localhost,
+private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
+rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
     
 </dd>
 </dl>
@@ -3807,7 +3946,39 @@ and cloud-metadata IPs are blocked. See [Trunk Webhooks](/trunks/webhook).
 <dl>
 <dd>
 
-**webhookMethod:** `*vobiz.CreateTrunkRequestWebhookMethod` — HTTP method for the webhook callback. Defaults to `POST`.
+**webhookMethod:** `*vobiz.CreateTrunkRequestWebhookMethod` — HTTP method for the webhook callback.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recordingWebhookEnabled:** `*bool` — Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**username:** `*string` — Deprecated — use `credential_uuid`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**password:** `*string` — Deprecated — use `credential_uuid`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ipWhitelist:** `[]string` — Deprecated — use `ipacl_uuid`.
     
 </dd>
 </dl>
@@ -3919,9 +4090,6 @@ Update a SIP trunk's name, configuration, or status.
 request := &vobiz.UpdateTrunkRequest{
         AuthID: "MA_XXXXXX",
         TrunkID: "trunk_id",
-        Name: "name",
-        MaxConcurrentCalls: 1,
-        Enabled: true,
     }
 client.Trunks.UpdateTrunk(
         context.TODO(),
@@ -3958,7 +4126,7 @@ client.Trunks.UpdateTrunk(
 <dl>
 <dd>
 
-**name:** `string` 
+**name:** `*string` 
     
 </dd>
 </dl>
@@ -3966,7 +4134,7 @@ client.Trunks.UpdateTrunk(
 <dl>
 <dd>
 
-**maxConcurrentCalls:** `int` 
+**trunkDirection:** `*vobiz.UpdateTrunkRequestTrunkDirection` — Direction of the trunk — `inbound` or `outbound` only.
     
 </dd>
 </dl>
@@ -3974,7 +4142,7 @@ client.Trunks.UpdateTrunk(
 <dl>
 <dd>
 
-**enabled:** `bool` 
+**trunkStatus:** `*vobiz.UpdateTrunkRequestTrunkStatus` 
     
 </dd>
 </dl>
@@ -3982,7 +4150,7 @@ client.Trunks.UpdateTrunk(
 <dl>
 <dd>
 
-**webhookURL:** `*string` — HTTPS URL for real-time call-event webhooks (`CallInitiated`, `Hangup`). See [Trunk Webhooks](/trunks/webhook).
+**secure:** `*bool` 
     
 </dd>
 </dl>
@@ -3990,7 +4158,135 @@ client.Trunks.UpdateTrunk(
 <dl>
 <dd>
 
-**webhookMethod:** `*vobiz.UpdateTrunkRequestWebhookMethod` — HTTP method for the webhook callback. Defaults to `POST`.
+**trunkDomain:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transport:** `*vobiz.UpdateTrunkRequestTransport` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**inboundDestination:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**concurrentCallsLimit:** `*int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cpsLimit:** `*int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credentialUUID:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ipaclUUID:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**primaryUriUuid:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fallbackUriUuid:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recording:** `*bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enableTranscription:** `*bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**piiRedaction:** `*bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**piiEntityTypes:** `*string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhookURL:** `*string` — Customer webhook for call-admission events (`CallInitiated` / `Hangup`). Public http/https URL; SSRF-validated. See [Trunk Webhooks](/trunks/webhook).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**webhookMethod:** `*vobiz.UpdateTrunkRequestWebhookMethod` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**recordingWebhookEnabled:** `*bool` 
     
 </dd>
 </dl>
