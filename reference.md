@@ -3078,6 +3078,9 @@ request := &vobiz.ListInventoryNumbersRequest{
         Country: vobiz.String(
             "IN",
         ),
+        Exclude: vobiz.String(
+            "9180,9192",
+        ),
     }
 client.PhoneNumbers.ListInventoryNumbers(
         context.TODO(),

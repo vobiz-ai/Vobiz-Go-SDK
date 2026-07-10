@@ -445,7 +445,7 @@ func TestSettersListInventoryNumbersRequest(t *testing.T) {
 
 	t.Run("SetExclude", func(t *testing.T) {
 		obj := &ListInventoryNumbersRequest{}
-		var fernTestValueExclude []*string
+		var fernTestValueExclude *string
 		obj.SetExclude(fernTestValueExclude)
 		assert.Equal(t, fernTestValueExclude, obj.Exclude)
 		assert.NotNil(t, obj.explicitFields)
@@ -567,7 +567,7 @@ func TestSettersMarkExplicitListInventoryNumbersRequest(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListInventoryNumbersRequest{}
-		var fernTestValueExclude []*string
+		var fernTestValueExclude *string
 
 		// Act
 		obj.SetExclude(fernTestValueExclude)

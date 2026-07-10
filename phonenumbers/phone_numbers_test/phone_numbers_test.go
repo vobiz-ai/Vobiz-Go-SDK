@@ -146,6 +146,9 @@ func TestPhoneNumbersListInventoryNumbersWithWireMock(
 		Country: vobiz.String(
 			"IN",
 		),
+		Exclude: vobiz.String(
+			"9180,9192",
+		),
 	}
 	_, invocationErr := client.PhoneNumbers.ListInventoryNumbers(
 		context.TODO(),
@@ -156,7 +159,7 @@ func TestPhoneNumbersListInventoryNumbersWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestPhoneNumbersListInventoryNumbersWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/inventory/numbers", map[string]interface{}{"country": "IN"}, 1)
+	VerifyRequestCount(t, "TestPhoneNumbersListInventoryNumbersWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/inventory/numbers", map[string]interface{}{"country": "IN", "exclude": "9180,9192"}, 1)
 }
 
 func TestPhoneNumbersPurchaseFromInventoryWithWireMock(

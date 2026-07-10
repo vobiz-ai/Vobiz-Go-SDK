@@ -1427,6 +1427,9 @@
         "queryParameters": {
           "country": {
             "equalTo": "IN"
+          },
+          "exclude": {
+            "equalTo": "9180,9192"
           }
         }
       },
