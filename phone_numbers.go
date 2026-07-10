@@ -203,8 +203,9 @@ var (
 	listInventoryNumbersRequestFieldAuthID  = big.NewInt(1 << 0)
 	listInventoryNumbersRequestFieldCountry = big.NewInt(1 << 1)
 	listInventoryNumbersRequestFieldSearch  = big.NewInt(1 << 2)
-	listInventoryNumbersRequestFieldPage    = big.NewInt(1 << 3)
-	listInventoryNumbersRequestFieldPerPage = big.NewInt(1 << 4)
+	listInventoryNumbersRequestFieldExclude = big.NewInt(1 << 3)
+	listInventoryNumbersRequestFieldPage    = big.NewInt(1 << 4)
+	listInventoryNumbersRequestFieldPerPage = big.NewInt(1 << 5)
 )
 
 type ListInventoryNumbersRequest struct {
@@ -213,9 +214,11 @@ type ListInventoryNumbersRequest struct {
 	// Filter by country code (e.g., "US", "IN").
 	Country *string `json:"-" url:"country,omitempty"`
 	// Substring match against the E.164 number (e.g., "80" matches "+918065...").
-	Search  *string `json:"-" url:"search,omitempty"`
-	Page    *int    `json:"-" url:"page,omitempty"`
-	PerPage *int    `json:"-" url:"per_page,omitempty"`
+	Search *string `json:"-" url:"search,omitempty"`
+	// One or more E.164 prefixes to remove from results. Include the country code (e.g. "9180" for India +91 80-series, "1415" for US +1 415); a leading "+" is optional. Matched against the full E.164 form, so it works for any country. Accepts a comma-separated list ("9180,9192") or repeated params ("exclude=9180&exclude=9192"), and the two forms can be combined. It is ANDed with all other filters, so it takes priority over `search`; duplicates are de-duplicated silently and `total` reflects the filtered result set.
+	Exclude []*string `json:"-" url:"exclude,omitempty"`
+	Page    *int      `json:"-" url:"page,omitempty"`
+	PerPage *int      `json:"-" url:"per_page,omitempty"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -247,6 +250,13 @@ func (l *ListInventoryNumbersRequest) SetCountry(country *string) {
 func (l *ListInventoryNumbersRequest) SetSearch(search *string) {
 	l.Search = search
 	l.require(listInventoryNumbersRequestFieldSearch)
+}
+
+// SetExclude sets the Exclude field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListInventoryNumbersRequest) SetExclude(exclude []*string) {
+	l.Exclude = exclude
+	l.require(listInventoryNumbersRequestFieldExclude)
 }
 
 // SetPage sets the Page field and marks it as non-optional;
