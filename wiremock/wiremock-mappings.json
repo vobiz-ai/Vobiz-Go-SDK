@@ -1348,6 +1348,11 @@
           "auth_id": {
             "equalTo": "MA_XXXXXX"
           }
+        },
+        "queryParameters": {
+          "search": {
+            "equalTo": "+919876543210"
+          }
         }
       },
       "response": {

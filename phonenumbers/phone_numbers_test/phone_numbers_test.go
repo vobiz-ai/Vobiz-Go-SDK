@@ -90,6 +90,9 @@ func TestPhoneNumbersListNumbersWithWireMock(
 	)
 	request := &vobiz.ListNumbersRequest{
 		AuthID: "MA_XXXXXX",
+		Search: vobiz.String(
+			"+919876543210",
+		),
 	}
 	_, invocationErr := client.PhoneNumbers.ListNumbers(
 		context.TODO(),
@@ -100,7 +103,7 @@ func TestPhoneNumbersListNumbersWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestPhoneNumbersListNumbersWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/numbers", nil, 1)
+	VerifyRequestCount(t, "TestPhoneNumbersListNumbersWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/numbers", map[string]interface{}{"search": "+919876543210"}, 1)
 }
 
 func TestPhoneNumbersUnrentNumberWithWireMock(

@@ -2926,6 +2926,9 @@ List all phone numbers on your account.
 ```go
 request := &vobiz.ListNumbersRequest{
         AuthID: "MA_XXXXXX",
+        Search: vobiz.String(
+            "+919876543210",
+        ),
     }
 client.PhoneNumbers.ListNumbers(
         context.TODO(),
@@ -2954,7 +2957,7 @@ client.PhoneNumbers.ListNumbers(
 <dl>
 <dd>
 
-**limit:** `*int` 
+**page:** `*int` — Page number, starting at 1
     
 </dd>
 </dl>
@@ -2962,7 +2965,15 @@ client.PhoneNumbers.ListNumbers(
 <dl>
 <dd>
 
-**offset:** `*int` 
+**perPage:** `*int` — Number of phone numbers to return per page
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**search:** `*string` — Filter by phone number. Include the country code and URL-encode a leading plus sign.
     
 </dd>
 </dl>

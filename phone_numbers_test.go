@@ -667,19 +667,27 @@ func TestSettersListNumbersRequest(t *testing.T) {
 		assert.NotNil(t, obj.explicitFields)
 	})
 
-	t.Run("SetLimit", func(t *testing.T) {
+	t.Run("SetPage", func(t *testing.T) {
 		obj := &ListNumbersRequest{}
-		var fernTestValueLimit *int
-		obj.SetLimit(fernTestValueLimit)
-		assert.Equal(t, fernTestValueLimit, obj.Limit)
+		var fernTestValuePage *int
+		obj.SetPage(fernTestValuePage)
+		assert.Equal(t, fernTestValuePage, obj.Page)
 		assert.NotNil(t, obj.explicitFields)
 	})
 
-	t.Run("SetOffset", func(t *testing.T) {
+	t.Run("SetPerPage", func(t *testing.T) {
 		obj := &ListNumbersRequest{}
-		var fernTestValueOffset *int
-		obj.SetOffset(fernTestValueOffset)
-		assert.Equal(t, fernTestValueOffset, obj.Offset)
+		var fernTestValuePerPage *int
+		obj.SetPerPage(fernTestValuePerPage)
+		assert.Equal(t, fernTestValuePerPage, obj.PerPage)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetSearch", func(t *testing.T) {
+		obj := &ListNumbersRequest{}
+		var fernTestValueSearch *string
+		obj.SetSearch(fernTestValueSearch)
+		assert.Equal(t, fernTestValueSearch, obj.Search)
 		assert.NotNil(t, obj.explicitFields)
 	})
 
@@ -717,14 +725,14 @@ func TestSettersMarkExplicitListNumbersRequest(t *testing.T) {
 		// It verifies that setting a field via setter allows successful JSON round-trip
 	})
 
-	t.Run("SetLimit_MarksExplicit", func(t *testing.T) {
+	t.Run("SetPage_MarksExplicit", func(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListNumbersRequest{}
-		var fernTestValueLimit *int
+		var fernTestValuePage *int
 
 		// Act
-		obj.SetLimit(fernTestValueLimit)
+		obj.SetPage(fernTestValuePage)
 
 		// Assert - object with explicitly set field can be marshaled/unmarshaled
 		bytes, err := json.Marshal(obj)
@@ -748,14 +756,45 @@ func TestSettersMarkExplicitListNumbersRequest(t *testing.T) {
 		// It verifies that setting a field via setter allows successful JSON round-trip
 	})
 
-	t.Run("SetOffset_MarksExplicit", func(t *testing.T) {
+	t.Run("SetPerPage_MarksExplicit", func(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListNumbersRequest{}
-		var fernTestValueOffset *int
+		var fernTestValuePerPage *int
 
 		// Act
-		obj.SetOffset(fernTestValueOffset)
+		obj.SetPerPage(fernTestValuePerPage)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetSearch_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &ListNumbersRequest{}
+		var fernTestValueSearch *string
+
+		// Act
+		obj.SetSearch(fernTestValueSearch)
 
 		// Assert - object with explicitly set field can be marshaled/unmarshaled
 		bytes, err := json.Marshal(obj)

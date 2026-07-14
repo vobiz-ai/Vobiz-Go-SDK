@@ -274,16 +274,21 @@ func (l *ListInventoryNumbersRequest) SetPerPage(perPage *int) {
 }
 
 var (
-	listNumbersRequestFieldAuthID = big.NewInt(1 << 0)
-	listNumbersRequestFieldLimit  = big.NewInt(1 << 1)
-	listNumbersRequestFieldOffset = big.NewInt(1 << 2)
+	listNumbersRequestFieldAuthID  = big.NewInt(1 << 0)
+	listNumbersRequestFieldPage    = big.NewInt(1 << 1)
+	listNumbersRequestFieldPerPage = big.NewInt(1 << 2)
+	listNumbersRequestFieldSearch  = big.NewInt(1 << 3)
 )
 
 type ListNumbersRequest struct {
 	// Your account Auth ID
 	AuthID string `json:"-" url:"-"`
-	Limit  *int   `json:"-" url:"limit,omitempty"`
-	Offset *int   `json:"-" url:"offset,omitempty"`
+	// Page number, starting at 1
+	Page *int `json:"-" url:"page,omitempty"`
+	// Number of phone numbers to return per page
+	PerPage *int `json:"-" url:"per_page,omitempty"`
+	// Filter by phone number. Include the country code and URL-encode a leading plus sign.
+	Search *string `json:"-" url:"search,omitempty"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -303,18 +308,25 @@ func (l *ListNumbersRequest) SetAuthID(authID string) {
 	l.require(listNumbersRequestFieldAuthID)
 }
 
-// SetLimit sets the Limit field and marks it as non-optional;
+// SetPage sets the Page field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListNumbersRequest) SetLimit(limit *int) {
-	l.Limit = limit
-	l.require(listNumbersRequestFieldLimit)
+func (l *ListNumbersRequest) SetPage(page *int) {
+	l.Page = page
+	l.require(listNumbersRequestFieldPage)
 }
 
-// SetOffset sets the Offset field and marks it as non-optional;
+// SetPerPage sets the PerPage field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListNumbersRequest) SetOffset(offset *int) {
-	l.Offset = offset
-	l.require(listNumbersRequestFieldOffset)
+func (l *ListNumbersRequest) SetPerPage(perPage *int) {
+	l.PerPage = perPage
+	l.require(listNumbersRequestFieldPerPage)
+}
+
+// SetSearch sets the Search field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListNumbersRequest) SetSearch(search *string) {
+	l.Search = search
+	l.require(listNumbersRequestFieldSearch)
 }
 
 var (
