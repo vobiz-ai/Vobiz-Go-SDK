@@ -93,7 +93,7 @@ func TestConferenceMembersMuteMemberWithWireMock(
 		ConferenceName: "conference_name",
 		MemberID:       "member_id",
 	}
-	invocationErr := client.ConferenceMembers.MuteMember(
+	_, invocationErr := client.ConferenceMembers.MuteMember(
 		context.TODO(),
 		request,
 		option.WithHTTPHeader(

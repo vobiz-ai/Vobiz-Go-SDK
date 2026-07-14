@@ -122,7 +122,7 @@ func (r *RawClient) GetConference(
 	ctx context.Context,
 	request *vobiz.GetConferenceRequest,
 	opts ...option.RequestOption,
-) (*core.Response[any], error) {
+) (*core.Response[*vobiz.GetConferenceResponse], error) {
 	options := core.NewRequestOptions(opts...)
 	baseURL := internal.ResolveBaseURL(
 		options.BaseURL,
@@ -138,7 +138,7 @@ func (r *RawClient) GetConference(
 		r.options.ToHeader(),
 		options.ToHeader(),
 	)
-	var response any
+	var response *vobiz.GetConferenceResponse
 	raw, err := r.caller.Call(
 		ctx,
 		&internal.CallParams{
@@ -151,12 +151,13 @@ func (r *RawClient) GetConference(
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
 			Response:        &response,
+			ErrorDecoder:    internal.NewErrorDecoder(vobiz.ErrorCodes),
 		},
 	)
 	if err != nil {
 		return nil, err
 	}
-	return &core.Response[any]{
+	return &core.Response[*vobiz.GetConferenceResponse]{
 		StatusCode: raw.StatusCode,
 		Header:     raw.Header,
 		Body:       response,

@@ -39,16 +39,16 @@ func (c *Client) MuteMember(
 	ctx context.Context,
 	request *vobiz.MuteMemberRequest,
 	opts ...option.RequestOption,
-) error {
-	_, err := c.WithRawResponse.MuteMember(
+) (any, error) {
+	response, err := c.WithRawResponse.MuteMember(
 		ctx,
 		request,
 		opts...,
 	)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return response.Body, nil
 }
 
 // Allow a muted member to speak again.

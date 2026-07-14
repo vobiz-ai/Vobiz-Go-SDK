@@ -267,6 +267,1194 @@ func TestSettersMarkExplicitListConferencesRequest(t *testing.T) {
 
 }
 
+func TestGettersGetConferenceResponse(t *testing.T) {
+	t.Run("GetGetConferenceResponseConferenceMemberCount", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponse{}
+		var expected *GetConferenceResponseConferenceMemberCount
+		obj.GetConferenceResponseConferenceMemberCount = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetGetConferenceResponseConferenceMemberCount(), "getter should return the property value")
+	})
+
+	t.Run("GetGetConferenceResponseConferenceMemberCount_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponse{}
+		obj.GetConferenceResponseConferenceMemberCount = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetGetConferenceResponseConferenceMemberCount(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetGetConferenceResponseConferenceMemberCount_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponse
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetGetConferenceResponseConferenceMemberCount() // Should return zero value
+	})
+
+	t.Run("GetGetConferenceResponseError", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponse{}
+		var expected *GetConferenceResponseError
+		obj.GetConferenceResponseError = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetGetConferenceResponseError(), "getter should return the property value")
+	})
+
+	t.Run("GetGetConferenceResponseError_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponse{}
+		obj.GetConferenceResponseError = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetGetConferenceResponseError(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetGetConferenceResponseError_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponse
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetGetConferenceResponseError() // Should return zero value
+	})
+
+}
+
+func TestSettersGetConferenceResponseConferenceMemberCount(t *testing.T) {
+	t.Run("SetConferenceName", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueConferenceName string
+		obj.SetConferenceName(fernTestValueConferenceName)
+		assert.Equal(t, fernTestValueConferenceName, obj.ConferenceName)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetConferenceRunTime", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueConferenceRunTime string
+		obj.SetConferenceRunTime(fernTestValueConferenceRunTime)
+		assert.Equal(t, fernTestValueConferenceRunTime, obj.ConferenceRunTime)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetConferenceMemberCount", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueConferenceMemberCount string
+		obj.SetConferenceMemberCount(fernTestValueConferenceMemberCount)
+		assert.Equal(t, fernTestValueConferenceMemberCount, obj.ConferenceMemberCount)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetMembers", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueMembers []*GetConferenceResponseConferenceMemberCountMembersItem
+		obj.SetMembers(fernTestValueMembers)
+		assert.Equal(t, fernTestValueMembers, obj.Members)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetApiId", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueApiId string
+		obj.SetApiId(fernTestValueApiId)
+		assert.Equal(t, fernTestValueApiId, obj.ApiId)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+}
+
+func TestGettersGetConferenceResponseConferenceMemberCount(t *testing.T) {
+	t.Run("GetConferenceName", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var expected string
+		obj.ConferenceName = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetConferenceName(), "getter should return the property value")
+	})
+
+	t.Run("GetConferenceName_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetConferenceName() // Should return zero value
+	})
+
+	t.Run("GetConferenceRunTime", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var expected string
+		obj.ConferenceRunTime = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetConferenceRunTime(), "getter should return the property value")
+	})
+
+	t.Run("GetConferenceRunTime_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetConferenceRunTime() // Should return zero value
+	})
+
+	t.Run("GetConferenceMemberCount", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var expected string
+		obj.ConferenceMemberCount = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetConferenceMemberCount(), "getter should return the property value")
+	})
+
+	t.Run("GetConferenceMemberCount_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetConferenceMemberCount() // Should return zero value
+	})
+
+	t.Run("GetMembers", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var expected []*GetConferenceResponseConferenceMemberCountMembersItem
+		obj.Members = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetMembers(), "getter should return the property value")
+	})
+
+	t.Run("GetMembers_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		obj.Members = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetMembers(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetMembers_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetMembers() // Should return zero value
+	})
+
+	t.Run("GetApiId", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var expected string
+		obj.ApiId = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetApiId(), "getter should return the property value")
+	})
+
+	t.Run("GetApiId_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetApiId() // Should return zero value
+	})
+
+}
+
+func TestSettersMarkExplicitGetConferenceResponseConferenceMemberCount(t *testing.T) {
+	t.Run("SetConferenceName_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueConferenceName string
+
+		// Act
+		obj.SetConferenceName(fernTestValueConferenceName)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetConferenceRunTime_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueConferenceRunTime string
+
+		// Act
+		obj.SetConferenceRunTime(fernTestValueConferenceRunTime)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetConferenceMemberCount_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueConferenceMemberCount string
+
+		// Act
+		obj.SetConferenceMemberCount(fernTestValueConferenceMemberCount)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetMembers_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueMembers []*GetConferenceResponseConferenceMemberCountMembersItem
+
+		// Act
+		obj.SetMembers(fernTestValueMembers)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetApiId_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		var fernTestValueApiId string
+
+		// Act
+		obj.SetApiId(fernTestValueApiId)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+}
+
+func TestSettersGetConferenceResponseConferenceMemberCountMembersItem(t *testing.T) {
+	t.Run("SetMuted", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueMuted *bool
+		obj.SetMuted(fernTestValueMuted)
+		assert.Equal(t, fernTestValueMuted, obj.Muted)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetMemberID", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueMemberID *string
+		obj.SetMemberID(fernTestValueMemberID)
+		assert.Equal(t, fernTestValueMemberID, obj.MemberID)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetDeaf", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueDeaf *bool
+		obj.SetDeaf(fernTestValueDeaf)
+		assert.Equal(t, fernTestValueDeaf, obj.Deaf)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetFrom", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueFrom *string
+		obj.SetFrom(fernTestValueFrom)
+		assert.Equal(t, fernTestValueFrom, obj.From)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetTo", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueTo *string
+		obj.SetTo(fernTestValueTo)
+		assert.Equal(t, fernTestValueTo, obj.To)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetCallerName", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueCallerName *string
+		obj.SetCallerName(fernTestValueCallerName)
+		assert.Equal(t, fernTestValueCallerName, obj.CallerName)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetDirection", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueDirection *string
+		obj.SetDirection(fernTestValueDirection)
+		assert.Equal(t, fernTestValueDirection, obj.Direction)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetCallUUID", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueCallUUID *string
+		obj.SetCallUUID(fernTestValueCallUUID)
+		assert.Equal(t, fernTestValueCallUUID, obj.CallUUID)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetJoinTime", func(t *testing.T) {
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueJoinTime *string
+		obj.SetJoinTime(fernTestValueJoinTime)
+		assert.Equal(t, fernTestValueJoinTime, obj.JoinTime)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+}
+
+func TestGettersGetConferenceResponseConferenceMemberCountMembersItem(t *testing.T) {
+	t.Run("GetMuted", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *bool
+		obj.Muted = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetMuted(), "getter should return the property value")
+	})
+
+	t.Run("GetMuted_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.Muted = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetMuted(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetMuted_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetMuted() // Should return zero value
+	})
+
+	t.Run("GetMemberID", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.MemberID = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetMemberID(), "getter should return the property value")
+	})
+
+	t.Run("GetMemberID_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.MemberID = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetMemberID(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetMemberID_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetMemberID() // Should return zero value
+	})
+
+	t.Run("GetDeaf", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *bool
+		obj.Deaf = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetDeaf(), "getter should return the property value")
+	})
+
+	t.Run("GetDeaf_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.Deaf = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetDeaf(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetDeaf_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetDeaf() // Should return zero value
+	})
+
+	t.Run("GetFrom", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.From = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetFrom(), "getter should return the property value")
+	})
+
+	t.Run("GetFrom_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.From = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetFrom(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetFrom_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetFrom() // Should return zero value
+	})
+
+	t.Run("GetTo", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.To = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetTo(), "getter should return the property value")
+	})
+
+	t.Run("GetTo_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.To = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetTo(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetTo_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetTo() // Should return zero value
+	})
+
+	t.Run("GetCallerName", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.CallerName = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetCallerName(), "getter should return the property value")
+	})
+
+	t.Run("GetCallerName_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.CallerName = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetCallerName(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetCallerName_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetCallerName() // Should return zero value
+	})
+
+	t.Run("GetDirection", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.Direction = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetDirection(), "getter should return the property value")
+	})
+
+	t.Run("GetDirection_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.Direction = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetDirection(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetDirection_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetDirection() // Should return zero value
+	})
+
+	t.Run("GetCallUUID", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.CallUUID = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetCallUUID(), "getter should return the property value")
+	})
+
+	t.Run("GetCallUUID_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.CallUUID = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetCallUUID(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetCallUUID_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetCallUUID() // Should return zero value
+	})
+
+	t.Run("GetJoinTime", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var expected *string
+		obj.JoinTime = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetJoinTime(), "getter should return the property value")
+	})
+
+	t.Run("GetJoinTime_NilValue", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		obj.JoinTime = nil
+
+		// Act & Assert
+		assert.Nil(t, obj.GetJoinTime(), "getter should return nil when property is nil")
+	})
+
+	t.Run("GetJoinTime_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetJoinTime() // Should return zero value
+	})
+
+}
+
+func TestSettersMarkExplicitGetConferenceResponseConferenceMemberCountMembersItem(t *testing.T) {
+	t.Run("SetMuted_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueMuted *bool
+
+		// Act
+		obj.SetMuted(fernTestValueMuted)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetMemberID_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueMemberID *string
+
+		// Act
+		obj.SetMemberID(fernTestValueMemberID)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetDeaf_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueDeaf *bool
+
+		// Act
+		obj.SetDeaf(fernTestValueDeaf)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetFrom_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueFrom *string
+
+		// Act
+		obj.SetFrom(fernTestValueFrom)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetTo_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueTo *string
+
+		// Act
+		obj.SetTo(fernTestValueTo)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetCallerName_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueCallerName *string
+
+		// Act
+		obj.SetCallerName(fernTestValueCallerName)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetDirection_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueDirection *string
+
+		// Act
+		obj.SetDirection(fernTestValueDirection)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetCallUUID_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueCallUUID *string
+
+		// Act
+		obj.SetCallUUID(fernTestValueCallUUID)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetJoinTime_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		var fernTestValueJoinTime *string
+
+		// Act
+		obj.SetJoinTime(fernTestValueJoinTime)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+}
+
+func TestSettersGetConferenceResponseError(t *testing.T) {
+	t.Run("SetError", func(t *testing.T) {
+		obj := &GetConferenceResponseError{}
+		var fernTestValueError GetConferenceResponseErrorError
+		obj.SetError(fernTestValueError)
+		assert.Equal(t, fernTestValueError, obj.Error)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+	t.Run("SetApiId", func(t *testing.T) {
+		obj := &GetConferenceResponseError{}
+		var fernTestValueApiId string
+		obj.SetApiId(fernTestValueApiId)
+		assert.Equal(t, fernTestValueApiId, obj.ApiId)
+		assert.NotNil(t, obj.explicitFields)
+	})
+
+}
+
+func TestGettersGetConferenceResponseError(t *testing.T) {
+	t.Run("GetError", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseError{}
+		var expected GetConferenceResponseErrorError
+		obj.Error = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetError(), "getter should return the property value")
+	})
+
+	t.Run("GetError_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseError
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetError() // Should return zero value
+	})
+
+	t.Run("GetApiId", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseError{}
+		var expected string
+		obj.ApiId = expected
+
+		// Act & Assert
+		assert.Equal(t, expected, obj.GetApiId(), "getter should return the property value")
+	})
+
+	t.Run("GetApiId_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseError
+		// Should not panic - getters should handle nil receiver gracefully
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("Getter panicked on nil receiver: %v", r)
+			}
+		}()
+		_ = obj.GetApiId() // Should return zero value
+	})
+
+}
+
+func TestSettersMarkExplicitGetConferenceResponseError(t *testing.T) {
+	t.Run("SetError_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseError{}
+		var fernTestValueError GetConferenceResponseErrorError
+
+		// Act
+		obj.SetError(fernTestValueError)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+	t.Run("SetApiId_MarksExplicit", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseError{}
+		var fernTestValueApiId string
+
+		// Act
+		obj.SetApiId(fernTestValueApiId)
+
+		// Assert - object with explicitly set field can be marshaled/unmarshaled
+		bytes, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed for test setup")
+
+		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
+		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
+		if len(bytes) > 0 && bytes[0] == '{' {
+			// JSON object - unmarshal into map
+			var unmarshaled map[string]interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		} else {
+			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
+			var unmarshaled interface{}
+			err = json.Unmarshal(bytes, &unmarshaled)
+			require.NoError(t, err, "unmarshaling should succeed for test verification")
+		}
+
+		// Note: This does not explicitly assert the presence of a specific JSON field
+		// It verifies that setting a field via setter allows successful JSON round-trip
+	})
+
+}
+
 func TestSettersListConferencesResponse(t *testing.T) {
 	t.Run("SetApiId", func(t *testing.T) {
 		obj := &ListConferencesResponse{}
@@ -278,7 +1466,7 @@ func TestSettersListConferencesResponse(t *testing.T) {
 
 	t.Run("SetConferences", func(t *testing.T) {
 		obj := &ListConferencesResponse{}
-		var fernTestValueConferences []any
+		var fernTestValueConferences []string
 		obj.SetConferences(fernTestValueConferences)
 		assert.Equal(t, fernTestValueConferences, obj.Conferences)
 		assert.NotNil(t, obj.explicitFields)
@@ -314,7 +1502,7 @@ func TestGettersListConferencesResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListConferencesResponse{}
-		var expected []any
+		var expected []string
 		obj.Conferences = expected
 
 		// Act & Assert
@@ -381,7 +1569,7 @@ func TestSettersMarkExplicitListConferencesResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListConferencesResponse{}
-		var fernTestValueConferences []any
+		var fernTestValueConferences []string
 
 		// Act
 		obj.SetConferences(fernTestValueConferences)
@@ -408,6 +1596,105 @@ func TestSettersMarkExplicitListConferencesResponse(t *testing.T) {
 		// It verifies that setting a field via setter allows successful JSON round-trip
 	})
 
+}
+
+func TestJSONMarshalingGetConferenceResponseConferenceMemberCount(t *testing.T) {
+	t.Run("MarshalUnmarshal", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCount{}
+
+		// Act - Marshal to JSON
+		data, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed")
+		assert.NotNil(t, data, "marshaled data should not be nil")
+		assert.NotEmpty(t, data, "marshaled data should not be empty")
+
+		// Unmarshal back and verify round-trip
+		var unmarshaled GetConferenceResponseConferenceMemberCount
+		err = json.Unmarshal(data, &unmarshaled)
+		assert.NoError(t, err, "round-trip unmarshal should succeed")
+	})
+
+	t.Run("UnmarshalInvalidJSON", func(t *testing.T) {
+		t.Parallel()
+		var obj GetConferenceResponseConferenceMemberCount
+		err := json.Unmarshal([]byte(`{invalid json}`), &obj)
+		assert.Error(t, err, "unmarshaling invalid JSON should return an error")
+	})
+
+	t.Run("UnmarshalEmptyObject", func(t *testing.T) {
+		t.Parallel()
+		var obj GetConferenceResponseConferenceMemberCount
+		err := json.Unmarshal([]byte(`{}`), &obj)
+		assert.NoError(t, err, "unmarshaling empty object should succeed")
+	})
+}
+
+func TestJSONMarshalingGetConferenceResponseConferenceMemberCountMembersItem(t *testing.T) {
+	t.Run("MarshalUnmarshal", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+
+		// Act - Marshal to JSON
+		data, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed")
+		assert.NotNil(t, data, "marshaled data should not be nil")
+		assert.NotEmpty(t, data, "marshaled data should not be empty")
+
+		// Unmarshal back and verify round-trip
+		var unmarshaled GetConferenceResponseConferenceMemberCountMembersItem
+		err = json.Unmarshal(data, &unmarshaled)
+		assert.NoError(t, err, "round-trip unmarshal should succeed")
+	})
+
+	t.Run("UnmarshalInvalidJSON", func(t *testing.T) {
+		t.Parallel()
+		var obj GetConferenceResponseConferenceMemberCountMembersItem
+		err := json.Unmarshal([]byte(`{invalid json}`), &obj)
+		assert.Error(t, err, "unmarshaling invalid JSON should return an error")
+	})
+
+	t.Run("UnmarshalEmptyObject", func(t *testing.T) {
+		t.Parallel()
+		var obj GetConferenceResponseConferenceMemberCountMembersItem
+		err := json.Unmarshal([]byte(`{}`), &obj)
+		assert.NoError(t, err, "unmarshaling empty object should succeed")
+	})
+}
+
+func TestJSONMarshalingGetConferenceResponseError(t *testing.T) {
+	t.Run("MarshalUnmarshal", func(t *testing.T) {
+		t.Parallel()
+		// Arrange
+		obj := &GetConferenceResponseError{}
+
+		// Act - Marshal to JSON
+		data, err := json.Marshal(obj)
+		require.NoError(t, err, "marshaling should succeed")
+		assert.NotNil(t, data, "marshaled data should not be nil")
+		assert.NotEmpty(t, data, "marshaled data should not be empty")
+
+		// Unmarshal back and verify round-trip
+		var unmarshaled GetConferenceResponseError
+		err = json.Unmarshal(data, &unmarshaled)
+		assert.NoError(t, err, "round-trip unmarshal should succeed")
+	})
+
+	t.Run("UnmarshalInvalidJSON", func(t *testing.T) {
+		t.Parallel()
+		var obj GetConferenceResponseError
+		err := json.Unmarshal([]byte(`{invalid json}`), &obj)
+		assert.Error(t, err, "unmarshaling invalid JSON should return an error")
+	})
+
+	t.Run("UnmarshalEmptyObject", func(t *testing.T) {
+		t.Parallel()
+		var obj GetConferenceResponseError
+		err := json.Unmarshal([]byte(`{}`), &obj)
+		assert.NoError(t, err, "unmarshaling empty object should succeed")
+	})
 }
 
 func TestJSONMarshalingListConferencesResponse(t *testing.T) {
@@ -443,6 +1730,54 @@ func TestJSONMarshalingListConferencesResponse(t *testing.T) {
 	})
 }
 
+func TestStringGetConferenceResponseConferenceMemberCount(t *testing.T) {
+	t.Run("StringMethod", func(t *testing.T) {
+		t.Parallel()
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		result := obj.String()
+		assert.NotEmpty(t, result, "String() should return a non-empty representation")
+	})
+
+	t.Run("StringMethod_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		result := obj.String()
+		assert.Equal(t, "<nil>", result, "String() should return <nil> for nil receiver")
+	})
+}
+
+func TestStringGetConferenceResponseConferenceMemberCountMembersItem(t *testing.T) {
+	t.Run("StringMethod", func(t *testing.T) {
+		t.Parallel()
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		result := obj.String()
+		assert.NotEmpty(t, result, "String() should return a non-empty representation")
+	})
+
+	t.Run("StringMethod_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		result := obj.String()
+		assert.Equal(t, "<nil>", result, "String() should return <nil> for nil receiver")
+	})
+}
+
+func TestStringGetConferenceResponseError(t *testing.T) {
+	t.Run("StringMethod", func(t *testing.T) {
+		t.Parallel()
+		obj := &GetConferenceResponseError{}
+		result := obj.String()
+		assert.NotEmpty(t, result, "String() should return a non-empty representation")
+	})
+
+	t.Run("StringMethod_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseError
+		result := obj.String()
+		assert.Equal(t, "<nil>", result, "String() should return <nil> for nil receiver")
+	})
+}
+
 func TestStringListConferencesResponse(t *testing.T) {
 	t.Run("StringMethod", func(t *testing.T) {
 		t.Parallel()
@@ -456,6 +1791,97 @@ func TestStringListConferencesResponse(t *testing.T) {
 		var obj *ListConferencesResponse
 		result := obj.String()
 		assert.Equal(t, "<nil>", result, "String() should return <nil> for nil receiver")
+	})
+}
+
+func TestEnumGetConferenceResponseErrorError(t *testing.T) {
+	t.Run("NewFromString_failed", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewGetConferenceResponseErrorErrorFromString("failed")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, GetConferenceResponseErrorError("failed"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewGetConferenceResponseErrorErrorFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewGetConferenceResponseErrorErrorFromString("failed")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
+	})
+}
+
+func TestExtraPropertiesGetConferenceResponseConferenceMemberCount(t *testing.T) {
+	t.Run("GetExtraProperties", func(t *testing.T) {
+		t.Parallel()
+		obj := &GetConferenceResponseConferenceMemberCount{}
+		// Should not panic when calling GetExtraProperties()
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("GetExtraProperties() panicked: %v", r)
+			}
+		}()
+		extraProps := obj.GetExtraProperties()
+		// Result can be nil or an empty/non-empty map
+		_ = extraProps
+	})
+
+	t.Run("GetExtraProperties_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCount
+		extraProps := obj.GetExtraProperties()
+		assert.Nil(t, extraProps, "nil receiver should return nil without panicking")
+	})
+}
+
+func TestExtraPropertiesGetConferenceResponseConferenceMemberCountMembersItem(t *testing.T) {
+	t.Run("GetExtraProperties", func(t *testing.T) {
+		t.Parallel()
+		obj := &GetConferenceResponseConferenceMemberCountMembersItem{}
+		// Should not panic when calling GetExtraProperties()
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("GetExtraProperties() panicked: %v", r)
+			}
+		}()
+		extraProps := obj.GetExtraProperties()
+		// Result can be nil or an empty/non-empty map
+		_ = extraProps
+	})
+
+	t.Run("GetExtraProperties_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseConferenceMemberCountMembersItem
+		extraProps := obj.GetExtraProperties()
+		assert.Nil(t, extraProps, "nil receiver should return nil without panicking")
+	})
+}
+
+func TestExtraPropertiesGetConferenceResponseError(t *testing.T) {
+	t.Run("GetExtraProperties", func(t *testing.T) {
+		t.Parallel()
+		obj := &GetConferenceResponseError{}
+		// Should not panic when calling GetExtraProperties()
+		defer func() {
+			if r := recover(); r != nil {
+				t.Errorf("GetExtraProperties() panicked: %v", r)
+			}
+		}()
+		extraProps := obj.GetExtraProperties()
+		// Result can be nil or an empty/non-empty map
+		_ = extraProps
+	})
+
+	t.Run("GetExtraProperties_NilReceiver", func(t *testing.T) {
+		t.Parallel()
+		var obj *GetConferenceResponseError
+		extraProps := obj.GetExtraProperties()
+		assert.Nil(t, extraProps, "nil receiver should return nil without panicking")
 	})
 }
 

@@ -92,7 +92,7 @@ func TestConferenceRecordingStartConferenceRecordingWithWireMock(
 		AuthID:         "MA_XXXXXX",
 		ConferenceName: "conference_name",
 	}
-	invocationErr := client.ConferenceRecording.StartConferenceRecording(
+	_, invocationErr := client.ConferenceRecording.StartConferenceRecording(
 		context.TODO(),
 		request,
 		option.WithHTTPHeader(

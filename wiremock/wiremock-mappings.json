@@ -1906,8 +1906,8 @@
         }
       },
       "response": {
-        "status": 200,
-        "body": "{\n  \"message\": \"Member kicked from conference\"\n}",
+        "status": 202,
+        "body": "{\n  \"message\": \"kicked\",\n  \"member_id\": [\n    \"2\"\n  ],\n  \"api_id\": \"API_REQUEST_ID\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -1990,8 +1990,8 @@
         }
       },
       "response": {
-        "status": 200,
-        "body": "\"\"",
+        "status": 202,
+        "body": "{\n  \"message\": \"play queued into conference\",\n  \"member_id\": [\n    \"2\"\n  ],\n  \"api_id\": \"API_REQUEST_ID\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -2074,8 +2074,8 @@
         }
       },
       "response": {
-        "status": 200,
-        "body": "\"\"",
+        "status": 202,
+        "body": "{\n  \"message\": \"deaf\",\n  \"member_id\": [\n    \"2\"\n  ],\n  \"api_id\": \"API_REQUEST_ID\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -2588,7 +2588,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"api_id\": \"api_id\",\n  \"conferences\": [\n    {\n      \"key\": \"value\"\n    }\n  ]\n}",
+        "body": "{\n  \"api_id\": \"API_REQUEST_ID\",\n  \"conferences\": [\n    \"conferences\"\n  ]\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -2642,8 +2642,8 @@
       }
     },
     {
-      "id": "8bfb3c65-6bed-4078-904f-3129a673a764",
-      "name": "Retrieve a conference - default",
+      "id": "7cbf2a43-a2ba-4035-913c-6535da36184e",
+      "name": "Retrieve a conference - Successful conference object",
       "request": {
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
         "method": "GET",
@@ -2663,12 +2663,12 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"conference_name\": \"My Conf Room\",\n  \"member_count\": 3,\n  \"members\": [\n    {\n      \"member_id\": \"1\",\n      \"muted\": false,\n      \"deaf\": false\n    }\n  ]\n}",
+        "body": "{\n  \"conference_name\": \"My Conf Room\",\n  \"conference_run_time\": \"590\",\n  \"conference_member_count\": \"1\",\n  \"members\": [\n    {\n      \"muted\": false,\n      \"member_id\": \"17\",\n      \"deaf\": false,\n      \"from\": \"CALLER_NUMBER\",\n      \"to\": \"VOBIZ_NUMBER\",\n      \"caller_name\": \"CALLER_NAME\",\n      \"direction\": \"inbound\",\n      \"call_uuid\": \"CALL_UUID\",\n      \"join_time\": \"590\"\n    }\n  ],\n  \"api_id\": \"API_REQUEST_ID\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }
       },
-      "uuid": "8bfb3c65-6bed-4078-904f-3129a673a764",
+      "uuid": "7cbf2a43-a2ba-4035-913c-6535da36184e",
       "persistent": true,
       "priority": 3,
       "metadata": {
@@ -2743,8 +2743,8 @@
         }
       },
       "response": {
-        "status": 200,
-        "body": "\"\"",
+        "status": 202,
+        "body": "{\n  \"message\": \"muted\",\n  \"member_id\": [\n    \"2\"\n  ],\n  \"api_id\": \"API_REQUEST_ID\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -2825,7 +2825,7 @@
       },
       "response": {
         "status": 200,
-        "body": "\"\"",
+        "body": "{\n  \"message\": \"async api spawned\",\n  \"api_id\": \"API_REQUEST_ID\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }

@@ -144,6 +144,7 @@ func (r *RawClient) PlayAudioMember(
 		options.ToHeader(),
 	)
 	headers.Add("Content-Type", "application/json")
+	var response any
 	raw, err := r.caller.Call(
 		ctx,
 		&internal.CallParams{
@@ -156,6 +157,7 @@ func (r *RawClient) PlayAudioMember(
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
 			Request:         request,
+			Response:        &response,
 		},
 	)
 	if err != nil {
@@ -164,7 +166,7 @@ func (r *RawClient) PlayAudioMember(
 	return &core.Response[any]{
 		StatusCode: raw.StatusCode,
 		Header:     raw.Header,
-		Body:       nil,
+		Body:       response,
 	}, nil
 }
 
@@ -233,6 +235,7 @@ func (r *RawClient) DeafMember(
 		r.options.ToHeader(),
 		options.ToHeader(),
 	)
+	var response any
 	raw, err := r.caller.Call(
 		ctx,
 		&internal.CallParams{
@@ -244,6 +247,7 @@ func (r *RawClient) DeafMember(
 			BodyProperties:  options.BodyProperties,
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
+			Response:        &response,
 		},
 	)
 	if err != nil {
@@ -252,7 +256,7 @@ func (r *RawClient) DeafMember(
 	return &core.Response[any]{
 		StatusCode: raw.StatusCode,
 		Header:     raw.Header,
-		Body:       nil,
+		Body:       response,
 	}, nil
 }
 

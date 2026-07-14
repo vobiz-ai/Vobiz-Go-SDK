@@ -131,14 +131,557 @@ func (l *ListConferencesRequest) SetAuthID(authID string) {
 	l.require(listConferencesRequestFieldAuthID)
 }
 
+type GetConferenceResponse struct {
+	GetConferenceResponseConferenceMemberCount *GetConferenceResponseConferenceMemberCount
+	GetConferenceResponseError                 *GetConferenceResponseError
+
+	typ string
+}
+
+func (g *GetConferenceResponse) GetGetConferenceResponseConferenceMemberCount() *GetConferenceResponseConferenceMemberCount {
+	if g == nil {
+		return nil
+	}
+	return g.GetConferenceResponseConferenceMemberCount
+}
+
+func (g *GetConferenceResponse) GetGetConferenceResponseError() *GetConferenceResponseError {
+	if g == nil {
+		return nil
+	}
+	return g.GetConferenceResponseError
+}
+
+func (g *GetConferenceResponse) UnmarshalJSON(data []byte) error {
+	valueGetConferenceResponseConferenceMemberCount := new(GetConferenceResponseConferenceMemberCount)
+	if err := json.Unmarshal(data, &valueGetConferenceResponseConferenceMemberCount); err == nil {
+		g.typ = "GetConferenceResponseConferenceMemberCount"
+		g.GetConferenceResponseConferenceMemberCount = valueGetConferenceResponseConferenceMemberCount
+		return nil
+	}
+	valueGetConferenceResponseError := new(GetConferenceResponseError)
+	if err := json.Unmarshal(data, &valueGetConferenceResponseError); err == nil {
+		g.typ = "GetConferenceResponseError"
+		g.GetConferenceResponseError = valueGetConferenceResponseError
+		return nil
+	}
+	return fmt.Errorf("%s cannot be deserialized as a %T", data, g)
+}
+
+func (g GetConferenceResponse) MarshalJSON() ([]byte, error) {
+	if g.typ == "GetConferenceResponseConferenceMemberCount" || g.GetConferenceResponseConferenceMemberCount != nil {
+		return json.Marshal(g.GetConferenceResponseConferenceMemberCount)
+	}
+	if g.typ == "GetConferenceResponseError" || g.GetConferenceResponseError != nil {
+		return json.Marshal(g.GetConferenceResponseError)
+	}
+	return nil, fmt.Errorf("type %T does not include a non-empty union type", g)
+}
+
+type GetConferenceResponseVisitor interface {
+	VisitGetConferenceResponseConferenceMemberCount(*GetConferenceResponseConferenceMemberCount) error
+	VisitGetConferenceResponseError(*GetConferenceResponseError) error
+}
+
+func (g *GetConferenceResponse) Accept(visitor GetConferenceResponseVisitor) error {
+	if g.typ == "GetConferenceResponseConferenceMemberCount" || g.GetConferenceResponseConferenceMemberCount != nil {
+		return visitor.VisitGetConferenceResponseConferenceMemberCount(g.GetConferenceResponseConferenceMemberCount)
+	}
+	if g.typ == "GetConferenceResponseError" || g.GetConferenceResponseError != nil {
+		return visitor.VisitGetConferenceResponseError(g.GetConferenceResponseError)
+	}
+	return fmt.Errorf("type %T does not include a non-empty union type", g)
+}
+
+var (
+	getConferenceResponseConferenceMemberCountFieldConferenceName        = big.NewInt(1 << 0)
+	getConferenceResponseConferenceMemberCountFieldConferenceRunTime     = big.NewInt(1 << 1)
+	getConferenceResponseConferenceMemberCountFieldConferenceMemberCount = big.NewInt(1 << 2)
+	getConferenceResponseConferenceMemberCountFieldMembers               = big.NewInt(1 << 3)
+	getConferenceResponseConferenceMemberCountFieldApiId                 = big.NewInt(1 << 4)
+)
+
+type GetConferenceResponseConferenceMemberCount struct {
+	ConferenceName string `json:"conference_name" url:"conference_name"`
+	// Conference runtime in seconds
+	ConferenceRunTime     string                                                   `json:"conference_run_time" url:"conference_run_time"`
+	ConferenceMemberCount string                                                   `json:"conference_member_count" url:"conference_member_count"`
+	Members               []*GetConferenceResponseConferenceMemberCountMembersItem `json:"members" url:"members"`
+	ApiId                 string                                                   `json:"api_id" url:"api_id"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) GetConferenceName() string {
+	if g == nil {
+		return ""
+	}
+	return g.ConferenceName
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) GetConferenceRunTime() string {
+	if g == nil {
+		return ""
+	}
+	return g.ConferenceRunTime
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) GetConferenceMemberCount() string {
+	if g == nil {
+		return ""
+	}
+	return g.ConferenceMemberCount
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) GetMembers() []*GetConferenceResponseConferenceMemberCountMembersItem {
+	if g == nil {
+		return nil
+	}
+	return g.Members
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) GetApiId() string {
+	if g == nil {
+		return ""
+	}
+	return g.ApiId
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) GetExtraProperties() map[string]interface{} {
+	if g == nil {
+		return nil
+	}
+	return g.extraProperties
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetConferenceName sets the ConferenceName field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCount) SetConferenceName(conferenceName string) {
+	g.ConferenceName = conferenceName
+	g.require(getConferenceResponseConferenceMemberCountFieldConferenceName)
+}
+
+// SetConferenceRunTime sets the ConferenceRunTime field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCount) SetConferenceRunTime(conferenceRunTime string) {
+	g.ConferenceRunTime = conferenceRunTime
+	g.require(getConferenceResponseConferenceMemberCountFieldConferenceRunTime)
+}
+
+// SetConferenceMemberCount sets the ConferenceMemberCount field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCount) SetConferenceMemberCount(conferenceMemberCount string) {
+	g.ConferenceMemberCount = conferenceMemberCount
+	g.require(getConferenceResponseConferenceMemberCountFieldConferenceMemberCount)
+}
+
+// SetMembers sets the Members field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCount) SetMembers(members []*GetConferenceResponseConferenceMemberCountMembersItem) {
+	g.Members = members
+	g.require(getConferenceResponseConferenceMemberCountFieldMembers)
+}
+
+// SetApiId sets the ApiId field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCount) SetApiId(apiId string) {
+	g.ApiId = apiId
+	g.require(getConferenceResponseConferenceMemberCountFieldApiId)
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetConferenceResponseConferenceMemberCount
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*g = GetConferenceResponseConferenceMemberCount(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *g)
+	if err != nil {
+		return err
+	}
+	g.extraProperties = extraProperties
+	g.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) MarshalJSON() ([]byte, error) {
+	type embed GetConferenceResponseConferenceMemberCount
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*g),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, g.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (g *GetConferenceResponseConferenceMemberCount) String() string {
+	if g == nil {
+		return "<nil>"
+	}
+	if len(g.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(g.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(g); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", g)
+}
+
+var (
+	getConferenceResponseConferenceMemberCountMembersItemFieldMuted      = big.NewInt(1 << 0)
+	getConferenceResponseConferenceMemberCountMembersItemFieldMemberID   = big.NewInt(1 << 1)
+	getConferenceResponseConferenceMemberCountMembersItemFieldDeaf       = big.NewInt(1 << 2)
+	getConferenceResponseConferenceMemberCountMembersItemFieldFrom       = big.NewInt(1 << 3)
+	getConferenceResponseConferenceMemberCountMembersItemFieldTo         = big.NewInt(1 << 4)
+	getConferenceResponseConferenceMemberCountMembersItemFieldCallerName = big.NewInt(1 << 5)
+	getConferenceResponseConferenceMemberCountMembersItemFieldDirection  = big.NewInt(1 << 6)
+	getConferenceResponseConferenceMemberCountMembersItemFieldCallUUID   = big.NewInt(1 << 7)
+	getConferenceResponseConferenceMemberCountMembersItemFieldJoinTime   = big.NewInt(1 << 8)
+)
+
+type GetConferenceResponseConferenceMemberCountMembersItem struct {
+	Muted      *bool   `json:"muted,omitempty" url:"muted,omitempty"`
+	MemberID   *string `json:"member_id,omitempty" url:"member_id,omitempty"`
+	Deaf       *bool   `json:"deaf,omitempty" url:"deaf,omitempty"`
+	From       *string `json:"from,omitempty" url:"from,omitempty"`
+	To         *string `json:"to,omitempty" url:"to,omitempty"`
+	CallerName *string `json:"caller_name,omitempty" url:"caller_name,omitempty"`
+	Direction  *string `json:"direction,omitempty" url:"direction,omitempty"`
+	CallUUID   *string `json:"call_uuid,omitempty" url:"call_uuid,omitempty"`
+	JoinTime   *string `json:"join_time,omitempty" url:"join_time,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetMuted() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.Muted
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetMemberID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.MemberID
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetDeaf() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.Deaf
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetFrom() *string {
+	if g == nil {
+		return nil
+	}
+	return g.From
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetTo() *string {
+	if g == nil {
+		return nil
+	}
+	return g.To
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetCallerName() *string {
+	if g == nil {
+		return nil
+	}
+	return g.CallerName
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetDirection() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Direction
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetCallUUID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.CallUUID
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetJoinTime() *string {
+	if g == nil {
+		return nil
+	}
+	return g.JoinTime
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) GetExtraProperties() map[string]interface{} {
+	if g == nil {
+		return nil
+	}
+	return g.extraProperties
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetMuted sets the Muted field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetMuted(muted *bool) {
+	g.Muted = muted
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldMuted)
+}
+
+// SetMemberID sets the MemberID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetMemberID(memberID *string) {
+	g.MemberID = memberID
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldMemberID)
+}
+
+// SetDeaf sets the Deaf field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetDeaf(deaf *bool) {
+	g.Deaf = deaf
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldDeaf)
+}
+
+// SetFrom sets the From field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetFrom(from *string) {
+	g.From = from
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldFrom)
+}
+
+// SetTo sets the To field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetTo(to *string) {
+	g.To = to
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldTo)
+}
+
+// SetCallerName sets the CallerName field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetCallerName(callerName *string) {
+	g.CallerName = callerName
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldCallerName)
+}
+
+// SetDirection sets the Direction field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetDirection(direction *string) {
+	g.Direction = direction
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldDirection)
+}
+
+// SetCallUUID sets the CallUUID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetCallUUID(callUUID *string) {
+	g.CallUUID = callUUID
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldCallUUID)
+}
+
+// SetJoinTime sets the JoinTime field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) SetJoinTime(joinTime *string) {
+	g.JoinTime = joinTime
+	g.require(getConferenceResponseConferenceMemberCountMembersItemFieldJoinTime)
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetConferenceResponseConferenceMemberCountMembersItem
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*g = GetConferenceResponseConferenceMemberCountMembersItem(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *g)
+	if err != nil {
+		return err
+	}
+	g.extraProperties = extraProperties
+	g.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) MarshalJSON() ([]byte, error) {
+	type embed GetConferenceResponseConferenceMemberCountMembersItem
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*g),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, g.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (g *GetConferenceResponseConferenceMemberCountMembersItem) String() string {
+	if g == nil {
+		return "<nil>"
+	}
+	if len(g.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(g.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(g); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", g)
+}
+
+var (
+	getConferenceResponseErrorFieldError = big.NewInt(1 << 0)
+	getConferenceResponseErrorFieldApiId = big.NewInt(1 << 1)
+)
+
+type GetConferenceResponseError struct {
+	Error GetConferenceResponseErrorError `json:"error" url:"error"`
+	ApiId string                          `json:"api_id" url:"api_id"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (g *GetConferenceResponseError) GetError() GetConferenceResponseErrorError {
+	if g == nil {
+		return ""
+	}
+	return g.Error
+}
+
+func (g *GetConferenceResponseError) GetApiId() string {
+	if g == nil {
+		return ""
+	}
+	return g.ApiId
+}
+
+func (g *GetConferenceResponseError) GetExtraProperties() map[string]interface{} {
+	if g == nil {
+		return nil
+	}
+	return g.extraProperties
+}
+
+func (g *GetConferenceResponseError) require(field *big.Int) {
+	if g.explicitFields == nil {
+		g.explicitFields = big.NewInt(0)
+	}
+	g.explicitFields.Or(g.explicitFields, field)
+}
+
+// SetError sets the Error field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseError) SetError(error_ GetConferenceResponseErrorError) {
+	g.Error = error_
+	g.require(getConferenceResponseErrorFieldError)
+}
+
+// SetApiId sets the ApiId field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (g *GetConferenceResponseError) SetApiId(apiId string) {
+	g.ApiId = apiId
+	g.require(getConferenceResponseErrorFieldApiId)
+}
+
+func (g *GetConferenceResponseError) UnmarshalJSON(data []byte) error {
+	type unmarshaler GetConferenceResponseError
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*g = GetConferenceResponseError(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *g)
+	if err != nil {
+		return err
+	}
+	g.extraProperties = extraProperties
+	g.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (g *GetConferenceResponseError) MarshalJSON() ([]byte, error) {
+	type embed GetConferenceResponseError
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*g),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, g.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (g *GetConferenceResponseError) String() string {
+	if g == nil {
+		return "<nil>"
+	}
+	if len(g.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(g.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(g); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", g)
+}
+
+type GetConferenceResponseErrorError string
+
+const (
+	GetConferenceResponseErrorErrorFailed GetConferenceResponseErrorError = "failed"
+)
+
+func NewGetConferenceResponseErrorErrorFromString(s string) (GetConferenceResponseErrorError, error) {
+	switch s {
+	case "failed":
+		return GetConferenceResponseErrorErrorFailed, nil
+	}
+	var t GetConferenceResponseErrorError
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (g GetConferenceResponseErrorError) Ptr() *GetConferenceResponseErrorError {
+	return &g
+}
+
 var (
 	listConferencesResponseFieldApiId       = big.NewInt(1 << 0)
 	listConferencesResponseFieldConferences = big.NewInt(1 << 1)
 )
 
 type ListConferencesResponse struct {
-	ApiId       string `json:"api_id" url:"api_id"`
-	Conferences []any  `json:"conferences" url:"conferences"`
+	ApiId string `json:"api_id" url:"api_id"`
+	// Conference names reported by the API. An empty array is inconclusive.
+	Conferences []string `json:"conferences" url:"conferences"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -154,7 +697,7 @@ func (l *ListConferencesResponse) GetApiId() string {
 	return l.ApiId
 }
 
-func (l *ListConferencesResponse) GetConferences() []any {
+func (l *ListConferencesResponse) GetConferences() []string {
 	if l == nil {
 		return nil
 	}
@@ -184,7 +727,7 @@ func (l *ListConferencesResponse) SetApiId(apiId string) {
 
 // SetConferences sets the Conferences field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListConferencesResponse) SetConferences(conferences []any) {
+func (l *ListConferencesResponse) SetConferences(conferences []string) {
 	l.Conferences = conferences
 	l.require(listConferencesResponseFieldConferences)
 }

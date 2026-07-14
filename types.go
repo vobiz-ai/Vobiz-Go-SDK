@@ -2670,6 +2670,106 @@ func (k KycVerificationResultVerificationType) Ptr() *KycVerificationResultVerif
 	return &k
 }
 
+var (
+	notFoundErrorBodyFieldError = big.NewInt(1 << 0)
+	notFoundErrorBodyFieldApiId = big.NewInt(1 << 1)
+)
+
+type NotFoundErrorBody struct {
+	Error string `json:"error" url:"error"`
+	ApiId string `json:"api_id" url:"api_id"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (n *NotFoundErrorBody) GetError() string {
+	if n == nil {
+		return ""
+	}
+	return n.Error
+}
+
+func (n *NotFoundErrorBody) GetApiId() string {
+	if n == nil {
+		return ""
+	}
+	return n.ApiId
+}
+
+func (n *NotFoundErrorBody) GetExtraProperties() map[string]interface{} {
+	if n == nil {
+		return nil
+	}
+	return n.extraProperties
+}
+
+func (n *NotFoundErrorBody) require(field *big.Int) {
+	if n.explicitFields == nil {
+		n.explicitFields = big.NewInt(0)
+	}
+	n.explicitFields.Or(n.explicitFields, field)
+}
+
+// SetError sets the Error field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (n *NotFoundErrorBody) SetError(error_ string) {
+	n.Error = error_
+	n.require(notFoundErrorBodyFieldError)
+}
+
+// SetApiId sets the ApiId field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (n *NotFoundErrorBody) SetApiId(apiId string) {
+	n.ApiId = apiId
+	n.require(notFoundErrorBodyFieldApiId)
+}
+
+func (n *NotFoundErrorBody) UnmarshalJSON(data []byte) error {
+	type unmarshaler NotFoundErrorBody
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*n = NotFoundErrorBody(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *n)
+	if err != nil {
+		return err
+	}
+	n.extraProperties = extraProperties
+	n.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (n *NotFoundErrorBody) MarshalJSON() ([]byte, error) {
+	type embed NotFoundErrorBody
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*n),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, n.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (n *NotFoundErrorBody) String() string {
+	if n == nil {
+		return "<nil>"
+	}
+	if len(n.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(n.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(n); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", n)
+}
+
 // Aggregated call analytics across all customer accounts for a date range.
 var (
 	partnerAnalyticsFieldPeriod       = big.NewInt(1 << 0)

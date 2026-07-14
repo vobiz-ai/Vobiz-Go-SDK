@@ -53,6 +53,7 @@ func (r *RawClient) MuteMember(
 		r.options.ToHeader(),
 		options.ToHeader(),
 	)
+	var response any
 	raw, err := r.caller.Call(
 		ctx,
 		&internal.CallParams{
@@ -64,6 +65,7 @@ func (r *RawClient) MuteMember(
 			BodyProperties:  options.BodyProperties,
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
+			Response:        &response,
 		},
 	)
 	if err != nil {
@@ -72,7 +74,7 @@ func (r *RawClient) MuteMember(
 	return &core.Response[any]{
 		StatusCode: raw.StatusCode,
 		Header:     raw.Header,
-		Body:       nil,
+		Body:       response,
 	}, nil
 }
 

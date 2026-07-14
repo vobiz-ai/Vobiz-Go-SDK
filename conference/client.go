@@ -34,7 +34,7 @@ func NewClient(options *core.RequestOptions) *Client {
 	}
 }
 
-// Remove a specific participant from a conference call.
+// Remove one or more participants from a conference while allowing their XML flow to continue.
 func (c *Client) KickMember(
 	ctx context.Context,
 	request *vobiz.KickMemberRequest,
@@ -51,7 +51,7 @@ func (c *Client) KickMember(
 	return response.Body, nil
 }
 
-// Disconnect a specific member from a conference.
+// Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 func (c *Client) HangupMember(
 	ctx context.Context,
 	request *vobiz.HangupMemberRequest,
@@ -73,16 +73,16 @@ func (c *Client) PlayAudioMember(
 	ctx context.Context,
 	request *vobiz.PlayAudioMemberRequest,
 	opts ...option.RequestOption,
-) error {
-	_, err := c.WithRawResponse.PlayAudioMember(
+) (any, error) {
+	response, err := c.WithRawResponse.PlayAudioMember(
 		ctx,
 		request,
 		opts...,
 	)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return response.Body, nil
 }
 
 // Stop audio playback for a specific conference member.
@@ -107,16 +107,16 @@ func (c *Client) DeafMember(
 	ctx context.Context,
 	request *vobiz.DeafMemberRequest,
 	opts ...option.RequestOption,
-) error {
-	_, err := c.WithRawResponse.DeafMember(
+) (any, error) {
+	response, err := c.WithRawResponse.DeafMember(
 		ctx,
 		request,
 		opts...,
 	)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return response.Body, nil
 }
 
 // Restore a conference member's ability to hear other participants.

@@ -150,7 +150,7 @@ func TestConferencePlayAudioMemberWithWireMock(
 		MemberID:       "member_id",
 		URL:            "https://example.com/audio.mp3",
 	}
-	invocationErr := client.Conference.PlayAudioMember(
+	_, invocationErr := client.Conference.PlayAudioMember(
 		context.TODO(),
 		request,
 		option.WithHTTPHeader(
@@ -206,7 +206,7 @@ func TestConferenceDeafMemberWithWireMock(
 		ConferenceName: "conference_name",
 		MemberID:       "member_id",
 	}
-	invocationErr := client.Conference.DeafMember(
+	_, invocationErr := client.Conference.DeafMember(
 		context.TODO(),
 		request,
 		option.WithHTTPHeader(

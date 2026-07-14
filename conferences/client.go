@@ -34,7 +34,7 @@ func NewClient(options *core.RequestOptions) *Client {
 	}
 }
 
-// Retrieve all active conference rooms on the account.
+// Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 func (c *Client) ListConferences(
 	ctx context.Context,
 	request *vobiz.ListConferencesRequest,
@@ -68,12 +68,12 @@ func (c *Client) DeleteAllConferences(
 	return nil
 }
 
-// Get details and member list of a specific conference room.
+// Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 func (c *Client) GetConference(
 	ctx context.Context,
 	request *vobiz.GetConferenceRequest,
 	opts ...option.RequestOption,
-) (any, error) {
+) (*vobiz.GetConferenceResponse, error) {
 	response, err := c.WithRawResponse.GetConference(
 		ctx,
 		request,

@@ -34,21 +34,21 @@ func NewClient(options *core.RequestOptions) *Client {
 	}
 }
 
-// Begin recording all audio in a conference room.
+// Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 func (c *Client) StartConferenceRecording(
 	ctx context.Context,
 	request *vobiz.StartConferenceRecordingRequest,
 	opts ...option.RequestOption,
-) error {
-	_, err := c.WithRawResponse.StartConferenceRecording(
+) (any, error) {
+	response, err := c.WithRawResponse.StartConferenceRecording(
 		ctx,
 		request,
 		opts...,
 	)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return response.Body, nil
 }
 
 // Stop recording a conference room.

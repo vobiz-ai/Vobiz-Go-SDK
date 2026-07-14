@@ -4392,7 +4392,7 @@ client.Trunks.DeleteTrunk(
 <dl>
 <dd>
 
-Remove a specific participant from a conference call.
+Remove one or more participants from a conference while allowing their XML flow to continue.
 </dd>
 </dl>
 </dd>
@@ -4471,7 +4471,7 @@ client.Conference.KickMember(
 <dl>
 <dd>
 
-Disconnect a specific member from a conference.
+Terminate one or more active conference member calls. A normal active-member request disconnects the member. If a member was kicked, continued its XML flow, and rejoined with the same numeric member ID, confirm removal through conference exit or call hangup callbacks.
 </dd>
 </dl>
 </dd>
@@ -4538,7 +4538,7 @@ client.Conference.HangupMember(
 </dl>
 </details>
 
-<details><summary><code>client.Conference.PlayAudioMember(AuthID, ConferenceName, MemberID, request) -> error</code></summary>
+<details><summary><code>client.Conference.PlayAudioMember(AuthID, ConferenceName, MemberID, request) -> any</code></summary>
 <dl>
 <dd>
 
@@ -4705,7 +4705,7 @@ client.Conference.StopAudioMember(
 </dl>
 </details>
 
-<details><summary><code>client.Conference.DeafMember(AuthID, ConferenceName, MemberID) -> error</code></summary>
+<details><summary><code>client.Conference.DeafMember(AuthID, ConferenceName, MemberID) -> any</code></summary>
 <dl>
 <dd>
 
@@ -5833,7 +5833,7 @@ client.AudioStreams.StopStream(
 <dl>
 <dd>
 
-Retrieve all active conference rooms on the account.
+Retrieve conference room names reported by the API. An empty array is inconclusive and can occur while conferences are active. Maintain your own room registry for authoritative discovery, billing, cleanup, and destructive workflows.
 </dd>
 </dl>
 </dd>
@@ -5943,7 +5943,7 @@ client.Conferences.DeleteAllConferences(
 </dl>
 </details>
 
-<details><summary><code>client.Conferences.GetConference(AuthID, ConferenceName) -> any</code></summary>
+<details><summary><code>client.Conferences.GetConference(AuthID, ConferenceName) -> *vobiz.GetConferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -5955,7 +5955,7 @@ client.Conferences.DeleteAllConferences(
 <dl>
 <dd>
 
-Get details and member list of a specific conference room.
+Retrieve a specific conference room. A live conference can currently return a 200 response with an error payload instead of conference details.
 </dd>
 </dl>
 </dd>
@@ -6084,7 +6084,7 @@ client.Conferences.DeleteConference(
 </details>
 
 ## ConferenceMembers
-<details><summary><code>client.ConferenceMembers.MuteMember(AuthID, ConferenceName, MemberID) -> error</code></summary>
+<details><summary><code>client.ConferenceMembers.MuteMember(AuthID, ConferenceName, MemberID) -> any</code></summary>
 <dl>
 <dd>
 
@@ -6243,7 +6243,7 @@ client.ConferenceMembers.UnmuteMember(
 </details>
 
 ## ConferenceRecording
-<details><summary><code>client.ConferenceRecording.StartConferenceRecording(AuthID, ConferenceName, request) -> error</code></summary>
+<details><summary><code>client.ConferenceRecording.StartConferenceRecording(AuthID, ConferenceName, request) -> any</code></summary>
 <dl>
 <dd>
 
@@ -6255,7 +6255,7 @@ client.ConferenceMembers.UnmuteMember(
 <dl>
 <dd>
 
-Begin recording all audio in a conference room.
+Queue recording for all audio in a conference room. The response does not include a recording ID or download URL.
 </dd>
 </dl>
 </dd>
