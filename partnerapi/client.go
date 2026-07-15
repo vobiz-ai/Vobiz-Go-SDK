@@ -173,6 +173,9 @@ func (c *Client) ListCustomerNumbers(
 	return response.Body, nil
 }
 
+// Returns the authenticated partner's KYC sessions. Filter the list by
+// session status or customer account, and use `page` and `size` to
+// paginate the results.
 func (c *Client) ListKycSessions(
 	ctx context.Context,
 	request *vobiz.ListKycSessionsRequest,
@@ -208,6 +211,8 @@ func (c *Client) CreateKycSession(
 	return response.Body, nil
 }
 
+// Returns the current status and available details for one KYC session
+// owned by the authenticated partner.
 func (c *Client) GetKycSession(
 	ctx context.Context,
 	request *vobiz.GetKycSessionRequest,

@@ -9079,6 +9079,22 @@ client.PartnerAPI.ListCustomerNumbers(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the authenticated partner's KYC sessions. Filter the list by
+session status or customer account, and use `page` and `size` to
+paginate the results.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -9272,6 +9288,21 @@ browser is sent to this URL with query params `session_id`, `status`, `auth_id`.
 <details><summary><code>client.PartnerAPI.GetKycSession(SessionID) -> error</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the current status and available details for one KYC session
+owned by the authenticated partner.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
