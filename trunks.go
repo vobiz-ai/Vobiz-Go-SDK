@@ -42,9 +42,9 @@ type CreateTrunkRequest struct {
 	AuthID string `json:"-" url:"-"`
 	// Trunk name.
 	Name string `json:"name" url:"-"`
-	// Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
+	// Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 	TrunkDirection *CreateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
-	// Trunk status — `enabled` or `disabled` (note: not `active`).
+	// Trunk status - `enabled` or `disabled` (note: not `active`).
 	TrunkStatus *CreateTrunkRequestTrunkStatus `json:"trunk_status,omitempty" url:"-"`
 	Secure      *bool                          `json:"secure,omitempty" url:"-"`
 	// SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
@@ -73,7 +73,7 @@ type CreateTrunkRequest struct {
 	// Comma-separated list of entity types to redact.
 	PiiEntityTypes *string `json:"pii_entity_types,omitempty" url:"-"`
 	// Customer webhook for call-admission events (`CallInitiated` / `Hangup`).
-	// Must be a valid **public** http/https URL. SSRF-validated — localhost,
+	// Must be a valid **public** http/https URL. SSRF-validated - localhost,
 	// private (RFC1918), and cloud-metadata (`169.254.169.254`) URLs are
 	// rejected with `invalid webhook_url`. See [Trunk Webhooks](/trunks/webhook).
 	WebhookURL *string `json:"webhook_url,omitempty" url:"-"`
@@ -81,11 +81,11 @@ type CreateTrunkRequest struct {
 	WebhookMethod *CreateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`
 	// Fire a `recording.completed` webhook to `webhook_url` after a recording is saved.
 	RecordingWebhookEnabled *bool `json:"recording_webhook_enabled,omitempty" url:"-"`
-	// Deprecated — use `credential_uuid`.
+	// Deprecated - use `credential_uuid`.
 	Username *string `json:"username,omitempty" url:"-"`
-	// Deprecated — use `credential_uuid`.
+	// Deprecated - use `credential_uuid`.
 	Password *string `json:"password,omitempty" url:"-"`
-	// Deprecated — use `ipacl_uuid`.
+	// Deprecated - use `ipacl_uuid`.
 	IPWhitelist []string `json:"ip_whitelist,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
@@ -416,7 +416,7 @@ func (c CreateTrunkRequestTransport) Ptr() *CreateTrunkRequestTransport {
 	return &c
 }
 
-// Direction of the trunk — **`inbound` or `outbound` only** (a trunk is one direction, not both).
+// Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 type CreateTrunkRequestTrunkDirection string
 
 const (
@@ -439,7 +439,7 @@ func (c CreateTrunkRequestTrunkDirection) Ptr() *CreateTrunkRequestTrunkDirectio
 	return &c
 }
 
-// Trunk status — `enabled` or `disabled` (note: not `active`).
+// Trunk status - `enabled` or `disabled` (note: not `active`).
 type CreateTrunkRequestTrunkStatus string
 
 const (
@@ -1874,7 +1874,7 @@ func (u UpdateTrunkRequestTransport) Ptr() *UpdateTrunkRequestTransport {
 	return &u
 }
 
-// Direction of the trunk — `inbound` or `outbound` only.
+// Direction of the trunk - `inbound` or `outbound` only.
 type UpdateTrunkRequestTrunkDirection string
 
 const (
@@ -2328,7 +2328,7 @@ type UpdateTrunkRequest struct {
 	AuthID  string  `json:"-" url:"-"`
 	TrunkID string  `json:"-" url:"-"`
 	Name    *string `json:"name,omitempty" url:"-"`
-	// Direction of the trunk — `inbound` or `outbound` only.
+	// Direction of the trunk - `inbound` or `outbound` only.
 	TrunkDirection       *UpdateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
 	TrunkStatus          *UpdateTrunkRequestTrunkStatus    `json:"trunk_status,omitempty" url:"-"`
 	Secure               *bool                             `json:"secure,omitempty" url:"-"`
