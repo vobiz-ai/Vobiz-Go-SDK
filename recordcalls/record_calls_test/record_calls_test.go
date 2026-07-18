@@ -86,7 +86,7 @@ func TestRecordCallsStartRecordingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StartRecordingRequest{
 		AuthID:   "MA_XXXXXX",
@@ -117,7 +117,7 @@ func TestRecordCallsStopRecordingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StopRecordingRequest{
 		AuthID:   "MA_XXXXXX",

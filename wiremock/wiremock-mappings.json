@@ -7,8 +7,8 @@
         "urlPathTemplate": "/api/v1/auth/me",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -39,8 +39,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/concurrency",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -69,14 +69,94 @@
       }
     },
     {
+      "id": "bcd068ad-808f-4043-91da-0d3f46cd9b6a",
+      "name": "Preview CPS or concurrency pricing - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/channel-pricing-preview",
+        "method": "GET",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXX"
+          }
+        },
+        "queryParameters": {
+          "resource_type": {
+            "equalTo": "concurrent_calls"
+          },
+          "quantity": {
+            "equalTo": "30"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"resource_type\": \"concurrent_calls\",\n  \"quantity\": 30,\n  \"monthly_cost\": \"10470.00\",\n  \"currency\": \"INR\",\n  \"breakdown\": [\n    {\n      \"key\": \"value\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "bcd068ad-808f-4043-91da-0d3f46cd9b6a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a9259e77-af43-4902-855b-03d36c6d1ccc",
+      "name": "Purchase CPS or concurrency capacity - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/accounts/{auth_id}/channel-subscriptions",
+        "method": "POST",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"5ed57f90-b1f1-4c32-9475-b85aa6739aec\",\n  \"account_id\": 123456,\n  \"resource_type\": \"concurrent_calls\",\n  \"quantity\": 30,\n  \"monthly_cost\": \"10470.00\",\n  \"currency\": \"INR\",\n  \"status\": \"active\",\n  \"last_billing_date\": \"2026-07-16T10:00:00Z\",\n  \"next_billing_date\": \"2026-08-15T10:00:00Z\",\n  \"purchased_at\": \"2026-07-16T10:00:00Z\",\n  \"cancelled_at\": null,\n  \"cancellation_reason\": null,\n  \"is_active\": true,\n  \"created_at\": \"2026-07-16T10:00:00Z\",\n  \"updated_at\": \"2026-07-16T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a9259e77-af43-4902-855b-03d36c6d1ccc",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
       "id": "f9614927-6edd-4e67-a45f-3ed423634333",
       "name": "Get balance - default",
       "request": {
         "urlPathTemplate": "/api/v1/Account/{auth_id}/balance/{currency}",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -114,8 +194,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/transactions",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -150,8 +230,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -191,8 +271,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -232,8 +312,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -276,8 +356,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -315,8 +395,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -359,8 +439,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -395,8 +475,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -463,8 +543,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/search",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -531,8 +611,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/recent",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -572,8 +652,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/{call_id}",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -611,8 +691,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -647,8 +727,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -683,8 +763,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -722,8 +802,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
         "method": "PUT",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -761,8 +841,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -800,8 +880,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/status",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -836,8 +916,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/verify-pan",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -872,8 +952,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/verify-gst",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -908,8 +988,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/cin/search",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -944,8 +1024,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/cin/confirm",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -980,8 +1060,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/digilocker/initiate",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1016,8 +1096,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/digilocker/verify",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1052,8 +1132,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc-sessions",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1088,8 +1168,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/verify-pan",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1124,8 +1204,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/verify-gst",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1160,8 +1240,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/cin/search",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1196,8 +1276,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/cin/confirm",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1232,8 +1312,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/digilocker/initiate",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1268,8 +1348,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/digilocker/verify",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1304,8 +1384,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/finalize-pending",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1340,8 +1420,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1381,8 +1461,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{e164}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1420,8 +1500,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/inventory/numbers",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1464,8 +1544,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/purchase-from-inventory",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1500,8 +1580,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{phone_number}/assign",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1539,8 +1619,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{phone_number}/assign",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1578,8 +1658,8 @@
         "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/health",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1622,8 +1702,8 @@
         "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/assign-subaccount",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1661,8 +1741,8 @@
         "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/assign-subaccount",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1705,8 +1785,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1741,8 +1821,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1777,8 +1857,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1816,8 +1896,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
         "method": "PUT",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1855,8 +1935,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1894,8 +1974,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Kick/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1936,8 +2016,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1978,8 +2058,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2020,8 +2100,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2062,8 +2142,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2104,8 +2184,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2146,8 +2226,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Record/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2185,8 +2265,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Record/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2224,8 +2304,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Play/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2263,8 +2343,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Play/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2302,8 +2382,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Speak/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2341,8 +2421,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Speak/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2380,8 +2460,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/DTMF/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2419,8 +2499,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2458,8 +2538,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2497,8 +2577,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/{stream_id}/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2539,8 +2619,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/{stream_id}/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2581,8 +2661,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2617,8 +2697,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2653,8 +2733,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2692,8 +2772,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2731,8 +2811,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2773,8 +2853,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2815,8 +2895,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Record/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2854,8 +2934,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Record/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2893,8 +2973,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2929,8 +3009,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/{recording_id}/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2968,8 +3048,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/{recording_id}/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3007,8 +3087,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3043,8 +3123,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/credentials",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3079,8 +3159,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials/{credential_id}",
         "method": "PUT",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3118,8 +3198,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials/{credential_id}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3157,8 +3237,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3193,8 +3273,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/ip-acl",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3229,8 +3309,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl/{ip_acl_id}",
         "method": "PUT",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3268,8 +3348,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl/{ip_acl_id}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3307,8 +3387,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3343,8 +3423,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/origination-uris",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3379,8 +3459,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris/{uri_id}",
         "method": "PUT",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3418,8 +3498,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris/{uri_id}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3457,8 +3537,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3493,8 +3573,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3529,8 +3609,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3568,8 +3648,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3607,8 +3687,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3646,8 +3726,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3682,8 +3762,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3718,8 +3798,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3757,8 +3837,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3796,8 +3876,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3835,8 +3915,8 @@
         "urlPathTemplate": "/api/v1/partner/me",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -3867,8 +3947,8 @@
         "urlPathTemplate": "/api/v1/partner/dashboard",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -3899,8 +3979,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -3931,8 +4011,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -3962,8 +4042,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/transfer-balance",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3998,8 +4078,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/transactions",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4042,8 +4122,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/cdrs",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4083,8 +4163,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/numbers",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4119,8 +4199,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4151,8 +4231,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4182,8 +4262,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}",
         "method": "GET",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4218,8 +4298,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}",
         "method": "DELETE",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4254,8 +4334,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}/resend",
         "method": "POST",
         "headers": {
-          "X-Auth-ID": {
-            "matches": ".+"
+          "Authorization": {
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4285,6 +4365,6 @@
     }
   ],
   "meta": {
-    "total": 111
+    "total": 113
   }
 }

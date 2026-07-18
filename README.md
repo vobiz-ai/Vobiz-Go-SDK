@@ -39,21 +39,22 @@ import (
 
 func do() {
     client := client.NewClient(
-        option.WithAPIKey(
-            "<value>",
+        option.WithToken(
+            "<token>",
+        ),
+        option.WithAuthID(
+            "<X-Auth-ID>",
         ),
         option.WithAuthToken(
             "<X-Auth-Token>",
         ),
     )
-    request := &vobiz.MakeCallRequest{
-        AuthID: "MA_XXXXXX",
-        From: "14155551234",
-        To: "+919876543210",
-        AnswerURL: "https://example.com/answer",
-        AnswerMethod: "POST",
+    request := &vobiz.ChannelSubscriptionRequest{
+        AuthID: "MA_XXXX",
+        ResourceType: vobiz.CapacityResourceTypeConcurrentCalls,
+        Quantity: 30,
     }
-    client.Calls.MakeCall(
+    client.Account.CreateChannelSubscription(
         context.TODO(),
         request,
     )
@@ -77,7 +78,7 @@ Structured error types are returned from API calls that return non-success statu
 with the `errors.Is` and `errors.As` APIs, so you can access the error like so:
 
 ```go
-response, err := client.Calls.MakeCall(...)
+response, err := client.Account.CreateChannelSubscription(...)
 if err != nil {
     var apiError *core.APIError
     if errors.As(err, apiError) {
@@ -111,7 +112,7 @@ client := client.NewClient(
 )
 
 // Specify options for an individual request.
-response, err := client.Calls.MakeCall(
+response, err := client.Account.CreateChannelSubscription(
     ...,
     option.WithToken("<YOUR_API_KEY>"),
 )
@@ -126,7 +127,7 @@ when you need to examine the response headers received from the API call. (When 
 the raw HTTP response data will be included automatically in the Page response object.)
 
 ```go
-response, err := client.Calls.WithRawResponse.MakeCall(...)
+response, err := client.Account.WithRawResponse.CreateChannelSubscription(...)
 if err != nil {
     return err
 }
@@ -164,7 +165,7 @@ client := client.NewClient(
     option.WithMaxAttempts(1),
 )
 
-response, err := client.Calls.MakeCall(
+response, err := client.Account.CreateChannelSubscription(
     ...,
     option.WithMaxAttempts(1),
 )
@@ -178,7 +179,7 @@ Setting a timeout for each individual request is as simple as using the standard
 ctx, cancel := context.WithTimeout(ctx, time.Second)
 defer cancel()
 
-response, err := client.Calls.MakeCall(ctx, ...)
+response, err := client.Account.CreateChannelSubscription(ctx, ...)
 ```
 
 ### Explicit Null
@@ -200,7 +201,7 @@ type ExampleRequest struct {
 request := &ExampleRequest{}
 request.SetName(nil)
 
-response, err := client.Calls.MakeCall(ctx, request, ...)
+response, err := client.Account.CreateChannelSubscription(ctx, request, ...)
 ```
 
 ## Contributing

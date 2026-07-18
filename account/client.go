@@ -65,3 +65,37 @@ func (c *Client) GetConcurrency(
 	}
 	return response.Body, nil
 }
+
+// Calculate the monthly price for CPS or concurrent-call capacity without purchasing capacity or debiting the account.
+func (c *Client) PreviewChannelPricing(
+	ctx context.Context,
+	request *vobiz.PreviewChannelPricingRequest,
+	opts ...option.RequestOption,
+) (*vobiz.ChannelPricingPreview, error) {
+	response, err := c.WithRawResponse.PreviewChannelPricing(
+		ctx,
+		request,
+		opts...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return response.Body, nil
+}
+
+// Purchase recurring CPS or concurrent-call capacity. A successful request immediately debits the first monthly charge and activates a subscription that renews every 30 days.
+func (c *Client) CreateChannelSubscription(
+	ctx context.Context,
+	request *vobiz.ChannelSubscriptionRequest,
+	opts ...option.RequestOption,
+) (*vobiz.ChannelSubscription, error) {
+	response, err := c.WithRawResponse.CreateChannelSubscription(
+		ctx,
+		request,
+		opts...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return response.Body, nil
+}

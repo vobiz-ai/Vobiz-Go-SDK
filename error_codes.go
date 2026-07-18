@@ -13,8 +13,8 @@ var ErrorCodes internal.ErrorCodes = internal.ErrorCodes{
 			APIError: apiError,
 		}
 	},
-	404: func(apiError *core.APIError) error {
-		return &NotFoundError{
+	400: func(apiError *core.APIError) error {
+		return &BadRequestError{
 			APIError: apiError,
 		}
 	},
@@ -23,8 +23,8 @@ var ErrorCodes internal.ErrorCodes = internal.ErrorCodes{
 			APIError: apiError,
 		}
 	},
-	400: func(apiError *core.APIError) error {
-		return &BadRequestError{
+	404: func(apiError *core.APIError) error {
+		return &NotFoundError{
 			APIError: apiError,
 		}
 	},

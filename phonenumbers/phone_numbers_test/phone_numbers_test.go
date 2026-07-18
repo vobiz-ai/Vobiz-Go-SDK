@@ -86,7 +86,7 @@ func TestPhoneNumbersListNumbersWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListNumbersRequest{
 		AuthID: "MA_XXXXXX",
@@ -115,7 +115,7 @@ func TestPhoneNumbersUnrentNumberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UnrentNumberRequest{
 		AuthID: "MA_XXXXXX",
@@ -142,7 +142,7 @@ func TestPhoneNumbersListInventoryNumbersWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListInventoryNumbersRequest{
 		AuthID: "MA_XXXXXX",
@@ -174,7 +174,7 @@ func TestPhoneNumbersPurchaseFromInventoryWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.PurchaseFromInventoryRequest{
 		AuthID: "MA_XXXXXX",
@@ -204,7 +204,7 @@ func TestPhoneNumbersAssignNumberToTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.AssignNumberToTrunkRequest{
 		AuthID:       "MA_XXXXXX",
@@ -232,7 +232,7 @@ func TestPhoneNumbersUnassignNumberFromTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UnassignNumberFromTrunkRequest{
 		AuthID:      "MA_XXXXXX",
@@ -259,7 +259,7 @@ func TestPhoneNumbersGetNumberHealthWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetNumberHealthRequest{
 		AuthID: "MA_XXXXXX",
@@ -289,7 +289,7 @@ func TestPhoneNumbersAssignDidToSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.AssignDidToSubaccountRequest{
 		AuthID:       "MA_XXXXXX",
@@ -317,7 +317,7 @@ func TestPhoneNumbersUnassignDidFromSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UnassignDidFromSubaccountRequest{
 		AuthID: "MA_XXXXXX",

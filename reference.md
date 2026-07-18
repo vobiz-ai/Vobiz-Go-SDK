@@ -103,6 +103,164 @@ client.Account.GetConcurrency(
 </dl>
 </details>
 
+<details><summary><code>client.Account.PreviewChannelPricing(AuthID) -> *vobiz.ChannelPricingPreview</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Calculate the monthly price for CPS or concurrent-call capacity without purchasing capacity or debiting the account.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```go
+request := &vobiz.PreviewChannelPricingRequest{
+        AuthID: "MA_XXXX",
+        ResourceType: vobiz.CapacityResourceTypeConcurrentCalls,
+        Quantity: 30,
+    }
+client.Account.PreviewChannelPricing(
+        context.TODO(),
+        request,
+    )
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**authID:** `string` — Target account Auth ID. An account can preview only its own pricing; administrators may act for another account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resourceType:** `*vobiz.CapacityResourceType` — Capacity type to price.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quantity:** `int` — Capacity quantity to price. Pricing-tier block and quantity rules also apply.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Account.CreateChannelSubscription(AuthID, request) -> *vobiz.ChannelSubscription</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Purchase recurring CPS or concurrent-call capacity. A successful request immediately debits the first monthly charge and activates a subscription that renews every 30 days.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```go
+request := &vobiz.ChannelSubscriptionRequest{
+        AuthID: "MA_XXXX",
+        ResourceType: vobiz.CapacityResourceTypeConcurrentCalls,
+        Quantity: 30,
+    }
+client.Account.CreateChannelSubscription(
+        context.TODO(),
+        request,
+    )
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**authID:** `string` — Target account Auth ID. An account can purchase only for itself; administrators may act for another account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**resourceType:** `*vobiz.CapacityResourceType` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**quantity:** `int` — Capacity quantity to purchase. Pricing-tier block and quantity rules also apply.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Balance
 <details><summary><code>client.Balance.GetBalance(AuthID, Currency) -> *vobiz.GetBalanceResponse</code></summary>
 <dl>

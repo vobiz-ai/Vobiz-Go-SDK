@@ -86,7 +86,7 @@ func TestAccountRetrieveAccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	_, invocationErr := client.Account.RetrieveAccount(
 		context.TODO(),
@@ -108,7 +108,7 @@ func TestAccountGetConcurrencyWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetConcurrencyRequest{
 		AuthID: "MA_XXXXXX",
@@ -123,4 +123,60 @@ func TestAccountGetConcurrencyWithWireMock(
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
 	VerifyRequestCount(t, "TestAccountGetConcurrencyWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/concurrency", nil, 1)
+}
+
+func TestAccountPreviewChannelPricingWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithToken("test-token"),
+	)
+	request := &vobiz.PreviewChannelPricingRequest{
+		AuthID:       "MA_XXXX",
+		ResourceType: vobiz.CapacityResourceTypeConcurrentCalls,
+		Quantity:     30,
+	}
+	_, invocationErr := client.Account.PreviewChannelPricing(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestAccountPreviewChannelPricingWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestAccountPreviewChannelPricingWithWireMock", "GET", "/api/v1/accounts/MA_XXXX/channel-pricing-preview", map[string]interface{}{"resource_type": "concurrent_calls", "quantity": "30"}, 1)
+}
+
+func TestAccountCreateChannelSubscriptionWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithToken("test-token"),
+	)
+	request := &vobiz.ChannelSubscriptionRequest{
+		AuthID:       "MA_XXXX",
+		ResourceType: vobiz.CapacityResourceTypeConcurrentCalls,
+		Quantity:     30,
+	}
+	_, invocationErr := client.Account.CreateChannelSubscription(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestAccountCreateChannelSubscriptionWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestAccountCreateChannelSubscriptionWithWireMock", "POST", "/api/v1/accounts/MA_XXXX/channel-subscriptions", nil, 1)
 }

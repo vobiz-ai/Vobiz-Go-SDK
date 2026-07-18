@@ -86,7 +86,7 @@ func TestCredentialsCreateCredentialWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.CreateCredentialRequest{
 		AuthID:   "MA_XXXXXX",
@@ -114,7 +114,7 @@ func TestCredentialsListCredentialsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListCredentialsRequest{
 		AuthID: "MA_XXXXXX",
@@ -140,7 +140,7 @@ func TestCredentialsUpdateCredentialWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UpdateCredentialRequest{
 		AuthID:       "MA_XXXXXX",
@@ -168,7 +168,7 @@ func TestCredentialsDeleteCredentialWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.DeleteCredentialRequest{
 		AuthID:       "MA_XXXXXX",

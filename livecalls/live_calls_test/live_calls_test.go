@@ -86,7 +86,7 @@ func TestLiveCallsListQueuedCallsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListQueuedCallsRequest{
 		AuthID: "MA_XXXXXX",
@@ -113,7 +113,7 @@ func TestLiveCallsListLiveCallsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListLiveCallsRequest{
 		AuthID: "MA_XXXXXX",
@@ -140,7 +140,7 @@ func TestLiveCallsGetLiveCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetLiveCallRequest{
 		AuthID:   "MA_XXXXXX",
@@ -168,7 +168,7 @@ func TestLiveCallsHangupCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.HangupCallRequest{
 		AuthID:   "MA_XXXXXX",
@@ -195,7 +195,7 @@ func TestLiveCallsGetQueuedCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetQueuedCallRequest{
 		AuthID:   "MA_XXXXXX",

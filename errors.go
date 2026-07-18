@@ -7,7 +7,7 @@ import (
 	core "github.com/vobiz-ai/Vobiz-Go-SDK/core"
 )
 
-// Invalid PAN format
+// Invalid resource type or quantity, pricing-tier rules were not met, or no pricing tier is assigned.
 type BadRequestError struct {
 	*core.APIError
 	Body any
@@ -55,14 +55,14 @@ func (c *ConflictError) Unwrap() error {
 	return c.APIError
 }
 
-// Caller is not the parent of this sub-account
+// The authenticated account cannot act on the target account.
 type ForbiddenError struct {
 	*core.APIError
-	Body *Error
+	Body any
 }
 
 func (f *ForbiddenError) UnmarshalJSON(data []byte) error {
-	var body *Error
+	var body any
 	if err := json.Unmarshal(data, &body); err != nil {
 		return err
 	}

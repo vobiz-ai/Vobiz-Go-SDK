@@ -7,7 +7,74 @@ import (
 	fmt "fmt"
 	internal "github.com/vobiz-ai/Vobiz-Go-SDK/internal"
 	big "math/big"
+	time "time"
 )
+
+var (
+	channelSubscriptionRequestFieldAuthID       = big.NewInt(1 << 0)
+	channelSubscriptionRequestFieldResourceType = big.NewInt(1 << 1)
+	channelSubscriptionRequestFieldQuantity     = big.NewInt(1 << 2)
+)
+
+type ChannelSubscriptionRequest struct {
+	// Target account Auth ID. An account can purchase only for itself; administrators may act for another account.
+	AuthID       string               `json:"-" url:"-"`
+	ResourceType CapacityResourceType `json:"resource_type" url:"-"`
+	// Capacity quantity to purchase. Pricing-tier block and quantity rules also apply.
+	Quantity int `json:"quantity" url:"-"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (c *ChannelSubscriptionRequest) require(field *big.Int) {
+	if c.explicitFields == nil {
+		c.explicitFields = big.NewInt(0)
+	}
+	c.explicitFields.Or(c.explicitFields, field)
+}
+
+// SetAuthID sets the AuthID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscriptionRequest) SetAuthID(authID string) {
+	c.AuthID = authID
+	c.require(channelSubscriptionRequestFieldAuthID)
+}
+
+// SetResourceType sets the ResourceType field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscriptionRequest) SetResourceType(resourceType CapacityResourceType) {
+	c.ResourceType = resourceType
+	c.require(channelSubscriptionRequestFieldResourceType)
+}
+
+// SetQuantity sets the Quantity field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscriptionRequest) SetQuantity(quantity int) {
+	c.Quantity = quantity
+	c.require(channelSubscriptionRequestFieldQuantity)
+}
+
+func (c *ChannelSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	type unmarshaler ChannelSubscriptionRequest
+	var body unmarshaler
+	if err := json.Unmarshal(data, &body); err != nil {
+		return err
+	}
+	*c = ChannelSubscriptionRequest(body)
+	return nil
+}
+
+func (c *ChannelSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	type embed ChannelSubscriptionRequest
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*c),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, c.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
 
 var (
 	getConcurrencyRequestFieldAuthID = big.NewInt(1 << 0)
@@ -33,6 +100,563 @@ func (g *GetConcurrencyRequest) require(field *big.Int) {
 func (g *GetConcurrencyRequest) SetAuthID(authID string) {
 	g.AuthID = authID
 	g.require(getConcurrencyRequestFieldAuthID)
+}
+
+var (
+	previewChannelPricingRequestFieldAuthID       = big.NewInt(1 << 0)
+	previewChannelPricingRequestFieldResourceType = big.NewInt(1 << 1)
+	previewChannelPricingRequestFieldQuantity     = big.NewInt(1 << 2)
+)
+
+type PreviewChannelPricingRequest struct {
+	// Target account Auth ID. An account can preview only its own pricing; administrators may act for another account.
+	AuthID string `json:"-" url:"-"`
+	// Capacity type to price.
+	ResourceType CapacityResourceType `json:"-" url:"resource_type"`
+	// Capacity quantity to price. Pricing-tier block and quantity rules also apply.
+	Quantity int `json:"-" url:"quantity"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (p *PreviewChannelPricingRequest) require(field *big.Int) {
+	if p.explicitFields == nil {
+		p.explicitFields = big.NewInt(0)
+	}
+	p.explicitFields.Or(p.explicitFields, field)
+}
+
+// SetAuthID sets the AuthID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PreviewChannelPricingRequest) SetAuthID(authID string) {
+	p.AuthID = authID
+	p.require(previewChannelPricingRequestFieldAuthID)
+}
+
+// SetResourceType sets the ResourceType field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PreviewChannelPricingRequest) SetResourceType(resourceType CapacityResourceType) {
+	p.ResourceType = resourceType
+	p.require(previewChannelPricingRequestFieldResourceType)
+}
+
+// SetQuantity sets the Quantity field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PreviewChannelPricingRequest) SetQuantity(quantity int) {
+	p.Quantity = quantity
+	p.require(previewChannelPricingRequestFieldQuantity)
+}
+
+// Account capacity to price or purchase.
+type CapacityResourceType string
+
+const (
+	CapacityResourceTypeConcurrentCalls CapacityResourceType = "concurrent_calls"
+	CapacityResourceTypeCps             CapacityResourceType = "cps"
+)
+
+func NewCapacityResourceTypeFromString(s string) (CapacityResourceType, error) {
+	switch s {
+	case "concurrent_calls":
+		return CapacityResourceTypeConcurrentCalls, nil
+	case "cps":
+		return CapacityResourceTypeCps, nil
+	}
+	var t CapacityResourceType
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CapacityResourceType) Ptr() *CapacityResourceType {
+	return &c
+}
+
+var (
+	channelPricingPreviewFieldResourceType = big.NewInt(1 << 0)
+	channelPricingPreviewFieldQuantity     = big.NewInt(1 << 1)
+	channelPricingPreviewFieldMonthlyCost  = big.NewInt(1 << 2)
+	channelPricingPreviewFieldCurrency     = big.NewInt(1 << 3)
+	channelPricingPreviewFieldBreakdown    = big.NewInt(1 << 4)
+)
+
+type ChannelPricingPreview struct {
+	ResourceType CapacityResourceType `json:"resource_type" url:"resource_type"`
+	Quantity     int                  `json:"quantity" url:"quantity"`
+	// Calculated monthly charge as a decimal string.
+	MonthlyCost string `json:"monthly_cost" url:"monthly_cost"`
+	// Currency assigned by the account's pricing tier.
+	Currency string `json:"currency" url:"currency"`
+	// Pricing-bracket calculation details when supplied by the pricing tier.
+	Breakdown []map[string]any `json:"breakdown" url:"breakdown"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (c *ChannelPricingPreview) GetResourceType() CapacityResourceType {
+	if c == nil {
+		return ""
+	}
+	return c.ResourceType
+}
+
+func (c *ChannelPricingPreview) GetQuantity() int {
+	if c == nil {
+		return 0
+	}
+	return c.Quantity
+}
+
+func (c *ChannelPricingPreview) GetMonthlyCost() string {
+	if c == nil {
+		return ""
+	}
+	return c.MonthlyCost
+}
+
+func (c *ChannelPricingPreview) GetCurrency() string {
+	if c == nil {
+		return ""
+	}
+	return c.Currency
+}
+
+func (c *ChannelPricingPreview) GetBreakdown() []map[string]any {
+	if c == nil {
+		return nil
+	}
+	return c.Breakdown
+}
+
+func (c *ChannelPricingPreview) GetExtraProperties() map[string]interface{} {
+	if c == nil {
+		return nil
+	}
+	return c.extraProperties
+}
+
+func (c *ChannelPricingPreview) require(field *big.Int) {
+	if c.explicitFields == nil {
+		c.explicitFields = big.NewInt(0)
+	}
+	c.explicitFields.Or(c.explicitFields, field)
+}
+
+// SetResourceType sets the ResourceType field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelPricingPreview) SetResourceType(resourceType CapacityResourceType) {
+	c.ResourceType = resourceType
+	c.require(channelPricingPreviewFieldResourceType)
+}
+
+// SetQuantity sets the Quantity field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelPricingPreview) SetQuantity(quantity int) {
+	c.Quantity = quantity
+	c.require(channelPricingPreviewFieldQuantity)
+}
+
+// SetMonthlyCost sets the MonthlyCost field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelPricingPreview) SetMonthlyCost(monthlyCost string) {
+	c.MonthlyCost = monthlyCost
+	c.require(channelPricingPreviewFieldMonthlyCost)
+}
+
+// SetCurrency sets the Currency field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelPricingPreview) SetCurrency(currency string) {
+	c.Currency = currency
+	c.require(channelPricingPreviewFieldCurrency)
+}
+
+// SetBreakdown sets the Breakdown field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelPricingPreview) SetBreakdown(breakdown []map[string]any) {
+	c.Breakdown = breakdown
+	c.require(channelPricingPreviewFieldBreakdown)
+}
+
+func (c *ChannelPricingPreview) UnmarshalJSON(data []byte) error {
+	type unmarshaler ChannelPricingPreview
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*c = ChannelPricingPreview(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *c)
+	if err != nil {
+		return err
+	}
+	c.extraProperties = extraProperties
+	c.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (c *ChannelPricingPreview) MarshalJSON() ([]byte, error) {
+	type embed ChannelPricingPreview
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*c),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, c.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (c *ChannelPricingPreview) String() string {
+	if c == nil {
+		return "<nil>"
+	}
+	if len(c.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(c.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(c); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", c)
+}
+
+var (
+	channelSubscriptionFieldID                 = big.NewInt(1 << 0)
+	channelSubscriptionFieldAccountID          = big.NewInt(1 << 1)
+	channelSubscriptionFieldResourceType       = big.NewInt(1 << 2)
+	channelSubscriptionFieldQuantity           = big.NewInt(1 << 3)
+	channelSubscriptionFieldMonthlyCost        = big.NewInt(1 << 4)
+	channelSubscriptionFieldCurrency           = big.NewInt(1 << 5)
+	channelSubscriptionFieldStatus             = big.NewInt(1 << 6)
+	channelSubscriptionFieldLastBillingDate    = big.NewInt(1 << 7)
+	channelSubscriptionFieldNextBillingDate    = big.NewInt(1 << 8)
+	channelSubscriptionFieldPurchasedAt        = big.NewInt(1 << 9)
+	channelSubscriptionFieldCancelledAt        = big.NewInt(1 << 10)
+	channelSubscriptionFieldCancellationReason = big.NewInt(1 << 11)
+	channelSubscriptionFieldIsActive           = big.NewInt(1 << 12)
+	channelSubscriptionFieldCreatedAt          = big.NewInt(1 << 13)
+	channelSubscriptionFieldUpdatedAt          = big.NewInt(1 << 14)
+)
+
+type ChannelSubscription struct {
+	ID           string               `json:"id" url:"id"`
+	AccountID    int                  `json:"account_id" url:"account_id"`
+	ResourceType CapacityResourceType `json:"resource_type" url:"resource_type"`
+	Quantity     int                  `json:"quantity" url:"quantity"`
+	// Recurring monthly charge as a decimal string.
+	MonthlyCost        string     `json:"monthly_cost" url:"monthly_cost"`
+	Currency           string     `json:"currency" url:"currency"`
+	Status             string     `json:"status" url:"status"`
+	LastBillingDate    time.Time  `json:"last_billing_date" url:"last_billing_date"`
+	NextBillingDate    time.Time  `json:"next_billing_date" url:"next_billing_date"`
+	PurchasedAt        time.Time  `json:"purchased_at" url:"purchased_at"`
+	CancelledAt        *time.Time `json:"cancelled_at,omitempty" url:"cancelled_at,omitempty"`
+	CancellationReason *string    `json:"cancellation_reason,omitempty" url:"cancellation_reason,omitempty"`
+	IsActive           bool       `json:"is_active" url:"is_active"`
+	CreatedAt          time.Time  `json:"created_at" url:"created_at"`
+	UpdatedAt          time.Time  `json:"updated_at" url:"updated_at"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (c *ChannelSubscription) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+func (c *ChannelSubscription) GetAccountID() int {
+	if c == nil {
+		return 0
+	}
+	return c.AccountID
+}
+
+func (c *ChannelSubscription) GetResourceType() CapacityResourceType {
+	if c == nil {
+		return ""
+	}
+	return c.ResourceType
+}
+
+func (c *ChannelSubscription) GetQuantity() int {
+	if c == nil {
+		return 0
+	}
+	return c.Quantity
+}
+
+func (c *ChannelSubscription) GetMonthlyCost() string {
+	if c == nil {
+		return ""
+	}
+	return c.MonthlyCost
+}
+
+func (c *ChannelSubscription) GetCurrency() string {
+	if c == nil {
+		return ""
+	}
+	return c.Currency
+}
+
+func (c *ChannelSubscription) GetStatus() string {
+	if c == nil {
+		return ""
+	}
+	return c.Status
+}
+
+func (c *ChannelSubscription) GetLastBillingDate() time.Time {
+	if c == nil {
+		return time.Time{}
+	}
+	return c.LastBillingDate
+}
+
+func (c *ChannelSubscription) GetNextBillingDate() time.Time {
+	if c == nil {
+		return time.Time{}
+	}
+	return c.NextBillingDate
+}
+
+func (c *ChannelSubscription) GetPurchasedAt() time.Time {
+	if c == nil {
+		return time.Time{}
+	}
+	return c.PurchasedAt
+}
+
+func (c *ChannelSubscription) GetCancelledAt() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.CancelledAt
+}
+
+func (c *ChannelSubscription) GetCancellationReason() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CancellationReason
+}
+
+func (c *ChannelSubscription) GetIsActive() bool {
+	if c == nil {
+		return false
+	}
+	return c.IsActive
+}
+
+func (c *ChannelSubscription) GetCreatedAt() time.Time {
+	if c == nil {
+		return time.Time{}
+	}
+	return c.CreatedAt
+}
+
+func (c *ChannelSubscription) GetUpdatedAt() time.Time {
+	if c == nil {
+		return time.Time{}
+	}
+	return c.UpdatedAt
+}
+
+func (c *ChannelSubscription) GetExtraProperties() map[string]interface{} {
+	if c == nil {
+		return nil
+	}
+	return c.extraProperties
+}
+
+func (c *ChannelSubscription) require(field *big.Int) {
+	if c.explicitFields == nil {
+		c.explicitFields = big.NewInt(0)
+	}
+	c.explicitFields.Or(c.explicitFields, field)
+}
+
+// SetID sets the ID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetID(id string) {
+	c.ID = id
+	c.require(channelSubscriptionFieldID)
+}
+
+// SetAccountID sets the AccountID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetAccountID(accountID int) {
+	c.AccountID = accountID
+	c.require(channelSubscriptionFieldAccountID)
+}
+
+// SetResourceType sets the ResourceType field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetResourceType(resourceType CapacityResourceType) {
+	c.ResourceType = resourceType
+	c.require(channelSubscriptionFieldResourceType)
+}
+
+// SetQuantity sets the Quantity field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetQuantity(quantity int) {
+	c.Quantity = quantity
+	c.require(channelSubscriptionFieldQuantity)
+}
+
+// SetMonthlyCost sets the MonthlyCost field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetMonthlyCost(monthlyCost string) {
+	c.MonthlyCost = monthlyCost
+	c.require(channelSubscriptionFieldMonthlyCost)
+}
+
+// SetCurrency sets the Currency field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetCurrency(currency string) {
+	c.Currency = currency
+	c.require(channelSubscriptionFieldCurrency)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetStatus(status string) {
+	c.Status = status
+	c.require(channelSubscriptionFieldStatus)
+}
+
+// SetLastBillingDate sets the LastBillingDate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetLastBillingDate(lastBillingDate time.Time) {
+	c.LastBillingDate = lastBillingDate
+	c.require(channelSubscriptionFieldLastBillingDate)
+}
+
+// SetNextBillingDate sets the NextBillingDate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetNextBillingDate(nextBillingDate time.Time) {
+	c.NextBillingDate = nextBillingDate
+	c.require(channelSubscriptionFieldNextBillingDate)
+}
+
+// SetPurchasedAt sets the PurchasedAt field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetPurchasedAt(purchasedAt time.Time) {
+	c.PurchasedAt = purchasedAt
+	c.require(channelSubscriptionFieldPurchasedAt)
+}
+
+// SetCancelledAt sets the CancelledAt field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetCancelledAt(cancelledAt *time.Time) {
+	c.CancelledAt = cancelledAt
+	c.require(channelSubscriptionFieldCancelledAt)
+}
+
+// SetCancellationReason sets the CancellationReason field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetCancellationReason(cancellationReason *string) {
+	c.CancellationReason = cancellationReason
+	c.require(channelSubscriptionFieldCancellationReason)
+}
+
+// SetIsActive sets the IsActive field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetIsActive(isActive bool) {
+	c.IsActive = isActive
+	c.require(channelSubscriptionFieldIsActive)
+}
+
+// SetCreatedAt sets the CreatedAt field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetCreatedAt(createdAt time.Time) {
+	c.CreatedAt = createdAt
+	c.require(channelSubscriptionFieldCreatedAt)
+}
+
+// SetUpdatedAt sets the UpdatedAt field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *ChannelSubscription) SetUpdatedAt(updatedAt time.Time) {
+	c.UpdatedAt = updatedAt
+	c.require(channelSubscriptionFieldUpdatedAt)
+}
+
+func (c *ChannelSubscription) UnmarshalJSON(data []byte) error {
+	type embed ChannelSubscription
+	var unmarshaler = struct {
+		embed
+		LastBillingDate *internal.DateTime `json:"last_billing_date"`
+		NextBillingDate *internal.DateTime `json:"next_billing_date"`
+		PurchasedAt     *internal.DateTime `json:"purchased_at"`
+		CancelledAt     *internal.DateTime `json:"cancelled_at,omitempty"`
+		CreatedAt       *internal.DateTime `json:"created_at"`
+		UpdatedAt       *internal.DateTime `json:"updated_at"`
+	}{
+		embed: embed(*c),
+	}
+	if err := json.Unmarshal(data, &unmarshaler); err != nil {
+		return err
+	}
+	*c = ChannelSubscription(unmarshaler.embed)
+	c.LastBillingDate = unmarshaler.LastBillingDate.Time()
+	c.NextBillingDate = unmarshaler.NextBillingDate.Time()
+	c.PurchasedAt = unmarshaler.PurchasedAt.Time()
+	c.CancelledAt = unmarshaler.CancelledAt.TimePtr()
+	c.CreatedAt = unmarshaler.CreatedAt.Time()
+	c.UpdatedAt = unmarshaler.UpdatedAt.Time()
+	extraProperties, err := internal.ExtractExtraProperties(data, *c)
+	if err != nil {
+		return err
+	}
+	c.extraProperties = extraProperties
+	c.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (c *ChannelSubscription) MarshalJSON() ([]byte, error) {
+	type embed ChannelSubscription
+	var marshaler = struct {
+		embed
+		LastBillingDate *internal.DateTime `json:"last_billing_date"`
+		NextBillingDate *internal.DateTime `json:"next_billing_date"`
+		PurchasedAt     *internal.DateTime `json:"purchased_at"`
+		CancelledAt     *internal.DateTime `json:"cancelled_at,omitempty"`
+		CreatedAt       *internal.DateTime `json:"created_at"`
+		UpdatedAt       *internal.DateTime `json:"updated_at"`
+	}{
+		embed:           embed(*c),
+		LastBillingDate: internal.NewDateTime(c.LastBillingDate),
+		NextBillingDate: internal.NewDateTime(c.NextBillingDate),
+		PurchasedAt:     internal.NewDateTime(c.PurchasedAt),
+		CancelledAt:     internal.NewOptionalDateTime(c.CancelledAt),
+		CreatedAt:       internal.NewDateTime(c.CreatedAt),
+		UpdatedAt:       internal.NewDateTime(c.UpdatedAt),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, c.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (c *ChannelSubscription) String() string {
+	if c == nil {
+		return "<nil>"
+	}
+	if len(c.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(c.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(c); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", c)
 }
 
 var (

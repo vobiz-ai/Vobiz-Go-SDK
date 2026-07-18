@@ -86,7 +86,7 @@ func TestConferencesListConferencesWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListConferencesRequest{
 		AuthID: "MA_XXXXXX",
@@ -112,7 +112,7 @@ func TestConferencesDeleteAllConferencesWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.DeleteAllConferencesRequest{
 		AuthID: "MA_XXXXXX",
@@ -138,7 +138,7 @@ func TestConferencesGetConferenceWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetConferenceRequest{
 		AuthID:         "MA_XXXXXX",
@@ -165,7 +165,7 @@ func TestConferencesDeleteConferenceWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.DeleteConferenceRequest{
 		AuthID:         "MA_XXXXXX",

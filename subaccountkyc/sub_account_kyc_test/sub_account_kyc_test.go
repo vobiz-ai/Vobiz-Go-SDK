@@ -86,7 +86,7 @@ func TestSubAccountKycGetSubaccountKycStatusWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetSubaccountKycStatusRequest{
 		SubAuthID: "SA_XXXXXX",
@@ -112,7 +112,7 @@ func TestSubAccountKycVerifySubaccountPanWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.VerifySubaccountPanRequest{
 		SubAuthID: "SA_XXXXXX",
@@ -139,7 +139,7 @@ func TestSubAccountKycVerifySubaccountGstWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.VerifySubaccountGstRequest{
 		SubAuthID: "SA_XXXXXX",
@@ -166,7 +166,7 @@ func TestSubAccountKycSearchSubaccountCinWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.SearchSubaccountCinRequest{
 		SubAuthID:   "SA_XXXXXX",
@@ -193,7 +193,7 @@ func TestSubAccountKycConfirmSubaccountCinWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ConfirmSubaccountCinRequest{
 		SubAuthID:   "SA_XXXXXX",
@@ -221,7 +221,7 @@ func TestSubAccountKycSubaccountDigilockerInitiateWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.SubaccountDigilockerInitiateRequest{
 		SubAuthID:   "SA_XXXXXX",
@@ -248,7 +248,7 @@ func TestSubAccountKycSubaccountDigilockerVerifyWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.SubaccountDigilockerVerifyRequest{
 		SubAuthID:       "SA_XXXXXX",
@@ -275,7 +275,7 @@ func TestSubAccountKycCreateSubaccountKycSessionWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.CreateSubaccountKycSessionRequest{
 		SubAuthID:     "SA_XXXXXX",

@@ -86,7 +86,7 @@ func TestDtmfSendDtmfWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.SendDtmfRequest{
 		AuthID:   "MA_XXXXXX",

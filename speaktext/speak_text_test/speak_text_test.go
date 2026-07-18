@@ -86,7 +86,7 @@ func TestSpeakTextCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.SpeakTextCallRequest{
 		AuthID:   "MA_XXXXXX",
@@ -120,7 +120,7 @@ func TestSpeakTextStopSpeakCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithAPIKey("test-value"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StopSpeakCallRequest{
 		AuthID:   "MA_XXXXXX",
