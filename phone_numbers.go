@@ -435,14 +435,18 @@ func (p *PurchaseFromInventoryRequest) MarshalJSON() ([]byte, error) {
 var (
 	cancelNumberReleaseResponseFieldMessage      = big.NewInt(1 << 0)
 	cancelNumberReleaseResponseFieldStatus       = big.NewInt(1 << 1)
-	cancelNumberReleaseResponseFieldRefundStatus = big.NewInt(1 << 2)
-	cancelNumberReleaseResponseFieldRefundError  = big.NewInt(1 << 3)
+	cancelNumberReleaseResponseFieldCurrency     = big.NewInt(1 << 2)
+	cancelNumberReleaseResponseFieldRefundAmount = big.NewInt(1 << 3)
+	cancelNumberReleaseResponseFieldRefundStatus = big.NewInt(1 << 4)
+	cancelNumberReleaseResponseFieldRefundError  = big.NewInt(1 << 5)
 )
 
 type CancelNumberReleaseResponse struct {
-	Message      string                                  `json:"message" url:"message"`
-	Status       CancelNumberReleaseResponseStatus       `json:"status" url:"status"`
-	RefundStatus CancelNumberReleaseResponseRefundStatus `json:"refund_status" url:"refund_status"`
+	Message      string                                   `json:"message" url:"message"`
+	Status       CancelNumberReleaseResponseStatus        `json:"status" url:"status"`
+	Currency     *string                                  `json:"currency,omitempty" url:"currency,omitempty"`
+	RefundAmount *float64                                 `json:"refund_amount,omitempty" url:"refund_amount,omitempty"`
+	RefundStatus *CancelNumberReleaseResponseRefundStatus `json:"refund_status,omitempty" url:"refund_status,omitempty"`
 	// Present when the refund could not be processed.
 	RefundError *string `json:"refund_error,omitempty" url:"refund_error,omitempty"`
 
@@ -467,9 +471,23 @@ func (c *CancelNumberReleaseResponse) GetStatus() CancelNumberReleaseResponseSta
 	return c.Status
 }
 
-func (c *CancelNumberReleaseResponse) GetRefundStatus() CancelNumberReleaseResponseRefundStatus {
+func (c *CancelNumberReleaseResponse) GetCurrency() *string {
 	if c == nil {
-		return ""
+		return nil
+	}
+	return c.Currency
+}
+
+func (c *CancelNumberReleaseResponse) GetRefundAmount() *float64 {
+	if c == nil {
+		return nil
+	}
+	return c.RefundAmount
+}
+
+func (c *CancelNumberReleaseResponse) GetRefundStatus() *CancelNumberReleaseResponseRefundStatus {
+	if c == nil {
+		return nil
 	}
 	return c.RefundStatus
 }
@@ -509,9 +527,23 @@ func (c *CancelNumberReleaseResponse) SetStatus(status CancelNumberReleaseRespon
 	c.require(cancelNumberReleaseResponseFieldStatus)
 }
 
+// SetCurrency sets the Currency field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseResponse) SetCurrency(currency *string) {
+	c.Currency = currency
+	c.require(cancelNumberReleaseResponseFieldCurrency)
+}
+
+// SetRefundAmount sets the RefundAmount field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseResponse) SetRefundAmount(refundAmount *float64) {
+	c.RefundAmount = refundAmount
+	c.require(cancelNumberReleaseResponseFieldRefundAmount)
+}
+
 // SetRefundStatus sets the RefundStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CancelNumberReleaseResponse) SetRefundStatus(refundStatus CancelNumberReleaseResponseRefundStatus) {
+func (c *CancelNumberReleaseResponse) SetRefundStatus(refundStatus *CancelNumberReleaseResponseRefundStatus) {
 	c.RefundStatus = refundStatus
 	c.require(cancelNumberReleaseResponseFieldRefundStatus)
 }
@@ -2610,6 +2642,178 @@ func (l *ListNumbersResponseItemsItemCapabilities) String() string {
 }
 
 var (
+	unrentNumberResponseFieldCancelURL      = big.NewInt(1 << 0)
+	unrentNumberResponseFieldCooldownEndsAt = big.NewInt(1 << 1)
+	unrentNumberResponseFieldMessage        = big.NewInt(1 << 2)
+	unrentNumberResponseFieldNote           = big.NewInt(1 << 3)
+	unrentNumberResponseFieldReleaseFee     = big.NewInt(1 << 4)
+	unrentNumberResponseFieldStatus         = big.NewInt(1 << 5)
+)
+
+type UnrentNumberResponse struct {
+	CancelURL      string    `json:"cancel_url" url:"cancel_url"`
+	CooldownEndsAt time.Time `json:"cooldown_ends_at" url:"cooldown_ends_at"`
+	Message        string    `json:"message" url:"message"`
+	Note           *string   `json:"note,omitempty" url:"note,omitempty"`
+	ReleaseFee     float64   `json:"release_fee" url:"release_fee"`
+	Status         string    `json:"status" url:"status"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (u *UnrentNumberResponse) GetCancelURL() string {
+	if u == nil {
+		return ""
+	}
+	return u.CancelURL
+}
+
+func (u *UnrentNumberResponse) GetCooldownEndsAt() time.Time {
+	if u == nil {
+		return time.Time{}
+	}
+	return u.CooldownEndsAt
+}
+
+func (u *UnrentNumberResponse) GetMessage() string {
+	if u == nil {
+		return ""
+	}
+	return u.Message
+}
+
+func (u *UnrentNumberResponse) GetNote() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Note
+}
+
+func (u *UnrentNumberResponse) GetReleaseFee() float64 {
+	if u == nil {
+		return 0
+	}
+	return u.ReleaseFee
+}
+
+func (u *UnrentNumberResponse) GetStatus() string {
+	if u == nil {
+		return ""
+	}
+	return u.Status
+}
+
+func (u *UnrentNumberResponse) GetExtraProperties() map[string]interface{} {
+	if u == nil {
+		return nil
+	}
+	return u.extraProperties
+}
+
+func (u *UnrentNumberResponse) require(field *big.Int) {
+	if u.explicitFields == nil {
+		u.explicitFields = big.NewInt(0)
+	}
+	u.explicitFields.Or(u.explicitFields, field)
+}
+
+// SetCancelURL sets the CancelURL field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberResponse) SetCancelURL(cancelURL string) {
+	u.CancelURL = cancelURL
+	u.require(unrentNumberResponseFieldCancelURL)
+}
+
+// SetCooldownEndsAt sets the CooldownEndsAt field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberResponse) SetCooldownEndsAt(cooldownEndsAt time.Time) {
+	u.CooldownEndsAt = cooldownEndsAt
+	u.require(unrentNumberResponseFieldCooldownEndsAt)
+}
+
+// SetMessage sets the Message field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberResponse) SetMessage(message string) {
+	u.Message = message
+	u.require(unrentNumberResponseFieldMessage)
+}
+
+// SetNote sets the Note field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberResponse) SetNote(note *string) {
+	u.Note = note
+	u.require(unrentNumberResponseFieldNote)
+}
+
+// SetReleaseFee sets the ReleaseFee field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberResponse) SetReleaseFee(releaseFee float64) {
+	u.ReleaseFee = releaseFee
+	u.require(unrentNumberResponseFieldReleaseFee)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberResponse) SetStatus(status string) {
+	u.Status = status
+	u.require(unrentNumberResponseFieldStatus)
+}
+
+func (u *UnrentNumberResponse) UnmarshalJSON(data []byte) error {
+	type embed UnrentNumberResponse
+	var unmarshaler = struct {
+		embed
+		CooldownEndsAt *internal.DateTime `json:"cooldown_ends_at"`
+	}{
+		embed: embed(*u),
+	}
+	if err := json.Unmarshal(data, &unmarshaler); err != nil {
+		return err
+	}
+	*u = UnrentNumberResponse(unmarshaler.embed)
+	u.CooldownEndsAt = unmarshaler.CooldownEndsAt.Time()
+	extraProperties, err := internal.ExtractExtraProperties(data, *u)
+	if err != nil {
+		return err
+	}
+	u.extraProperties = extraProperties
+	u.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (u *UnrentNumberResponse) MarshalJSON() ([]byte, error) {
+	type embed UnrentNumberResponse
+	var marshaler = struct {
+		embed
+		CooldownEndsAt *internal.DateTime `json:"cooldown_ends_at"`
+	}{
+		embed:          embed(*u),
+		CooldownEndsAt: internal.NewDateTime(u.CooldownEndsAt),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, u.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (u *UnrentNumberResponse) String() string {
+	if u == nil {
+		return "<nil>"
+	}
+	if len(u.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(u.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(u); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", u)
+}
+
+var (
 	unassignDidFromSubaccountRequestFieldAuthID = big.NewInt(1 << 0)
 	unassignDidFromSubaccountRequestFieldE164   = big.NewInt(1 << 1)
 	unassignDidFromSubaccountRequestFieldForce  = big.NewInt(1 << 2)
@@ -2701,7 +2905,7 @@ var (
 type UnrentNumberRequest struct {
 	// Your account Auth ID
 	AuthID string `json:"-" url:"-"`
-	// Phone number in E.164 format (without the +)
+	// The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
 	E164 string `json:"-" url:"-"`
 	// Skip the 24-hour cooldown and release the number immediately.
 	Immediate *bool `json:"-" url:"immediate,omitempty"`

@@ -59,22 +59,22 @@ func (c *Client) UnrentNumber(
 	ctx context.Context,
 	request *vobiz.UnrentNumberRequest,
 	opts ...option.RequestOption,
-) error {
-	_, err := c.WithRawResponse.UnrentNumber(
+) (*vobiz.UnrentNumberResponse, error) {
+	response, err := c.WithRawResponse.UnrentNumber(
 		ctx,
 		request,
 		opts...,
 	)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return response.Body, nil
 }
 
 // Cancel a pending number release during the 24-hour cooldown. The number is
 // restored to `active`, the cooldown timer is cleared, and the release fee is
-// refunded. Any trunk or voice application detached by the release is not
-// re-attached automatically.
+// refunded in full to the account balance. Any trunk or voice application
+// detached by the release is not re-attached automatically.
 func (c *Client) CancelNumberRelease(
 	ctx context.Context,
 	request *vobiz.CancelNumberReleaseRequest,

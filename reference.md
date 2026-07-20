@@ -3143,7 +3143,7 @@ client.PhoneNumbers.ListNumbers(
 </dl>
 </details>
 
-<details><summary><code>client.PhoneNumbers.UnrentNumber(AuthID, E164) -> error</code></summary>
+<details><summary><code>client.PhoneNumbers.UnrentNumber(AuthID, E164) -> *vobiz.UnrentNumberResponse</code></summary>
 <dl>
 <dd>
 
@@ -3175,7 +3175,7 @@ cannot be cancelled.
 ```go
 request := &vobiz.UnrentNumberRequest{
         AuthID: "MA_XXXXXX",
-        E164: "919876543210",
+        E164: "%2B919876543210",
     }
 client.PhoneNumbers.UnrentNumber(
         context.TODO(),
@@ -3204,7 +3204,7 @@ client.PhoneNumbers.UnrentNumber(
 <dl>
 <dd>
 
-**e164:** `string` — Phone number in E.164 format (without the +)
+**e164:** `string` — The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
     
 </dd>
 </dl>
@@ -3238,8 +3238,8 @@ client.PhoneNumbers.UnrentNumber(
 
 Cancel a pending number release during the 24-hour cooldown. The number is
 restored to `active`, the cooldown timer is cleared, and the release fee is
-refunded. Any trunk or voice application detached by the release is not
-re-attached automatically.
+refunded in full to the account balance. Any trunk or voice application
+detached by the release is not re-attached automatically.
 </dd>
 </dl>
 </dd>

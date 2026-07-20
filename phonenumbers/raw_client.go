@@ -87,7 +87,7 @@ func (r *RawClient) UnrentNumber(
 	ctx context.Context,
 	request *vobiz.UnrentNumberRequest,
 	opts ...option.RequestOption,
-) (*core.Response[any], error) {
+) (*core.Response[*vobiz.UnrentNumberResponse], error) {
 	options := core.NewRequestOptions(opts...)
 	baseURL := internal.ResolveBaseURL(
 		options.BaseURL,
@@ -110,6 +110,7 @@ func (r *RawClient) UnrentNumber(
 		r.options.ToHeader(),
 		options.ToHeader(),
 	)
+	var response *vobiz.UnrentNumberResponse
 	raw, err := r.caller.Call(
 		ctx,
 		&internal.CallParams{
@@ -121,15 +122,16 @@ func (r *RawClient) UnrentNumber(
 			BodyProperties:  options.BodyProperties,
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
+			Response:        &response,
 		},
 	)
 	if err != nil {
 		return nil, err
 	}
-	return &core.Response[any]{
+	return &core.Response[*vobiz.UnrentNumberResponse]{
 		StatusCode: raw.StatusCode,
 		Header:     raw.Header,
-		Body:       nil,
+		Body:       response,
 	}, nil
 }
 

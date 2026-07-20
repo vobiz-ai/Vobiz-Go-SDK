@@ -119,9 +119,9 @@ func TestPhoneNumbersUnrentNumberWithWireMock(
 	)
 	request := &vobiz.UnrentNumberRequest{
 		AuthID: "MA_XXXXXX",
-		E164:   "919876543210",
+		E164:   "%2B919876543210",
 	}
-	invocationErr := client.PhoneNumbers.UnrentNumber(
+	_, invocationErr := client.PhoneNumbers.UnrentNumber(
 		context.TODO(),
 		request,
 		option.WithHTTPHeader(
@@ -130,7 +130,7 @@ func TestPhoneNumbersUnrentNumberWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestPhoneNumbersUnrentNumberWithWireMock", "DELETE", "/api/v1/Account/MA_XXXXXX/numbers/919876543210", nil, 1)
+	VerifyRequestCount(t, "TestPhoneNumbersUnrentNumberWithWireMock", "DELETE", "/api/v1/Account/MA_XXXXXX/numbers/%2B919876543210", nil, 1)
 }
 
 func TestPhoneNumbersCancelNumberReleaseWithWireMock(
