@@ -86,7 +86,7 @@ func TestPartnerAPIGetPartnerProfileWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	_, invocationErr := client.PartnerAPI.GetPartnerProfile(
 		context.TODO(),
@@ -108,7 +108,7 @@ func TestPartnerAPIGetPartnerDashboardWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	_, invocationErr := client.PartnerAPI.GetPartnerDashboard(
 		context.TODO(),
@@ -130,7 +130,7 @@ func TestPartnerAPIListCustomerAccountsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListCustomerAccountsRequest{}
 	_, invocationErr := client.PartnerAPI.ListCustomerAccounts(
@@ -154,7 +154,7 @@ func TestPartnerAPICreateCustomerAccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.CreateCustomerAccountRequest{
 		Name:     "John Doe",
@@ -184,7 +184,7 @@ func TestPartnerAPIPartnerTransferBalanceWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.PartnerTransferBalanceRequest{
 		CustomerAuthID: "MA_ZKITB8Z2",
@@ -212,7 +212,7 @@ func TestPartnerAPIListCustomerTransactionsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListCustomerTransactionsRequest{
 		CustomerAuthID: "customer_auth_id",
@@ -248,7 +248,7 @@ func TestPartnerAPIListCustomerCdrsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListCustomerCdrsRequest{
 		CustomerAuthID: "customer_auth_id",
@@ -277,7 +277,7 @@ func TestPartnerAPIListCustomerNumbersWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListCustomerNumbersRequest{
 		CustomerAuthID: "customer_auth_id",
@@ -303,7 +303,7 @@ func TestPartnerAPIListKycSessionsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListKycSessionsRequest{}
 	_, invocationErr := client.PartnerAPI.ListKycSessions(
@@ -327,7 +327,7 @@ func TestPartnerAPICreateKycSessionWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.CreateKycSessionRequest{
 		AccountAuthID: "MA_ZKITB8Z2",
@@ -353,7 +353,7 @@ func TestPartnerAPIGetKycSessionWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetKycSessionRequest{
 		SessionID: "session_id",
@@ -379,7 +379,7 @@ func TestPartnerAPIRevokeKycSessionWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.RevokeKycSessionRequest{
 		SessionID: "session_id",
@@ -405,7 +405,7 @@ func TestPartnerAPIResendKycSessionWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ResendKycSessionRequest{
 		SessionID: "session_id",

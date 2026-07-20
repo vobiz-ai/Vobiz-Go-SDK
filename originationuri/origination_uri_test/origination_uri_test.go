@@ -86,7 +86,7 @@ func TestOriginationURICreateOriginationURIWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.CreateOriginationURIRequest{
 		AuthID:   "MA_XXXXXX",
@@ -115,7 +115,7 @@ func TestOriginationURIListOriginationURIsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListOriginationURIsRequest{
 		AuthID: "MA_XXXXXX",
@@ -141,7 +141,7 @@ func TestOriginationURIUpdateOriginationURIWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UpdateOriginationURIRequest{
 		AuthID:   "MA_XXXXXX",
@@ -170,7 +170,7 @@ func TestOriginationURIDeleteOriginationURIWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.DeleteOriginationURIRequest{
 		AuthID: "MA_XXXXXX",

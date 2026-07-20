@@ -86,7 +86,7 @@ func TestTrunksListTrunksWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListTrunksRequest{
 		AuthID: "MA_XXXXXX",
@@ -112,7 +112,7 @@ func TestTrunksCreateTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.CreateTrunkRequest{
 		AuthID:         "MA_XXXXXX",
@@ -163,7 +163,7 @@ func TestTrunksRetrieveTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.RetrieveTrunkRequest{
 		AuthID:  "MA_XXXXXX",
@@ -190,7 +190,7 @@ func TestTrunksUpdateTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UpdateTrunkRequest{
 		AuthID:  "MA_XXXXXX",
@@ -217,7 +217,7 @@ func TestTrunksDeleteTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.DeleteTrunkRequest{
 		AuthID:  "MA_XXXXXX",

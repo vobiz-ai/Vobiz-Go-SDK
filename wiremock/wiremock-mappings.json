@@ -8,7 +8,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -40,7 +40,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -76,7 +76,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -120,7 +120,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -156,7 +156,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -195,7 +195,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -231,7 +231,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -272,7 +272,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -313,7 +313,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -357,7 +357,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -396,7 +396,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -440,7 +440,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -476,7 +476,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -544,7 +544,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -612,7 +612,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -653,7 +653,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -692,7 +692,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -728,7 +728,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -764,7 +764,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -803,7 +803,7 @@
         "method": "PUT",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -842,7 +842,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -881,7 +881,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -917,7 +917,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -953,7 +953,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -989,7 +989,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1025,7 +1025,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1061,7 +1061,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1097,7 +1097,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1133,7 +1133,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1169,7 +1169,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1205,7 +1205,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1241,7 +1241,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1277,7 +1277,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1313,7 +1313,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1349,7 +1349,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1385,7 +1385,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1421,7 +1421,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1462,7 +1462,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1501,7 +1501,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1540,7 +1540,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1584,7 +1584,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1620,7 +1620,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1659,7 +1659,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1698,7 +1698,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1742,7 +1742,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1781,7 +1781,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1825,7 +1825,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1861,7 +1861,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1897,7 +1897,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1936,7 +1936,7 @@
         "method": "PUT",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -1975,7 +1975,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2014,7 +2014,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2056,7 +2056,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2098,7 +2098,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2140,7 +2140,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2182,7 +2182,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2224,7 +2224,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2266,7 +2266,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2305,7 +2305,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2344,7 +2344,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2383,7 +2383,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2422,7 +2422,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2461,7 +2461,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2500,7 +2500,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2539,7 +2539,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2578,7 +2578,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2617,7 +2617,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2659,7 +2659,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2701,7 +2701,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2737,7 +2737,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2773,7 +2773,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2812,7 +2812,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2851,7 +2851,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2893,7 +2893,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2935,7 +2935,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -2974,7 +2974,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3013,7 +3013,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3049,7 +3049,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3088,7 +3088,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3127,7 +3127,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3163,7 +3163,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3199,7 +3199,7 @@
         "method": "PUT",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3238,7 +3238,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3277,7 +3277,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3313,7 +3313,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3349,7 +3349,7 @@
         "method": "PUT",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3388,7 +3388,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3427,7 +3427,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3463,7 +3463,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3499,7 +3499,7 @@
         "method": "PUT",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3538,7 +3538,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3577,7 +3577,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3613,7 +3613,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3649,7 +3649,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3688,7 +3688,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3727,7 +3727,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3766,7 +3766,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3802,7 +3802,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3838,7 +3838,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3877,7 +3877,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3916,7 +3916,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -3955,7 +3955,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -3987,7 +3987,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4019,7 +4019,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4051,7 +4051,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4082,7 +4082,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4118,7 +4118,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4162,7 +4162,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4203,7 +4203,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4239,7 +4239,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4271,7 +4271,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         }
       },
@@ -4302,7 +4302,7 @@
         "method": "GET",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4338,7 +4338,7 @@
         "method": "DELETE",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {
@@ -4374,7 +4374,7 @@
         "method": "POST",
         "headers": {
           "Authorization": {
-            "equalTo": "Basic dGVzdC11c2VybmFtZTp0ZXN0LXBhc3N3b3Jk"
+            "matches": "Bearer .+"
           }
         },
         "pathParameters": {

@@ -86,7 +86,7 @@ func TestPlayAudioCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.PlayAudioCallRequest{
 		AuthID:   "MA_XXXXXX",
@@ -115,7 +115,7 @@ func TestPlayAudioStopAudioCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StopAudioCallRequest{
 		AuthID:   "MA_XXXXXX",

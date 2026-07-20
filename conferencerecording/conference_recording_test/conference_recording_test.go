@@ -86,7 +86,7 @@ func TestConferenceRecordingStartConferenceRecordingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StartConferenceRecordingRequest{
 		AuthID:         "MA_XXXXXX",
@@ -113,7 +113,7 @@ func TestConferenceRecordingStopConferenceRecordingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StopConferenceRecordingRequest{
 		AuthID:         "MA_XXXXXX",

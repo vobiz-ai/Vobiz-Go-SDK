@@ -86,7 +86,7 @@ func TestConferenceKickMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.KickMemberRequest{
 		AuthID:         "MA_XXXXXX",
@@ -114,7 +114,7 @@ func TestConferenceHangupMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.HangupMemberRequest{
 		AuthID:         "MA_XXXXXX",
@@ -142,7 +142,7 @@ func TestConferencePlayAudioMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.PlayAudioMemberRequest{
 		AuthID:         "MA_XXXXXX",
@@ -171,7 +171,7 @@ func TestConferenceStopAudioMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StopAudioMemberRequest{
 		AuthID:         "MA_XXXXXX",
@@ -199,7 +199,7 @@ func TestConferenceDeafMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.DeafMemberRequest{
 		AuthID:         "MA_XXXXXX",
@@ -227,7 +227,7 @@ func TestConferenceUndeafMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.UndeafMemberRequest{
 		AuthID:         "MA_XXXXXX",

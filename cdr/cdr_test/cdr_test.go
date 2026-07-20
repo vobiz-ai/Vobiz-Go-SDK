@@ -86,7 +86,7 @@ func TestCdrListCdrsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListCdrsRequest{
 		AuthID: "MA_XXXXXX",
@@ -146,7 +146,7 @@ func TestCdrSearchCdrsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.SearchCdrsRequest{
 		AuthID: "MA_XXXXXX",
@@ -206,7 +206,7 @@ func TestCdrListRecentCdrsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListRecentCdrsRequest{
 		AuthID: "MA_XXXXXX",
@@ -235,7 +235,7 @@ func TestCdrGetCdrWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetCdrRequest{
 		AuthID: "MA_XXXXXX",

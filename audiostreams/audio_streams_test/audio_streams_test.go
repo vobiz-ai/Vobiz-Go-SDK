@@ -86,7 +86,7 @@ func TestAudioStreamsListStreamsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.ListStreamsRequest{
 		AuthID:   "MA_XXXXXX",
@@ -113,7 +113,7 @@ func TestAudioStreamsStartStreamWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StartStreamRequest{
 		AuthID:     "MA_XXXXXX",
@@ -145,7 +145,7 @@ func TestAudioStreamsGetStreamWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.GetStreamRequest{
 		AuthID:   "MA_XXXXXX",
@@ -173,7 +173,7 @@ func TestAudioStreamsStopStreamWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithBasicAuth("test-username", "test-password"),
+		option.WithToken("test-token"),
 	)
 	request := &vobiz.StopStreamRequest{
 		AuthID:   "MA_XXXXXX",
