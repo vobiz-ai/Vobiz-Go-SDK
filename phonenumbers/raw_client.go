@@ -99,6 +99,13 @@ func (r *RawClient) UnrentNumber(
 		request.AuthID,
 		request.E164,
 	)
+	queryParams, err := internal.QueryValues(request)
+	if err != nil {
+		return nil, err
+	}
+	if len(queryParams) > 0 {
+		endpointURL += "?" + queryParams.Encode()
+	}
 	headers := internal.MergeHeaders(
 		r.options.ToHeader(),
 		options.ToHeader(),
@@ -123,6 +130,52 @@ func (r *RawClient) UnrentNumber(
 		StatusCode: raw.StatusCode,
 		Header:     raw.Header,
 		Body:       nil,
+	}, nil
+}
+
+func (r *RawClient) CancelNumberRelease(
+	ctx context.Context,
+	request *vobiz.CancelNumberReleaseRequest,
+	opts ...option.RequestOption,
+) (*core.Response[*vobiz.CancelNumberReleaseResponse], error) {
+	options := core.NewRequestOptions(opts...)
+	baseURL := internal.ResolveBaseURL(
+		options.BaseURL,
+		r.baseURL,
+		"https://api.vobiz.ai",
+	)
+	endpointURL := internal.EncodeURL(
+		baseURL+"/api/v1/account/%v/numbers/%v/cancel-release",
+		request.AccountID,
+		request.E164,
+	)
+	headers := internal.MergeHeaders(
+		r.options.ToHeader(),
+		options.ToHeader(),
+	)
+	var response *vobiz.CancelNumberReleaseResponse
+	raw, err := r.caller.Call(
+		ctx,
+		&internal.CallParams{
+			URL:             endpointURL,
+			Method:          http.MethodPost,
+			Headers:         headers,
+			MaxAttempts:     options.MaxAttempts,
+			DisableRetries:  options.DisableRetries,
+			BodyProperties:  options.BodyProperties,
+			QueryParameters: options.QueryParameters,
+			Client:          options.HTTPClient,
+			Response:        &response,
+			ErrorDecoder:    internal.NewErrorDecoder(vobiz.ErrorCodes),
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+	return &core.Response[*vobiz.CancelNumberReleaseResponse]{
+		StatusCode: raw.StatusCode,
+		Header:     raw.Header,
+		Body:       response,
 	}, nil
 }
 

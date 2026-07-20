@@ -144,6 +144,42 @@ func (a *AssignNumberToTrunkRequest) MarshalJSON() ([]byte, error) {
 }
 
 var (
+	cancelNumberReleaseRequestFieldAccountID = big.NewInt(1 << 0)
+	cancelNumberReleaseRequestFieldE164      = big.NewInt(1 << 1)
+)
+
+type CancelNumberReleaseRequest struct {
+	// Your account Auth ID.
+	AccountID string `json:"-" url:"-"`
+	// The URL-encoded phone number in E.164 format. Encode `+` as `%2B`.
+	E164 string `json:"-" url:"-"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (c *CancelNumberReleaseRequest) require(field *big.Int) {
+	if c.explicitFields == nil {
+		c.explicitFields = big.NewInt(0)
+	}
+	c.explicitFields.Or(c.explicitFields, field)
+}
+
+// SetAccountID sets the AccountID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseRequest) SetAccountID(accountID string) {
+	c.AccountID = accountID
+	c.require(cancelNumberReleaseRequestFieldAccountID)
+}
+
+// SetE164 sets the E164 field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseRequest) SetE164(e164 string) {
+	c.E164 = e164
+	c.require(cancelNumberReleaseRequestFieldE164)
+}
+
+var (
 	getNumberHealthRequestFieldAuthID      = big.NewInt(1 << 0)
 	getNumberHealthRequestFieldE164        = big.NewInt(1 << 1)
 	getNumberHealthRequestFieldGranularity = big.NewInt(1 << 2)
@@ -394,6 +430,180 @@ func (p *PurchaseFromInventoryRequest) MarshalJSON() ([]byte, error) {
 	}
 	explicitMarshaler := internal.HandleExplicitFields(marshaler, p.explicitFields)
 	return json.Marshal(explicitMarshaler)
+}
+
+var (
+	cancelNumberReleaseResponseFieldMessage      = big.NewInt(1 << 0)
+	cancelNumberReleaseResponseFieldStatus       = big.NewInt(1 << 1)
+	cancelNumberReleaseResponseFieldRefundStatus = big.NewInt(1 << 2)
+	cancelNumberReleaseResponseFieldRefundError  = big.NewInt(1 << 3)
+)
+
+type CancelNumberReleaseResponse struct {
+	Message      string                                  `json:"message" url:"message"`
+	Status       CancelNumberReleaseResponseStatus       `json:"status" url:"status"`
+	RefundStatus CancelNumberReleaseResponseRefundStatus `json:"refund_status" url:"refund_status"`
+	// Present when the refund could not be processed.
+	RefundError *string `json:"refund_error,omitempty" url:"refund_error,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (c *CancelNumberReleaseResponse) GetMessage() string {
+	if c == nil {
+		return ""
+	}
+	return c.Message
+}
+
+func (c *CancelNumberReleaseResponse) GetStatus() CancelNumberReleaseResponseStatus {
+	if c == nil {
+		return ""
+	}
+	return c.Status
+}
+
+func (c *CancelNumberReleaseResponse) GetRefundStatus() CancelNumberReleaseResponseRefundStatus {
+	if c == nil {
+		return ""
+	}
+	return c.RefundStatus
+}
+
+func (c *CancelNumberReleaseResponse) GetRefundError() *string {
+	if c == nil {
+		return nil
+	}
+	return c.RefundError
+}
+
+func (c *CancelNumberReleaseResponse) GetExtraProperties() map[string]interface{} {
+	if c == nil {
+		return nil
+	}
+	return c.extraProperties
+}
+
+func (c *CancelNumberReleaseResponse) require(field *big.Int) {
+	if c.explicitFields == nil {
+		c.explicitFields = big.NewInt(0)
+	}
+	c.explicitFields.Or(c.explicitFields, field)
+}
+
+// SetMessage sets the Message field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseResponse) SetMessage(message string) {
+	c.Message = message
+	c.require(cancelNumberReleaseResponseFieldMessage)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseResponse) SetStatus(status CancelNumberReleaseResponseStatus) {
+	c.Status = status
+	c.require(cancelNumberReleaseResponseFieldStatus)
+}
+
+// SetRefundStatus sets the RefundStatus field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseResponse) SetRefundStatus(refundStatus CancelNumberReleaseResponseRefundStatus) {
+	c.RefundStatus = refundStatus
+	c.require(cancelNumberReleaseResponseFieldRefundStatus)
+}
+
+// SetRefundError sets the RefundError field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CancelNumberReleaseResponse) SetRefundError(refundError *string) {
+	c.RefundError = refundError
+	c.require(cancelNumberReleaseResponseFieldRefundError)
+}
+
+func (c *CancelNumberReleaseResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler CancelNumberReleaseResponse
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*c = CancelNumberReleaseResponse(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *c)
+	if err != nil {
+		return err
+	}
+	c.extraProperties = extraProperties
+	c.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (c *CancelNumberReleaseResponse) MarshalJSON() ([]byte, error) {
+	type embed CancelNumberReleaseResponse
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*c),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, c.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (c *CancelNumberReleaseResponse) String() string {
+	if c == nil {
+		return "<nil>"
+	}
+	if len(c.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(c.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(c); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", c)
+}
+
+type CancelNumberReleaseResponseRefundStatus string
+
+const (
+	CancelNumberReleaseResponseRefundStatusSuccess CancelNumberReleaseResponseRefundStatus = "success"
+	CancelNumberReleaseResponseRefundStatusFailed  CancelNumberReleaseResponseRefundStatus = "failed"
+)
+
+func NewCancelNumberReleaseResponseRefundStatusFromString(s string) (CancelNumberReleaseResponseRefundStatus, error) {
+	switch s {
+	case "success":
+		return CancelNumberReleaseResponseRefundStatusSuccess, nil
+	case "failed":
+		return CancelNumberReleaseResponseRefundStatusFailed, nil
+	}
+	var t CancelNumberReleaseResponseRefundStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CancelNumberReleaseResponseRefundStatus) Ptr() *CancelNumberReleaseResponseRefundStatus {
+	return &c
+}
+
+type CancelNumberReleaseResponseStatus string
+
+const (
+	CancelNumberReleaseResponseStatusActive CancelNumberReleaseResponseStatus = "active"
+)
+
+func NewCancelNumberReleaseResponseStatusFromString(s string) (CancelNumberReleaseResponseStatus, error) {
+	switch s {
+	case "active":
+		return CancelNumberReleaseResponseStatusActive, nil
+	}
+	var t CancelNumberReleaseResponseStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CancelNumberReleaseResponseStatus) Ptr() *CancelNumberReleaseResponseStatus {
+	return &c
 }
 
 type GetNumberHealthRequestGranularity string
@@ -2483,8 +2693,9 @@ func (u *UnassignNumberFromTrunkRequest) SetPhoneNumber(phoneNumber string) {
 }
 
 var (
-	unrentNumberRequestFieldAuthID = big.NewInt(1 << 0)
-	unrentNumberRequestFieldE164   = big.NewInt(1 << 1)
+	unrentNumberRequestFieldAuthID    = big.NewInt(1 << 0)
+	unrentNumberRequestFieldE164      = big.NewInt(1 << 1)
+	unrentNumberRequestFieldImmediate = big.NewInt(1 << 2)
 )
 
 type UnrentNumberRequest struct {
@@ -2492,6 +2703,8 @@ type UnrentNumberRequest struct {
 	AuthID string `json:"-" url:"-"`
 	// Phone number in E.164 format (without the +)
 	E164 string `json:"-" url:"-"`
+	// Skip the 24-hour cooldown and release the number immediately.
+	Immediate *bool `json:"-" url:"immediate,omitempty"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -2516,4 +2729,11 @@ func (u *UnrentNumberRequest) SetAuthID(authID string) {
 func (u *UnrentNumberRequest) SetE164(e164 string) {
 	u.E164 = e164
 	u.require(unrentNumberRequestFieldE164)
+}
+
+// SetImmediate sets the Immediate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnrentNumberRequest) SetImmediate(immediate *bool) {
+	u.Immediate = immediate
+	u.require(unrentNumberRequestFieldImmediate)
 }

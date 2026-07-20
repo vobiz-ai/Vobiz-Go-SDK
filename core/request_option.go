@@ -3,6 +3,7 @@
 package core
 
 import (
+	base64 "encoding/base64"
 	fmt "fmt"
 	http "net/http"
 	url "net/url"
@@ -28,8 +29,8 @@ type RequestOptions struct {
 	MaxStreamReconnectAttempts uint
 	DisableStreamReconnection  bool
 	DisableRetries             bool
-	Token                      string
-	TokenFunc                  func() (string, error)
+	Username                   string
+	Password                   string
 	AuthID                     string
 	AuthToken                  string
 }
@@ -54,12 +55,8 @@ func NewRequestOptions(opts ...RequestOption) *RequestOptions {
 // for the request(s).
 func (r *RequestOptions) ToHeader() http.Header {
 	header := r.cloneHeader()
-	if r.Token != "" {
-		header.Set("Authorization", "Bearer "+r.Token)
-	} else if r.TokenFunc != nil {
-		if token, err := r.TokenFunc(); err == nil && token != "" {
-			header.Set("Authorization", "Bearer "+token)
-		}
+	if r.Username != "" || r.Password != "" {
+		header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(r.Username+":"+r.Password)))
 	}
 	header.Set("X-Auth-ID", fmt.Sprintf("%v", r.AuthID))
 	header.Set("X-Auth-Token", fmt.Sprintf("%v", r.AuthToken))
@@ -156,22 +153,15 @@ func (w *WithoutRetriesOption) applyRequestOptions(opts *RequestOptions) {
 	opts.DisableRetries = true
 }
 
-// TokenOption implements the RequestOption interface.
-type TokenOption struct {
-	Token string
+// BasicAuthOption implements the RequestOption interface.
+type BasicAuthOption struct {
+	Username string
+	Password string
 }
 
-func (t *TokenOption) applyRequestOptions(opts *RequestOptions) {
-	opts.Token = t.Token
-}
-
-// TokenFuncOption implements the RequestOption interface.
-type TokenFuncOption struct {
-	TokenFunc func() (string, error)
-}
-
-func (t *TokenFuncOption) applyRequestOptions(opts *RequestOptions) {
-	opts.TokenFunc = t.TokenFunc
+func (b *BasicAuthOption) applyRequestOptions(opts *RequestOptions) {
+	opts.Username = b.Username
+	opts.Password = b.Password
 }
 
 // AuthIDOption implements the RequestOption interface.

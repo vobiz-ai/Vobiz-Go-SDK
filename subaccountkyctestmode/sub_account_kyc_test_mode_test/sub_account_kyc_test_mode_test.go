@@ -86,7 +86,7 @@ func TestSubAccountKycTestModeMockVerifySubaccountPanWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockVerifySubaccountPanRequest{
 		SubAuthID: "SA_XXXXXX",
@@ -113,7 +113,7 @@ func TestSubAccountKycTestModeMockVerifySubaccountGstWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockVerifySubaccountGstRequest{
 		SubAuthID: "SA_XXXXXX",
@@ -140,7 +140,7 @@ func TestSubAccountKycTestModeMockSearchSubaccountCinWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockSearchSubaccountCinRequest{
 		SubAuthID:   "SA_XXXXXX",
@@ -167,7 +167,7 @@ func TestSubAccountKycTestModeMockConfirmSubaccountCinWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockConfirmSubaccountCinRequest{
 		SubAuthID:   "SA_XXXXXX",
@@ -195,7 +195,7 @@ func TestSubAccountKycTestModeMockSubaccountDigilockerInitiateWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockSubaccountDigilockerInitiateRequest{
 		SubAuthID:   "SA_XXXXXX",
@@ -222,7 +222,7 @@ func TestSubAccountKycTestModeMockSubaccountDigilockerVerifyWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockSubaccountDigilockerVerifyRequest{
 		SubAuthID:       "SA_XXXXXX",
@@ -249,7 +249,7 @@ func TestSubAccountKycTestModeMockFinalizePendingKycWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MockFinalizePendingKycRequest{
 		SubAuthID:        "SA_XXXXXX",

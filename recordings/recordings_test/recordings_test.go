@@ -86,7 +86,7 @@ func TestRecordingsListRecordingsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ListRecordingsRequest{
 		AuthID: "MA_XXXXXX",
@@ -112,7 +112,7 @@ func TestRecordingsGetRecordingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.GetRecordingRequest{
 		AuthID:      "MA_XXXXXX",
@@ -139,7 +139,7 @@ func TestRecordingsDeleteRecordingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.DeleteRecordingRequest{
 		AuthID:      "MA_XXXXXX",

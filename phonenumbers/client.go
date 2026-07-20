@@ -51,7 +51,10 @@ func (c *Client) ListNumbers(
 	return response.Body, nil
 }
 
-// Release a phone number from your account.
+// Release a phone number from your account. By default, the number enters
+// `pending_release` for a 24-hour cooldown. You can cancel the release during
+// that window. Set `immediate=true` to skip the cooldown; an immediate release
+// cannot be cancelled.
 func (c *Client) UnrentNumber(
 	ctx context.Context,
 	request *vobiz.UnrentNumberRequest,
@@ -66,6 +69,26 @@ func (c *Client) UnrentNumber(
 		return err
 	}
 	return nil
+}
+
+// Cancel a pending number release during the 24-hour cooldown. The number is
+// restored to `active`, the cooldown timer is cleared, and the release fee is
+// refunded. Any trunk or voice application detached by the release is not
+// re-attached automatically.
+func (c *Client) CancelNumberRelease(
+	ctx context.Context,
+	request *vobiz.CancelNumberReleaseRequest,
+	opts ...option.RequestOption,
+) (*vobiz.CancelNumberReleaseResponse, error) {
+	response, err := c.WithRawResponse.CancelNumberRelease(
+		ctx,
+		request,
+		opts...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return response.Body, nil
 }
 
 // Browse available phone numbers in inventory that are not assigned to

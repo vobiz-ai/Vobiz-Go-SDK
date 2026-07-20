@@ -86,7 +86,7 @@ func TestConferenceMembersMuteMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.MuteMemberRequest{
 		AuthID:         "MA_XXXXXX",
@@ -114,7 +114,7 @@ func TestConferenceMembersUnmuteMemberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.UnmuteMemberRequest{
 		AuthID:         "MA_XXXXXX",

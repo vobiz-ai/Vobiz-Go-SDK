@@ -86,7 +86,7 @@ func TestAccountRetrieveAccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	_, invocationErr := client.Account.RetrieveAccount(
 		context.TODO(),
@@ -108,7 +108,7 @@ func TestAccountGetConcurrencyWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.GetConcurrencyRequest{
 		AuthID: "MA_XXXXXX",
@@ -134,7 +134,7 @@ func TestAccountPreviewChannelPricingWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.PreviewChannelPricingRequest{
 		AuthID:       "MA_XXXX",
@@ -162,7 +162,7 @@ func TestAccountCreateChannelSubscriptionWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ChannelSubscriptionRequest{
 		AuthID:       "MA_XXXX",

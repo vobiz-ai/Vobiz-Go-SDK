@@ -86,7 +86,7 @@ func TestBalanceGetBalanceWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.GetBalanceRequest{
 		AuthID:   "MA_XXXXXX",
@@ -113,7 +113,7 @@ func TestBalanceListTransactionsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ListTransactionsRequest{
 		AuthID: "MA_XXXXXX",

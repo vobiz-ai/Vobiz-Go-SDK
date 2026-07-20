@@ -86,7 +86,7 @@ func TestSubAccountsListSubaccountsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ListSubaccountsRequest{
 		AuthID: "MA_XXXXXX",
@@ -112,7 +112,7 @@ func TestSubAccountsCreateSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.CreateSubaccountRequest{
 		AuthID: "MA_XXXXXX",
@@ -147,7 +147,7 @@ func TestSubAccountsRetrieveSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.RetrieveSubaccountRequest{
 		AuthID:    "MA_XXXXXX",
@@ -174,7 +174,7 @@ func TestSubAccountsUpdateSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.UpdateSubaccountRequest{
 		AuthID:    "MA_XXXXXX",
@@ -202,7 +202,7 @@ func TestSubAccountsDeleteSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.DeleteSubaccountRequest{
 		AuthID:    "MA_XXXXXX",

@@ -86,7 +86,7 @@ func TestApplicationsListApplicationsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ListApplicationsRequest{
 		AuthID: "MA_XXXXXX",
@@ -112,7 +112,7 @@ func TestApplicationsCreateApplicationWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.CreateApplicationRequest{
 		AuthID:       "MA_XXXXXX",
@@ -141,7 +141,7 @@ func TestApplicationsRetrieveApplicationWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.RetrieveApplicationRequest{
 		AuthID: "MA_XXXXXX",
@@ -168,7 +168,7 @@ func TestApplicationsUpdateApplicationWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.UpdateApplicationRequest{
 		AuthID:           "MA_XXXXXX",
@@ -197,7 +197,7 @@ func TestApplicationsDeleteApplicationWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.DeleteApplicationRequest{
 		AuthID: "MA_XXXXXX",

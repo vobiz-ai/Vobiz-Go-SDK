@@ -86,7 +86,7 @@ func TestPhoneNumbersListNumbersWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ListNumbersRequest{
 		AuthID: "MA_XXXXXX",
@@ -115,7 +115,7 @@ func TestPhoneNumbersUnrentNumberWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.UnrentNumberRequest{
 		AuthID: "MA_XXXXXX",
@@ -133,6 +133,33 @@ func TestPhoneNumbersUnrentNumberWithWireMock(
 	VerifyRequestCount(t, "TestPhoneNumbersUnrentNumberWithWireMock", "DELETE", "/api/v1/Account/MA_XXXXXX/numbers/919876543210", nil, 1)
 }
 
+func TestPhoneNumbersCancelNumberReleaseWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithBasicAuth("test-username", "test-password"),
+	)
+	request := &vobiz.CancelNumberReleaseRequest{
+		AccountID: "MA_XXXXXX",
+		E164:      "%2B919876543210",
+	}
+	_, invocationErr := client.PhoneNumbers.CancelNumberRelease(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestPhoneNumbersCancelNumberReleaseWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestPhoneNumbersCancelNumberReleaseWithWireMock", "POST", "/api/v1/account/MA_XXXXXX/numbers/%2B919876543210/cancel-release", nil, 1)
+}
+
 func TestPhoneNumbersListInventoryNumbersWithWireMock(
 	t *testing.T,
 ) {
@@ -142,7 +169,7 @@ func TestPhoneNumbersListInventoryNumbersWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.ListInventoryNumbersRequest{
 		AuthID: "MA_XXXXXX",
@@ -174,7 +201,7 @@ func TestPhoneNumbersPurchaseFromInventoryWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.PurchaseFromInventoryRequest{
 		AuthID: "MA_XXXXXX",
@@ -204,7 +231,7 @@ func TestPhoneNumbersAssignNumberToTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.AssignNumberToTrunkRequest{
 		AuthID:       "MA_XXXXXX",
@@ -232,7 +259,7 @@ func TestPhoneNumbersUnassignNumberFromTrunkWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.UnassignNumberFromTrunkRequest{
 		AuthID:      "MA_XXXXXX",
@@ -259,7 +286,7 @@ func TestPhoneNumbersGetNumberHealthWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.GetNumberHealthRequest{
 		AuthID: "MA_XXXXXX",
@@ -289,7 +316,7 @@ func TestPhoneNumbersAssignDidToSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.AssignDidToSubaccountRequest{
 		AuthID:       "MA_XXXXXX",
@@ -317,7 +344,7 @@ func TestPhoneNumbersUnassignDidFromSubaccountWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithBasicAuth("test-username", "test-password"),
 	)
 	request := &vobiz.UnassignDidFromSubaccountRequest{
 		AuthID: "MA_XXXXXX",
