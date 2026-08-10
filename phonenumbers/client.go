@@ -51,10 +51,12 @@ func (c *Client) ListNumbers(
 	return response.Body, nil
 }
 
-// Release a phone number from your account. By default, the number enters
-// `pending_release` for a 24-hour cooldown. You can cancel the release during
-// that window. Set `immediate=true` to skip the cooldown; an immediate release
-// cannot be cancelled.
+// Release a phone number from your account. Releasing a number incurs the
+// number-release fee configured for the account; the response returns the
+// charged amount in `release_fee`. By default, the number enters
+// `pending_release` for a 24-hour cooldown. Cancelling during that window
+// refunds the release fee. Set `immediate=true` to skip the cooldown; an
+// immediate release cannot be cancelled.
 func (c *Client) UnrentNumber(
 	ctx context.Context,
 	request *vobiz.UnrentNumberRequest,

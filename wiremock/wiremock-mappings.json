@@ -433,8 +433,8 @@
       }
     },
     {
-      "id": "eb2afb89-d912-4e54-a6bb-d2d503211fd0",
-      "name": "Make an outbound call - default",
+      "id": "01e1b8e2-2d55-40b7-b504-b82027bc76b4",
+      "name": "Make an outbound call - Call one destination",
       "request": {
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
         "method": "POST",
@@ -456,7 +456,7 @@
           "Content-Type": "application/json"
         }
       },
-      "uuid": "eb2afb89-d912-4e54-a6bb-d2d503211fd0",
+      "uuid": "01e1b8e2-2d55-40b7-b504-b82027bc76b4",
       "persistent": true,
       "priority": 3,
       "metadata": {
@@ -3120,6 +3120,42 @@
       }
     },
     {
+      "id": "4f99a9f1-0f1f-4e04-8c42-d3e244a26915",
+      "name": "Bulk export historical recordings - Export the last 7 days by date range",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/export/recording/",
+        "method": "POST",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 202,
+        "body": "{\n  \"api_id\": \"correlation-id-uuid\",\n  \"status\": \"success\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "4f99a9f1-0f1f-4e04-8c42-d3e244a26915",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
       "id": "0a51a07c-5fd2-4f8c-a33b-ff83bf163ec7",
       "name": "Create a credential - default",
       "request": {
@@ -4404,6 +4440,6 @@
     }
   ],
   "meta": {
-    "total": 114
+    "total": 115
   }
 }

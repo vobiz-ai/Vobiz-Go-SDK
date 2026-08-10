@@ -7,6 +7,7 @@ import (
 	applications "github.com/vobiz-ai/Vobiz-Go-SDK/applications"
 	audiostreams "github.com/vobiz-ai/Vobiz-Go-SDK/audiostreams"
 	balance "github.com/vobiz-ai/Vobiz-Go-SDK/balance"
+	bulkoperations "github.com/vobiz-ai/Vobiz-Go-SDK/bulkoperations"
 	calls "github.com/vobiz-ai/Vobiz-Go-SDK/calls"
 	cdr "github.com/vobiz-ai/Vobiz-Go-SDK/cdr"
 	conference "github.com/vobiz-ai/Vobiz-Go-SDK/conference"
@@ -55,6 +56,7 @@ type Client struct {
 	ConferenceMembers     *conferencemembers.Client
 	ConferenceRecording   *conferencerecording.Client
 	Recordings            *recordings.Client
+	BulkOperations        *bulkoperations.Client
 	Credentials           *credentials.Client
 	IPAccessControlList   *ipaccesscontrollist.Client
 	OriginationURI        *originationuri.Client
@@ -90,6 +92,7 @@ func NewClient(opts ...option.RequestOption) *Client {
 		ConferenceMembers:     conferencemembers.NewClient(options),
 		ConferenceRecording:   conferencerecording.NewClient(options),
 		Recordings:            recordings.NewClient(options),
+		BulkOperations:        bulkoperations.NewClient(options),
 		Credentials:           credentials.NewClient(options),
 		IPAccessControlList:   ipaccesscontrollist.NewClient(options),
 		OriginationURI:        originationuri.NewClient(options),

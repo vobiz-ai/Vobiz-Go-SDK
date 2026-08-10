@@ -2655,8 +2655,9 @@ type UnrentNumberResponse struct {
 	CooldownEndsAt time.Time `json:"cooldown_ends_at" url:"cooldown_ends_at"`
 	Message        string    `json:"message" url:"message"`
 	Note           *string   `json:"note,omitempty" url:"note,omitempty"`
-	ReleaseFee     float64   `json:"release_fee" url:"release_fee"`
-	Status         string    `json:"status" url:"status"`
+	// The account-specific fee charged for releasing the number.
+	ReleaseFee float64 `json:"release_fee" url:"release_fee"`
+	Status     string  `json:"status" url:"status"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`

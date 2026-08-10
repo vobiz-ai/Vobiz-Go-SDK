@@ -19,8 +19,11 @@ var (
 
 type MakeCallRequest struct {
 	// Your account Auth ID
-	AuthID       string `json:"-" url:"-"`
-	From         string `json:"from" url:"-"`
+	AuthID string `json:"-" url:"-"`
+	From   string `json:"from" url:"-"`
+	// Destination PSTN number or SIP endpoint. Separate multiple destinations with
+	// the `<` character to fan out a single request to up to 1000 destinations,
+	// for example `+919876543210<+919876543211`.
 	To           string `json:"to" url:"-"`
 	AnswerURL    string `json:"answer_url" url:"-"`
 	AnswerMethod string `json:"answer_method" url:"-"`

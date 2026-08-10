@@ -843,6 +843,106 @@ func (a ApplicationSipTransferMethod) Ptr() *ApplicationSipTransferMethod {
 }
 
 var (
+	badRequestErrorBodyFieldStatus  = big.NewInt(1 << 0)
+	badRequestErrorBodyFieldMessage = big.NewInt(1 << 1)
+)
+
+type BadRequestErrorBody struct {
+	Status  *string `json:"status,omitempty" url:"status,omitempty"`
+	Message *string `json:"message,omitempty" url:"message,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (b *BadRequestErrorBody) GetStatus() *string {
+	if b == nil {
+		return nil
+	}
+	return b.Status
+}
+
+func (b *BadRequestErrorBody) GetMessage() *string {
+	if b == nil {
+		return nil
+	}
+	return b.Message
+}
+
+func (b *BadRequestErrorBody) GetExtraProperties() map[string]interface{} {
+	if b == nil {
+		return nil
+	}
+	return b.extraProperties
+}
+
+func (b *BadRequestErrorBody) require(field *big.Int) {
+	if b.explicitFields == nil {
+		b.explicitFields = big.NewInt(0)
+	}
+	b.explicitFields.Or(b.explicitFields, field)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (b *BadRequestErrorBody) SetStatus(status *string) {
+	b.Status = status
+	b.require(badRequestErrorBodyFieldStatus)
+}
+
+// SetMessage sets the Message field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (b *BadRequestErrorBody) SetMessage(message *string) {
+	b.Message = message
+	b.require(badRequestErrorBodyFieldMessage)
+}
+
+func (b *BadRequestErrorBody) UnmarshalJSON(data []byte) error {
+	type unmarshaler BadRequestErrorBody
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*b = BadRequestErrorBody(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *b)
+	if err != nil {
+		return err
+	}
+	b.extraProperties = extraProperties
+	b.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (b *BadRequestErrorBody) MarshalJSON() ([]byte, error) {
+	type embed BadRequestErrorBody
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*b),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, b.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (b *BadRequestErrorBody) String() string {
+	if b == nil {
+		return "<nil>"
+	}
+	if len(b.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(b.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(b); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", b)
+}
+
+var (
 	balanceFieldAuthID       = big.NewInt(1 << 0)
 	balanceFieldBalance      = big.NewInt(1 << 1)
 	balanceFieldCurrency     = big.NewInt(1 << 2)
@@ -2240,6 +2340,106 @@ func (e *Error) String() string {
 		return value
 	}
 	return fmt.Sprintf("%#v", e)
+}
+
+var (
+	forbiddenErrorBodyFieldStatus  = big.NewInt(1 << 0)
+	forbiddenErrorBodyFieldMessage = big.NewInt(1 << 1)
+)
+
+type ForbiddenErrorBody struct {
+	Status  *string `json:"status,omitempty" url:"status,omitempty"`
+	Message *string `json:"message,omitempty" url:"message,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (f *ForbiddenErrorBody) GetStatus() *string {
+	if f == nil {
+		return nil
+	}
+	return f.Status
+}
+
+func (f *ForbiddenErrorBody) GetMessage() *string {
+	if f == nil {
+		return nil
+	}
+	return f.Message
+}
+
+func (f *ForbiddenErrorBody) GetExtraProperties() map[string]interface{} {
+	if f == nil {
+		return nil
+	}
+	return f.extraProperties
+}
+
+func (f *ForbiddenErrorBody) require(field *big.Int) {
+	if f.explicitFields == nil {
+		f.explicitFields = big.NewInt(0)
+	}
+	f.explicitFields.Or(f.explicitFields, field)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (f *ForbiddenErrorBody) SetStatus(status *string) {
+	f.Status = status
+	f.require(forbiddenErrorBodyFieldStatus)
+}
+
+// SetMessage sets the Message field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (f *ForbiddenErrorBody) SetMessage(message *string) {
+	f.Message = message
+	f.require(forbiddenErrorBodyFieldMessage)
+}
+
+func (f *ForbiddenErrorBody) UnmarshalJSON(data []byte) error {
+	type unmarshaler ForbiddenErrorBody
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*f = ForbiddenErrorBody(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *f)
+	if err != nil {
+		return err
+	}
+	f.extraProperties = extraProperties
+	f.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (f *ForbiddenErrorBody) MarshalJSON() ([]byte, error) {
+	type embed ForbiddenErrorBody
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*f),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, f.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (f *ForbiddenErrorBody) String() string {
+	if f == nil {
+		return "<nil>"
+	}
+	if len(f.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(f.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(f); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", f)
 }
 
 var (
