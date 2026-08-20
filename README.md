@@ -213,3 +213,22 @@ a proof of concept, but know that we will not be able to merge it as-is. We sugg
 an issue first to discuss with us!
 
 On the other hand, contributions to the README are always very welcome!
+
+---
+
+## Built by Team Vobiz
+
+[Vobiz](https://vobiz.ai) is a programmable voice & SIP-trunking platform for
+voice APIs, SIP trunking, and AI voice agents. This is the official Vobiz Go
+SDK, built and maintained by the Vobiz team.
+
+**Maintainer:** Piyush Sahoo — [piyush@vobiz.ai](mailto:piyush@vobiz.ai) · [LinkedIn](https://www.linkedin.com/in/piyush-s713/)
+
+Questions, or want to talk through an integration? Open an issue on this repo,
+or reach out directly at [piyush@vobiz.ai](mailto:piyush@vobiz.ai).
+
+**Useful links:** [Docs](https://docs.vobiz.ai) · [API reference](https://docs.vobiz.ai/api-reference) · [Sign up](https://vobiz.ai)
+
+## License
+
+[MIT](./LICENSE) © Vobiz
