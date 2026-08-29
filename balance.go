@@ -46,16 +46,71 @@ func (g *GetBalanceRequest) SetCurrency(currency string) {
 }
 
 var (
-	listTransactionsRequestFieldAuthID = big.NewInt(1 << 0)
-	listTransactionsRequestFieldLimit  = big.NewInt(1 << 1)
-	listTransactionsRequestFieldOffset = big.NewInt(1 << 2)
+	listTransactionReferenceTypesRequestFieldAuthID = big.NewInt(1 << 0)
+)
+
+type ListTransactionReferenceTypesRequest struct {
+	// Your account Auth ID
+	AuthID string `json:"-" url:"-"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (l *ListTransactionReferenceTypesRequest) require(field *big.Int) {
+	if l.explicitFields == nil {
+		l.explicitFields = big.NewInt(0)
+	}
+	l.explicitFields.Or(l.explicitFields, field)
+}
+
+// SetAuthID sets the AuthID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionReferenceTypesRequest) SetAuthID(authID string) {
+	l.AuthID = authID
+	l.require(listTransactionReferenceTypesRequestFieldAuthID)
+}
+
+var (
+	listTransactionsRequestFieldAuthID        = big.NewInt(1 << 0)
+	listTransactionsRequestFieldPage          = big.NewInt(1 << 1)
+	listTransactionsRequestFieldPerPage       = big.NewInt(1 << 2)
+	listTransactionsRequestFieldFromDate      = big.NewInt(1 << 3)
+	listTransactionsRequestFieldToDate        = big.NewInt(1 << 4)
+	listTransactionsRequestFieldType          = big.NewInt(1 << 5)
+	listTransactionsRequestFieldStatus        = big.NewInt(1 << 6)
+	listTransactionsRequestFieldCurrency      = big.NewInt(1 << 7)
+	listTransactionsRequestFieldReferenceType = big.NewInt(1 << 8)
+	listTransactionsRequestFieldDescription   = big.NewInt(1 << 9)
+	listTransactionsRequestFieldReference     = big.NewInt(1 << 10)
+	listTransactionsRequestFieldTransactionID = big.NewInt(1 << 11)
 )
 
 type ListTransactionsRequest struct {
 	// Your account Auth ID
 	AuthID string `json:"-" url:"-"`
-	Limit  *int   `json:"-" url:"limit,omitempty"`
-	Offset *int   `json:"-" url:"offset,omitempty"`
+	// Page number, 1-indexed.
+	Page *int `json:"-" url:"page,omitempty"`
+	// Records per page. A value above the maximum falls back to the default of 50 rather than clamping.
+	PerPage *int `json:"-" url:"per_page,omitempty"`
+	// Start of the window, inclusive. Date-only or full ISO 8601 timestamp. Day boundaries are UTC.
+	FromDate *string `json:"-" url:"from_date,omitempty"`
+	// End of the window, inclusive. A date-only value covers the whole day.
+	ToDate *string `json:"-" url:"to_date,omitempty"`
+	// `credit` or `debit` act as broad classifications and sweep in legacy entry types such as `did_rental`; any other value is an exact match on `transactions[].type`.
+	Type *string `json:"-" url:"type,omitempty"`
+	// Exact match on transaction status.
+	Status *ListTransactionsRequestStatus `json:"-" url:"status,omitempty"`
+	// Currency code. Uppercased server-side, exact match.
+	Currency *string `json:"-" url:"currency,omitempty"`
+	// Spend source, matching `transactions[].reference_type`.
+	ReferenceType *string `json:"-" url:"reference_type,omitempty"`
+	// Case-insensitive substring match on the description.
+	Description *string `json:"-" url:"description,omitempty"`
+	// Case-insensitive substring match on the reference.
+	Reference *string `json:"-" url:"reference,omitempty"`
+	// Fetch a single ledger entry by its UUID.
+	TransactionID *string `json:"-" url:"transaction_id,omitempty"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -75,18 +130,81 @@ func (l *ListTransactionsRequest) SetAuthID(authID string) {
 	l.require(listTransactionsRequestFieldAuthID)
 }
 
-// SetLimit sets the Limit field and marks it as non-optional;
+// SetPage sets the Page field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListTransactionsRequest) SetLimit(limit *int) {
-	l.Limit = limit
-	l.require(listTransactionsRequestFieldLimit)
+func (l *ListTransactionsRequest) SetPage(page *int) {
+	l.Page = page
+	l.require(listTransactionsRequestFieldPage)
 }
 
-// SetOffset sets the Offset field and marks it as non-optional;
+// SetPerPage sets the PerPage field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListTransactionsRequest) SetOffset(offset *int) {
-	l.Offset = offset
-	l.require(listTransactionsRequestFieldOffset)
+func (l *ListTransactionsRequest) SetPerPage(perPage *int) {
+	l.PerPage = perPage
+	l.require(listTransactionsRequestFieldPerPage)
+}
+
+// SetFromDate sets the FromDate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetFromDate(fromDate *string) {
+	l.FromDate = fromDate
+	l.require(listTransactionsRequestFieldFromDate)
+}
+
+// SetToDate sets the ToDate field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetToDate(toDate *string) {
+	l.ToDate = toDate
+	l.require(listTransactionsRequestFieldToDate)
+}
+
+// SetType sets the Type field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetType(type_ *string) {
+	l.Type = type_
+	l.require(listTransactionsRequestFieldType)
+}
+
+// SetStatus sets the Status field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetStatus(status *ListTransactionsRequestStatus) {
+	l.Status = status
+	l.require(listTransactionsRequestFieldStatus)
+}
+
+// SetCurrency sets the Currency field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetCurrency(currency *string) {
+	l.Currency = currency
+	l.require(listTransactionsRequestFieldCurrency)
+}
+
+// SetReferenceType sets the ReferenceType field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetReferenceType(referenceType *string) {
+	l.ReferenceType = referenceType
+	l.require(listTransactionsRequestFieldReferenceType)
+}
+
+// SetDescription sets the Description field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetDescription(description *string) {
+	l.Description = description
+	l.require(listTransactionsRequestFieldDescription)
+}
+
+// SetReference sets the Reference field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetReference(reference *string) {
+	l.Reference = reference
+	l.require(listTransactionsRequestFieldReference)
+}
+
+// SetTransactionID sets the TransactionID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionsRequest) SetTransactionID(transactionID *string) {
+	l.TransactionID = transactionID
+	l.require(listTransactionsRequestFieldTransactionID)
 }
 
 var (
@@ -395,6 +513,118 @@ func (g *GetBalanceResponse) String() string {
 		return value
 	}
 	return fmt.Sprintf("%#v", g)
+}
+
+var (
+	listTransactionReferenceTypesResponseFieldReferenceTypes = big.NewInt(1 << 0)
+)
+
+type ListTransactionReferenceTypesResponse struct {
+	ReferenceTypes []string `json:"reference_types,omitempty" url:"reference_types,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (l *ListTransactionReferenceTypesResponse) GetReferenceTypes() []string {
+	if l == nil {
+		return nil
+	}
+	return l.ReferenceTypes
+}
+
+func (l *ListTransactionReferenceTypesResponse) GetExtraProperties() map[string]interface{} {
+	if l == nil {
+		return nil
+	}
+	return l.extraProperties
+}
+
+func (l *ListTransactionReferenceTypesResponse) require(field *big.Int) {
+	if l.explicitFields == nil {
+		l.explicitFields = big.NewInt(0)
+	}
+	l.explicitFields.Or(l.explicitFields, field)
+}
+
+// SetReferenceTypes sets the ReferenceTypes field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *ListTransactionReferenceTypesResponse) SetReferenceTypes(referenceTypes []string) {
+	l.ReferenceTypes = referenceTypes
+	l.require(listTransactionReferenceTypesResponseFieldReferenceTypes)
+}
+
+func (l *ListTransactionReferenceTypesResponse) UnmarshalJSON(data []byte) error {
+	type unmarshaler ListTransactionReferenceTypesResponse
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*l = ListTransactionReferenceTypesResponse(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *l)
+	if err != nil {
+		return err
+	}
+	l.extraProperties = extraProperties
+	l.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (l *ListTransactionReferenceTypesResponse) MarshalJSON() ([]byte, error) {
+	type embed ListTransactionReferenceTypesResponse
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*l),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (l *ListTransactionReferenceTypesResponse) String() string {
+	if l == nil {
+		return "<nil>"
+	}
+	if len(l.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(l.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(l); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", l)
+}
+
+type ListTransactionsRequestStatus string
+
+const (
+	ListTransactionsRequestStatusCompleted ListTransactionsRequestStatus = "completed"
+	ListTransactionsRequestStatusPending   ListTransactionsRequestStatus = "pending"
+	ListTransactionsRequestStatusFailed    ListTransactionsRequestStatus = "failed"
+	ListTransactionsRequestStatusCancelled ListTransactionsRequestStatus = "cancelled"
+)
+
+func NewListTransactionsRequestStatusFromString(s string) (ListTransactionsRequestStatus, error) {
+	switch s {
+	case "completed":
+		return ListTransactionsRequestStatusCompleted, nil
+	case "pending":
+		return ListTransactionsRequestStatusPending, nil
+	case "failed":
+		return ListTransactionsRequestStatusFailed, nil
+	case "cancelled":
+		return ListTransactionsRequestStatusCancelled, nil
+	}
+	var t ListTransactionsRequestStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (l ListTransactionsRequestStatus) Ptr() *ListTransactionsRequestStatus {
+	return &l
 }
 
 var (

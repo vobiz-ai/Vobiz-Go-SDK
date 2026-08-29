@@ -127,3 +127,47 @@ func (r *RawClient) ListTransactions(
 		Body:       response,
 	}, nil
 }
+
+func (r *RawClient) ListTransactionReferenceTypes(
+	ctx context.Context,
+	request *vobiz.ListTransactionReferenceTypesRequest,
+	opts ...option.RequestOption,
+) (*core.Response[*vobiz.ListTransactionReferenceTypesResponse], error) {
+	options := core.NewRequestOptions(opts...)
+	baseURL := internal.ResolveBaseURL(
+		options.BaseURL,
+		r.baseURL,
+		"https://api.vobiz.ai",
+	)
+	endpointURL := internal.EncodeURL(
+		baseURL+"/api/v1/Account/%v/transactions/reference-types",
+		request.AuthID,
+	)
+	headers := internal.MergeHeaders(
+		r.options.ToHeader(),
+		options.ToHeader(),
+	)
+	var response *vobiz.ListTransactionReferenceTypesResponse
+	raw, err := r.caller.Call(
+		ctx,
+		&internal.CallParams{
+			URL:             endpointURL,
+			Method:          http.MethodGet,
+			Headers:         headers,
+			MaxAttempts:     options.MaxAttempts,
+			DisableRetries:  options.DisableRetries,
+			BodyProperties:  options.BodyProperties,
+			QueryParameters: options.QueryParameters,
+			Client:          options.HTTPClient,
+			Response:        &response,
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+	return &core.Response[*vobiz.ListTransactionReferenceTypesResponse]{
+		StatusCode: raw.StatusCode,
+		Header:     raw.Header,
+		Body:       response,
+	}, nil
+}

@@ -344,7 +344,16 @@ client.Balance.GetBalance(
 <dl>
 <dd>
 
-Retrieve paginated transaction history for the account.
+Retrieve paginated transaction history for the account, ordered by
+`created_at` descending. Filter to a single day by setting `from_date`
+and `to_date` to the same date - a bare `YYYY-MM-DD` in `to_date` is
+expanded to `23:59:59`, so both bounds are inclusive. Bare dates resolve
+in the server timezone (UTC); send an explicit offset such as
+`2026-08-28T00:00:00+05:30` to pin a local calendar day.
+
+`limit` and `offset` are not supported - unknown parameters are silently
+dropped. `total` and `summary` are computed over the whole filtered set
+and ignore pagination, so `per_page=1` returns full-window totals.
 </dd>
 </dl>
 </dd>
@@ -361,6 +370,21 @@ Retrieve paginated transaction history for the account.
 ```go
 request := &vobiz.ListTransactionsRequest{
         AuthID: "MA_XXXXXX",
+        FromDate: vobiz.String(
+            "2026-08-25",
+        ),
+        ToDate: vobiz.String(
+            "2026-08-25",
+        ),
+        Type: vobiz.String(
+            "debit",
+        ),
+        Currency: vobiz.String(
+            "INR",
+        ),
+        ReferenceType: vobiz.String(
+            "cdr",
+        ),
     }
 client.Balance.ListTransactions(
         context.TODO(),
@@ -389,7 +413,7 @@ client.Balance.ListTransactions(
 <dl>
 <dd>
 
-**limit:** `*int` 
+**page:** `*int` — Page number, 1-indexed.
     
 </dd>
 </dl>
@@ -397,7 +421,140 @@ client.Balance.ListTransactions(
 <dl>
 <dd>
 
-**offset:** `*int` 
+**perPage:** `*int` — Records per page. A value above the maximum falls back to the default of 50 rather than clamping.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**fromDate:** `*string` — Start of the window, inclusive. Date-only or full ISO 8601 timestamp. Day boundaries are UTC.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**toDate:** `*string` — End of the window, inclusive. A date-only value covers the whole day.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**type_:** `*string` — `credit` or `debit` act as broad classifications and sweep in legacy entry types such as `did_rental`; any other value is an exact match on `transactions[].type`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**status:** `*vobiz.ListTransactionsRequestStatus` — Exact match on transaction status.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**currency:** `*string` — Currency code. Uppercased server-side, exact match.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**referenceType:** `*string` — Spend source, matching `transactions[].reference_type`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**description:** `*string` — Case-insensitive substring match on the description.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**reference:** `*string` — Case-insensitive substring match on the reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**transactionID:** `*string` — Fetch a single ledger entry by its UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Balance.ListTransactionReferenceTypes(AuthID) -> *vobiz.ListTransactionReferenceTypesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the distinct `reference_type` values present on the account's ledger. Use it to discover valid values for the `reference_type` filter on the transactions endpoint.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```go
+request := &vobiz.ListTransactionReferenceTypesRequest{
+        AuthID: "MA_XXXXXX",
+    }
+client.Balance.ListTransactionReferenceTypes(
+        context.TODO(),
+        request,
+    )
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**authID:** `string` — Your account Auth ID
     
 </dd>
 </dl>

@@ -117,6 +117,21 @@ func TestBalanceListTransactionsWithWireMock(
 	)
 	request := &vobiz.ListTransactionsRequest{
 		AuthID: "MA_XXXXXX",
+		FromDate: vobiz.String(
+			"2026-08-25",
+		),
+		ToDate: vobiz.String(
+			"2026-08-25",
+		),
+		Type: vobiz.String(
+			"debit",
+		),
+		Currency: vobiz.String(
+			"INR",
+		),
+		ReferenceType: vobiz.String(
+			"cdr",
+		),
 	}
 	_, invocationErr := client.Balance.ListTransactions(
 		context.TODO(),
@@ -127,5 +142,31 @@ func TestBalanceListTransactionsWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestBalanceListTransactionsWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/transactions", nil, 1)
+	VerifyRequestCount(t, "TestBalanceListTransactionsWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/transactions", map[string]interface{}{"from_date": "2026-08-25", "to_date": "2026-08-25", "type": "debit", "currency": "INR", "reference_type": "cdr"}, 1)
+}
+
+func TestBalanceListTransactionReferenceTypesWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithToken("test-token"),
+	)
+	request := &vobiz.ListTransactionReferenceTypesRequest{
+		AuthID: "MA_XXXXXX",
+	}
+	_, invocationErr := client.Balance.ListTransactionReferenceTypes(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestBalanceListTransactionReferenceTypesWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestBalanceListTransactionReferenceTypesWithWireMock", "GET", "/api/v1/Account/MA_XXXXXX/transactions/reference-types", nil, 1)
 }

@@ -202,6 +202,23 @@
           "auth_id": {
             "equalTo": "MA_XXXXXX"
           }
+        },
+        "queryParameters": {
+          "from_date": {
+            "equalTo": "2026-08-25"
+          },
+          "to_date": {
+            "equalTo": "2026-08-25"
+          },
+          "type": {
+            "equalTo": "debit"
+          },
+          "currency": {
+            "equalTo": "INR"
+          },
+          "reference_type": {
+            "equalTo": "cdr"
+          }
         }
       },
       "response": {
@@ -212,6 +229,42 @@
         }
       },
       "uuid": "937d0fe5-31bb-4e74-9fa1-e8b0b9d638a0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "29a48b6a-5efe-4bc3-be23-017107ee1c2c",
+      "name": "List transaction reference types - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/transactions/reference-types",
+        "method": "GET",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"reference_types\": [\n    \"cdr\",\n    \"did_purchase\",\n    \"did_rental\",\n    \"manual_adjustment\",\n    \"ncc\",\n    \"recording\",\n    \"stream_cdr\",\n    \"transcription\"\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "29a48b6a-5efe-4bc3-be23-017107ee1c2c",
       "persistent": true,
       "priority": 3,
       "metadata": {
@@ -4440,6 +4493,6 @@
     }
   ],
   "meta": {
-    "total": 115
+    "total": 116
   }
 }
