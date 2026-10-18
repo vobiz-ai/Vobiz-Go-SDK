@@ -39,11 +39,8 @@ import (
 
 func do() {
     client := client.NewClient(
-        option.WithToken(
-            "<token>",
-        ),
-        option.WithAuthID(
-            "<X-Auth-ID>",
+        option.WithAPIKey(
+            "<value>",
         ),
         option.WithAuthToken(
             "<X-Auth-Token>",

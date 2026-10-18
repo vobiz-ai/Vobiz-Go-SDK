@@ -28,6 +28,7 @@ import (
 	playaudio "github.com/vobiz-ai/Vobiz-Go-SDK/playaudio"
 	recordcalls "github.com/vobiz-ai/Vobiz-Go-SDK/recordcalls"
 	recordings "github.com/vobiz-ai/Vobiz-Go-SDK/recordings"
+	client "github.com/vobiz-ai/Vobiz-Go-SDK/sms/client"
 	speaktext "github.com/vobiz-ai/Vobiz-Go-SDK/speaktext"
 	subaccountkyc "github.com/vobiz-ai/Vobiz-Go-SDK/subaccountkyc"
 	subaccountkyctestmode "github.com/vobiz-ai/Vobiz-Go-SDK/subaccountkyctestmode"
@@ -63,6 +64,7 @@ type Client struct {
 	Applications          *applications.Client
 	Endpoints             *endpoints.Client
 	PartnerAPI            *partnerapi.Client
+	Sms                   *client.Client
 
 	options *core.RequestOptions
 	baseURL string
@@ -99,6 +101,7 @@ func NewClient(opts ...option.RequestOption) *Client {
 		Applications:          applications.NewClient(options),
 		Endpoints:             endpoints.NewClient(options),
 		PartnerAPI:            partnerapi.NewClient(options),
+		Sms:                   client.NewClient(options),
 		options:               options,
 		baseURL:               options.BaseURL,
 		caller: internal.NewCaller(

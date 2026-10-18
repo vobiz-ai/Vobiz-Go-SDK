@@ -86,7 +86,7 @@ func TestIPAccessControlListCreateIpAclWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.CreateIpAclRequest{
 		AuthID:    "MA_XXXXXX",
@@ -114,7 +114,7 @@ func TestIPAccessControlListListIpAclsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.ListIpAclsRequest{
 		AuthID: "MA_XXXXXX",
@@ -140,7 +140,7 @@ func TestIPAccessControlListUpdateIpAclWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.UpdateIpAclRequest{
 		AuthID:    "MA_XXXXXX",
@@ -169,7 +169,7 @@ func TestIPAccessControlListDeleteIpAclWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.DeleteIpAclRequest{
 		AuthID:  "MA_XXXXXX",

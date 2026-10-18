@@ -95,24 +95,10 @@ func WithoutRetries() *core.WithoutRetriesOption {
 	return &core.WithoutRetriesOption{}
 }
 
-// WithToken sets the 'Authorization: Bearer <token>' request header.
-func WithToken(token string) *core.TokenOption {
-	return &core.TokenOption{
-		Token: token,
-	}
-}
-
-// WithTokenFunc sets a function that returns the 'Authorization: Bearer' token at request time.
-func WithTokenFunc(fn func() (string, error)) *core.TokenFuncOption {
-	return &core.TokenFuncOption{
-		TokenFunc: fn,
-	}
-}
-
-// WithAuthID sets the authID request header.
-func WithAuthID(authID string) *core.AuthIDOption {
-	return &core.AuthIDOption{
-		AuthID: authID,
+// WithAPIKey sets the apiKey auth request header.
+func WithAPIKey(apiKey string) *core.APIKeyOption {
+	return &core.APIKeyOption{
+		APIKey: apiKey,
 	}
 }
 

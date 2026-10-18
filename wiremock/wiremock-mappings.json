@@ -7,8 +7,8 @@
         "urlPathTemplate": "/api/v1/auth/me",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -39,8 +39,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/concurrency",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -75,8 +75,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/channel-pricing-preview",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -119,8 +119,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/channel-subscriptions",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -155,8 +155,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/balance/{currency}",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -194,8 +194,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/transactions",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -247,8 +247,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/transactions/reference-types",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -283,8 +283,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -324,8 +324,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -365,8 +365,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -409,8 +409,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -448,8 +448,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -492,8 +492,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -528,8 +528,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -596,8 +596,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/search",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -664,8 +664,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/recent",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -705,8 +705,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/cdr/{call_id}",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -744,8 +744,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -780,8 +780,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -816,8 +816,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -855,8 +855,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
         "method": "PUT",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -894,8 +894,8 @@
         "urlPathTemplate": "/api/v1/accounts/{auth_id}/sub-accounts/{sub_auth_id}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -933,8 +933,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/status",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -969,8 +969,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/verify-pan",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1005,8 +1005,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/verify-gst",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1041,8 +1041,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/cin/search",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1077,8 +1077,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/cin/confirm",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1113,8 +1113,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/digilocker/initiate",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1149,8 +1149,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc/digilocker/verify",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1185,8 +1185,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/{sub_auth_id}/kyc-sessions",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1221,8 +1221,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/verify-pan",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1257,8 +1257,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/verify-gst",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1293,8 +1293,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/cin/search",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1329,8 +1329,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/cin/confirm",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1365,8 +1365,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/digilocker/initiate",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1401,8 +1401,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/digilocker/verify",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1437,8 +1437,8 @@
         "urlPathTemplate": "/api/v1/sub-accounts/test/{sub_auth_id}/kyc/finalize-pending",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1473,8 +1473,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1514,8 +1514,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{e164}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1553,8 +1553,8 @@
         "urlPathTemplate": "/api/v1/account/{account_id}/numbers/{e164}/cancel-release",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1592,8 +1592,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/inventory/numbers",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1636,8 +1636,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/purchase-from-inventory",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1672,8 +1672,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{phone_number}/assign",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1711,8 +1711,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{phone_number}/assign",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1750,8 +1750,8 @@
         "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/health",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1794,8 +1794,8 @@
         "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/assign-subaccount",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1833,8 +1833,8 @@
         "urlPathTemplate": "/api/v1/account/{auth_id}/numbers/{e164}/assign-subaccount",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1877,8 +1877,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1913,8 +1913,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1949,8 +1949,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -1988,8 +1988,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
         "method": "PUT",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2027,8 +2027,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/{trunk_id}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2066,8 +2066,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Kick/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2108,8 +2108,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2150,8 +2150,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2192,8 +2192,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Play/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2234,8 +2234,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2276,8 +2276,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Deaf/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2318,8 +2318,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Record/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2357,8 +2357,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Record/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2396,8 +2396,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Play/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2435,8 +2435,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Play/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2474,8 +2474,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Speak/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2513,8 +2513,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Speak/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2552,8 +2552,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/DTMF/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2591,8 +2591,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2630,8 +2630,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2669,8 +2669,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/{stream_id}/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2711,8 +2711,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Call/{call_uuid}/Stream/{stream_id}/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2753,8 +2753,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2789,8 +2789,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2825,8 +2825,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2864,8 +2864,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2903,8 +2903,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2945,8 +2945,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Member/{member_id}/Mute/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -2987,8 +2987,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Record/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3026,8 +3026,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Conference/{conference_name}/Record/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3065,8 +3065,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3101,8 +3101,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/{recording_id}/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3140,8 +3140,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Recording/{recording_id}/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3179,8 +3179,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/export/recording/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3215,8 +3215,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3251,8 +3251,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/credentials",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3287,8 +3287,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials/{credential_id}",
         "method": "PUT",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3326,8 +3326,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/credentials/{credential_id}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3365,8 +3365,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3401,8 +3401,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/ip-acl",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3437,8 +3437,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl/{ip_acl_id}",
         "method": "PUT",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3476,8 +3476,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/ip-acl/{ip_acl_id}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3515,8 +3515,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3551,8 +3551,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/trunks/origination-uris",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3587,8 +3587,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris/{uri_id}",
         "method": "PUT",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3626,8 +3626,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/origination-uris/{uri_id}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3665,8 +3665,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3701,8 +3701,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3737,8 +3737,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3776,8 +3776,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3815,8 +3815,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Application/{app_id}/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3854,8 +3854,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3890,8 +3890,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3926,8 +3926,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -3965,8 +3965,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4004,8 +4004,8 @@
         "urlPathTemplate": "/api/v1/Account/{auth_id}/Endpoint/{endpoint_id}/",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4043,8 +4043,8 @@
         "urlPathTemplate": "/api/v1/partner/me",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -4075,8 +4075,8 @@
         "urlPathTemplate": "/api/v1/partner/dashboard",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -4107,8 +4107,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -4139,8 +4139,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -4170,8 +4170,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/transfer-balance",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4206,8 +4206,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/transactions",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4250,8 +4250,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/cdrs",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4291,8 +4291,8 @@
         "urlPathTemplate": "/api/v1/partner/accounts/{customer_auth_id}/numbers",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4327,8 +4327,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -4359,8 +4359,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         }
       },
@@ -4390,8 +4390,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}",
         "method": "GET",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4426,8 +4426,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}",
         "method": "DELETE",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4462,8 +4462,8 @@
         "urlPathTemplate": "/api/v1/partner/kyc-sessions/{session_id}/resend",
         "method": "POST",
         "headers": {
-          "Authorization": {
-            "matches": "Bearer .+"
+          "X-Auth-ID": {
+            "matches": ".+"
           }
         },
         "pathParameters": {
@@ -4490,9 +4490,2761 @@
           }
         }
       }
+    },
+    {
+      "id": "2b80a562-a3d4-49b3-9a0b-4e31f6934959",
+      "name": "List messages - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/messages",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"messages\": [\n    {\n      \"id\": \"9b2e1c40-8a3d-4f5e-9c1a-7d6b2e8f4a01\",\n      \"accountId\": \"MA_XXXXXXXX\",\n      \"direction\": \"out\",\n      \"channel\": \"sms\",\n      \"from\": \"+14155550100\",\n      \"to\": \"+14155550123\",\n      \"text\": \"Your verification code is 482913\",\n      \"mediaUrls\": [\n        \"mediaUrls\"\n      ],\n      \"status\": \"scheduled\",\n      \"errorCode\": \"errorCode\",\n      \"errorMessage\": \"errorMessage\",\n      \"tag\": \"tag\",\n      \"conversationId\": \"conversationId\",\n      \"scheduledAt\": \"2024-01-15T09:30:00Z\",\n      \"createdAt\": \"2026-10-12T10:30:00Z\",\n      \"updatedAt\": \"2026-10-12T10:30:00Z\"\n    }\n  ],\n  \"total\": 128,\n  \"limit\": 20,\n  \"offset\": 0\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2b80a562-a3d4-49b3-9a0b-4e31f6934959",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "9fa7fb49-623e-42b0-aac7-5dbd22632332",
+      "name": "Send a message - SMS with idempotency key",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/messages",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"9b2e1c40-8a3d-4f5e-9c1a-7d6b2e8f4a01\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"direction\": \"out\",\n  \"channel\": \"sms\",\n  \"from\": \"+14155550100\",\n  \"to\": \"+14155550123\",\n  \"text\": \"Your verification code is 482913\",\n  \"status\": \"sent\",\n  \"errorCode\": \"errorCode\",\n  \"errorMessage\": \"errorMessage\",\n  \"tag\": \"otp\",\n  \"conversationId\": \"c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04\",\n  \"scheduledAt\": \"2024-01-15T09:30:00Z\",\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "9fa7fb49-623e-42b0-aac7-5dbd22632332",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "6e7494fe-d836-4bf0-b59f-a77394f67184",
+      "name": "Preview message cost - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/messages/cost-preview",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "queryParameters": {
+          "from": {
+            "equalTo": "+14155550100"
+          },
+          "to": {
+            "equalTo": "+14155550123"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"channel\": \"sms\",\n  \"segmentCount\": 2,\n  \"unitCost\": 0.01,\n  \"totalCost\": 0.02,\n  \"currency\": \"USD\",\n  \"country\": \"US\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6e7494fe-d836-4bf0-b59f-a77394f67184",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "78bff091-1d0c-4f12-87e9-59a68743ebf1",
+      "name": "Check RCS reachability - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/messages/rcs-reachability",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "queryParameters": {
+          "from": {
+            "equalTo": "YOUR_RCS_SENDER_NAME"
+          },
+          "to": {
+            "equalTo": "+14155550123"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"to\": \"+14155550123\",\n  \"reachable\": true,\n  \"carrier\": \"Example Mobile\",\n  \"capability\": \"reachable\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "78bff091-1d0c-4f12-87e9-59a68743ebf1",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "2c7d4a70-a232-408a-9c1b-bcba07de64b1",
+      "name": "Retrieve a message - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/messages/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "9b2e1c40-8a3d-4f5e-9c1a-7d6b2e8f4a01"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"9b2e1c40-8a3d-4f5e-9c1a-7d6b2e8f4a01\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"direction\": \"out\",\n  \"channel\": \"sms\",\n  \"from\": \"+14155550100\",\n  \"to\": \"+14155550123\",\n  \"text\": \"Your verification code is 482913\",\n  \"mediaUrls\": [\n    \"mediaUrls\"\n  ],\n  \"status\": \"delivered\",\n  \"errorCode\": \"errorCode\",\n  \"errorMessage\": \"errorMessage\",\n  \"tag\": \"tag\",\n  \"conversationId\": \"c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04\",\n  \"scheduledAt\": \"2024-01-15T09:30:00Z\",\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:31:04Z\",\n  \"statusHistory\": [\n    {\n      \"status\": \"sent\",\n      \"errorCode\": \"errorCode\",\n      \"errorMessage\": \"errorMessage\",\n      \"provider\": \"provider\",\n      \"createdAt\": \"2026-10-12T10:30:00Z\"\n    },\n    {\n      \"status\": \"delivered\",\n      \"errorCode\": \"errorCode\",\n      \"errorMessage\": \"errorMessage\",\n      \"provider\": \"provider\",\n      \"createdAt\": \"2026-10-12T10:31:04Z\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2c7d4a70-a232-408a-9c1b-bcba07de64b1",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f8504e90-03f6-44f5-bb10-38813b332b2e",
+      "name": "List your numbers - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/numbers",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"numbers\": [\n    {\n      \"e164\": \"+14155550100\",\n      \"provider\": \"internal\",\n      \"countryCode\": \"US\",\n      \"channels\": [\n        \"sms\",\n        \"mms\"\n      ],\n      \"type\": \"VIRTUAL_LONG_NUMBER\",\n      \"capabilities\": [\n        \"SMS\",\n        \"VOICE\",\n        \"MMS\"\n      ],\n      \"tenDlc\": {\n        \"campaignId\": \"3f1c7a2e-9d4b-4e8a-b6c5-2a7d9e1f0b43\",\n        \"campaignName\": \"Order notifications\",\n        \"stage\": \"REGISTERED\"\n      },\n      \"tollFree\": false,\n      \"registration\": {\n        \"kind\": \"10dlc\",\n        \"status\": \"approved\",\n        \"campaignId\": \"3f1c7a2e-9d4b-4e8a-b6c5-2a7d9e1f0b43\",\n        \"campaignName\": \"Order notifications\",\n        \"stage\": \"REGISTERED\"\n      },\n      \"lastMessage\": {\n        \"status\": \"delivered\",\n        \"errorCode\": \"\",\n        \"errorMessage\": \"\",\n        \"to\": \"+14155550123\",\n        \"createdAt\": \"2026-10-16T21:23:02Z\"\n      },\n      \"sendable\": {\n        \"international\": true,\n        \"usDomestic\": true\n      }\n    },\n    {\n      \"e164\": \"+14155550101\",\n      \"provider\": \"internal\",\n      \"countryCode\": \"US\",\n      \"channels\": [\n        \"sms\",\n        \"mms\"\n      ],\n      \"type\": \"VIRTUAL_LONG_NUMBER\",\n      \"capabilities\": [\n        \"SMS\",\n        \"VOICE\",\n        \"MMS\"\n      ],\n      \"tollFree\": false,\n      \"registration\": {\n        \"kind\": \"10dlc\",\n        \"status\": \"not_registered\",\n        \"campaignId\": \"\",\n        \"campaignName\": \"\",\n        \"stage\": \"\"\n      },\n      \"sendable\": {\n        \"international\": true,\n        \"usDomestic\": false\n      }\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f8504e90-03f6-44f5-bb10-38813b332b2e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "7c2443a3-ca0f-4d90-a513-f01a68ec18d5",
+      "name": "List countries in stock - Snapshot ready",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/numbers/countries",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"countries\": [\n    {\n      \"country\": \"CA\",\n      \"name\": \"Canada\",\n      \"types\": [\n        \"local\"\n      ],\n      \"capabilities\": [\n        \"SMS\",\n        \"MMS\",\n        \"VOICE\"\n      ]\n    },\n    {\n      \"country\": \"GB\",\n      \"name\": \"United Kingdom\",\n      \"types\": [\n        \"local\"\n      ],\n      \"capabilities\": [\n        \"SMS\"\n      ]\n    },\n    {\n      \"country\": \"US\",\n      \"name\": \"United States\",\n      \"types\": [\n        \"local\",\n        \"tollfree\"\n      ],\n      \"capabilities\": [\n        \"SMS\",\n        \"MMS\",\n        \"VOICE\"\n      ]\n    }\n  ],\n  \"updatedAt\": \"2026-10-18T03:19:11Z\",\n  \"ready\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7c2443a3-ca0f-4d90-a513-f01a68ec18d5",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "2dca6fb8-71b3-497f-8507-6dd910d7c57c",
+      "name": "Search available numbers - US search",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/numbers/available",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "queryParameters": {
+          "country": {
+            "equalTo": "US"
+          },
+          "capabilities": {
+            "equalTo": "SMS,MMS"
+          },
+          "areaCode": {
+            "equalTo": "415"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"numbers\": [\n    {\n      \"e164\": \"+14155550100\",\n      \"numberKey\": \"\",\n      \"countryCode\": \"US\",\n      \"type\": \"VIRTUAL_LONG_NUMBER\",\n      \"capabilities\": [\n        \"MMS\",\n        \"SMS\",\n        \"VOICE\"\n      ],\n      \"network\": \"\",\n      \"setupPrice\": 1,\n      \"monthlyPrice\": 1,\n      \"currency\": \"USD\",\n      \"providerRequiresDocuments\": false\n    }\n  ],\n  \"page\": 0,\n  \"limit\": 10,\n  \"hasMore\": false,\n  \"hint\": \"India uses DLT sender IDs, not long codes\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2dca6fb8-71b3-497f-8507-6dd910d7c57c",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "6ca9492f-339c-4aca-895e-0d4334fa62ab",
+      "name": "Purchase a number - US number",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/numbers/purchase",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"purchase\": {\n    \"id\": \"5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"provider\": \"internal\",\n    \"e164\": \"+14155550100\",\n    \"countryCode\": \"US\",\n    \"type\": \"VIRTUAL_LONG_NUMBER\",\n    \"capabilities\": [\n      \"VOICE\",\n      \"SMS\",\n      \"MMS\"\n    ],\n    \"setupAmount\": 1,\n    \"monthlyAmount\": 1,\n    \"currency\": \"USD\",\n    \"status\": \"purchased\",\n    \"purchasedAt\": \"2026-10-12T09:06:44Z\",\n    \"nextBillingAt\": \"2026-11-12T09:06:44Z\",\n    \"createdAt\": \"2026-10-12T09:06:42Z\",\n    \"updatedAt\": \"2026-10-12T09:06:44Z\",\n    \"charges\": [\n      {\n        \"purchaseId\": \"5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n        \"kind\": \"purchase\",\n        \"periodStart\": \"2026-10-12T09:06:42Z\",\n        \"amount\": 2,\n        \"currency\": \"USD\",\n        \"status\": \"paid\",\n        \"reference\": \"sms_number_purchase:5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n        \"attempts\": 1,\n        \"attemptedAt\": \"2026-10-12T09:06:42Z\"\n      }\n    ]\n  },\n  \"number\": {\n    \"id\": 1042,\n    \"e164\": \"+14155550100\",\n    \"provider\": \"internal\",\n    \"channelCapabilities\": [\n      \"sms\",\n      \"mms\"\n    ],\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"countryCode\": \"US\",\n    \"createdAt\": \"2026-10-12T09:06:44Z\"\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6ca9492f-339c-4aca-895e-0d4334fa62ab",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "91f95da0-9570-49ae-8ccd-3d43848eb042",
+      "name": "List number purchases - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/numbers/purchases",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"purchases\": [\n    {\n      \"id\": \"5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n      \"accountId\": \"MA_XXXXXXXX\",\n      \"provider\": \"internal\",\n      \"e164\": \"+14155550100\",\n      \"countryCode\": \"US\",\n      \"type\": \"VIRTUAL_LONG_NUMBER\",\n      \"capabilities\": [\n        \"VOICE\",\n        \"SMS\",\n        \"MMS\"\n      ],\n      \"setupAmount\": 1,\n      \"monthlyAmount\": 1,\n      \"currency\": \"USD\",\n      \"status\": \"purchased\",\n      \"purchasedAt\": \"2026-10-12T09:06:44Z\",\n      \"nextBillingAt\": \"2026-11-12T09:06:44Z\",\n      \"createdAt\": \"2026-10-12T09:06:42Z\",\n      \"updatedAt\": \"2026-10-12T09:06:44Z\",\n      \"charges\": [\n        {\n          \"purchaseId\": \"5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n          \"kind\": \"purchase\",\n          \"periodStart\": \"2026-10-12T09:06:42Z\",\n          \"amount\": 2,\n          \"currency\": \"USD\",\n          \"status\": \"paid\",\n          \"reference\": \"sms_number_purchase:5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n          \"attempts\": 1,\n          \"attemptedAt\": \"2026-10-12T09:06:42Z\"\n        }\n      ]\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "91f95da0-9570-49ae-8ccd-3d43848eb042",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "2ddd432d-2c64-40ff-9612-f2456a39074c",
+      "name": "Release a number - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/numbers/{e164}/release",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "e164": {
+            "equalTo": "+14155550100"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"purchase\": {\n    \"id\": \"5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"provider\": \"internal\",\n    \"e164\": \"+14155550100\",\n    \"countryCode\": \"US\",\n    \"type\": \"VIRTUAL_LONG_NUMBER\",\n    \"capabilities\": [\n      \"VOICE\",\n      \"SMS\",\n      \"MMS\"\n    ],\n    \"setupAmount\": 1,\n    \"monthlyAmount\": 1,\n    \"currency\": \"USD\",\n    \"status\": \"released\",\n    \"purchasedAt\": \"2026-10-12T09:06:44Z\",\n    \"releasedAt\": \"2026-10-20T14:02:10Z\",\n    \"createdAt\": \"2026-10-12T09:06:42Z\",\n    \"updatedAt\": \"2026-10-20T14:02:10Z\",\n    \"charges\": [\n      {\n        \"purchaseId\": \"5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n        \"kind\": \"purchase\",\n        \"periodStart\": \"2026-10-12T09:06:42Z\",\n        \"amount\": 2,\n        \"currency\": \"USD\",\n        \"status\": \"paid\",\n        \"reference\": \"sms_number_purchase:5c2d9e7a-1b4f-4a8c-9e3d-6f7a0b1c2d3e\",\n        \"attempts\": 1,\n        \"attemptedAt\": \"2026-10-12T09:06:42Z\"\n      }\n    ]\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2ddd432d-2c64-40ff-9612-f2456a39074c",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "ad1f9078-0dca-46d1-89ba-7de1b33566e6",
+      "name": "List coverage - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/coverage",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "queryParameters": {
+          "q": {
+            "equalTo": "united"
+          },
+          "region": {
+            "equalTo": "Northern America"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"countries\": [\n    {\n      \"country\": \"GB\",\n      \"name\": \"United Kingdom\",\n      \"region\": \"Northern Europe\",\n      \"dialCode\": \"44\",\n      \"senders\": {\n        \"alphanumeric\": {\n          \"local\": true,\n          \"international\": true\n        },\n        \"shortCode\": {\n          \"local\": true,\n          \"international\": true\n        },\n        \"longNumber\": {\n          \"local\": true,\n          \"international\": true\n        }\n      },\n      \"registrationRequired\": {\n        \"local\": true,\n        \"international\": true\n      },\n      \"twoWay\": true,\n      \"optOutMandatory\": false,\n      \"hasSendWindow\": false\n    },\n    {\n      \"country\": \"US\",\n      \"name\": \"United States\",\n      \"region\": \"Northern America\",\n      \"dialCode\": \"1\",\n      \"senders\": {\n        \"alphanumeric\": {\n          \"local\": false,\n          \"international\": false\n        },\n        \"shortCode\": {\n          \"local\": true,\n          \"international\": true\n        },\n        \"longNumber\": {\n          \"local\": true,\n          \"international\": true\n        }\n      },\n      \"registrationRequired\": {\n        \"local\": true,\n        \"international\": true\n      },\n      \"twoWay\": true,\n      \"optOutMandatory\": true,\n      \"hasSendWindow\": false\n    }\n  ],\n  \"total\": 2,\n  \"updatedAt\": \"2026-10-09T09:49:01Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "ad1f9078-0dca-46d1-89ba-7de1b33566e6",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "752fa42f-ca5c-413b-96cc-d4eb308ec626",
+      "name": "Retrieve country coverage - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/coverage/{country}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "country": {
+            "equalTo": "US"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"country\": \"IN\",\n  \"name\": \"India\",\n  \"region\": \"South-central Asia\",\n  \"dialCode\": \"91\",\n  \"mcc\": \"405\",\n  \"numberPortability\": true,\n  \"localVsInternationalTraffic\": false,\n  \"senders\": {\n    \"alphanumeric\": {\n      \"local\": true,\n      \"international\": true\n    },\n    \"shortCode\": {\n      \"local\": false,\n      \"international\": true\n    },\n    \"longNumber\": {\n      \"local\": false,\n      \"international\": true\n    }\n  },\n  \"registration\": {\n    \"required\": {\n      \"local\": false,\n      \"international\": false\n    },\n    \"alphanumericExtraSteps\": \"Register the Principal Entity, the sender header and each content template on a TRAI DLT portal before sending local traffic.\"\n  },\n  \"urls\": {\n    \"allowed\": {\n      \"local\": true,\n      \"international\": true\n    },\n    \"whitelistingRequired\": {\n      \"local\": false,\n      \"international\": false\n    }\n  },\n  \"optOutMandatory\": false,\n  \"twoWay\": true,\n  \"prohibitedTopics\": [\n    \"Regulatory\",\n    \"Other Scams\",\n    \"Gambling\",\n    \"Explicit Content\",\n    \"Phishing\"\n  ],\n  \"prohibitedNotes\": \"Gambling - only OTP allowed. Political and adult content is not allowed.\",\n  \"sendWindow\": {\n    \"weekday\": \"MON - FRI: 10:00:00 - 21:00:00; Timezone from MSISDN\",\n    \"saturday\": \"SAT: 10:00:00 - 21:00:00; Timezone from MSISDN\",\n    \"sunday\": \"SUN: 10:00:00 - 21:00:00; Timezone from MSISDN\"\n  },\n  \"marketNotes\": \"DLT registration applies to all local SMS traffic types (promotional, transactional and OTP).\",\n  \"updatedAt\": \"2026-10-09T09:49:01Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "752fa42f-ca5c-413b-96cc-d4eb308ec626",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0291c0ec-6b59-4497-9d14-3ed4545c5157",
+      "name": "List conversations - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/conversations",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"participantA\": \"+14155550100\",\n    \"participantB\": \"+14155550123\",\n    \"channel\": \"sms\",\n    \"lastMessageAt\": \"2026-10-16T21:23:51Z\",\n    \"messageCount\": 3,\n    \"unreadCount\": 1,\n    \"lastReadAt\": \"2026-10-17T08:46:55Z\",\n    \"createdAt\": \"2026-10-16T21:23:02Z\"\n  },\n  {\n    \"id\": \"1a9c3e5b-7d2f-4b8a-9c6e-0f4d2b8a6c13\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"participantA\": \"+14155550100\",\n    \"participantB\": \"+14155550124\",\n    \"channel\": \"sms\",\n    \"lastMessageAt\": \"2026-10-16T13:25:41Z\",\n    \"messageCount\": 2,\n    \"unreadCount\": 0,\n    \"lastReadAt\": \"2026-10-16T21:24:15Z\",\n    \"createdAt\": \"2026-10-16T13:25:41Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0291c0ec-6b59-4497-9d14-3ed4545c5157",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "316b3a4f-29fe-404d-a8bd-a7887ccc43eb",
+      "name": "Count unread messages - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/conversations/unread-count",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"totalUnread\": 4\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "316b3a4f-29fe-404d-a8bd-a7887ccc43eb",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "7f332b2f-7760-42bd-906a-86c3c142526f",
+      "name": "Retrieve a conversation - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/conversations/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"participantA\": \"+14155550100\",\n  \"participantB\": \"+14155550123\",\n  \"channel\": \"sms\",\n  \"lastMessageAt\": \"2026-10-16T21:23:51Z\",\n  \"messageCount\": 3,\n  \"unreadCount\": 1,\n  \"lastReadAt\": \"2026-10-17T08:46:55Z\",\n  \"createdAt\": \"2026-10-16T21:23:02Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7f332b2f-7760-42bd-906a-86c3c142526f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "e829576d-8c90-4d97-96da-1edb82a977e1",
+      "name": "List conversation messages - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/conversations/{id}/messages",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"9b2e1c40-8a3d-4f5e-9c1a-7d6b2e8f4a01\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"direction\": \"out\",\n    \"channel\": \"sms\",\n    \"from\": \"+14155550100\",\n    \"to\": \"+14155550123\",\n    \"text\": \"Your appointment is confirmed for 3pm tomorrow.\",\n    \"status\": \"delivered\",\n    \"errorCode\": \"errorCode\",\n    \"errorMessage\": \"errorMessage\",\n    \"tag\": \"tag\",\n    \"conversationId\": \"c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04\",\n    \"scheduledAt\": \"2024-01-15T09:30:00Z\",\n    \"createdAt\": \"2026-10-16T21:23:02Z\",\n    \"updatedAt\": \"2026-10-16T21:23:09Z\"\n  },\n  {\n    \"id\": \"2e7f4b91-6c3d-4a8e-b5f1-9d0c7a2e3b64\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"direction\": \"in\",\n    \"channel\": \"sms\",\n    \"from\": \"+14155550123\",\n    \"to\": \"+14155550100\",\n    \"text\": \"Thanks, see you then.\",\n    \"status\": \"received\",\n    \"errorCode\": \"errorCode\",\n    \"errorMessage\": \"errorMessage\",\n    \"tag\": \"tag\",\n    \"conversationId\": \"c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04\",\n    \"scheduledAt\": \"2024-01-15T09:30:00Z\",\n    \"createdAt\": \"2026-10-16T21:23:51Z\",\n    \"updatedAt\": \"2026-10-16T21:23:51Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "e829576d-8c90-4d97-96da-1edb82a977e1",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "aabd570d-8508-4d42-9ba4-72abf3d12811",
+      "name": "Mark a conversation read - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/conversations/{id}/read",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "c7d1e9a3-2b4f-4a6c-8d5e-1f3a9b7c2e04"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "aabd570d-8508-4d42-9ba4-72abf3d12811",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "e5b6236e-5b16-47d0-988e-ce14e6940214",
+      "name": "List opt-outs - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/opt-outs",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "queryParameters": {
+          "limit": {
+            "equalTo": "1"
+          },
+          "offset": {
+            "equalTo": "1"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"4e8b2d61-7c3a-4f9e-a1d5-9b6c0e2f8a37\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"phoneNumber\": \"+14155550123\",\n    \"channel\": \"sms\",\n    \"reason\": \"manual\",\n    \"source\": \"manual\",\n    \"syncedToProvider\": true,\n    \"createdAt\": \"2026-10-18T07:23:03Z\"\n  },\n  {\n    \"id\": \"7b1d9f3e-2a6c-4e5b-8d0f-3c9a1e7b5d26\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"phoneNumber\": \"+14155550124\",\n    \"channel\": \"sms\",\n    \"reason\": \"stop\",\n    \"source\": \"inbound\",\n    \"syncedToProvider\": false,\n    \"createdAt\": \"2026-10-17T19:04:40Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "e5b6236e-5b16-47d0-988e-ce14e6940214",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "41badcda-8e57-4f7e-bbbe-f9382a59f312",
+      "name": "Create an opt-out - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/opt-outs",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "41badcda-8e57-4f7e-bbbe-f9382a59f312",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "cee02162-ff93-4a6b-8e77-b446f2d7b045",
+      "name": "Check an opt-out - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/opt-outs/{phoneNumber}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "phoneNumber": {
+            "equalTo": "+14155550123"
+          }
+        },
+        "queryParameters": {
+          "channel": {
+            "equalTo": "sms"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"optedOut\": true\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "cee02162-ff93-4a6b-8e77-b446f2d7b045",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f4576881-ce0c-4b00-b725-3ed469d85374",
+      "name": "Delete an opt-out - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/opt-outs/{phoneNumber}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "phoneNumber": {
+            "equalTo": "+14155550123"
+          }
+        },
+        "queryParameters": {
+          "channel": {
+            "equalTo": "sms"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f4576881-ce0c-4b00-b725-3ed469d85374",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "4fa3168c-89f0-4547-b336-a543f2248fe1",
+      "name": "List webhooks - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/webhooks",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"8d4f2a6b-3e1c-4b9a-a7d2-5c8e1f0b6a93\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"url\": \"https://example.com/vobiz/webhooks\",\n    \"secret\": \"YOUR_WEBHOOK_SECRET\",\n    \"events\": [\n      \"message.received\",\n      \"message.delivered\",\n      \"message.failed\"\n    ],\n    \"active\": true,\n    \"createdAt\": \"2026-10-18T07:22:11Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "4fa3168c-89f0-4547-b336-a543f2248fe1",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "9b674c0c-c2b5-491d-b1d1-1e5f32f9a52e",
+      "name": "Create a webhook - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/webhooks",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"8d4f2a6b-3e1c-4b9a-a7d2-5c8e1f0b6a93\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"url\": \"https://example.com/vobiz/webhooks\",\n  \"secret\": \"YOUR_WEBHOOK_SECRET\",\n  \"events\": [\n    \"message.received\",\n    \"message.delivered\",\n    \"message.failed\"\n  ],\n  \"active\": true,\n  \"createdAt\": \"2026-10-18T07:22:11Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "9b674c0c-c2b5-491d-b1d1-1e5f32f9a52e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a638a3d4-f0b3-4d79-9da0-52d8e64b1bb2",
+      "name": "Retrieve a webhook - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/webhooks/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "2a4c6e8f-1b3d-4f5a-8c7e-9d0b2f4a6c8e"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"8d4f2a6b-3e1c-4b9a-a7d2-5c8e1f0b6a93\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"url\": \"https://example.com/vobiz/webhooks\",\n  \"secret\": \"YOUR_WEBHOOK_SECRET\",\n  \"events\": [\n    \"message.received\",\n    \"message.delivered\",\n    \"message.failed\"\n  ],\n  \"active\": true,\n  \"createdAt\": \"2026-10-18T07:22:11Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a638a3d4-f0b3-4d79-9da0-52d8e64b1bb2",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0f0cdfb1-d86c-4531-be18-553c420ffa45",
+      "name": "Update a webhook - Change the events",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/webhooks/{id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "2a4c6e8f-1b3d-4f5a-8c7e-9d0b2f4a6c8e"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0f0cdfb1-d86c-4531-be18-553c420ffa45",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "21cf0a58-fad9-4604-b484-865cc59858f3",
+      "name": "Delete a webhook - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/webhooks/{id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "2a4c6e8f-1b3d-4f5a-8c7e-9d0b2f4a6c8e"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "21cf0a58-fad9-4604-b484-865cc59858f3",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "849134af-6a58-4d47-a510-8848540628d5",
+      "name": "List broadcasts - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"broadcasts\": [\n    {\n      \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n      \"accountId\": \"MA_XXXXXXXX\",\n      \"name\": \"October pricing update\",\n      \"from\": \"+14155550100\",\n      \"channel\": \"sms\",\n      \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n      \"status\": \"completed\",\n      \"pauseReason\": \"insufficient_balance\",\n      \"ratePerSecond\": 5,\n      \"tag\": \"pricing-oct\",\n      \"dltEntityId\": \"\",\n      \"dltHeaderId\": \"\",\n      \"dltTemplateId\": \"\",\n      \"columns\": [\n        \"phone\",\n        \"name\",\n        \"amount\"\n      ],\n      \"stats\": {\n        \"total\": 3,\n        \"pending\": 0,\n        \"sent\": 3,\n        \"delivered\": 0,\n        \"failed\": 0,\n        \"optedOut\": 0,\n        \"skipped\": 0\n      },\n      \"createdAt\": \"2026-10-12T10:30:00Z\",\n      \"updatedAt\": \"2026-10-12T11:05:12Z\",\n      \"startedAt\": \"2026-10-12T11:05:10Z\",\n      \"completedAt\": \"2026-10-12T11:05:12Z\"\n    }\n  ],\n  \"total\": 1\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "849134af-6a58-4d47-a510-8848540628d5",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "731ca009-fc00-470e-8df0-1e233205945c",
+      "name": "Create a broadcast - Template with variables",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n  \"status\": \"draft\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"stats\": {\n    \"total\": 0,\n    \"pending\": 0,\n    \"sent\": 0,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 0\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "731ca009-fc00-470e-8df0-1e233205945c",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0e863520-17de-4a24-9e6e-eaa3b7c5de42",
+      "name": "Retrieve a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n  \"status\": \"running\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ],\n  \"stats\": {\n    \"total\": 3,\n    \"pending\": 1,\n    \"sent\": 2,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 0\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:05:11Z\",\n  \"startedAt\": \"2026-10-12T11:05:10Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0e863520-17de-4a24-9e6e-eaa3b7c5de42",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "14473a37-66ab-484c-8c10-03830bff976b",
+      "name": "Update a broadcast - Change the template",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} has been issued.\",\n  \"status\": \"draft\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ],\n  \"stats\": {\n    \"total\": 3,\n    \"pending\": 3,\n    \"sent\": 0,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 0\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:42:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "14473a37-66ab-484c-8c10-03830bff976b",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f410375b-f64c-409a-85c2-ddff2e74760b",
+      "name": "Delete a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f410375b-f64c-409a-85c2-ddff2e74760b",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "33bac04b-3d45-4f46-b8bc-ba5fc5775c03",
+      "name": "List recipients - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/recipients",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"recipients\": [\n    {\n      \"id\": 1042,\n      \"row\": 2,\n      \"to\": \"+14155550123\",\n      \"variables\": {\n        \"name\": \"Priya\",\n        \"amount\": \"$42.00\"\n      },\n      \"status\": \"sent\",\n      \"messageId\": \"9b2e1c40-8a3d-4f5e-9c1a-7d6b2e8f4a01\",\n      \"errorCode\": \"\",\n      \"errorMessage\": \"\",\n      \"sentAt\": \"2026-10-12T11:05:10Z\"\n    },\n    {\n      \"id\": 1043,\n      \"row\": 3,\n      \"to\": \"+14155550124\",\n      \"variables\": {\n        \"name\": \"Sam\",\n        \"amount\": \"$18.50\"\n      },\n      \"status\": \"pending\",\n      \"messageId\": \"\",\n      \"errorCode\": \"\",\n      \"errorMessage\": \"\"\n    }\n  ],\n  \"total\": 2\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "33bac04b-3d45-4f46-b8bc-ba5fc5775c03",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "66d64d08-0280-4bb5-850e-7a1a54418872",
+      "name": "Upload recipients - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/recipients",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"total\": 5,\n  \"valid\": 3,\n  \"invalid\": [\n    {\n      \"row\": 4,\n      \"value\": \"abc\",\n      \"reason\": \"contains letters or symbols\"\n    }\n  ],\n  \"invalidCount\": 1,\n  \"duplicates\": 1,\n  \"optedOut\": 0,\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "66d64d08-0280-4bb5-850e-7a1a54418872",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "51a3ad39-5f43-4f5b-ae87-36ebc7dafa5f",
+      "name": "Preview a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/preview",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"samples\": [\n    {\n      \"to\": \"+14155550123\",\n      \"text\": \"Hi Priya, your refund of $42.00 is on its way.\",\n      \"segments\": 1,\n      \"encoding\": \"GSM-7\"\n    },\n    {\n      \"to\": \"+14155550124\",\n      \"text\": \"Hi Sam, your refund of $18.50 is on its way.\",\n      \"segments\": 1,\n      \"encoding\": \"GSM-7\"\n    }\n  ],\n  \"missingVariables\": [\n    \"missingVariables\"\n  ],\n  \"estimatedSegments\": 2\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "51a3ad39-5f43-4f5b-ae87-36ebc7dafa5f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c4c30806-6cd3-48b3-9975-e0f8cc3a6873",
+      "name": "Export results as CSV - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/export",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"string\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c4c30806-6cd3-48b3-9975-e0f8cc3a6873",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "408727fc-52c3-483b-bfec-1a673346e6e8",
+      "name": "Launch a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/launch",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n  \"status\": \"running\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ],\n  \"stats\": {\n    \"total\": 3,\n    \"pending\": 3,\n    \"sent\": 0,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 0\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:05:10Z\",\n  \"startedAt\": \"2026-10-12T11:05:10Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "408727fc-52c3-483b-bfec-1a673346e6e8",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "897d4d7c-826a-4d54-9a1b-a1c2f61411be",
+      "name": "Pause a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/pause",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n  \"status\": \"paused\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ],\n  \"stats\": {\n    \"total\": 3,\n    \"pending\": 1,\n    \"sent\": 2,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 0\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:05:11Z\",\n  \"startedAt\": \"2026-10-12T11:05:10Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "897d4d7c-826a-4d54-9a1b-a1c2f61411be",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3ee315ee-f33d-4c4e-a272-ed6ed9ae4940",
+      "name": "Resume a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/resume",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n  \"status\": \"running\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ],\n  \"stats\": {\n    \"total\": 3,\n    \"pending\": 1,\n    \"sent\": 2,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 0\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:06:00Z\",\n  \"startedAt\": \"2026-10-12T11:05:10Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3ee315ee-f33d-4c4e-a272-ed6ed9ae4940",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7caf9309-3034-4e40-ac76-b1b79a9428b9",
+      "name": "Cancel a broadcast - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/broadcasts/{id}/cancel",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"3f8d2a6e-5b1c-4e7f-a9d0-2c4b6e8f1a35\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"October pricing update\",\n  \"from\": \"+14155550100\",\n  \"channel\": \"sms\",\n  \"template\": \"Hi {{name}}, your refund of {{amount}} is on its way.\",\n  \"status\": \"cancelled\",\n  \"pauseReason\": \"insufficient_balance\",\n  \"ratePerSecond\": 5,\n  \"tag\": \"pricing-oct\",\n  \"dltEntityId\": \"\",\n  \"dltHeaderId\": \"\",\n  \"dltTemplateId\": \"\",\n  \"columns\": [\n    \"phone\",\n    \"name\",\n    \"amount\"\n  ],\n  \"stats\": {\n    \"total\": 3,\n    \"pending\": 0,\n    \"sent\": 2,\n    \"delivered\": 0,\n    \"failed\": 0,\n    \"optedOut\": 0,\n    \"skipped\": 1\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:07:30Z\",\n  \"startedAt\": \"2026-10-12T11:05:10Z\",\n  \"completedAt\": \"2026-10-12T11:07:30Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7caf9309-3034-4e40-ac76-b1b79a9428b9",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "8aa78b7d-54c4-4dd1-983b-d51cbe5d2eb0",
+      "name": "List RCS senders - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n    \"senderName\": \"example-brand\",\n    \"displayName\": \"Example Brand\",\n    \"description\": \"Order updates and support for Example Brand customers.\",\n    \"billingCategory\": \"CONVERSATIONAL\",\n    \"useCase\": \"TRANSACTIONAL\",\n    \"hostingRegion\": \"NORTH_AMERICA\",\n    \"status\": \"pending\",\n    \"brand\": {\n      \"brandName\": \"Example Brand\"\n    },\n    \"color\": \"#1A73E8\",\n    \"phones\": [\n      {\n        \"phoneNumber\": \"+14155550100\",\n        \"label\": \"Support\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"address\": \"support@example.com\",\n        \"label\": \"Support\"\n      }\n    ],\n    \"websites\": [\n      {\n        \"url\": \"https://example.com\",\n        \"label\": \"Website\"\n      }\n    ],\n    \"bannerUrl\": \"https://example.com/rcs/banner.jpg\",\n    \"logoUrl\": \"https://example.com/rcs/logo.png\",\n    \"privacy\": {\n      \"url\": \"https://example.com/privacy\",\n      \"label\": \"Privacy policy\"\n    },\n    \"termsOfService\": {\n      \"url\": \"https://example.com/privacy\",\n      \"label\": \"Privacy policy\"\n    },\n    \"platform\": {\n      \"applicationId\": \"YOUR_APPLICATION_ID\",\n      \"entityId\": \"YOUR_ENTITY_ID\"\n    },\n    \"createdAt\": \"2026-10-12T10:30:00Z\",\n    \"updatedAt\": \"2026-10-12T10:30:00Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8aa78b7d-54c4-4dd1-983b-d51cbe5d2eb0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "e47b947a-8f36-4083-801e-598e81b87e9e",
+      "name": "Create an RCS sender - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"senderName\": \"example-brand\",\n  \"displayName\": \"Example Brand\",\n  \"description\": \"Order updates and support for Example Brand customers.\",\n  \"billingCategory\": \"CONVERSATIONAL\",\n  \"useCase\": \"TRANSACTIONAL\",\n  \"hostingRegion\": \"NORTH_AMERICA\",\n  \"status\": \"pending\",\n  \"brand\": {\n    \"brandName\": \"Example Brand\"\n  },\n  \"color\": \"#1A73E8\",\n  \"phones\": [\n    {\n      \"phoneNumber\": \"+14155550100\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"support@example.com\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"websites\": [\n    {\n      \"url\": \"https://example.com\",\n      \"label\": \"Website\"\n    }\n  ],\n  \"bannerUrl\": \"https://example.com/rcs/banner.jpg\",\n  \"logoUrl\": \"https://example.com/rcs/logo.png\",\n  \"privacy\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"termsOfService\": {\n    \"url\": \"https://example.com/terms\",\n    \"label\": \"Terms of service\"\n  },\n  \"platform\": {\n    \"applicationId\": \"YOUR_APPLICATION_ID\",\n    \"entityId\": \"YOUR_ENTITY_ID\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "e47b947a-8f36-4083-801e-598e81b87e9e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "75895a20-b760-40be-aa5e-7b7712263947",
+      "name": "Retrieve an RCS sender - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"senderName\": \"example-brand\",\n  \"displayName\": \"Example Brand\",\n  \"description\": \"Order updates and support for Example Brand customers.\",\n  \"billingCategory\": \"CONVERSATIONAL\",\n  \"useCase\": \"TRANSACTIONAL\",\n  \"hostingRegion\": \"NORTH_AMERICA\",\n  \"status\": \"pending\",\n  \"brand\": {\n    \"brandName\": \"Example Brand\"\n  },\n  \"color\": \"#1A73E8\",\n  \"phones\": [\n    {\n      \"phoneNumber\": \"+14155550100\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"support@example.com\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"websites\": [\n    {\n      \"url\": \"https://example.com\",\n      \"label\": \"Website\"\n    }\n  ],\n  \"bannerUrl\": \"https://example.com/rcs/banner.jpg\",\n  \"logoUrl\": \"https://example.com/rcs/logo.png\",\n  \"privacy\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"termsOfService\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"platform\": {\n    \"applicationId\": \"YOUR_APPLICATION_ID\",\n    \"entityId\": \"YOUR_ENTITY_ID\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "75895a20-b760-40be-aa5e-7b7712263947",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "823fd6d2-8646-4e0f-89b3-6d364334847f",
+      "name": "Update an RCS sender - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"senderName\": \"example-brand\",\n  \"displayName\": \"Example Brand Support\",\n  \"description\": \"Order updates, returns and support for Example Brand customers.\",\n  \"billingCategory\": \"CONVERSATIONAL\",\n  \"useCase\": \"TRANSACTIONAL\",\n  \"hostingRegion\": \"NORTH_AMERICA\",\n  \"status\": \"pending\",\n  \"brand\": {\n    \"brandName\": \"Example Brand\"\n  },\n  \"color\": \"#1A73E8\",\n  \"phones\": [\n    {\n      \"phoneNumber\": \"+14155550100\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"support@example.com\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"websites\": [\n    {\n      \"url\": \"https://example.com/help\",\n      \"label\": \"Help centre\"\n    }\n  ],\n  \"bannerUrl\": \"https://example.com/rcs/banner.jpg\",\n  \"logoUrl\": \"https://example.com/rcs/logo.png\",\n  \"privacy\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"termsOfService\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"platform\": {\n    \"applicationId\": \"YOUR_APPLICATION_ID\",\n    \"entityId\": \"YOUR_ENTITY_ID\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T12:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "823fd6d2-8646-4e0f-89b3-6d364334847f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "45d26b61-eb45-4eb5-879f-0eb5e11178c0",
+      "name": "Refresh sender status - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{id}/status",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"senderName\": \"example-brand\",\n  \"displayName\": \"Example Brand\",\n  \"description\": \"Order updates and support for Example Brand customers.\",\n  \"billingCategory\": \"CONVERSATIONAL\",\n  \"useCase\": \"TRANSACTIONAL\",\n  \"hostingRegion\": \"NORTH_AMERICA\",\n  \"status\": \"pending\",\n  \"brand\": {\n    \"brandName\": \"Example Brand\"\n  },\n  \"color\": \"#1A73E8\",\n  \"phones\": [\n    {\n      \"phoneNumber\": \"+14155550100\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"address\": \"support@example.com\",\n      \"label\": \"Support\"\n    }\n  ],\n  \"websites\": [\n    {\n      \"url\": \"https://example.com\",\n      \"label\": \"Website\"\n    }\n  ],\n  \"bannerUrl\": \"https://example.com/rcs/banner.jpg\",\n  \"logoUrl\": \"https://example.com/rcs/logo.png\",\n  \"privacy\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"termsOfService\": {\n    \"url\": \"https://example.com/privacy\",\n    \"label\": \"Privacy policy\"\n  },\n  \"platform\": {\n    \"applicationId\": \"YOUR_APPLICATION_ID\",\n    \"entityId\": \"YOUR_ENTITY_ID\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T12:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "45d26b61-eb45-4eb5-879f-0eb5e11178c0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d2edd0c6-62fc-434e-987f-fd423d71249f",
+      "name": "List templates - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{senderId}/templates",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "senderId": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"c2e4a6b8-1d3f-4a5c-9e7b-6f8d0a2c4e61\",\n    \"senderId\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n    \"templateName\": \"order-shipped\",\n    \"type\": \"TEXT\",\n    \"status\": \"pending\",\n    \"content\": {\n      \"text\": \"Your order {{orderId}} has shipped and arrives on {{eta}}.\"\n    },\n    \"createdAt\": \"2026-10-12T10:30:00Z\",\n    \"updatedAt\": \"2026-10-12T10:30:00Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d2edd0c6-62fc-434e-987f-fd423d71249f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d1c84e54-6a34-4fff-b83a-4a8adcb745d7",
+      "name": "Create a template - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{senderId}/templates",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "senderId": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"c2e4a6b8-1d3f-4a5c-9e7b-6f8d0a2c4e61\",\n  \"senderId\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"templateName\": \"order-shipped\",\n  \"type\": \"TEXT\",\n  \"status\": \"pending\",\n  \"content\": {\n    \"text\": \"Your order {{orderId}} has shipped and arrives on {{eta}}.\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d1c84e54-6a34-4fff-b83a-4a8adcb745d7",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "b5d8477a-68ad-4783-aa49-7a2edb9d459d",
+      "name": "Retrieve a template - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{senderId}/templates/{templateName}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "senderId": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          },
+          "templateName": {
+            "equalTo": "appointment_reminder"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"c2e4a6b8-1d3f-4a5c-9e7b-6f8d0a2c4e61\",\n  \"senderId\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"templateName\": \"order-shipped\",\n  \"type\": \"TEXT\",\n  \"status\": \"pending\",\n  \"content\": {\n    \"text\": \"Your order {{orderId}} has shipped and arrives on {{eta}}.\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "b5d8477a-68ad-4783-aa49-7a2edb9d459d",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c5b25d36-61a4-40ee-82d3-e53c7157c56a",
+      "name": "Delete a template - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{senderId}/templates/{templateName}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "senderId": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          },
+          "templateName": {
+            "equalTo": "appointment_reminder"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c5b25d36-61a4-40ee-82d3-e53c7157c56a",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "d3ad5489-431f-4515-a452-addebc8d2a82",
+      "name": "Refresh template status - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/senders/{senderId}/templates/{templateName}/status",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "senderId": {
+            "equalTo": "5d7f9b1c-3e5a-4c7e-9f1b-3d5f7a9c1e3b"
+          },
+          "templateName": {
+            "equalTo": "appointment_reminder"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"c2e4a6b8-1d3f-4a5c-9e7b-6f8d0a2c4e61\",\n  \"senderId\": \"7a1c3e5f-9b2d-4c6e-8f0a-1b3d5e7f9a21\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"YOUR_ROUTING_IDENTIFIER\",\n  \"templateName\": \"order-shipped\",\n  \"type\": \"TEXT\",\n  \"status\": \"pending\",\n  \"content\": {\n    \"text\": \"Your order {{orderId}} has shipped and arrives on {{eta}}.\"\n  },\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T12:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d3ad5489-431f-4515-a452-addebc8d2a82",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "7147673b-c67f-4541-b201-606e1baa371e",
+      "name": "List brands - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"name\": \"Example Corp\",\n    \"legalName\": \"Example Corporation Inc.\",\n    \"brandType\": \"TENDLC_PRIVATE_COMPANY\",\n    \"stage\": \"SUBMITTED\",\n    \"registrationStatus\": \"ACTIVE\",\n    \"brandIdentityStatus\": \"VERIFIED\",\n    \"rejectionReasons\": [\n      {\n        \"registrar\": \"TCR\",\n        \"state\": \"REJECTED\",\n        \"rejectionReason\": \"Tax ID does not match the legal name on file.\"\n      }\n    ],\n    \"website\": \"https://example.com\",\n    \"supportEmail\": \"support@example.com\",\n    \"supportPhone\": \"+14155550100\",\n    \"vertical\": \"TECHNOLOGY\",\n    \"taxId\": \"12-3456789\",\n    \"taxIdIssuingCountry\": \"US\",\n    \"countryCode\": \"US\",\n    \"address\": {\n      \"street\": \"100 Example Street\",\n      \"city\": \"San Francisco\",\n      \"state\": \"CA\",\n      \"zipCode\": \"94105\"\n    },\n    \"alternateBusinessId\": {\n      \"key\": \"value\"\n    },\n    \"businessContactFirstName\": \"Alex\",\n    \"businessContactLastName\": \"Doe\",\n    \"businessContactEmail\": \"alex.doe@example.com\",\n    \"businessDba\": \"businessDba\",\n    \"legalEntityType\": \"PRIVATE_COMPANY\",\n    \"businessRegistrationType\": \"businessRegistrationType\",\n    \"stockExchange\": \"stockExchange\",\n    \"stockSymbol\": \"stockSymbol\",\n    \"taxExemptStatus\": \"taxExemptStatus\",\n    \"lastSyncedAt\": \"2026-10-16T21:17:05Z\",\n    \"createdAt\": \"2026-10-06T08:58:02Z\",\n    \"updatedAt\": \"2026-10-06T18:51:11Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "7147673b-c67f-4541-b201-606e1baa371e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "a51ac4da-0a10-4807-b320-729eabeca2c7",
+      "name": "Create a brand - US private company",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"Example Corp\",\n  \"legalName\": \"Example Corporation Inc.\",\n  \"brandType\": \"TENDLC_PRIVATE_COMPANY\",\n  \"stage\": \"DRAFT\",\n  \"registrationStatus\": \"ACTIVE\",\n  \"brandIdentityStatus\": \"VERIFIED\",\n  \"rejectionReasons\": [\n    {\n      \"registrar\": \"TCR\",\n      \"state\": \"REJECTED\",\n      \"rejectionReason\": \"Tax ID does not match the legal name on file.\"\n    }\n  ],\n  \"website\": \"https://example.com\",\n  \"supportEmail\": \"support@example.com\",\n  \"supportPhone\": \"+14155550100\",\n  \"vertical\": \"TECHNOLOGY\",\n  \"taxId\": \"12-3456789\",\n  \"taxIdIssuingCountry\": \"US\",\n  \"countryCode\": \"US\",\n  \"address\": {\n    \"street\": \"100 Example Street\",\n    \"city\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"zipCode\": \"94105\"\n  },\n  \"alternateBusinessId\": {\n    \"key\": \"value\"\n  },\n  \"businessContactFirstName\": \"Alex\",\n  \"businessContactLastName\": \"Doe\",\n  \"businessContactEmail\": \"alex.doe@example.com\",\n  \"businessDba\": \"businessDba\",\n  \"legalEntityType\": \"PRIVATE_COMPANY\",\n  \"businessRegistrationType\": \"businessRegistrationType\",\n  \"stockExchange\": \"stockExchange\",\n  \"stockSymbol\": \"stockSymbol\",\n  \"taxExemptStatus\": \"taxExemptStatus\",\n  \"lastSyncedAt\": \"2026-10-12T10:35:00Z\",\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a51ac4da-0a10-4807-b320-729eabeca2c7",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "3dc26486-0198-4cc8-8752-dc4c0a80e17e",
+      "name": "Retrieve a brand - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"Example Corp\",\n  \"legalName\": \"Example Corporation Inc.\",\n  \"brandType\": \"TENDLC_PRIVATE_COMPANY\",\n  \"stage\": \"SUBMITTED\",\n  \"registrationStatus\": \"ACTIVE\",\n  \"brandIdentityStatus\": \"VERIFIED\",\n  \"rejectionReasons\": [\n    {\n      \"registrar\": \"TCR\",\n      \"state\": \"REJECTED\",\n      \"rejectionReason\": \"Tax ID does not match the legal name on file.\"\n    }\n  ],\n  \"website\": \"https://example.com\",\n  \"supportEmail\": \"support@example.com\",\n  \"supportPhone\": \"+14155550100\",\n  \"vertical\": \"TECHNOLOGY\",\n  \"taxId\": \"12-3456789\",\n  \"taxIdIssuingCountry\": \"US\",\n  \"countryCode\": \"US\",\n  \"address\": {\n    \"street\": \"100 Example Street\",\n    \"city\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"zipCode\": \"94105\"\n  },\n  \"alternateBusinessId\": {\n    \"key\": \"value\"\n  },\n  \"businessContactFirstName\": \"Alex\",\n  \"businessContactLastName\": \"Doe\",\n  \"businessContactEmail\": \"alex.doe@example.com\",\n  \"businessDba\": \"businessDba\",\n  \"legalEntityType\": \"PRIVATE_COMPANY\",\n  \"businessRegistrationType\": \"businessRegistrationType\",\n  \"stockExchange\": \"stockExchange\",\n  \"stockSymbol\": \"stockSymbol\",\n  \"taxExemptStatus\": \"taxExemptStatus\",\n  \"lastSyncedAt\": \"2026-10-16T21:17:05Z\",\n  \"createdAt\": \"2026-10-06T08:58:02Z\",\n  \"updatedAt\": \"2026-10-06T18:51:11Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "3dc26486-0198-4cc8-8752-dc4c0a80e17e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "32634990-0c9f-4d84-8bce-eb81bb6bf928",
+      "name": "Update a brand - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"Example Corp\",\n  \"legalName\": \"Example Corporation Inc.\",\n  \"brandType\": \"TENDLC_PRIVATE_COMPANY\",\n  \"stage\": \"DRAFT\",\n  \"registrationStatus\": \"ACTIVE\",\n  \"brandIdentityStatus\": \"VERIFIED\",\n  \"rejectionReasons\": [\n    {\n      \"registrar\": \"TCR\",\n      \"state\": \"REJECTED\",\n      \"rejectionReason\": \"Tax ID does not match the legal name on file.\"\n    }\n  ],\n  \"website\": \"https://example.com\",\n  \"supportEmail\": \"help@example.com\",\n  \"supportPhone\": \"+14155550100\",\n  \"vertical\": \"TECHNOLOGY\",\n  \"taxId\": \"12-3456789\",\n  \"taxIdIssuingCountry\": \"US\",\n  \"countryCode\": \"US\",\n  \"address\": {\n    \"street\": \"100 Example Street\",\n    \"city\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"zipCode\": \"94105\"\n  },\n  \"alternateBusinessId\": {\n    \"key\": \"value\"\n  },\n  \"businessContactFirstName\": \"Alex\",\n  \"businessContactLastName\": \"Doe\",\n  \"businessContactEmail\": \"alex.doe@example.com\",\n  \"businessDba\": \"businessDba\",\n  \"legalEntityType\": \"PRIVATE_COMPANY\",\n  \"businessRegistrationType\": \"businessRegistrationType\",\n  \"stockExchange\": \"stockExchange\",\n  \"stockSymbol\": \"stockSymbol\",\n  \"taxExemptStatus\": \"taxExemptStatus\",\n  \"lastSyncedAt\": \"2026-10-12T10:35:00Z\",\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:02:45Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "32634990-0c9f-4d84-8bce-eb81bb6bf928",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "142004df-6346-45f0-8f4c-61208245af92",
+      "name": "Delete a brand - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "142004df-6346-45f0-8f4c-61208245af92",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a849d434-272d-44f7-a0f3-ddf8b96c2e3c",
+      "name": "Register a brand - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}/register",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"name\": \"Example Corp\",\n  \"legalName\": \"Example Corporation Inc.\",\n  \"brandType\": \"TENDLC_PRIVATE_COMPANY\",\n  \"stage\": \"SUBMITTED\",\n  \"registrationStatus\": \"PENDING\",\n  \"brandIdentityStatus\": \"UNVERIFIED\",\n  \"rejectionReasons\": [\n    {\n      \"registrar\": \"TCR\",\n      \"state\": \"REJECTED\",\n      \"rejectionReason\": \"Tax ID does not match the legal name on file.\"\n    }\n  ],\n  \"website\": \"https://example.com\",\n  \"supportEmail\": \"support@example.com\",\n  \"supportPhone\": \"+14155550100\",\n  \"vertical\": \"TECHNOLOGY\",\n  \"taxId\": \"12-3456789\",\n  \"taxIdIssuingCountry\": \"US\",\n  \"countryCode\": \"US\",\n  \"address\": {\n    \"street\": \"100 Example Street\",\n    \"city\": \"San Francisco\",\n    \"state\": \"CA\",\n    \"zipCode\": \"94105\"\n  },\n  \"alternateBusinessId\": {\n    \"key\": \"value\"\n  },\n  \"businessContactFirstName\": \"Alex\",\n  \"businessContactLastName\": \"Doe\",\n  \"businessContactEmail\": \"alex.doe@example.com\",\n  \"businessDba\": \"businessDba\",\n  \"legalEntityType\": \"PRIVATE_COMPANY\",\n  \"businessRegistrationType\": \"businessRegistrationType\",\n  \"stockExchange\": \"stockExchange\",\n  \"stockSymbol\": \"stockSymbol\",\n  \"taxExemptStatus\": \"taxExemptStatus\",\n  \"lastSyncedAt\": \"2026-10-12T11:05:00Z\",\n  \"createdAt\": \"2026-10-12T10:30:00Z\",\n  \"updatedAt\": \"2026-10-12T11:05:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a849d434-272d-44f7-a0f3-ddf8b96c2e3c",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "697f7bda-3fb4-4da5-bca1-803fffe5522e",
+      "name": "List brand registrar statuses - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}/registrar-statuses",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"registrar\": \"TCR\",\n    \"state\": \"ACTIVE\",\n    \"brandIdentityStatus\": \"VERIFIED\",\n    \"brandAuthenticationStatus\": \"AUTHENTICATED\",\n    \"rejectionReason\": \"rejectionReason\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "697f7bda-3fb4-4da5-bca1-803fffe5522e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "759f796a-59f0-4eed-a74c-9a4a9b62c66f",
+      "name": "Request brand authentication - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}/brand-auth-verification",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 202,
+        "body": "{\n  \"status\": \"requested\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "759f796a-59f0-4eed-a74c-9a4a9b62c66f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "8a443dfe-5451-4f78-a844-4f43a7a15298",
+      "name": "Resend brand 2FA verification - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}/resend-2fa",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 202,
+        "body": "{\n  \"status\": \"requested\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8a443dfe-5451-4f78-a844-4f43a7a15298",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "12a95b24-5b0d-42ad-93be-e238f21275df",
+      "name": "Vet a brand - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}/vet",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"vettingId\": \"4b3a2c1d-0e9f-4a8b-9c7d-6e5f4a3b2c1d\",\n  \"vettingClass\": \"STANDARD\",\n  \"vettingStatus\": \"PENDING\",\n  \"createDate\": \"2026-10-12T11:10:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "12a95b24-5b0d-42ad-93be-e238f21275df",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0760cc9b-47cd-43c8-b26f-f18df4875c3f",
+      "name": "List brand vets - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/brands/{id}/vets",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "8e6c4a2f-0d9b-4b7a-a5c3-1e9f7d5b3a10"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"results\": [\n    {\n      \"key\": \"value\"\n    }\n  ],\n  \"paging\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 0,\n    \"totalResults\": 0\n  }\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0760cc9b-47cd-43c8-b26f-f18df4875c3f",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "fa33c77e-a526-445f-9ca8-5235a8410c11",
+      "name": "List campaigns - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"9c1b3e5f-7a2d-4b8c-a0e1-2f3d4c5b6a72\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n    \"name\": \"Example Corp toll-free notifications\",\n    \"campaignType\": \"TOLL_FREE_UNIFIED_NUMBER\",\n    \"stage\": \"IN_REVIEW\",\n    \"programSummary\": \"Example Corp sends account and support notifications to customers who opted in on the contact form.\",\n    \"confirmationMessage\": \"confirmationMessage\",\n    \"helpMessage\": \"helpMessage\",\n    \"stopMessage\": \"stopMessage\",\n    \"customerCarePhone\": \"+14155550100\",\n    \"customerCareEmail\": \"support@example.com\",\n    \"exampleMessages\": [\n      \"Example Corp: Your account balance is low. Add funds at https://example.com/wallet. Reply STOP to opt out, HELP for help.\"\n    ],\n    \"termsAndConditionsUrl\": \"https://example.com/terms\",\n    \"privacyPolicyUrl\": \"https://example.com/privacy\",\n    \"useCases\": [\n      \"NOTIFICATIONS\"\n    ],\n    \"messageTypes\": [\n      \"SMS\"\n    ],\n    \"optIns\": {\n      \"web\": {\n        \"url\": \"https://example.com/contact\",\n        \"callToAction\": \"By checking this box you agree to receive account notifications from Example Corp. Reply STOP to opt out, HELP for help.\"\n      }\n    },\n    \"lowVolume\": false,\n    \"ageGated\": false,\n    \"directLending\": false,\n    \"embeddedLink\": false,\n    \"embeddedPhone\": false,\n    \"numbers\": [\n      \"+18335550100\"\n    ],\n    \"rejectionReasons\": {\n      \"key\": \"value\"\n    },\n    \"lastSyncedAt\": \"2026-10-17T08:46:46Z\",\n    \"createdAt\": \"2026-10-08T04:36:40Z\",\n    \"updatedAt\": \"2026-10-15T19:19:02Z\"\n  },\n  {\n    \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n    \"accountId\": \"MA_XXXXXXXX\",\n    \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n    \"name\": \"Example Corp account alerts\",\n    \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n    \"stage\": \"REGISTERED\",\n    \"programSummary\": \"programSummary\",\n    \"confirmationMessage\": \"confirmationMessage\",\n    \"helpMessage\": \"helpMessage\",\n    \"stopMessage\": \"stopMessage\",\n    \"customerCarePhone\": \"+14155550100\",\n    \"customerCareEmail\": \"support@example.com\",\n    \"exampleMessages\": [\n      \"exampleMessages\"\n    ],\n    \"termsAndConditionsUrl\": \"termsAndConditionsUrl\",\n    \"privacyPolicyUrl\": \"privacyPolicyUrl\",\n    \"useCases\": [\n      \"ALERTS\"\n    ],\n    \"messageTypes\": [\n      \"SMS\"\n    ],\n    \"optIns\": {\n      \"key\": \"value\"\n    },\n    \"lowVolume\": true,\n    \"ageGated\": false,\n    \"directLending\": false,\n    \"embeddedLink\": true,\n    \"embeddedPhone\": false,\n    \"numbers\": [\n      \"14155550100\"\n    ],\n    \"rejectionReasons\": {\n      \"key\": \"value\"\n    },\n    \"lastSyncedAt\": \"2026-10-17T08:46:48Z\",\n    \"createdAt\": \"2026-10-06T14:28:25Z\",\n    \"updatedAt\": \"2026-10-14T17:19:03Z\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "fa33c77e-a526-445f-9ca8-5235a8410c11",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "4fa1002e-82a2-47cf-a255-fd5fc4db1c82",
+      "name": "Create a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp account alerts\",\n  \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n  \"stage\": \"DRAFT\",\n  \"programSummary\": \"Example Corp sends account and support alerts to customers who opted in on the sign-up form. Reply STOP to opt out, HELP for help.\",\n  \"confirmationMessage\": \"Example Corp: You are subscribed to account alerts. Msg frequency varies. Msg & data rates may apply. Reply HELP for help, STOP to opt out.\",\n  \"helpMessage\": \"Example Corp: For help email support@example.com. Reply STOP to opt out.\",\n  \"stopMessage\": \"Example Corp: You have been unsubscribed. Reply HELP for help.\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"Example Corp: Your support ticket #48213 was updated. View it at https://example.com/support. Reply STOP to opt out.\",\n    \"Example Corp: Your account balance is low. Add funds at https://example.com/wallet. Reply STOP to opt out.\"\n  ],\n  \"termsAndConditionsUrl\": \"https://example.com/terms\",\n  \"privacyPolicyUrl\": \"https://example.com/privacy\",\n  \"useCases\": [\n    \"ALERTS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"web\": {\n      \"url\": \"https://example.com/signup\",\n      \"callToAction\": \"By checking this box you agree to receive account alerts from Example Corp. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.\"\n    }\n  },\n  \"lowVolume\": true,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": true,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"14155550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-14T17:19:03Z\",\n  \"createdAt\": \"2026-10-06T14:28:25Z\",\n  \"updatedAt\": \"2026-10-06T14:28:25Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "4fa1002e-82a2-47cf-a255-fd5fc4db1c82",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "cf2e1b43-1e18-4b47-8dca-cc6ca37b62da",
+      "name": "Create a toll-free campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/toll-free",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"9c1b3e5f-7a2d-4b8c-a0e1-2f3d4c5b6a72\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp toll-free notifications\",\n  \"campaignType\": \"TOLL_FREE_UNIFIED_NUMBER\",\n  \"stage\": \"DRAFT\",\n  \"programSummary\": \"Example Corp sends account and support notifications to customers who opted in on the contact form. Reply STOP to opt out, HELP for help.\",\n  \"confirmationMessage\": \"confirmationMessage\",\n  \"helpMessage\": \"helpMessage\",\n  \"stopMessage\": \"stopMessage\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"Example Corp: Your account balance is low. Add funds at https://example.com/wallet. Reply STOP to opt out, HELP for help.\"\n  ],\n  \"termsAndConditionsUrl\": \"https://example.com/terms\",\n  \"privacyPolicyUrl\": \"https://example.com/privacy\",\n  \"useCases\": [\n    \"NOTIFICATIONS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"web\": {\n      \"url\": \"https://example.com/contact\",\n      \"callToAction\": \"By checking this box you agree to receive account notifications from Example Corp. Reply STOP to opt out, HELP for help.\"\n    }\n  },\n  \"lowVolume\": false,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": false,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"+18335550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-14T17:19:03Z\",\n  \"createdAt\": \"2026-10-08T04:36:40Z\",\n  \"updatedAt\": \"2026-10-08T04:36:40Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "cf2e1b43-1e18-4b47-8dca-cc6ca37b62da",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "f80c3a61-dca1-4cfa-b77b-19c4c9f86359",
+      "name": "List campaign priorities - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/priorities",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"id\": \"2c9e4b7a-1d3f-4a5b-8c6d-0e9f8a7b6c5d\",\n    \"name\": \"Standard\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "f80c3a61-dca1-4cfa-b77b-19c4c9f86359",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      },
+      "postServeActions": []
+    },
+    {
+      "id": "d2292159-ace6-40e9-8ab1-d3afb6360d74",
+      "name": "Retrieve a campaign - Registered 10DLC campaign",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp account alerts\",\n  \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n  \"stage\": \"REGISTERED\",\n  \"programSummary\": \"Example Corp sends account and support alerts to customers who opted in on the sign-up form. Reply STOP to opt out, HELP for help.\",\n  \"confirmationMessage\": \"Example Corp: You are subscribed to account alerts. Msg frequency varies. Msg & data rates may apply. Reply HELP for help, STOP to opt out.\",\n  \"helpMessage\": \"Example Corp: For help email support@example.com. Reply STOP to opt out.\",\n  \"stopMessage\": \"Example Corp: You have been unsubscribed. Reply HELP for help.\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"Example Corp: Your support ticket #48213 was updated. View it at https://example.com/support. Reply STOP to opt out.\"\n  ],\n  \"termsAndConditionsUrl\": \"https://example.com/terms\",\n  \"privacyPolicyUrl\": \"https://example.com/privacy\",\n  \"useCases\": [\n    \"ALERTS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"web\": {\n      \"url\": \"https://example.com/signup\",\n      \"callToAction\": \"By checking this box you agree to receive account alerts from Example Corp. Msg frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.\"\n    }\n  },\n  \"lowVolume\": true,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": true,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"14155550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-17T08:46:48Z\",\n  \"createdAt\": \"2026-10-06T14:28:25Z\",\n  \"updatedAt\": \"2026-10-14T17:19:03Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "d2292159-ace6-40e9-8ab1-d3afb6360d74",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "c1117dbb-feb4-4b2e-8c68-4cdbb1af2c72",
+      "name": "Update a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}",
+        "method": "PUT",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp account alerts\",\n  \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n  \"stage\": \"DRAFT\",\n  \"programSummary\": \"Example Corp sends account, billing and support alerts to customers who opted in on the sign-up form. Reply STOP to opt out, HELP for help.\",\n  \"confirmationMessage\": \"confirmationMessage\",\n  \"helpMessage\": \"helpMessage\",\n  \"stopMessage\": \"stopMessage\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"exampleMessages\"\n  ],\n  \"termsAndConditionsUrl\": \"termsAndConditionsUrl\",\n  \"privacyPolicyUrl\": \"privacyPolicyUrl\",\n  \"useCases\": [\n    \"ALERTS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"key\": \"value\"\n  },\n  \"lowVolume\": true,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": true,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"14155550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-14T17:19:03Z\",\n  \"createdAt\": \"2026-10-06T14:28:25Z\",\n  \"updatedAt\": \"2026-10-06T15:02:10Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "c1117dbb-feb4-4b2e-8c68-4cdbb1af2c72",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "6807ceff-a58d-4ba4-a14f-9b6b3eea043b",
+      "name": "Delete a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6807ceff-a58d-4ba4-a14f-9b6b3eea043b",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "42c09960-b425-4c37-8bfd-28bc50c78947",
+      "name": "Register a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/register",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp account alerts\",\n  \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n  \"stage\": \"IN_REVIEW\",\n  \"programSummary\": \"programSummary\",\n  \"confirmationMessage\": \"confirmationMessage\",\n  \"helpMessage\": \"helpMessage\",\n  \"stopMessage\": \"stopMessage\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"exampleMessages\"\n  ],\n  \"termsAndConditionsUrl\": \"termsAndConditionsUrl\",\n  \"privacyPolicyUrl\": \"privacyPolicyUrl\",\n  \"useCases\": [\n    \"ALERTS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"key\": \"value\"\n  },\n  \"lowVolume\": true,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": true,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"14155550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-06T15:10:00Z\",\n  \"createdAt\": \"2026-10-06T14:28:25Z\",\n  \"updatedAt\": \"2026-10-06T15:10:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "42c09960-b425-4c37-8bfd-28bc50c78947",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "b718f55d-b9c4-40a7-a5df-14b379f2130b",
+      "name": "Deregister a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/deregister",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp account alerts\",\n  \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n  \"stage\": \"REGISTERED_PENDING_DEREGISTRATION\",\n  \"programSummary\": \"programSummary\",\n  \"confirmationMessage\": \"confirmationMessage\",\n  \"helpMessage\": \"helpMessage\",\n  \"stopMessage\": \"stopMessage\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"exampleMessages\"\n  ],\n  \"termsAndConditionsUrl\": \"termsAndConditionsUrl\",\n  \"privacyPolicyUrl\": \"privacyPolicyUrl\",\n  \"useCases\": [\n    \"ALERTS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"key\": \"value\"\n  },\n  \"lowVolume\": true,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": true,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"14155550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-18T09:00:00Z\",\n  \"createdAt\": \"2026-10-06T14:28:25Z\",\n  \"updatedAt\": \"2026-10-18T09:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "b718f55d-b9c4-40a7-a5df-14b379f2130b",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "6bea0d20-a622-43ad-af11-5180c8dd4947",
+      "name": "Appeal a campaign rejection - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/appeal",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"9c1b3e5f-7a2d-4b8c-a0e1-2f3d4c5b6a72\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp toll-free notifications\",\n  \"campaignType\": \"TOLL_FREE_UNIFIED_NUMBER\",\n  \"stage\": \"APPEALED\",\n  \"programSummary\": \"programSummary\",\n  \"confirmationMessage\": \"confirmationMessage\",\n  \"helpMessage\": \"helpMessage\",\n  \"stopMessage\": \"stopMessage\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"exampleMessages\"\n  ],\n  \"termsAndConditionsUrl\": \"termsAndConditionsUrl\",\n  \"privacyPolicyUrl\": \"privacyPolicyUrl\",\n  \"useCases\": [\n    \"NOTIFICATIONS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"key\": \"value\"\n  },\n  \"lowVolume\": false,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": false,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"+18335550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-16T10:00:00Z\",\n  \"createdAt\": \"2026-10-08T04:36:40Z\",\n  \"updatedAt\": \"2026-10-16T10:00:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "6bea0d20-a622-43ad-af11-5180c8dd4947",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0ae39eb6-f206-4da1-81c6-b69057584cd0",
+      "name": "Update a campaign registration - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/update-registration",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"id\": \"8a7d2f10-3c4b-4e9a-b1d2-6e5f4a3b2c11\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"brandId\": \"5f1c3a2e-7b4d-4e8f-9a0b-1c2d3e4f5a60\",\n  \"name\": \"Example Corp account alerts\",\n  \"campaignType\": \"TEN_DIGIT_LONG_CODE\",\n  \"stage\": \"REGISTERED_PENDING_UPDATE\",\n  \"programSummary\": \"programSummary\",\n  \"confirmationMessage\": \"confirmationMessage\",\n  \"helpMessage\": \"helpMessage\",\n  \"stopMessage\": \"stopMessage\",\n  \"customerCarePhone\": \"+14155550100\",\n  \"customerCareEmail\": \"support@example.com\",\n  \"exampleMessages\": [\n    \"exampleMessages\"\n  ],\n  \"termsAndConditionsUrl\": \"termsAndConditionsUrl\",\n  \"privacyPolicyUrl\": \"privacyPolicyUrl\",\n  \"useCases\": [\n    \"ALERTS\"\n  ],\n  \"messageTypes\": [\n    \"SMS\"\n  ],\n  \"optIns\": {\n    \"key\": \"value\"\n  },\n  \"lowVolume\": true,\n  \"ageGated\": false,\n  \"directLending\": false,\n  \"embeddedLink\": true,\n  \"embeddedPhone\": false,\n  \"numbers\": [\n    \"14155550100\"\n  ],\n  \"rejectionReasons\": {\n    \"key\": \"value\"\n  },\n  \"lastSyncedAt\": \"2026-10-18T09:30:00Z\",\n  \"createdAt\": \"2026-10-06T14:28:25Z\",\n  \"updatedAt\": \"2026-10-18T09:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0ae39eb6-f206-4da1-81c6-b69057584cd0",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a2baaa3a-1cf4-4fea-91c7-2d77f0a976d3",
+      "name": "List campaign network statuses - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/network-statuses",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "[\n  {\n    \"network\": \"T_MOBILE\",\n    \"state\": \"ACTIVE\",\n    \"messageClass\": \"24\",\n    \"throughput\": 2000,\n    \"brandTier\": \"LOW\"\n  },\n  {\n    \"network\": \"ATT\",\n    \"state\": \"ACTIVE\",\n    \"messageClass\": \"T\",\n    \"throughput\": 75,\n    \"brandTier\": \"LOW\"\n  },\n  {\n    \"network\": \"VERIZON\",\n    \"state\": \"ACTIVE\",\n    \"messageClass\": \"T\",\n    \"throughput\": 75,\n    \"brandTier\": \"LOW\"\n  }\n]",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a2baaa3a-1cf4-4fea-91c7-2d77f0a976d3",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "0ed19367-be74-431f-86d4-1f68c7cbd5ff",
+      "name": "List campaign numbers - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/numbers",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"numberPreviews\": [\n    {\n      \"numberKey\": \"6f5e4d3c2b1a4c9d8e7f0a1b2c3d4e5f\",\n      \"number\": \"14155550100\",\n      \"countryCode\": \"US\"\n    }\n  ]\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "0ed19367-be74-431f-86d4-1f68c7cbd5ff",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a49c0ef1-a0e9-4e53-a441-4f8f151b9f91",
+      "name": "Add numbers to a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/numbers",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a49c0ef1-a0e9-4e53-a441-4f8f151b9f91",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "5a6c937f-c5c1-49ad-bb25-6fe69aa5de7e",
+      "name": "Remove numbers from a campaign - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/campaigns/{id}/numbers",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "4c2a0e8d-6b4f-4d2c-b0a8-9e7c5a3f1d24"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"status\": \"ok\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "5a6c937f-c5c1-49ad-bb25-6fe69aa5de7e",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "4413bf54-d360-476c-a00a-dd59b6a29e46",
+      "name": "Upload a document - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/documents",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": "{\n  \"id\": \"3d2c1b0a-9e8f-4d7c-b6a5-4f3e2d1c0b9a\",\n  \"accountId\": \"MA_XXXXXXXX\",\n  \"provider\": \"primary\",\n  \"documentId\": \"7e6d5c4b-3a2f-4e1d-9c8b-7a6f5e4d3c2b\",\n  \"documentName\": \"opt-in-screenshot.png\",\n  \"contentType\": \"image/png\",\n  \"contentLength\": 48213,\n  \"createdAt\": \"2026-10-12T10:30:00Z\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "4413bf54-d360-476c-a00a-dd59b6a29e46",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "a17a0cb6-b19f-4a00-a831-2eda7d5d43af",
+      "name": "Download a document - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/sms/10dlc/documents/{id}",
+        "method": "GET",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "id": {
+            "equalTo": "id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n  \"key\": \"value\"\n}",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "a17a0cb6-b19f-4a00-a831-2eda7d5d43af",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
     }
   ],
   "meta": {
-    "total": 116
+    "total": 194
   }
 }

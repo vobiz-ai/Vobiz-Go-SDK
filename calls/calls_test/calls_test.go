@@ -86,7 +86,7 @@ func TestCallsMakeCallWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.MakeCallRequest{
 		AuthID:       "MA_XXXXXX",

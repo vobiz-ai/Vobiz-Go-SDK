@@ -86,7 +86,7 @@ func TestBulkOperationsBulkExportRecordingsWithWireMock(
 	}
 	client := client.NewClient(
 		option.WithBaseURL(WireMockBaseURL),
-		option.WithToken("test-token"),
+		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.BulkExportRecordingsRequest{
 		AuthID: "MA_XXXXXX",
