@@ -129,7 +129,7 @@ type CreateKycSessionRequest struct {
 	// Required when `flow_type` is `redirect`. After verification the customer's
 	// browser is sent to this URL with query params `session_id`, `status`, `auth_id`.
 	RedirectURL *string `json:"redirect_url,omitempty" url:"-"`
-	// VoBiz POSTs the KYC result here.
+	// Vobiz POSTs the KYC result here.
 	WebhookURL *string `json:"webhook_url,omitempty" url:"-"`
 	// Days before the KYC link expires.
 	ExpiresInDays *int `json:"expires_in_days,omitempty" url:"-"`
