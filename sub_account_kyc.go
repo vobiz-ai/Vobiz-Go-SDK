@@ -95,7 +95,7 @@ type CreateSubaccountKycSessionRequest struct {
 	// Required when `flow_type` is `redirect`. After verification the customer's
 	// browser is sent to this URL.
 	RedirectURL *string `json:"redirect_url,omitempty" url:"-"`
-	// HTTPS endpoint VoBiz POSTs the KYC result to. Omit it and no callbacks are sent.
+	// HTTPS endpoint Vobiz POSTs the KYC result to. Omit it and no callbacks are sent.
 	WebhookURL    *string `json:"webhook_url,omitempty" url:"-"`
 	ExpiresInDays *int    `json:"expires_in_days,omitempty" url:"-"`
 

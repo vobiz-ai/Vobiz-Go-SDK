@@ -82,7 +82,7 @@ func (c *Client) ListCustomerAccounts(
 	return response.Body, nil
 }
 
-// Creates a new customer sub-account under your partner account. VoBiz
+// Creates a new customer sub-account under your partner account. Vobiz
 // emails the customer their login credentials and (separately) a KYC link
 // via the kyc-sessions endpoint.
 func (c *Client) CreateCustomerAccount(
@@ -192,7 +192,7 @@ func (c *Client) ListKycSessions(
 	return response.Body, nil
 }
 
-// Triggers VoBiz to email a KYC link to the customer. KYC is OTP-based
+// Triggers Vobiz to email a KYC link to the customer. KYC is OTP-based
 // (PAN + Aadhaar via DigiLocker for individuals, PAN + GSTIN for
 // companies). No document uploads required.
 func (c *Client) CreateKycSession(
