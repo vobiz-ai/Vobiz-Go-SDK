@@ -402,7 +402,7 @@ var (
 
 type ListEndpointsResponse struct {
 	ApiId   string                              `json:"api_id" url:"api_id"`
-	Meta    *ListEndpointsResponseMeta          `json:"meta" url:"meta"`
+	Meta    *PaginationMeta                     `json:"meta" url:"meta"`
 	Objects []*ListEndpointsResponseObjectsItem `json:"objects" url:"objects"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
@@ -419,7 +419,7 @@ func (l *ListEndpointsResponse) GetApiId() string {
 	return l.ApiId
 }
 
-func (l *ListEndpointsResponse) GetMeta() *ListEndpointsResponseMeta {
+func (l *ListEndpointsResponse) GetMeta() *PaginationMeta {
 	if l == nil {
 		return nil
 	}
@@ -456,7 +456,7 @@ func (l *ListEndpointsResponse) SetApiId(apiId string) {
 
 // SetMeta sets the Meta field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListEndpointsResponse) SetMeta(meta *ListEndpointsResponseMeta) {
+func (l *ListEndpointsResponse) SetMeta(meta *PaginationMeta) {
 	l.Meta = meta
 	l.require(listEndpointsResponseFieldMeta)
 }
@@ -496,154 +496,6 @@ func (l *ListEndpointsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListEndpointsResponse) String() string {
-	if l == nil {
-		return "<nil>"
-	}
-	if len(l.rawJSON) > 0 {
-		if value, err := internal.StringifyJSON(l.rawJSON); err == nil {
-			return value
-		}
-	}
-	if value, err := internal.StringifyJSON(l); err == nil {
-		return value
-	}
-	return fmt.Sprintf("%#v", l)
-}
-
-var (
-	listEndpointsResponseMetaFieldLimit      = big.NewInt(1 << 0)
-	listEndpointsResponseMetaFieldOffset     = big.NewInt(1 << 1)
-	listEndpointsResponseMetaFieldTotalCount = big.NewInt(1 << 2)
-	listEndpointsResponseMetaFieldNext       = big.NewInt(1 << 3)
-	listEndpointsResponseMetaFieldPrevious   = big.NewInt(1 << 4)
-)
-
-type ListEndpointsResponseMeta struct {
-	Limit      int `json:"limit" url:"limit"`
-	Offset     int `json:"offset" url:"offset"`
-	TotalCount int `json:"total_count" url:"total_count"`
-	Next       any `json:"next,omitempty" url:"next,omitempty"`
-	Previous   any `json:"previous,omitempty" url:"previous,omitempty"`
-
-	// Private bitmask of fields set to an explicit value and therefore not to be omitted
-	explicitFields *big.Int `json:"-" url:"-"`
-
-	extraProperties map[string]interface{}
-	rawJSON         json.RawMessage
-}
-
-func (l *ListEndpointsResponseMeta) GetLimit() int {
-	if l == nil {
-		return 0
-	}
-	return l.Limit
-}
-
-func (l *ListEndpointsResponseMeta) GetOffset() int {
-	if l == nil {
-		return 0
-	}
-	return l.Offset
-}
-
-func (l *ListEndpointsResponseMeta) GetTotalCount() int {
-	if l == nil {
-		return 0
-	}
-	return l.TotalCount
-}
-
-func (l *ListEndpointsResponseMeta) GetNext() any {
-	if l == nil {
-		return nil
-	}
-	return l.Next
-}
-
-func (l *ListEndpointsResponseMeta) GetPrevious() any {
-	if l == nil {
-		return nil
-	}
-	return l.Previous
-}
-
-func (l *ListEndpointsResponseMeta) GetExtraProperties() map[string]interface{} {
-	if l == nil {
-		return nil
-	}
-	return l.extraProperties
-}
-
-func (l *ListEndpointsResponseMeta) require(field *big.Int) {
-	if l.explicitFields == nil {
-		l.explicitFields = big.NewInt(0)
-	}
-	l.explicitFields.Or(l.explicitFields, field)
-}
-
-// SetLimit sets the Limit field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListEndpointsResponseMeta) SetLimit(limit int) {
-	l.Limit = limit
-	l.require(listEndpointsResponseMetaFieldLimit)
-}
-
-// SetOffset sets the Offset field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListEndpointsResponseMeta) SetOffset(offset int) {
-	l.Offset = offset
-	l.require(listEndpointsResponseMetaFieldOffset)
-}
-
-// SetTotalCount sets the TotalCount field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListEndpointsResponseMeta) SetTotalCount(totalCount int) {
-	l.TotalCount = totalCount
-	l.require(listEndpointsResponseMetaFieldTotalCount)
-}
-
-// SetNext sets the Next field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListEndpointsResponseMeta) SetNext(next any) {
-	l.Next = next
-	l.require(listEndpointsResponseMetaFieldNext)
-}
-
-// SetPrevious sets the Previous field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListEndpointsResponseMeta) SetPrevious(previous any) {
-	l.Previous = previous
-	l.require(listEndpointsResponseMetaFieldPrevious)
-}
-
-func (l *ListEndpointsResponseMeta) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListEndpointsResponseMeta
-	var value unmarshaler
-	if err := json.Unmarshal(data, &value); err != nil {
-		return err
-	}
-	*l = ListEndpointsResponseMeta(value)
-	extraProperties, err := internal.ExtractExtraProperties(data, *l)
-	if err != nil {
-		return err
-	}
-	l.extraProperties = extraProperties
-	l.rawJSON = json.RawMessage(data)
-	return nil
-}
-
-func (l *ListEndpointsResponseMeta) MarshalJSON() ([]byte, error) {
-	type embed ListEndpointsResponseMeta
-	var marshaler = struct {
-		embed
-	}{
-		embed: embed(*l),
-	}
-	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
-	return json.Marshal(explicitMarshaler)
-}
-
-func (l *ListEndpointsResponseMeta) String() string {
 	if l == nil {
 		return "<nil>"
 	}

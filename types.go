@@ -1668,6 +1668,177 @@ func (c CallRecordCallStatus) Ptr() *CallRecordCallStatus {
 	return &c
 }
 
+// Page-based pagination returned in the `pagination` object of the CDR list and search endpoints and the partner customer CDR endpoint. Loop while `has_next` is `true`, incrementing `page`.
+var (
+	cdrPaginationFieldPage    = big.NewInt(1 << 0)
+	cdrPaginationFieldPerPage = big.NewInt(1 << 1)
+	cdrPaginationFieldTotal   = big.NewInt(1 << 2)
+	cdrPaginationFieldPages   = big.NewInt(1 << 3)
+	cdrPaginationFieldHasNext = big.NewInt(1 << 4)
+	cdrPaginationFieldHasPrev = big.NewInt(1 << 5)
+)
+
+type CdrPagination struct {
+	// Current page number, starting at 1.
+	Page int `json:"page" url:"page"`
+	// Number of records per page, as set by the `per_page` query parameter.
+	PerPage int `json:"per_page" url:"per_page"`
+	// Total number of records that match the filters across all pages.
+	Total int `json:"total" url:"total"`
+	// Total number of pages, `ceil(total / per_page)`.
+	Pages int `json:"pages" url:"pages"`
+	// `true` when a page after this one exists.
+	HasNext bool `json:"has_next" url:"has_next"`
+	// `true` when a page before this one exists.
+	HasPrev bool `json:"has_prev" url:"has_prev"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (c *CdrPagination) GetPage() int {
+	if c == nil {
+		return 0
+	}
+	return c.Page
+}
+
+func (c *CdrPagination) GetPerPage() int {
+	if c == nil {
+		return 0
+	}
+	return c.PerPage
+}
+
+func (c *CdrPagination) GetTotal() int {
+	if c == nil {
+		return 0
+	}
+	return c.Total
+}
+
+func (c *CdrPagination) GetPages() int {
+	if c == nil {
+		return 0
+	}
+	return c.Pages
+}
+
+func (c *CdrPagination) GetHasNext() bool {
+	if c == nil {
+		return false
+	}
+	return c.HasNext
+}
+
+func (c *CdrPagination) GetHasPrev() bool {
+	if c == nil {
+		return false
+	}
+	return c.HasPrev
+}
+
+func (c *CdrPagination) GetExtraProperties() map[string]interface{} {
+	if c == nil {
+		return nil
+	}
+	return c.extraProperties
+}
+
+func (c *CdrPagination) require(field *big.Int) {
+	if c.explicitFields == nil {
+		c.explicitFields = big.NewInt(0)
+	}
+	c.explicitFields.Or(c.explicitFields, field)
+}
+
+// SetPage sets the Page field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CdrPagination) SetPage(page int) {
+	c.Page = page
+	c.require(cdrPaginationFieldPage)
+}
+
+// SetPerPage sets the PerPage field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CdrPagination) SetPerPage(perPage int) {
+	c.PerPage = perPage
+	c.require(cdrPaginationFieldPerPage)
+}
+
+// SetTotal sets the Total field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CdrPagination) SetTotal(total int) {
+	c.Total = total
+	c.require(cdrPaginationFieldTotal)
+}
+
+// SetPages sets the Pages field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CdrPagination) SetPages(pages int) {
+	c.Pages = pages
+	c.require(cdrPaginationFieldPages)
+}
+
+// SetHasNext sets the HasNext field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CdrPagination) SetHasNext(hasNext bool) {
+	c.HasNext = hasNext
+	c.require(cdrPaginationFieldHasNext)
+}
+
+// SetHasPrev sets the HasPrev field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CdrPagination) SetHasPrev(hasPrev bool) {
+	c.HasPrev = hasPrev
+	c.require(cdrPaginationFieldHasPrev)
+}
+
+func (c *CdrPagination) UnmarshalJSON(data []byte) error {
+	type unmarshaler CdrPagination
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*c = CdrPagination(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *c)
+	if err != nil {
+		return err
+	}
+	c.extraProperties = extraProperties
+	c.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (c *CdrPagination) MarshalJSON() ([]byte, error) {
+	type embed CdrPagination
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*c),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, c.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (c *CdrPagination) String() string {
+	if c == nil {
+		return "<nil>"
+	}
+	if len(c.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(c.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(c); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", c)
+}
+
 var (
 	endpointFieldEndpointID        = big.NewInt(1 << 0)
 	endpointFieldUsername          = big.NewInt(1 << 1)
@@ -2968,6 +3139,160 @@ func (n *NotFoundErrorBody) String() string {
 		return value
 	}
 	return fmt.Sprintf("%#v", n)
+}
+
+// Offset-based pagination metadata returned in the `meta` object of the Application, Endpoint and Recording list endpoints. To fetch the next page, add `limit` to `offset`, or request the `next` URL as-is.
+var (
+	paginationMetaFieldLimit      = big.NewInt(1 << 0)
+	paginationMetaFieldOffset     = big.NewInt(1 << 1)
+	paginationMetaFieldTotalCount = big.NewInt(1 << 2)
+	paginationMetaFieldNext       = big.NewInt(1 << 3)
+	paginationMetaFieldPrevious   = big.NewInt(1 << 4)
+)
+
+type PaginationMeta struct {
+	// Maximum number of items in `objects` for this request, as set by the `limit` query parameter (default 20).
+	Limit int `json:"limit" url:"limit"`
+	// Zero-based position of the first item in `objects`, as set by the `offset` query parameter.
+	Offset int `json:"offset" url:"offset"`
+	// Total number of items that match the request across all pages.
+	TotalCount int `json:"total_count" url:"total_count"`
+	// Relative URL of the next page with `limit` and `offset` already set, or `null` on the last page.
+	Next *string `json:"next,omitempty" url:"next,omitempty"`
+	// Relative URL of the previous page, or `null` on the first page.
+	Previous *string `json:"previous,omitempty" url:"previous,omitempty"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (p *PaginationMeta) GetLimit() int {
+	if p == nil {
+		return 0
+	}
+	return p.Limit
+}
+
+func (p *PaginationMeta) GetOffset() int {
+	if p == nil {
+		return 0
+	}
+	return p.Offset
+}
+
+func (p *PaginationMeta) GetTotalCount() int {
+	if p == nil {
+		return 0
+	}
+	return p.TotalCount
+}
+
+func (p *PaginationMeta) GetNext() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Next
+}
+
+func (p *PaginationMeta) GetPrevious() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Previous
+}
+
+func (p *PaginationMeta) GetExtraProperties() map[string]interface{} {
+	if p == nil {
+		return nil
+	}
+	return p.extraProperties
+}
+
+func (p *PaginationMeta) require(field *big.Int) {
+	if p.explicitFields == nil {
+		p.explicitFields = big.NewInt(0)
+	}
+	p.explicitFields.Or(p.explicitFields, field)
+}
+
+// SetLimit sets the Limit field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PaginationMeta) SetLimit(limit int) {
+	p.Limit = limit
+	p.require(paginationMetaFieldLimit)
+}
+
+// SetOffset sets the Offset field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PaginationMeta) SetOffset(offset int) {
+	p.Offset = offset
+	p.require(paginationMetaFieldOffset)
+}
+
+// SetTotalCount sets the TotalCount field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PaginationMeta) SetTotalCount(totalCount int) {
+	p.TotalCount = totalCount
+	p.require(paginationMetaFieldTotalCount)
+}
+
+// SetNext sets the Next field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PaginationMeta) SetNext(next *string) {
+	p.Next = next
+	p.require(paginationMetaFieldNext)
+}
+
+// SetPrevious sets the Previous field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (p *PaginationMeta) SetPrevious(previous *string) {
+	p.Previous = previous
+	p.require(paginationMetaFieldPrevious)
+}
+
+func (p *PaginationMeta) UnmarshalJSON(data []byte) error {
+	type unmarshaler PaginationMeta
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*p = PaginationMeta(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *p)
+	if err != nil {
+		return err
+	}
+	p.extraProperties = extraProperties
+	p.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (p *PaginationMeta) MarshalJSON() ([]byte, error) {
+	type embed PaginationMeta
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*p),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, p.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (p *PaginationMeta) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	if len(p.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(p.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(p); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", p)
 }
 
 // Aggregated call analytics across all customer accounts for a date range.
@@ -6212,6 +6537,126 @@ func (t *Trunk) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Trunk) String() string {
+	if t == nil {
+		return "<nil>"
+	}
+	if len(t.rawJSON) > 0 {
+		if value, err := internal.StringifyJSON(t.rawJSON); err == nil {
+			return value
+		}
+	}
+	if value, err := internal.StringifyJSON(t); err == nil {
+		return value
+	}
+	return fmt.Sprintf("%#v", t)
+}
+
+// Pagination metadata returned in the `meta` object of the trunk, credential, IP ACL and origination URI list endpoints.
+var (
+	trunkListMetaFieldLimit  = big.NewInt(1 << 0)
+	trunkListMetaFieldOffset = big.NewInt(1 << 1)
+	trunkListMetaFieldTotal  = big.NewInt(1 << 2)
+)
+
+type TrunkListMeta struct {
+	// Maximum number of items in `objects` for this response.
+	Limit int `json:"limit" url:"limit"`
+	// Zero-based position of the first item in `objects`.
+	Offset int `json:"offset" url:"offset"`
+	// Total number of items on the account.
+	Total int `json:"total" url:"total"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+
+	extraProperties map[string]interface{}
+	rawJSON         json.RawMessage
+}
+
+func (t *TrunkListMeta) GetLimit() int {
+	if t == nil {
+		return 0
+	}
+	return t.Limit
+}
+
+func (t *TrunkListMeta) GetOffset() int {
+	if t == nil {
+		return 0
+	}
+	return t.Offset
+}
+
+func (t *TrunkListMeta) GetTotal() int {
+	if t == nil {
+		return 0
+	}
+	return t.Total
+}
+
+func (t *TrunkListMeta) GetExtraProperties() map[string]interface{} {
+	if t == nil {
+		return nil
+	}
+	return t.extraProperties
+}
+
+func (t *TrunkListMeta) require(field *big.Int) {
+	if t.explicitFields == nil {
+		t.explicitFields = big.NewInt(0)
+	}
+	t.explicitFields.Or(t.explicitFields, field)
+}
+
+// SetLimit sets the Limit field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (t *TrunkListMeta) SetLimit(limit int) {
+	t.Limit = limit
+	t.require(trunkListMetaFieldLimit)
+}
+
+// SetOffset sets the Offset field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (t *TrunkListMeta) SetOffset(offset int) {
+	t.Offset = offset
+	t.require(trunkListMetaFieldOffset)
+}
+
+// SetTotal sets the Total field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (t *TrunkListMeta) SetTotal(total int) {
+	t.Total = total
+	t.require(trunkListMetaFieldTotal)
+}
+
+func (t *TrunkListMeta) UnmarshalJSON(data []byte) error {
+	type unmarshaler TrunkListMeta
+	var value unmarshaler
+	if err := json.Unmarshal(data, &value); err != nil {
+		return err
+	}
+	*t = TrunkListMeta(value)
+	extraProperties, err := internal.ExtractExtraProperties(data, *t)
+	if err != nil {
+		return err
+	}
+	t.extraProperties = extraProperties
+	t.rawJSON = json.RawMessage(data)
+	return nil
+}
+
+func (t *TrunkListMeta) MarshalJSON() ([]byte, error) {
+	type embed TrunkListMeta
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*t),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, t.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+func (t *TrunkListMeta) String() string {
 	if t == nil {
 		return "<nil>"
 	}

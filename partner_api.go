@@ -4898,13 +4898,13 @@ var (
 )
 
 type ListCustomerCdrsResponse struct {
-	AccountID     string                              `json:"account_id" url:"account_id"`
-	Count         int                                 `json:"count" url:"count"`
-	Data          []any                               `json:"data" url:"data"`
-	Pagination    *ListCustomerCdrsResponsePagination `json:"pagination" url:"pagination"`
-	Success       bool                                `json:"success" url:"success"`
-	Summary       *ListCustomerCdrsResponseSummary    `json:"summary" url:"summary"`
-	AccountAuthID string                              `json:"account_auth_id" url:"account_auth_id"`
+	AccountID     string                           `json:"account_id" url:"account_id"`
+	Count         int                              `json:"count" url:"count"`
+	Data          []any                            `json:"data" url:"data"`
+	Pagination    *CdrPagination                   `json:"pagination" url:"pagination"`
+	Success       bool                             `json:"success" url:"success"`
+	Summary       *ListCustomerCdrsResponseSummary `json:"summary" url:"summary"`
+	AccountAuthID string                           `json:"account_auth_id" url:"account_auth_id"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -4934,7 +4934,7 @@ func (l *ListCustomerCdrsResponse) GetData() []any {
 	return l.Data
 }
 
-func (l *ListCustomerCdrsResponse) GetPagination() *ListCustomerCdrsResponsePagination {
+func (l *ListCustomerCdrsResponse) GetPagination() *CdrPagination {
 	if l == nil {
 		return nil
 	}
@@ -4999,7 +4999,7 @@ func (l *ListCustomerCdrsResponse) SetData(data []any) {
 
 // SetPagination sets the Pagination field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponse) SetPagination(pagination *ListCustomerCdrsResponsePagination) {
+func (l *ListCustomerCdrsResponse) SetPagination(pagination *CdrPagination) {
 	l.Pagination = pagination
 	l.require(listCustomerCdrsResponseFieldPagination)
 }
@@ -5053,170 +5053,6 @@ func (l *ListCustomerCdrsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListCustomerCdrsResponse) String() string {
-	if l == nil {
-		return "<nil>"
-	}
-	if len(l.rawJSON) > 0 {
-		if value, err := internal.StringifyJSON(l.rawJSON); err == nil {
-			return value
-		}
-	}
-	if value, err := internal.StringifyJSON(l); err == nil {
-		return value
-	}
-	return fmt.Sprintf("%#v", l)
-}
-
-var (
-	listCustomerCdrsResponsePaginationFieldPage    = big.NewInt(1 << 0)
-	listCustomerCdrsResponsePaginationFieldPerPage = big.NewInt(1 << 1)
-	listCustomerCdrsResponsePaginationFieldTotal   = big.NewInt(1 << 2)
-	listCustomerCdrsResponsePaginationFieldPages   = big.NewInt(1 << 3)
-	listCustomerCdrsResponsePaginationFieldHasNext = big.NewInt(1 << 4)
-	listCustomerCdrsResponsePaginationFieldHasPrev = big.NewInt(1 << 5)
-)
-
-type ListCustomerCdrsResponsePagination struct {
-	Page    int  `json:"page" url:"page"`
-	PerPage int  `json:"per_page" url:"per_page"`
-	Total   int  `json:"total" url:"total"`
-	Pages   int  `json:"pages" url:"pages"`
-	HasNext bool `json:"has_next" url:"has_next"`
-	HasPrev bool `json:"has_prev" url:"has_prev"`
-
-	// Private bitmask of fields set to an explicit value and therefore not to be omitted
-	explicitFields *big.Int `json:"-" url:"-"`
-
-	extraProperties map[string]interface{}
-	rawJSON         json.RawMessage
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetPage() int {
-	if l == nil {
-		return 0
-	}
-	return l.Page
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetPerPage() int {
-	if l == nil {
-		return 0
-	}
-	return l.PerPage
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetTotal() int {
-	if l == nil {
-		return 0
-	}
-	return l.Total
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetPages() int {
-	if l == nil {
-		return 0
-	}
-	return l.Pages
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetHasNext() bool {
-	if l == nil {
-		return false
-	}
-	return l.HasNext
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetHasPrev() bool {
-	if l == nil {
-		return false
-	}
-	return l.HasPrev
-}
-
-func (l *ListCustomerCdrsResponsePagination) GetExtraProperties() map[string]interface{} {
-	if l == nil {
-		return nil
-	}
-	return l.extraProperties
-}
-
-func (l *ListCustomerCdrsResponsePagination) require(field *big.Int) {
-	if l.explicitFields == nil {
-		l.explicitFields = big.NewInt(0)
-	}
-	l.explicitFields.Or(l.explicitFields, field)
-}
-
-// SetPage sets the Page field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponsePagination) SetPage(page int) {
-	l.Page = page
-	l.require(listCustomerCdrsResponsePaginationFieldPage)
-}
-
-// SetPerPage sets the PerPage field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponsePagination) SetPerPage(perPage int) {
-	l.PerPage = perPage
-	l.require(listCustomerCdrsResponsePaginationFieldPerPage)
-}
-
-// SetTotal sets the Total field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponsePagination) SetTotal(total int) {
-	l.Total = total
-	l.require(listCustomerCdrsResponsePaginationFieldTotal)
-}
-
-// SetPages sets the Pages field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponsePagination) SetPages(pages int) {
-	l.Pages = pages
-	l.require(listCustomerCdrsResponsePaginationFieldPages)
-}
-
-// SetHasNext sets the HasNext field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponsePagination) SetHasNext(hasNext bool) {
-	l.HasNext = hasNext
-	l.require(listCustomerCdrsResponsePaginationFieldHasNext)
-}
-
-// SetHasPrev sets the HasPrev field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCustomerCdrsResponsePagination) SetHasPrev(hasPrev bool) {
-	l.HasPrev = hasPrev
-	l.require(listCustomerCdrsResponsePaginationFieldHasPrev)
-}
-
-func (l *ListCustomerCdrsResponsePagination) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListCustomerCdrsResponsePagination
-	var value unmarshaler
-	if err := json.Unmarshal(data, &value); err != nil {
-		return err
-	}
-	*l = ListCustomerCdrsResponsePagination(value)
-	extraProperties, err := internal.ExtractExtraProperties(data, *l)
-	if err != nil {
-		return err
-	}
-	l.extraProperties = extraProperties
-	l.rawJSON = json.RawMessage(data)
-	return nil
-}
-
-func (l *ListCustomerCdrsResponsePagination) MarshalJSON() ([]byte, error) {
-	type embed ListCustomerCdrsResponsePagination
-	var marshaler = struct {
-		embed
-	}{
-		embed: embed(*l),
-	}
-	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
-	return json.Marshal(explicitMarshaler)
-}
-
-func (l *ListCustomerCdrsResponsePagination) String() string {
 	if l == nil {
 		return "<nil>"
 	}

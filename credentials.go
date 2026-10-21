@@ -337,7 +337,7 @@ var (
 )
 
 type ListCredentialsResponse struct {
-	Meta    *ListCredentialsResponseMeta          `json:"meta" url:"meta"`
+	Meta    *TrunkListMeta                        `json:"meta" url:"meta"`
 	Objects []*ListCredentialsResponseObjectsItem `json:"objects" url:"objects"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
@@ -347,7 +347,7 @@ type ListCredentialsResponse struct {
 	rawJSON         json.RawMessage
 }
 
-func (l *ListCredentialsResponse) GetMeta() *ListCredentialsResponseMeta {
+func (l *ListCredentialsResponse) GetMeta() *TrunkListMeta {
 	if l == nil {
 		return nil
 	}
@@ -377,7 +377,7 @@ func (l *ListCredentialsResponse) require(field *big.Int) {
 
 // SetMeta sets the Meta field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCredentialsResponse) SetMeta(meta *ListCredentialsResponseMeta) {
+func (l *ListCredentialsResponse) SetMeta(meta *TrunkListMeta) {
 	l.Meta = meta
 	l.require(listCredentialsResponseFieldMeta)
 }
@@ -417,122 +417,6 @@ func (l *ListCredentialsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListCredentialsResponse) String() string {
-	if l == nil {
-		return "<nil>"
-	}
-	if len(l.rawJSON) > 0 {
-		if value, err := internal.StringifyJSON(l.rawJSON); err == nil {
-			return value
-		}
-	}
-	if value, err := internal.StringifyJSON(l); err == nil {
-		return value
-	}
-	return fmt.Sprintf("%#v", l)
-}
-
-var (
-	listCredentialsResponseMetaFieldLimit  = big.NewInt(1 << 0)
-	listCredentialsResponseMetaFieldOffset = big.NewInt(1 << 1)
-	listCredentialsResponseMetaFieldTotal  = big.NewInt(1 << 2)
-)
-
-type ListCredentialsResponseMeta struct {
-	Limit  int `json:"limit" url:"limit"`
-	Offset int `json:"offset" url:"offset"`
-	Total  int `json:"total" url:"total"`
-
-	// Private bitmask of fields set to an explicit value and therefore not to be omitted
-	explicitFields *big.Int `json:"-" url:"-"`
-
-	extraProperties map[string]interface{}
-	rawJSON         json.RawMessage
-}
-
-func (l *ListCredentialsResponseMeta) GetLimit() int {
-	if l == nil {
-		return 0
-	}
-	return l.Limit
-}
-
-func (l *ListCredentialsResponseMeta) GetOffset() int {
-	if l == nil {
-		return 0
-	}
-	return l.Offset
-}
-
-func (l *ListCredentialsResponseMeta) GetTotal() int {
-	if l == nil {
-		return 0
-	}
-	return l.Total
-}
-
-func (l *ListCredentialsResponseMeta) GetExtraProperties() map[string]interface{} {
-	if l == nil {
-		return nil
-	}
-	return l.extraProperties
-}
-
-func (l *ListCredentialsResponseMeta) require(field *big.Int) {
-	if l.explicitFields == nil {
-		l.explicitFields = big.NewInt(0)
-	}
-	l.explicitFields.Or(l.explicitFields, field)
-}
-
-// SetLimit sets the Limit field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCredentialsResponseMeta) SetLimit(limit int) {
-	l.Limit = limit
-	l.require(listCredentialsResponseMetaFieldLimit)
-}
-
-// SetOffset sets the Offset field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCredentialsResponseMeta) SetOffset(offset int) {
-	l.Offset = offset
-	l.require(listCredentialsResponseMetaFieldOffset)
-}
-
-// SetTotal sets the Total field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListCredentialsResponseMeta) SetTotal(total int) {
-	l.Total = total
-	l.require(listCredentialsResponseMetaFieldTotal)
-}
-
-func (l *ListCredentialsResponseMeta) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListCredentialsResponseMeta
-	var value unmarshaler
-	if err := json.Unmarshal(data, &value); err != nil {
-		return err
-	}
-	*l = ListCredentialsResponseMeta(value)
-	extraProperties, err := internal.ExtractExtraProperties(data, *l)
-	if err != nil {
-		return err
-	}
-	l.extraProperties = extraProperties
-	l.rawJSON = json.RawMessage(data)
-	return nil
-}
-
-func (l *ListCredentialsResponseMeta) MarshalJSON() ([]byte, error) {
-	type embed ListCredentialsResponseMeta
-	var marshaler = struct {
-		embed
-	}{
-		embed: embed(*l),
-	}
-	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
-	return json.Marshal(explicitMarshaler)
-}
-
-func (l *ListCredentialsResponseMeta) String() string {
 	if l == nil {
 		return "<nil>"
 	}

@@ -378,7 +378,7 @@ var (
 )
 
 type ListOriginationURIsResponse struct {
-	Meta    *ListOriginationURIsResponseMeta          `json:"meta" url:"meta"`
+	Meta    *TrunkListMeta                            `json:"meta" url:"meta"`
 	Objects []*ListOriginationURIsResponseObjectsItem `json:"objects" url:"objects"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
@@ -388,7 +388,7 @@ type ListOriginationURIsResponse struct {
 	rawJSON         json.RawMessage
 }
 
-func (l *ListOriginationURIsResponse) GetMeta() *ListOriginationURIsResponseMeta {
+func (l *ListOriginationURIsResponse) GetMeta() *TrunkListMeta {
 	if l == nil {
 		return nil
 	}
@@ -418,7 +418,7 @@ func (l *ListOriginationURIsResponse) require(field *big.Int) {
 
 // SetMeta sets the Meta field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListOriginationURIsResponse) SetMeta(meta *ListOriginationURIsResponseMeta) {
+func (l *ListOriginationURIsResponse) SetMeta(meta *TrunkListMeta) {
 	l.Meta = meta
 	l.require(listOriginationURIsResponseFieldMeta)
 }
@@ -458,122 +458,6 @@ func (l *ListOriginationURIsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListOriginationURIsResponse) String() string {
-	if l == nil {
-		return "<nil>"
-	}
-	if len(l.rawJSON) > 0 {
-		if value, err := internal.StringifyJSON(l.rawJSON); err == nil {
-			return value
-		}
-	}
-	if value, err := internal.StringifyJSON(l); err == nil {
-		return value
-	}
-	return fmt.Sprintf("%#v", l)
-}
-
-var (
-	listOriginationURIsResponseMetaFieldLimit  = big.NewInt(1 << 0)
-	listOriginationURIsResponseMetaFieldOffset = big.NewInt(1 << 1)
-	listOriginationURIsResponseMetaFieldTotal  = big.NewInt(1 << 2)
-)
-
-type ListOriginationURIsResponseMeta struct {
-	Limit  int `json:"limit" url:"limit"`
-	Offset int `json:"offset" url:"offset"`
-	Total  int `json:"total" url:"total"`
-
-	// Private bitmask of fields set to an explicit value and therefore not to be omitted
-	explicitFields *big.Int `json:"-" url:"-"`
-
-	extraProperties map[string]interface{}
-	rawJSON         json.RawMessage
-}
-
-func (l *ListOriginationURIsResponseMeta) GetLimit() int {
-	if l == nil {
-		return 0
-	}
-	return l.Limit
-}
-
-func (l *ListOriginationURIsResponseMeta) GetOffset() int {
-	if l == nil {
-		return 0
-	}
-	return l.Offset
-}
-
-func (l *ListOriginationURIsResponseMeta) GetTotal() int {
-	if l == nil {
-		return 0
-	}
-	return l.Total
-}
-
-func (l *ListOriginationURIsResponseMeta) GetExtraProperties() map[string]interface{} {
-	if l == nil {
-		return nil
-	}
-	return l.extraProperties
-}
-
-func (l *ListOriginationURIsResponseMeta) require(field *big.Int) {
-	if l.explicitFields == nil {
-		l.explicitFields = big.NewInt(0)
-	}
-	l.explicitFields.Or(l.explicitFields, field)
-}
-
-// SetLimit sets the Limit field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListOriginationURIsResponseMeta) SetLimit(limit int) {
-	l.Limit = limit
-	l.require(listOriginationURIsResponseMetaFieldLimit)
-}
-
-// SetOffset sets the Offset field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListOriginationURIsResponseMeta) SetOffset(offset int) {
-	l.Offset = offset
-	l.require(listOriginationURIsResponseMetaFieldOffset)
-}
-
-// SetTotal sets the Total field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListOriginationURIsResponseMeta) SetTotal(total int) {
-	l.Total = total
-	l.require(listOriginationURIsResponseMetaFieldTotal)
-}
-
-func (l *ListOriginationURIsResponseMeta) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListOriginationURIsResponseMeta
-	var value unmarshaler
-	if err := json.Unmarshal(data, &value); err != nil {
-		return err
-	}
-	*l = ListOriginationURIsResponseMeta(value)
-	extraProperties, err := internal.ExtractExtraProperties(data, *l)
-	if err != nil {
-		return err
-	}
-	l.extraProperties = extraProperties
-	l.rawJSON = json.RawMessage(data)
-	return nil
-}
-
-func (l *ListOriginationURIsResponseMeta) MarshalJSON() ([]byte, error) {
-	type embed ListOriginationURIsResponseMeta
-	var marshaler = struct {
-		embed
-	}{
-		embed: embed(*l),
-	}
-	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
-	return json.Marshal(explicitMarshaler)
-}
-
-func (l *ListOriginationURIsResponseMeta) String() string {
 	if l == nil {
 		return "<nil>"
 	}

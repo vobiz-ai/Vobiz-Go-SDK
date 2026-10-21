@@ -321,7 +321,7 @@ var (
 )
 
 type ListIpAclsResponse struct {
-	Meta    *ListIpAclsResponseMeta          `json:"meta" url:"meta"`
+	Meta    *TrunkListMeta                   `json:"meta" url:"meta"`
 	Objects []*ListIpAclsResponseObjectsItem `json:"objects" url:"objects"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
@@ -331,7 +331,7 @@ type ListIpAclsResponse struct {
 	rawJSON         json.RawMessage
 }
 
-func (l *ListIpAclsResponse) GetMeta() *ListIpAclsResponseMeta {
+func (l *ListIpAclsResponse) GetMeta() *TrunkListMeta {
 	if l == nil {
 		return nil
 	}
@@ -361,7 +361,7 @@ func (l *ListIpAclsResponse) require(field *big.Int) {
 
 // SetMeta sets the Meta field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListIpAclsResponse) SetMeta(meta *ListIpAclsResponseMeta) {
+func (l *ListIpAclsResponse) SetMeta(meta *TrunkListMeta) {
 	l.Meta = meta
 	l.require(listIpAclsResponseFieldMeta)
 }
@@ -401,122 +401,6 @@ func (l *ListIpAclsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListIpAclsResponse) String() string {
-	if l == nil {
-		return "<nil>"
-	}
-	if len(l.rawJSON) > 0 {
-		if value, err := internal.StringifyJSON(l.rawJSON); err == nil {
-			return value
-		}
-	}
-	if value, err := internal.StringifyJSON(l); err == nil {
-		return value
-	}
-	return fmt.Sprintf("%#v", l)
-}
-
-var (
-	listIpAclsResponseMetaFieldLimit  = big.NewInt(1 << 0)
-	listIpAclsResponseMetaFieldOffset = big.NewInt(1 << 1)
-	listIpAclsResponseMetaFieldTotal  = big.NewInt(1 << 2)
-)
-
-type ListIpAclsResponseMeta struct {
-	Limit  int `json:"limit" url:"limit"`
-	Offset int `json:"offset" url:"offset"`
-	Total  int `json:"total" url:"total"`
-
-	// Private bitmask of fields set to an explicit value and therefore not to be omitted
-	explicitFields *big.Int `json:"-" url:"-"`
-
-	extraProperties map[string]interface{}
-	rawJSON         json.RawMessage
-}
-
-func (l *ListIpAclsResponseMeta) GetLimit() int {
-	if l == nil {
-		return 0
-	}
-	return l.Limit
-}
-
-func (l *ListIpAclsResponseMeta) GetOffset() int {
-	if l == nil {
-		return 0
-	}
-	return l.Offset
-}
-
-func (l *ListIpAclsResponseMeta) GetTotal() int {
-	if l == nil {
-		return 0
-	}
-	return l.Total
-}
-
-func (l *ListIpAclsResponseMeta) GetExtraProperties() map[string]interface{} {
-	if l == nil {
-		return nil
-	}
-	return l.extraProperties
-}
-
-func (l *ListIpAclsResponseMeta) require(field *big.Int) {
-	if l.explicitFields == nil {
-		l.explicitFields = big.NewInt(0)
-	}
-	l.explicitFields.Or(l.explicitFields, field)
-}
-
-// SetLimit sets the Limit field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListIpAclsResponseMeta) SetLimit(limit int) {
-	l.Limit = limit
-	l.require(listIpAclsResponseMetaFieldLimit)
-}
-
-// SetOffset sets the Offset field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListIpAclsResponseMeta) SetOffset(offset int) {
-	l.Offset = offset
-	l.require(listIpAclsResponseMetaFieldOffset)
-}
-
-// SetTotal sets the Total field and marks it as non-optional;
-// this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListIpAclsResponseMeta) SetTotal(total int) {
-	l.Total = total
-	l.require(listIpAclsResponseMetaFieldTotal)
-}
-
-func (l *ListIpAclsResponseMeta) UnmarshalJSON(data []byte) error {
-	type unmarshaler ListIpAclsResponseMeta
-	var value unmarshaler
-	if err := json.Unmarshal(data, &value); err != nil {
-		return err
-	}
-	*l = ListIpAclsResponseMeta(value)
-	extraProperties, err := internal.ExtractExtraProperties(data, *l)
-	if err != nil {
-		return err
-	}
-	l.extraProperties = extraProperties
-	l.rawJSON = json.RawMessage(data)
-	return nil
-}
-
-func (l *ListIpAclsResponseMeta) MarshalJSON() ([]byte, error) {
-	type embed ListIpAclsResponseMeta
-	var marshaler = struct {
-		embed
-	}{
-		embed: embed(*l),
-	}
-	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
-	return json.Marshal(explicitMarshaler)
-}
-
-func (l *ListIpAclsResponseMeta) String() string {
 	if l == nil {
 		return "<nil>"
 	}

@@ -707,7 +707,7 @@ func TestSettersMarkExplicitCreateIpAclResponse(t *testing.T) {
 func TestSettersListIpAclsResponse(t *testing.T) {
 	t.Run("SetMeta", func(t *testing.T) {
 		obj := &ListIpAclsResponse{}
-		var fernTestValueMeta *ListIpAclsResponseMeta
+		var fernTestValueMeta *TrunkListMeta
 		obj.SetMeta(fernTestValueMeta)
 		assert.Equal(t, fernTestValueMeta, obj.Meta)
 		assert.NotNil(t, obj.explicitFields)
@@ -728,7 +728,7 @@ func TestGettersListIpAclsResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListIpAclsResponse{}
-		var expected *ListIpAclsResponseMeta
+		var expected *TrunkListMeta
 		obj.Meta = expected
 
 		// Act & Assert
@@ -797,7 +797,7 @@ func TestSettersMarkExplicitListIpAclsResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListIpAclsResponse{}
-		var fernTestValueMeta *ListIpAclsResponseMeta
+		var fernTestValueMeta *TrunkListMeta
 
 		// Act
 		obj.SetMeta(fernTestValueMeta)
@@ -832,201 +832,6 @@ func TestSettersMarkExplicitListIpAclsResponse(t *testing.T) {
 
 		// Act
 		obj.SetObjects(fernTestValueObjects)
-
-		// Assert - object with explicitly set field can be marshaled/unmarshaled
-		bytes, err := json.Marshal(obj)
-		require.NoError(t, err, "marshaling should succeed for test setup")
-
-		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
-		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
-		if len(bytes) > 0 && bytes[0] == '{' {
-			// JSON object - unmarshal into map
-			var unmarshaled map[string]interface{}
-			err = json.Unmarshal(bytes, &unmarshaled)
-			require.NoError(t, err, "unmarshaling should succeed for test verification")
-		} else {
-			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
-			var unmarshaled interface{}
-			err = json.Unmarshal(bytes, &unmarshaled)
-			require.NoError(t, err, "unmarshaling should succeed for test verification")
-		}
-
-		// Note: This does not explicitly assert the presence of a specific JSON field
-		// It verifies that setting a field via setter allows successful JSON round-trip
-	})
-
-}
-
-func TestSettersListIpAclsResponseMeta(t *testing.T) {
-	t.Run("SetLimit", func(t *testing.T) {
-		obj := &ListIpAclsResponseMeta{}
-		var fernTestValueLimit int
-		obj.SetLimit(fernTestValueLimit)
-		assert.Equal(t, fernTestValueLimit, obj.Limit)
-		assert.NotNil(t, obj.explicitFields)
-	})
-
-	t.Run("SetOffset", func(t *testing.T) {
-		obj := &ListIpAclsResponseMeta{}
-		var fernTestValueOffset int
-		obj.SetOffset(fernTestValueOffset)
-		assert.Equal(t, fernTestValueOffset, obj.Offset)
-		assert.NotNil(t, obj.explicitFields)
-	})
-
-	t.Run("SetTotal", func(t *testing.T) {
-		obj := &ListIpAclsResponseMeta{}
-		var fernTestValueTotal int
-		obj.SetTotal(fernTestValueTotal)
-		assert.Equal(t, fernTestValueTotal, obj.Total)
-		assert.NotNil(t, obj.explicitFields)
-	})
-
-}
-
-func TestGettersListIpAclsResponseMeta(t *testing.T) {
-	t.Run("GetLimit", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-		var expected int
-		obj.Limit = expected
-
-		// Act & Assert
-		assert.Equal(t, expected, obj.GetLimit(), "getter should return the property value")
-	})
-
-	t.Run("GetLimit_NilReceiver", func(t *testing.T) {
-		t.Parallel()
-		var obj *ListIpAclsResponseMeta
-		// Should not panic - getters should handle nil receiver gracefully
-		defer func() {
-			if r := recover(); r != nil {
-				t.Errorf("Getter panicked on nil receiver: %v", r)
-			}
-		}()
-		_ = obj.GetLimit() // Should return zero value
-	})
-
-	t.Run("GetOffset", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-		var expected int
-		obj.Offset = expected
-
-		// Act & Assert
-		assert.Equal(t, expected, obj.GetOffset(), "getter should return the property value")
-	})
-
-	t.Run("GetOffset_NilReceiver", func(t *testing.T) {
-		t.Parallel()
-		var obj *ListIpAclsResponseMeta
-		// Should not panic - getters should handle nil receiver gracefully
-		defer func() {
-			if r := recover(); r != nil {
-				t.Errorf("Getter panicked on nil receiver: %v", r)
-			}
-		}()
-		_ = obj.GetOffset() // Should return zero value
-	})
-
-	t.Run("GetTotal", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-		var expected int
-		obj.Total = expected
-
-		// Act & Assert
-		assert.Equal(t, expected, obj.GetTotal(), "getter should return the property value")
-	})
-
-	t.Run("GetTotal_NilReceiver", func(t *testing.T) {
-		t.Parallel()
-		var obj *ListIpAclsResponseMeta
-		// Should not panic - getters should handle nil receiver gracefully
-		defer func() {
-			if r := recover(); r != nil {
-				t.Errorf("Getter panicked on nil receiver: %v", r)
-			}
-		}()
-		_ = obj.GetTotal() // Should return zero value
-	})
-
-}
-
-func TestSettersMarkExplicitListIpAclsResponseMeta(t *testing.T) {
-	t.Run("SetLimit_MarksExplicit", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-		var fernTestValueLimit int
-
-		// Act
-		obj.SetLimit(fernTestValueLimit)
-
-		// Assert - object with explicitly set field can be marshaled/unmarshaled
-		bytes, err := json.Marshal(obj)
-		require.NoError(t, err, "marshaling should succeed for test setup")
-
-		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
-		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
-		if len(bytes) > 0 && bytes[0] == '{' {
-			// JSON object - unmarshal into map
-			var unmarshaled map[string]interface{}
-			err = json.Unmarshal(bytes, &unmarshaled)
-			require.NoError(t, err, "unmarshaling should succeed for test verification")
-		} else {
-			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
-			var unmarshaled interface{}
-			err = json.Unmarshal(bytes, &unmarshaled)
-			require.NoError(t, err, "unmarshaling should succeed for test verification")
-		}
-
-		// Note: This does not explicitly assert the presence of a specific JSON field
-		// It verifies that setting a field via setter allows successful JSON round-trip
-	})
-
-	t.Run("SetOffset_MarksExplicit", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-		var fernTestValueOffset int
-
-		// Act
-		obj.SetOffset(fernTestValueOffset)
-
-		// Assert - object with explicitly set field can be marshaled/unmarshaled
-		bytes, err := json.Marshal(obj)
-		require.NoError(t, err, "marshaling should succeed for test setup")
-
-		// This test ensures JSON marshaling and unmarshaling succeed when the field has a zero/nil value
-		// Detect if marshaled JSON is an object or primitive to use correct unmarshal target
-		if len(bytes) > 0 && bytes[0] == '{' {
-			// JSON object - unmarshal into map
-			var unmarshaled map[string]interface{}
-			err = json.Unmarshal(bytes, &unmarshaled)
-			require.NoError(t, err, "unmarshaling should succeed for test verification")
-		} else {
-			// JSON primitive (string, number, boolean, null) - unmarshal into interface{}
-			var unmarshaled interface{}
-			err = json.Unmarshal(bytes, &unmarshaled)
-			require.NoError(t, err, "unmarshaling should succeed for test verification")
-		}
-
-		// Note: This does not explicitly assert the presence of a specific JSON field
-		// It verifies that setting a field via setter allows successful JSON round-trip
-	})
-
-	t.Run("SetTotal_MarksExplicit", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-		var fernTestValueTotal int
-
-		// Act
-		obj.SetTotal(fernTestValueTotal)
 
 		// Assert - object with explicitly set field can be marshaled/unmarshaled
 		bytes, err := json.Marshal(obj)
@@ -2166,39 +1971,6 @@ func TestJSONMarshalingListIpAclsResponse(t *testing.T) {
 	})
 }
 
-func TestJSONMarshalingListIpAclsResponseMeta(t *testing.T) {
-	t.Run("MarshalUnmarshal", func(t *testing.T) {
-		t.Parallel()
-		// Arrange
-		obj := &ListIpAclsResponseMeta{}
-
-		// Act - Marshal to JSON
-		data, err := json.Marshal(obj)
-		require.NoError(t, err, "marshaling should succeed")
-		assert.NotNil(t, data, "marshaled data should not be nil")
-		assert.NotEmpty(t, data, "marshaled data should not be empty")
-
-		// Unmarshal back and verify round-trip
-		var unmarshaled ListIpAclsResponseMeta
-		err = json.Unmarshal(data, &unmarshaled)
-		assert.NoError(t, err, "round-trip unmarshal should succeed")
-	})
-
-	t.Run("UnmarshalInvalidJSON", func(t *testing.T) {
-		t.Parallel()
-		var obj ListIpAclsResponseMeta
-		err := json.Unmarshal([]byte(`{invalid json}`), &obj)
-		assert.Error(t, err, "unmarshaling invalid JSON should return an error")
-	})
-
-	t.Run("UnmarshalEmptyObject", func(t *testing.T) {
-		t.Parallel()
-		var obj ListIpAclsResponseMeta
-		err := json.Unmarshal([]byte(`{}`), &obj)
-		assert.NoError(t, err, "unmarshaling empty object should succeed")
-	})
-}
-
 func TestJSONMarshalingListIpAclsResponseObjectsItem(t *testing.T) {
 	t.Run("MarshalUnmarshal", func(t *testing.T) {
 		t.Parallel()
@@ -2297,22 +2069,6 @@ func TestStringListIpAclsResponse(t *testing.T) {
 	})
 }
 
-func TestStringListIpAclsResponseMeta(t *testing.T) {
-	t.Run("StringMethod", func(t *testing.T) {
-		t.Parallel()
-		obj := &ListIpAclsResponseMeta{}
-		result := obj.String()
-		assert.NotEmpty(t, result, "String() should return a non-empty representation")
-	})
-
-	t.Run("StringMethod_NilReceiver", func(t *testing.T) {
-		t.Parallel()
-		var obj *ListIpAclsResponseMeta
-		result := obj.String()
-		assert.Equal(t, "<nil>", result, "String() should return <nil> for nil receiver")
-	})
-}
-
 func TestStringListIpAclsResponseObjectsItem(t *testing.T) {
 	t.Run("StringMethod", func(t *testing.T) {
 		t.Parallel()
@@ -2386,29 +2142,6 @@ func TestExtraPropertiesListIpAclsResponse(t *testing.T) {
 	t.Run("GetExtraProperties_NilReceiver", func(t *testing.T) {
 		t.Parallel()
 		var obj *ListIpAclsResponse
-		extraProps := obj.GetExtraProperties()
-		assert.Nil(t, extraProps, "nil receiver should return nil without panicking")
-	})
-}
-
-func TestExtraPropertiesListIpAclsResponseMeta(t *testing.T) {
-	t.Run("GetExtraProperties", func(t *testing.T) {
-		t.Parallel()
-		obj := &ListIpAclsResponseMeta{}
-		// Should not panic when calling GetExtraProperties()
-		defer func() {
-			if r := recover(); r != nil {
-				t.Errorf("GetExtraProperties() panicked: %v", r)
-			}
-		}()
-		extraProps := obj.GetExtraProperties()
-		// Result can be nil or an empty/non-empty map
-		_ = extraProps
-	})
-
-	t.Run("GetExtraProperties_NilReceiver", func(t *testing.T) {
-		t.Parallel()
-		var obj *ListIpAclsResponseMeta
 		extraProps := obj.GetExtraProperties()
 		assert.Nil(t, extraProps, "nil receiver should return nil without panicking")
 	})
