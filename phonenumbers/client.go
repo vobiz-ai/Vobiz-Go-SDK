@@ -171,6 +171,48 @@ func (c *Client) UnassignNumberFromTrunk(
 	return nil
 }
 
+// Link a phone number to a voice application. Once linked, inbound
+// calls to that number fetch VobizXML from the application's
+// `answer_url`. A number routes through either an application or a
+// SIP trunk, not both: unassign the number from its trunk first
+// (`DELETE /api/v1/Account/{auth_id}/numbers/{phone_number}/assign`).
+// URL-encode the phone number (use `%2B` instead of `+`).
+func (c *Client) LinkNumberToApplication(
+	ctx context.Context,
+	request *vobiz.LinkNumberToApplicationRequest,
+	opts ...option.RequestOption,
+) error {
+	_, err := c.WithRawResponse.LinkNumberToApplication(
+		ctx,
+		request,
+		opts...,
+	)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Remove the link between a phone number and its voice application.
+// The number stays in your account inventory but inbound calls no
+// longer fetch VobizXML from that application.
+// URL-encode the phone number (use `%2B` instead of `+`).
+func (c *Client) UnlinkNumberFromApplication(
+	ctx context.Context,
+	request *vobiz.UnlinkNumberFromApplicationRequest,
+	opts ...option.RequestOption,
+) error {
+	_, err := c.WithRawResponse.UnlinkNumberFromApplication(
+		ctx,
+		request,
+		opts...,
+	)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Returns the health & analytics dashboard for one of your numbers: current
 // status, spam flag, and call metrics over the selected window (total and
 // answered calls, answer rate, minutes, average duration) plus a per-period

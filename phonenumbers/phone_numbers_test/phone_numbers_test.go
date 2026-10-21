@@ -277,6 +277,61 @@ func TestPhoneNumbersUnassignNumberFromTrunkWithWireMock(
 	VerifyRequestCount(t, "TestPhoneNumbersUnassignNumberFromTrunkWithWireMock", "DELETE", "/api/v1/Account/MA_XXXXXX/numbers/%2B912271264217/assign", nil, 1)
 }
 
+func TestPhoneNumbersLinkNumberToApplicationWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithAPIKey("test-value"),
+	)
+	request := &vobiz.LinkNumberToApplicationRequest{
+		AuthID:        "MA_XXXXXX",
+		E164:          "%2B912271264217",
+		ApplicationID: "12345678901234567",
+	}
+	invocationErr := client.PhoneNumbers.LinkNumberToApplication(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestPhoneNumbersLinkNumberToApplicationWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestPhoneNumbersLinkNumberToApplicationWithWireMock", "POST", "/api/v1/Account/MA_XXXXXX/numbers/%2B912271264217/application", nil, 1)
+}
+
+func TestPhoneNumbersUnlinkNumberFromApplicationWithWireMock(
+	t *testing.T,
+) {
+	WireMockBaseURL := os.Getenv("WIREMOCK_URL")
+	if WireMockBaseURL == "" {
+		WireMockBaseURL = "http://localhost:8080"
+	}
+	client := client.NewClient(
+		option.WithBaseURL(WireMockBaseURL),
+		option.WithAPIKey("test-value"),
+	)
+	request := &vobiz.UnlinkNumberFromApplicationRequest{
+		AuthID: "MA_XXXXXX",
+		E164:   "%2B912271264217",
+	}
+	invocationErr := client.PhoneNumbers.UnlinkNumberFromApplication(
+		context.TODO(),
+		request,
+		option.WithHTTPHeader(
+			http.Header{"X-Test-Id": []string{"TestPhoneNumbersUnlinkNumberFromApplicationWithWireMock"}},
+		),
+	)
+
+	require.NoError(t, invocationErr, "Client method call should succeed")
+	VerifyRequestCount(t, "TestPhoneNumbersUnlinkNumberFromApplicationWithWireMock", "DELETE", "/api/v1/Account/MA_XXXXXX/numbers/%2B912271264217/application", nil, 1)
+}
+
 func TestPhoneNumbersGetNumberHealthWithWireMock(
 	t *testing.T,
 ) {

@@ -119,6 +119,12 @@ func TestApplicationsCreateApplicationWithWireMock(
 		AppName:      "My Voice Application",
 		AnswerURL:    "https://example.com/answer",
 		AnswerMethod: "POST",
+		HangupURL: vobiz.String(
+			"https://example.com/hangup",
+		),
+		HangupMethod: vobiz.String(
+			"POST",
+		),
 	}
 	_, invocationErr := client.Applications.CreateApplication(
 		context.TODO(),
@@ -175,6 +181,18 @@ func TestApplicationsUpdateApplicationWithWireMock(
 		AppID:            "12345678",
 		AppName:          "Updated Application Name",
 		DefaultNumberApp: true,
+		AnswerURL: vobiz.String(
+			"https://example.com/answer",
+		),
+		AnswerMethod: vobiz.String(
+			"POST",
+		),
+		HangupURL: vobiz.String(
+			"https://example.com/hangup",
+		),
+		HangupMethod: vobiz.String(
+			"POST",
+		),
 	}
 	_, invocationErr := client.Applications.UpdateApplication(
 		context.TODO(),

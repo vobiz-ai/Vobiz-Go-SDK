@@ -3807,6 +3807,163 @@ client.PhoneNumbers.UnassignNumberFromTrunk(
 </dl>
 </details>
 
+<details><summary><code>client.PhoneNumbers.LinkNumberToApplication(AuthID, E164, request) -> error</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Link a phone number to a voice application. Once linked, inbound
+calls to that number fetch VobizXML from the application's
+`answer_url`. A number routes through either an application or a
+SIP trunk, not both: unassign the number from its trunk first
+(`DELETE /api/v1/Account/{auth_id}/numbers/{phone_number}/assign`).
+URL-encode the phone number (use `%2B` instead of `+`).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```go
+request := &vobiz.LinkNumberToApplicationRequest{
+        AuthID: "MA_XXXXXX",
+        E164: "%2B912271264217",
+        ApplicationID: "12345678901234567",
+    }
+client.PhoneNumbers.LinkNumberToApplication(
+        context.TODO(),
+        request,
+    )
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**authID:** `string` — Your account Auth ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**e164:** `string` — The phone number, URL-encoded (use %2B instead of +).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**applicationID:** `string` — The `app_id` of the application to link this number to.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PhoneNumbers.UnlinkNumberFromApplication(AuthID, E164) -> error</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove the link between a phone number and its voice application.
+The number stays in your account inventory but inbound calls no
+longer fetch VobizXML from that application.
+URL-encode the phone number (use `%2B` instead of `+`).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```go
+request := &vobiz.UnlinkNumberFromApplicationRequest{
+        AuthID: "MA_XXXXXX",
+        E164: "%2B912271264217",
+    }
+client.PhoneNumbers.UnlinkNumberFromApplication(
+        context.TODO(),
+        request,
+    )
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**authID:** `string` — Your account Auth ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**e164:** `string` — The phone number, URL-encoded (use %2B instead of +).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.PhoneNumbers.GetNumberHealth(AuthID, E164) -> *vobiz.GetNumberHealthResponse</code></summary>
 <dl>
 <dd>
@@ -8244,6 +8401,12 @@ request := &vobiz.CreateApplicationRequest{
         AppName: "My Voice Application",
         AnswerURL: "https://example.com/answer",
         AnswerMethod: "POST",
+        HangupURL: vobiz.String(
+            "https://example.com/hangup",
+        ),
+        HangupMethod: vobiz.String(
+            "POST",
+        ),
     }
 client.Applications.CreateApplication(
         context.TODO(),
@@ -8289,6 +8452,22 @@ client.Applications.CreateApplication(
 <dd>
 
 **answerMethod:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupURL:** `*string` — URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupMethod:** `*string` — HTTP method used for `hangup_url`, `GET` or `POST`.
     
 </dd>
 </dl>
@@ -8403,6 +8582,18 @@ request := &vobiz.UpdateApplicationRequest{
         AppID: "12345678",
         AppName: "Updated Application Name",
         DefaultNumberApp: true,
+        AnswerURL: vobiz.String(
+            "https://example.com/answer",
+        ),
+        AnswerMethod: vobiz.String(
+            "POST",
+        ),
+        HangupURL: vobiz.String(
+            "https://example.com/hangup",
+        ),
+        HangupMethod: vobiz.String(
+            "POST",
+        ),
     }
 client.Applications.UpdateApplication(
         context.TODO(),
@@ -8448,6 +8639,38 @@ client.Applications.UpdateApplication(
 <dd>
 
 **defaultNumberApp:** `bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**answerURL:** `*string` — URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**answerMethod:** `*string` — HTTP method used for `answer_url`, `GET` or `POST`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupURL:** `*string` — URL Vobiz notifies when a call on this application ends.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**hangupMethod:** `*string` — HTTP method used for `hangup_url`, `GET` or `POST`.
     
 </dd>
 </dl>

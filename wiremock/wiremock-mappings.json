@@ -1744,6 +1744,84 @@
       }
     },
     {
+      "id": "2a074ea2-3f2b-4e89-8245-38e4e9ee5b4b",
+      "name": "Link Number to Application - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{e164}/application",
+        "method": "POST",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "e164": {
+            "equalTo": "%2B912271264217"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "2a074ea2-3f2b-4e89-8245-38e4e9ee5b4b",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
+      "id": "8ca60caa-8e4b-4c18-9dec-8f303fcea1de",
+      "name": "Unlink Number from Application - default",
+      "request": {
+        "urlPathTemplate": "/api/v1/Account/{auth_id}/numbers/{e164}/application",
+        "method": "DELETE",
+        "headers": {
+          "X-Auth-ID": {
+            "matches": ".+"
+          }
+        },
+        "pathParameters": {
+          "auth_id": {
+            "equalTo": "MA_XXXXXX"
+          },
+          "e164": {
+            "equalTo": "%2B912271264217"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": "\"\"",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "uuid": "8ca60caa-8e4b-4c18-9dec-8f303fcea1de",
+      "persistent": true,
+      "priority": 3,
+      "metadata": {
+        "mocklab": {
+          "created": {
+            "at": "2020-01-01T00:00:00.000Z",
+            "via": "SYSTEM"
+          }
+        }
+      }
+    },
+    {
       "id": "90c261c9-7c6b-4ef3-a027-efca5adb87d7",
       "name": "Get number health dashboard - default",
       "request": {
@@ -7245,6 +7323,6 @@
     }
   ],
   "meta": {
-    "total": 194
+    "total": 196
   }
 }

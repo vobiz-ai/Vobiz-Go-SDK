@@ -236,6 +236,73 @@ func (g *GetNumberHealthRequest) SetDays(days *int) {
 }
 
 var (
+	linkNumberToApplicationRequestFieldAuthID        = big.NewInt(1 << 0)
+	linkNumberToApplicationRequestFieldE164          = big.NewInt(1 << 1)
+	linkNumberToApplicationRequestFieldApplicationID = big.NewInt(1 << 2)
+)
+
+type LinkNumberToApplicationRequest struct {
+	// Your account Auth ID
+	AuthID string `json:"-" url:"-"`
+	// The phone number, URL-encoded (use %2B instead of +).
+	E164 string `json:"-" url:"-"`
+	// The `app_id` of the application to link this number to.
+	ApplicationID string `json:"application_id" url:"-"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (l *LinkNumberToApplicationRequest) require(field *big.Int) {
+	if l.explicitFields == nil {
+		l.explicitFields = big.NewInt(0)
+	}
+	l.explicitFields.Or(l.explicitFields, field)
+}
+
+// SetAuthID sets the AuthID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *LinkNumberToApplicationRequest) SetAuthID(authID string) {
+	l.AuthID = authID
+	l.require(linkNumberToApplicationRequestFieldAuthID)
+}
+
+// SetE164 sets the E164 field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *LinkNumberToApplicationRequest) SetE164(e164 string) {
+	l.E164 = e164
+	l.require(linkNumberToApplicationRequestFieldE164)
+}
+
+// SetApplicationID sets the ApplicationID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (l *LinkNumberToApplicationRequest) SetApplicationID(applicationID string) {
+	l.ApplicationID = applicationID
+	l.require(linkNumberToApplicationRequestFieldApplicationID)
+}
+
+func (l *LinkNumberToApplicationRequest) UnmarshalJSON(data []byte) error {
+	type unmarshaler LinkNumberToApplicationRequest
+	var body unmarshaler
+	if err := json.Unmarshal(data, &body); err != nil {
+		return err
+	}
+	*l = LinkNumberToApplicationRequest(body)
+	return nil
+}
+
+func (l *LinkNumberToApplicationRequest) MarshalJSON() ([]byte, error) {
+	type embed LinkNumberToApplicationRequest
+	var marshaler = struct {
+		embed
+	}{
+		embed: embed(*l),
+	}
+	explicitMarshaler := internal.HandleExplicitFields(marshaler, l.explicitFields)
+	return json.Marshal(explicitMarshaler)
+}
+
+var (
 	listInventoryNumbersRequestFieldAuthID  = big.NewInt(1 << 0)
 	listInventoryNumbersRequestFieldCountry = big.NewInt(1 << 1)
 	listInventoryNumbersRequestFieldSearch  = big.NewInt(1 << 2)
@@ -2895,6 +2962,42 @@ func (u *UnassignNumberFromTrunkRequest) SetAuthID(authID string) {
 func (u *UnassignNumberFromTrunkRequest) SetPhoneNumber(phoneNumber string) {
 	u.PhoneNumber = phoneNumber
 	u.require(unassignNumberFromTrunkRequestFieldPhoneNumber)
+}
+
+var (
+	unlinkNumberFromApplicationRequestFieldAuthID = big.NewInt(1 << 0)
+	unlinkNumberFromApplicationRequestFieldE164   = big.NewInt(1 << 1)
+)
+
+type UnlinkNumberFromApplicationRequest struct {
+	// Your account Auth ID
+	AuthID string `json:"-" url:"-"`
+	// The phone number, URL-encoded (use %2B instead of +).
+	E164 string `json:"-" url:"-"`
+
+	// Private bitmask of fields set to an explicit value and therefore not to be omitted
+	explicitFields *big.Int `json:"-" url:"-"`
+}
+
+func (u *UnlinkNumberFromApplicationRequest) require(field *big.Int) {
+	if u.explicitFields == nil {
+		u.explicitFields = big.NewInt(0)
+	}
+	u.explicitFields.Or(u.explicitFields, field)
+}
+
+// SetAuthID sets the AuthID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnlinkNumberFromApplicationRequest) SetAuthID(authID string) {
+	u.AuthID = authID
+	u.require(unlinkNumberFromApplicationRequestFieldAuthID)
+}
+
+// SetE164 sets the E164 field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UnlinkNumberFromApplicationRequest) SetE164(e164 string) {
+	u.E164 = e164
+	u.require(unlinkNumberFromApplicationRequestFieldE164)
 }
 
 var (

@@ -14,6 +14,8 @@ var (
 	createApplicationRequestFieldAppName      = big.NewInt(1 << 1)
 	createApplicationRequestFieldAnswerURL    = big.NewInt(1 << 2)
 	createApplicationRequestFieldAnswerMethod = big.NewInt(1 << 3)
+	createApplicationRequestFieldHangupURL    = big.NewInt(1 << 4)
+	createApplicationRequestFieldHangupMethod = big.NewInt(1 << 5)
 )
 
 type CreateApplicationRequest struct {
@@ -22,6 +24,10 @@ type CreateApplicationRequest struct {
 	AppName      string `json:"app_name" url:"-"`
 	AnswerURL    string `json:"answer_url" url:"-"`
 	AnswerMethod string `json:"answer_method" url:"-"`
+	// URL Vobiz notifies when a call on this application ends. If omitted, it defaults to `answer_url`.
+	HangupURL *string `json:"hangup_url,omitempty" url:"-"`
+	// HTTP method used for `hangup_url`, `GET` or `POST`.
+	HangupMethod *string `json:"hangup_method,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -60,6 +66,20 @@ func (c *CreateApplicationRequest) SetAnswerURL(answerURL string) {
 func (c *CreateApplicationRequest) SetAnswerMethod(answerMethod string) {
 	c.AnswerMethod = answerMethod
 	c.require(createApplicationRequestFieldAnswerMethod)
+}
+
+// SetHangupURL sets the HangupURL field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateApplicationRequest) SetHangupURL(hangupURL *string) {
+	c.HangupURL = hangupURL
+	c.require(createApplicationRequestFieldHangupURL)
+}
+
+// SetHangupMethod sets the HangupMethod field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateApplicationRequest) SetHangupMethod(hangupMethod *string) {
+	c.HangupMethod = hangupMethod
+	c.require(createApplicationRequestFieldHangupMethod)
 }
 
 func (c *CreateApplicationRequest) UnmarshalJSON(data []byte) error {
@@ -1423,6 +1443,10 @@ var (
 	updateApplicationRequestFieldAppID            = big.NewInt(1 << 1)
 	updateApplicationRequestFieldAppName          = big.NewInt(1 << 2)
 	updateApplicationRequestFieldDefaultNumberApp = big.NewInt(1 << 3)
+	updateApplicationRequestFieldAnswerURL        = big.NewInt(1 << 4)
+	updateApplicationRequestFieldAnswerMethod     = big.NewInt(1 << 5)
+	updateApplicationRequestFieldHangupURL        = big.NewInt(1 << 6)
+	updateApplicationRequestFieldHangupMethod     = big.NewInt(1 << 7)
 )
 
 type UpdateApplicationRequest struct {
@@ -1431,6 +1455,14 @@ type UpdateApplicationRequest struct {
 	AppID            string `json:"-" url:"-"`
 	AppName          string `json:"app_name" url:"-"`
 	DefaultNumberApp bool   `json:"default_number_app" url:"-"`
+	// URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
+	AnswerURL *string `json:"answer_url,omitempty" url:"-"`
+	// HTTP method used for `answer_url`, `GET` or `POST`.
+	AnswerMethod *string `json:"answer_method,omitempty" url:"-"`
+	// URL Vobiz notifies when a call on this application ends.
+	HangupURL *string `json:"hangup_url,omitempty" url:"-"`
+	// HTTP method used for `hangup_url`, `GET` or `POST`.
+	HangupMethod *string `json:"hangup_method,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -1469,6 +1501,34 @@ func (u *UpdateApplicationRequest) SetAppName(appName string) {
 func (u *UpdateApplicationRequest) SetDefaultNumberApp(defaultNumberApp bool) {
 	u.DefaultNumberApp = defaultNumberApp
 	u.require(updateApplicationRequestFieldDefaultNumberApp)
+}
+
+// SetAnswerURL sets the AnswerURL field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateApplicationRequest) SetAnswerURL(answerURL *string) {
+	u.AnswerURL = answerURL
+	u.require(updateApplicationRequestFieldAnswerURL)
+}
+
+// SetAnswerMethod sets the AnswerMethod field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateApplicationRequest) SetAnswerMethod(answerMethod *string) {
+	u.AnswerMethod = answerMethod
+	u.require(updateApplicationRequestFieldAnswerMethod)
+}
+
+// SetHangupURL sets the HangupURL field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateApplicationRequest) SetHangupURL(hangupURL *string) {
+	u.HangupURL = hangupURL
+	u.require(updateApplicationRequestFieldHangupURL)
+}
+
+// SetHangupMethod sets the HangupMethod field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateApplicationRequest) SetHangupMethod(hangupMethod *string) {
+	u.HangupMethod = hangupMethod
+	u.require(updateApplicationRequestFieldHangupMethod)
 }
 
 func (u *UpdateApplicationRequest) UnmarshalJSON(data []byte) error {
