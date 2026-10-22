@@ -95,6 +95,11 @@ func (c *Client) RetrieveSubaccount(
 
 // Update the name or status of a sub-account, or change its `kyc_mode`.
 //
+// Set `is_active` to `false` to deactivate a sub-account. A deactivated
+// sub-account no longer appears in the list, and retrieve, update and
+// delete requests for it return `404`. The `enabled` field is accepted
+// but has no effect.
+//
 // Promoting an existing sub-account to `customer_use` requires the
 // sub-account to already have an `email` (otherwise `400`). On any
 // `kyc_mode` change, `kyc_calls_blocked` is re-derived from the

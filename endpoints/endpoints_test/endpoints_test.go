@@ -115,11 +115,13 @@ func TestEndpointsCreateEndpointWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.CreateEndpointRequest{
-		AuthID:      "MA_XXXXXX",
-		Username:    "john_doe",
-		Password:    "SecurePassword123!",
-		Alias:       "John's Desktop Phone",
-		Application: 12345678,
+		AuthID:   "MA_XXXXXX",
+		Username: "john_doe",
+		Password: "SecurePassword123!",
+		Alias:    "John's Desktop Phone",
+		AppID: vobiz.String(
+			"12345678901234567",
+		),
 	}
 	_, invocationErr := client.Endpoints.CreateEndpoint(
 		context.TODO(),
@@ -176,6 +178,9 @@ func TestEndpointsUpdateEndpointWithWireMock(
 		EndpointID: "87654321",
 		Alias:      "John's Updated Desktop Phone",
 		Password:   "NewSecurePassword456!",
+		AppID: vobiz.String(
+			"12345678901234567",
+		),
 	}
 	_, invocationErr := client.Endpoints.UpdateEndpoint(
 		context.TODO(),

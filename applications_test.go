@@ -4054,7 +4054,7 @@ func TestSettersUpdateApplicationRequest(t *testing.T) {
 
 	t.Run("SetAppName", func(t *testing.T) {
 		obj := &UpdateApplicationRequest{}
-		var fernTestValueAppName string
+		var fernTestValueAppName *string
 		obj.SetAppName(fernTestValueAppName)
 		assert.Equal(t, fernTestValueAppName, obj.AppName)
 		assert.NotNil(t, obj.explicitFields)
@@ -4062,7 +4062,7 @@ func TestSettersUpdateApplicationRequest(t *testing.T) {
 
 	t.Run("SetDefaultNumberApp", func(t *testing.T) {
 		obj := &UpdateApplicationRequest{}
-		var fernTestValueDefaultNumberApp bool
+		var fernTestValueDefaultNumberApp *bool
 		obj.SetDefaultNumberApp(fernTestValueDefaultNumberApp)
 		assert.Equal(t, fernTestValueDefaultNumberApp, obj.DefaultNumberApp)
 		assert.NotNil(t, obj.explicitFields)
@@ -4169,7 +4169,7 @@ func TestSettersMarkExplicitUpdateApplicationRequest(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &UpdateApplicationRequest{}
-		var fernTestValueAppName string
+		var fernTestValueAppName *string
 
 		// Act
 		obj.SetAppName(fernTestValueAppName)
@@ -4200,7 +4200,7 @@ func TestSettersMarkExplicitUpdateApplicationRequest(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &UpdateApplicationRequest{}
-		var fernTestValueDefaultNumberApp bool
+		var fernTestValueDefaultNumberApp *bool
 
 		// Act
 		obj.SetDefaultNumberApp(fernTestValueDefaultNumberApp)

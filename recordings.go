@@ -159,10 +159,11 @@ type GetRecordingResponse struct {
 	RecordingStorageDuration      int     `json:"recording_storage_duration" url:"recording_storage_duration"`
 	RecordingStorageRate          float64 `json:"recording_storage_rate" url:"recording_storage_rate"`
 	RecordingType                 string  `json:"recording_type" url:"recording_type"`
-	RecordingURL                  string  `json:"recording_url" url:"recording_url"`
-	ResourceURI                   string  `json:"resource_uri" url:"resource_uri"`
-	RoundedRecordingDuration      int     `json:"rounded_recording_duration" url:"rounded_recording_duration"`
-	ToNumber                      string  `json:"to_number" url:"to_number"`
+	// Download URL for the audio, on `media.vobiz.ai`. Send the same `X-Auth-ID` and `X-Auth-Token` headers as for API requests; without them the media host returns `401`. The body is WAV (RIFF/WAVE PCM), although the response may carry `Content-Type: audio/mpeg`.
+	RecordingURL             string `json:"recording_url" url:"recording_url"`
+	ResourceURI              string `json:"resource_uri" url:"resource_uri"`
+	RoundedRecordingDuration int    `json:"rounded_recording_duration" url:"rounded_recording_duration"`
+	ToNumber                 string `json:"to_number" url:"to_number"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -629,10 +630,11 @@ type ListRecordingsResponseObjectsItem struct {
 	RecordingStorageDuration      int     `json:"recording_storage_duration" url:"recording_storage_duration"`
 	RecordingStorageRate          float64 `json:"recording_storage_rate" url:"recording_storage_rate"`
 	RecordingType                 string  `json:"recording_type" url:"recording_type"`
-	RecordingURL                  string  `json:"recording_url" url:"recording_url"`
-	ResourceURI                   string  `json:"resource_uri" url:"resource_uri"`
-	RoundedRecordingDuration      int     `json:"rounded_recording_duration" url:"rounded_recording_duration"`
-	ToNumber                      string  `json:"to_number" url:"to_number"`
+	// Download URL for the audio, on `media.vobiz.ai`. Send the same `X-Auth-ID` and `X-Auth-Token` headers as for API requests; without them the media host returns `401`. The body is WAV (RIFF/WAVE PCM), although the response may carry `Content-Type: audio/mpeg`.
+	RecordingURL             string `json:"recording_url" url:"recording_url"`
+	ResourceURI              string `json:"resource_uri" url:"resource_uri"`
+	RoundedRecordingDuration int    `json:"rounded_recording_duration" url:"rounded_recording_duration"`
+	ToNumber                 string `json:"to_number" url:"to_number"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`

@@ -1451,10 +1451,10 @@ var (
 
 type UpdateApplicationRequest struct {
 	// Your account Auth ID
-	AuthID           string `json:"-" url:"-"`
-	AppID            string `json:"-" url:"-"`
-	AppName          string `json:"app_name" url:"-"`
-	DefaultNumberApp bool   `json:"default_number_app" url:"-"`
+	AuthID           string  `json:"-" url:"-"`
+	AppID            string  `json:"-" url:"-"`
+	AppName          *string `json:"app_name,omitempty" url:"-"`
+	DefaultNumberApp *bool   `json:"default_number_app,omitempty" url:"-"`
 	// URL Vobiz fetches VobizXML from when a call reaches a number or endpoint linked to this application.
 	AnswerURL *string `json:"answer_url,omitempty" url:"-"`
 	// HTTP method used for `answer_url`, `GET` or `POST`.
@@ -1491,14 +1491,14 @@ func (u *UpdateApplicationRequest) SetAppID(appID string) {
 
 // SetAppName sets the AppName field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateApplicationRequest) SetAppName(appName string) {
+func (u *UpdateApplicationRequest) SetAppName(appName *string) {
 	u.AppName = appName
 	u.require(updateApplicationRequestFieldAppName)
 }
 
 // SetDefaultNumberApp sets the DefaultNumberApp field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateApplicationRequest) SetDefaultNumberApp(defaultNumberApp bool) {
+func (u *UpdateApplicationRequest) SetDefaultNumberApp(defaultNumberApp *bool) {
 	u.DefaultNumberApp = defaultNumberApp
 	u.require(updateApplicationRequestFieldDefaultNumberApp)
 }

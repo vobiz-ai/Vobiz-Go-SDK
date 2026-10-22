@@ -10,18 +10,27 @@ import (
 )
 
 var (
-	createOriginationURIRequestFieldAuthID   = big.NewInt(1 << 0)
-	createOriginationURIRequestFieldName     = big.NewInt(1 << 1)
-	createOriginationURIRequestFieldSipURI   = big.NewInt(1 << 2)
-	createOriginationURIRequestFieldPriority = big.NewInt(1 << 3)
+	createOriginationURIRequestFieldAuthID      = big.NewInt(1 << 0)
+	createOriginationURIRequestFieldURI         = big.NewInt(1 << 1)
+	createOriginationURIRequestFieldDescription = big.NewInt(1 << 2)
+	createOriginationURIRequestFieldPriority    = big.NewInt(1 << 3)
+	createOriginationURIRequestFieldSipURI      = big.NewInt(1 << 4)
+	createOriginationURIRequestFieldName        = big.NewInt(1 << 5)
 )
 
 type CreateOriginationURIRequest struct {
 	// Your account Auth ID
-	AuthID   string `json:"-" url:"-"`
-	Name     string `json:"name" url:"-"`
-	SipURI   string `json:"sip_uri" url:"-"`
-	Priority int    `json:"priority" url:"-"`
+	AuthID string `json:"-" url:"-"`
+	// SIP URI of your inbound destination, for example `sip:sbc.example.com`.
+	URI string `json:"uri" url:"-"`
+	// Label for the origination URI.
+	Description *string `json:"description,omitempty" url:"-"`
+	// Routing priority. Lower values are tried first.
+	Priority int `json:"priority" url:"-"`
+	// Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+	SipURI *string `json:"sip_uri,omitempty" url:"-"`
+	// Not read by the API. Send `description` instead.
+	Name *string `json:"name,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -41,18 +50,18 @@ func (c *CreateOriginationURIRequest) SetAuthID(authID string) {
 	c.require(createOriginationURIRequestFieldAuthID)
 }
 
-// SetName sets the Name field and marks it as non-optional;
+// SetURI sets the URI field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CreateOriginationURIRequest) SetName(name string) {
-	c.Name = name
-	c.require(createOriginationURIRequestFieldName)
+func (c *CreateOriginationURIRequest) SetURI(uri string) {
+	c.URI = uri
+	c.require(createOriginationURIRequestFieldURI)
 }
 
-// SetSipURI sets the SipURI field and marks it as non-optional;
+// SetDescription sets the Description field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CreateOriginationURIRequest) SetSipURI(sipURI string) {
-	c.SipURI = sipURI
-	c.require(createOriginationURIRequestFieldSipURI)
+func (c *CreateOriginationURIRequest) SetDescription(description *string) {
+	c.Description = description
+	c.require(createOriginationURIRequestFieldDescription)
 }
 
 // SetPriority sets the Priority field and marks it as non-optional;
@@ -60,6 +69,20 @@ func (c *CreateOriginationURIRequest) SetSipURI(sipURI string) {
 func (c *CreateOriginationURIRequest) SetPriority(priority int) {
 	c.Priority = priority
 	c.require(createOriginationURIRequestFieldPriority)
+}
+
+// SetSipURI sets the SipURI field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateOriginationURIRequest) SetSipURI(sipURI *string) {
+	c.SipURI = sipURI
+	c.require(createOriginationURIRequestFieldSipURI)
+}
+
+// SetName sets the Name field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateOriginationURIRequest) SetName(name *string) {
+	c.Name = name
+	c.require(createOriginationURIRequestFieldName)
 }
 
 func (c *CreateOriginationURIRequest) UnmarshalJSON(data []byte) error {
@@ -929,18 +952,26 @@ func (u *UpdateOriginationURIResponse) String() string {
 }
 
 var (
-	updateOriginationURIRequestFieldAuthID   = big.NewInt(1 << 0)
-	updateOriginationURIRequestFieldUriId    = big.NewInt(1 << 1)
-	updateOriginationURIRequestFieldName     = big.NewInt(1 << 2)
-	updateOriginationURIRequestFieldPriority = big.NewInt(1 << 3)
+	updateOriginationURIRequestFieldAuthID      = big.NewInt(1 << 0)
+	updateOriginationURIRequestFieldUriId       = big.NewInt(1 << 1)
+	updateOriginationURIRequestFieldURI         = big.NewInt(1 << 2)
+	updateOriginationURIRequestFieldDescription = big.NewInt(1 << 3)
+	updateOriginationURIRequestFieldPriority    = big.NewInt(1 << 4)
+	updateOriginationURIRequestFieldName        = big.NewInt(1 << 5)
 )
 
 type UpdateOriginationURIRequest struct {
 	// Your account Auth ID
-	AuthID   string `json:"-" url:"-"`
-	UriId    string `json:"-" url:"-"`
-	Name     string `json:"name" url:"-"`
-	Priority int    `json:"priority" url:"-"`
+	AuthID string `json:"-" url:"-"`
+	UriId  string `json:"-" url:"-"`
+	// SIP URI of your inbound destination.
+	URI *string `json:"uri,omitempty" url:"-"`
+	// Label for the origination URI.
+	Description *string `json:"description,omitempty" url:"-"`
+	// Routing priority. Lower values are tried first.
+	Priority *int `json:"priority,omitempty" url:"-"`
+	// Not read by the API. Send `description` instead.
+	Name *string `json:"name,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -967,18 +998,32 @@ func (u *UpdateOriginationURIRequest) SetUriId(uriId string) {
 	u.require(updateOriginationURIRequestFieldUriId)
 }
 
-// SetName sets the Name field and marks it as non-optional;
+// SetURI sets the URI field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateOriginationURIRequest) SetName(name string) {
-	u.Name = name
-	u.require(updateOriginationURIRequestFieldName)
+func (u *UpdateOriginationURIRequest) SetURI(uri *string) {
+	u.URI = uri
+	u.require(updateOriginationURIRequestFieldURI)
+}
+
+// SetDescription sets the Description field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateOriginationURIRequest) SetDescription(description *string) {
+	u.Description = description
+	u.require(updateOriginationURIRequestFieldDescription)
 }
 
 // SetPriority sets the Priority field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateOriginationURIRequest) SetPriority(priority int) {
+func (u *UpdateOriginationURIRequest) SetPriority(priority *int) {
 	u.Priority = priority
 	u.require(updateOriginationURIRequestFieldPriority)
+}
+
+// SetName sets the Name field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateOriginationURIRequest) SetName(name *string) {
+	u.Name = name
+	u.require(updateOriginationURIRequestFieldName)
 }
 
 func (u *UpdateOriginationURIRequest) UnmarshalJSON(data []byte) error {

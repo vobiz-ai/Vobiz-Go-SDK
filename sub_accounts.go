@@ -2732,8 +2732,9 @@ var (
 	updateSubaccountRequestFieldAuthID    = big.NewInt(1 << 0)
 	updateSubaccountRequestFieldSubAuthID = big.NewInt(1 << 1)
 	updateSubaccountRequestFieldName      = big.NewInt(1 << 2)
-	updateSubaccountRequestFieldEnabled   = big.NewInt(1 << 3)
-	updateSubaccountRequestFieldKycMode   = big.NewInt(1 << 4)
+	updateSubaccountRequestFieldIsActive  = big.NewInt(1 << 3)
+	updateSubaccountRequestFieldEnabled   = big.NewInt(1 << 4)
+	updateSubaccountRequestFieldKycMode   = big.NewInt(1 << 5)
 )
 
 type UpdateSubaccountRequest struct {
@@ -2741,7 +2742,10 @@ type UpdateSubaccountRequest struct {
 	AuthID    string  `json:"-" url:"-"`
 	SubAuthID string  `json:"-" url:"-"`
 	Name      *string `json:"name,omitempty" url:"-"`
-	Enabled   *bool   `json:"enabled,omitempty" url:"-"`
+	// Set to `false` to deactivate the sub-account. A deactivated sub-account no longer appears in list, retrieve, update or delete requests (`404`).
+	IsActive *bool `json:"is_active,omitempty" url:"-"`
+	// Accepted but has no effect. Use `is_active` instead.
+	Enabled *bool `json:"enabled,omitempty" url:"-"`
 	// Change the verification mode. Promoting to `customer_use` requires the sub-account to have an `email`.
 	KycMode *UpdateSubaccountRequestKycMode `json:"kyc_mode,omitempty" url:"-"`
 
@@ -2775,6 +2779,13 @@ func (u *UpdateSubaccountRequest) SetSubAuthID(subAuthID string) {
 func (u *UpdateSubaccountRequest) SetName(name *string) {
 	u.Name = name
 	u.require(updateSubaccountRequestFieldName)
+}
+
+// SetIsActive sets the IsActive field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateSubaccountRequest) SetIsActive(isActive *bool) {
+	u.IsActive = isActive
+	u.require(updateSubaccountRequestFieldIsActive)
 }
 
 // SetEnabled sets the Enabled field and marks it as non-optional;

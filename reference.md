@@ -1890,6 +1890,11 @@ client.SubAccounts.RetrieveSubaccount(
 
 Update the name or status of a sub-account, or change its `kyc_mode`.
 
+Set `is_active` to `false` to deactivate a sub-account. A deactivated
+sub-account no longer appears in the list, and retrieve, update and
+delete requests for it return `404`. The `enabled` field is accepted
+but has no effect.
+
 Promoting an existing sub-account to `customer_use` requires the
 sub-account to already have an `email` (otherwise `400`). On any
 `kyc_mode` change, `kyc_calls_blocked` is re-derived from the
@@ -1956,7 +1961,15 @@ client.SubAccounts.UpdateSubaccount(
 <dl>
 <dd>
 
-**enabled:** `*bool` 
+**isActive:** `*bool` — Set to `false` to deactivate the sub-account. A deactivated sub-account no longer appears in list, retrieve, update or delete requests (`404`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**enabled:** `*bool` — Accepted but has no effect. Use `is_active` instead.
     
 </dd>
 </dl>
@@ -4389,7 +4402,7 @@ client.Trunks.CreateTrunk(
 <dl>
 <dd>
 
-**trunkStatus:** `*vobiz.CreateTrunkRequestTrunkStatus` — Trunk status - `enabled` or `disabled` (note: not `active`).
+**trunkStatus:** `*vobiz.CreateTrunkRequestTrunkStatus` — Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
     
 </dd>
 </dl>
@@ -4726,7 +4739,7 @@ client.Trunks.UpdateTrunk(
 <dl>
 <dd>
 
-**trunkStatus:** `*vobiz.UpdateTrunkRequestTrunkStatus` 
+**trunkStatus:** `*vobiz.UpdateTrunkRequestTrunkStatus` — Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
     
 </dd>
 </dl>
@@ -7063,6 +7076,11 @@ client.Recordings.ListRecordings(
 <dd>
 
 Get details and download URL for a specific recording.
+
+`recording_url` points at `media.vobiz.ai`. Download it with the same
+`X-Auth-ID` and `X-Auth-Token` headers you use for the API; the media
+host returns `401` without them. The file is WAV, although the media
+host may label it `Content-Type: audio/mpeg`.
 </dd>
 </dl>
 </dd>
@@ -7696,6 +7714,10 @@ client.Credentials.DeleteCredential(
 <dd>
 
 Add an IP access control rule to restrict SIP trunk access.
+
+Use the public IP address or CIDR range of your own SBC or PBX. The API
+rejects documentation-only ranges such as `203.0.113.0/24` with `400`.
+Responses return the rule's label in `description`.
 </dd>
 </dl>
 </dd>
@@ -7713,7 +7735,7 @@ Add an IP access control rule to restrict SIP trunk access.
 request := &vobiz.CreateIpAclRequest{
         AuthID: "MA_XXXXXX",
         Name: "Office IP",
-        IPAddress: "ip_address",
+        IPAddress: "YOUR_PUBLIC_IP/32",
     }
 client.IPAccessControlList.CreateIpAcl(
         context.TODO(),
@@ -8011,8 +8033,10 @@ Add an inbound SIP endpoint (origination URI) to a trunk.
 ```go
 request := &vobiz.CreateOriginationURIRequest{
         AuthID: "MA_XXXXXX",
-        Name: "Primary SBC",
-        SipURI: "sip:sbc.example.com",
+        URI: "sip:sbc.example.com",
+        Description: vobiz.String(
+            "Primary SBC",
+        ),
         Priority: 1,
     }
 client.OriginationURI.CreateOriginationURI(
@@ -8042,7 +8066,7 @@ client.OriginationURI.CreateOriginationURI(
 <dl>
 <dd>
 
-**name:** `string` 
+**uri:** `string` — SIP URI of your inbound destination, for example `sip:sbc.example.com`.
     
 </dd>
 </dl>
@@ -8050,7 +8074,7 @@ client.OriginationURI.CreateOriginationURI(
 <dl>
 <dd>
 
-**sipURI:** `string` 
+**description:** `*string` — Label for the origination URI.
     
 </dd>
 </dl>
@@ -8058,7 +8082,23 @@ client.OriginationURI.CreateOriginationURI(
 <dl>
 <dd>
 
-**priority:** `int` 
+**priority:** `int` — Routing priority. Lower values are tried first.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sipURI:** `*string` — Not read by the API. The API accepts the request but stores an empty `uri`. Send `uri` instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `*string` — Not read by the API. Send `description` instead.
     
 </dd>
 </dl>
@@ -8161,8 +8201,15 @@ Update an existing origination URI.
 request := &vobiz.UpdateOriginationURIRequest{
         AuthID: "MA_XXXXXX",
         UriId: "uri_id",
-        Name: "name",
-        Priority: 1,
+        URI: vobiz.String(
+            "sip:sbc.example.com",
+        ),
+        Description: vobiz.String(
+            "Primary SBC",
+        ),
+        Priority: vobiz.Int(
+            2,
+        ),
     }
 client.OriginationURI.UpdateOriginationURI(
         context.TODO(),
@@ -8199,7 +8246,7 @@ client.OriginationURI.UpdateOriginationURI(
 <dl>
 <dd>
 
-**name:** `string` 
+**uri:** `*string` — SIP URI of your inbound destination.
     
 </dd>
 </dl>
@@ -8207,7 +8254,23 @@ client.OriginationURI.UpdateOriginationURI(
 <dl>
 <dd>
 
-**priority:** `int` 
+**description:** `*string` — Label for the origination URI.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**priority:** `*int` — Routing priority. Lower values are tried first.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**name:** `*string` — Not read by the API. Send `description` instead.
     
 </dd>
 </dl>
@@ -8580,8 +8643,12 @@ fields (partial update). Fields not provided will remain unchanged.
 request := &vobiz.UpdateApplicationRequest{
         AuthID: "MA_XXXXXX",
         AppID: "12345678",
-        AppName: "Updated Application Name",
-        DefaultNumberApp: true,
+        AppName: vobiz.String(
+            "Updated Application Name",
+        ),
+        DefaultNumberApp: vobiz.Bool(
+            true,
+        ),
         AnswerURL: vobiz.String(
             "https://example.com/answer",
         ),
@@ -8630,7 +8697,7 @@ client.Applications.UpdateApplication(
 <dl>
 <dd>
 
-**appName:** `string` 
+**appName:** `*string` 
     
 </dd>
 </dl>
@@ -8638,7 +8705,7 @@ client.Applications.UpdateApplication(
 <dl>
 <dd>
 
-**defaultNumberApp:** `bool` 
+**defaultNumberApp:** `*bool` 
     
 </dd>
 </dl>
@@ -8911,6 +8978,10 @@ client.Endpoints.ListEndpoints(
 Create a new SIP endpoint that can be used to make and receive calls
 through IP phones, softphones, or SIP clients. Each endpoint is
 assigned a unique SIP URI and endpoint ID.
+
+The API appends digits to the `username` you request (for example,
+`acme01` can become `acme0125672327435497`). Configure your SIP client
+with the `username` returned in the response.
 </dd>
 </dl>
 </dd>
@@ -8930,7 +9001,9 @@ request := &vobiz.CreateEndpointRequest{
         Username: "john_doe",
         Password: "SecurePassword123!",
         Alias: "John's Desktop Phone",
-        Application: 12345678,
+        AppID: vobiz.String(
+            "12345678901234567",
+        ),
     }
 client.Endpoints.CreateEndpoint(
         context.TODO(),
@@ -8983,7 +9056,15 @@ client.Endpoints.CreateEndpoint(
 <dl>
 <dd>
 
-**application:** `int` 
+**appID:** `*string` — ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**application:** `*int` — Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
     
 </dd>
 </dl>
@@ -9102,6 +9183,9 @@ request := &vobiz.UpdateEndpointRequest{
         EndpointID: "87654321",
         Alias: "John's Updated Desktop Phone",
         Password: "NewSecurePassword456!",
+        AppID: vobiz.String(
+            "12345678901234567",
+        ),
     }
 client.Endpoints.UpdateEndpoint(
         context.TODO(),
@@ -9147,6 +9231,14 @@ client.Endpoints.UpdateEndpoint(
 <dd>
 
 **password:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**appID:** `*string` — ID of the application to attach to this endpoint, as a string.
     
 </dd>
 </dl>

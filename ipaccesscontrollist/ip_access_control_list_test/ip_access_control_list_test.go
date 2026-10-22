@@ -91,7 +91,7 @@ func TestIPAccessControlListCreateIpAclWithWireMock(
 	request := &vobiz.CreateIpAclRequest{
 		AuthID:    "MA_XXXXXX",
 		Name:      "Office IP",
-		IPAddress: "ip_address",
+		IPAddress: "YOUR_PUBLIC_IP/32",
 	}
 	_, invocationErr := client.IPAccessControlList.CreateIpAcl(
 		context.TODO(),

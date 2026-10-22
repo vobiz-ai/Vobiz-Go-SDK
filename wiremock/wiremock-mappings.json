@@ -2003,7 +2003,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"trunk_id\": \"trunk_id\",\n  \"account_id\": \"account_id\",\n  \"name\": \"name\",\n  \"trunk_domain\": \"trunk_domain\",\n  \"trunk_status\": \"trunk_status\",\n  \"secure\": true,\n  \"trunk_direction\": \"trunk_direction\",\n  \"concurrent_calls_limit\": 1,\n  \"cps_limit\": 1,\n  \"description\": \"description\",\n  \"transport\": \"transport\",\n  \"recording\": true,\n  \"enable_transcription\": true,\n  \"pii_redaction\": true,\n  \"webhook_method\": \"webhook_method\",\n  \"recording_webhook_enabled\": true,\n  \"created_at\": \"created_at\",\n  \"updated_at\": \"updated_at\"\n}",
+        "body": "{\n  \"trunk_id\": \"trunk_id\",\n  \"account_id\": \"account_id\",\n  \"name\": \"name\",\n  \"trunk_domain\": \"trunk_domain\",\n  \"trunk_status\": \"active\",\n  \"secure\": true,\n  \"trunk_direction\": \"trunk_direction\",\n  \"concurrent_calls_limit\": 1,\n  \"cps_limit\": 1,\n  \"description\": \"description\",\n  \"transport\": \"transport\",\n  \"recording\": true,\n  \"enable_transcription\": true,\n  \"pii_redaction\": true,\n  \"webhook_method\": \"webhook_method\",\n  \"recording_webhook_enabled\": true,\n  \"created_at\": \"created_at\",\n  \"updated_at\": \"updated_at\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }

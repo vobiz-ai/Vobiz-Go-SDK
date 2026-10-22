@@ -89,9 +89,11 @@ func TestOriginationURICreateOriginationURIWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.CreateOriginationURIRequest{
-		AuthID:   "MA_XXXXXX",
-		Name:     "Primary SBC",
-		SipURI:   "sip:sbc.example.com",
+		AuthID: "MA_XXXXXX",
+		URI:    "sip:sbc.example.com",
+		Description: vobiz.String(
+			"Primary SBC",
+		),
 		Priority: 1,
 	}
 	_, invocationErr := client.OriginationURI.CreateOriginationURI(
@@ -144,10 +146,17 @@ func TestOriginationURIUpdateOriginationURIWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.UpdateOriginationURIRequest{
-		AuthID:   "MA_XXXXXX",
-		UriId:    "uri_id",
-		Name:     "name",
-		Priority: 1,
+		AuthID: "MA_XXXXXX",
+		UriId:  "uri_id",
+		URI: vobiz.String(
+			"sip:sbc.example.com",
+		),
+		Description: vobiz.String(
+			"Primary SBC",
+		),
+		Priority: vobiz.Int(
+			2,
+		),
 	}
 	_, invocationErr := client.OriginationURI.UpdateOriginationURI(
 		context.TODO(),

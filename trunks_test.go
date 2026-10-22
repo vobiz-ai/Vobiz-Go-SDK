@@ -1238,7 +1238,7 @@ func TestSettersCreateTrunkResponse(t *testing.T) {
 
 	t.Run("SetTrunkStatus", func(t *testing.T) {
 		obj := &CreateTrunkResponse{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus CreateTrunkResponseTrunkStatus
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
 		assert.Equal(t, fernTestValueTrunkStatus, obj.TrunkStatus)
 		assert.NotNil(t, obj.explicitFields)
@@ -1447,7 +1447,7 @@ func TestGettersCreateTrunkResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &CreateTrunkResponse{}
-		var expected string
+		var expected CreateTrunkResponseTrunkStatus
 		obj.TrunkStatus = expected
 
 		// Act & Assert
@@ -1896,7 +1896,7 @@ func TestSettersMarkExplicitCreateTrunkResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &CreateTrunkResponse{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus CreateTrunkResponseTrunkStatus
 
 		// Act
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
@@ -2516,7 +2516,7 @@ func TestSettersListTrunksResponseObjectsItem(t *testing.T) {
 
 	t.Run("SetTrunkStatus", func(t *testing.T) {
 		obj := &ListTrunksResponseObjectsItem{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus ListTrunksResponseObjectsItemTrunkStatus
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
 		assert.Equal(t, fernTestValueTrunkStatus, obj.TrunkStatus)
 		assert.NotNil(t, obj.explicitFields)
@@ -2765,7 +2765,7 @@ func TestGettersListTrunksResponseObjectsItem(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListTrunksResponseObjectsItem{}
-		var expected string
+		var expected ListTrunksResponseObjectsItemTrunkStatus
 		obj.TrunkStatus = expected
 
 		// Act & Assert
@@ -3379,7 +3379,7 @@ func TestSettersMarkExplicitListTrunksResponseObjectsItem(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &ListTrunksResponseObjectsItem{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus ListTrunksResponseObjectsItemTrunkStatus
 
 		// Act
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
@@ -4001,7 +4001,7 @@ func TestSettersRetrieveTrunkResponse(t *testing.T) {
 
 	t.Run("SetTrunkStatus", func(t *testing.T) {
 		obj := &RetrieveTrunkResponse{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus RetrieveTrunkResponseTrunkStatus
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
 		assert.Equal(t, fernTestValueTrunkStatus, obj.TrunkStatus)
 		assert.NotNil(t, obj.explicitFields)
@@ -4210,7 +4210,7 @@ func TestGettersRetrieveTrunkResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &RetrieveTrunkResponse{}
-		var expected string
+		var expected RetrieveTrunkResponseTrunkStatus
 		obj.TrunkStatus = expected
 
 		// Act & Assert
@@ -4659,7 +4659,7 @@ func TestSettersMarkExplicitRetrieveTrunkResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &RetrieveTrunkResponse{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus RetrieveTrunkResponseTrunkStatus
 
 		// Act
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
@@ -5126,7 +5126,7 @@ func TestSettersUpdateTrunkResponse(t *testing.T) {
 
 	t.Run("SetTrunkStatus", func(t *testing.T) {
 		obj := &UpdateTrunkResponse{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus UpdateTrunkResponseTrunkStatus
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
 		assert.Equal(t, fernTestValueTrunkStatus, obj.TrunkStatus)
 		assert.NotNil(t, obj.explicitFields)
@@ -5335,7 +5335,7 @@ func TestGettersUpdateTrunkResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &UpdateTrunkResponse{}
-		var expected string
+		var expected UpdateTrunkResponseTrunkStatus
 		obj.TrunkStatus = expected
 
 		// Act & Assert
@@ -5784,7 +5784,7 @@ func TestSettersMarkExplicitUpdateTrunkResponse(t *testing.T) {
 		t.Parallel()
 		// Arrange
 		obj := &UpdateTrunkResponse{}
-		var fernTestValueTrunkStatus string
+		var fernTestValueTrunkStatus UpdateTrunkResponseTrunkStatus
 
 		// Act
 		obj.SetTrunkStatus(fernTestValueTrunkStatus)
@@ -7487,6 +7487,93 @@ func TestEnumCreateTrunkRequestWebhookMethod(t *testing.T) {
 	})
 }
 
+func TestEnumCreateTrunkResponseTrunkStatus(t *testing.T) {
+	t.Run("NewFromString_active", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewCreateTrunkResponseTrunkStatusFromString("active")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, CreateTrunkResponseTrunkStatus("active"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_suspended", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewCreateTrunkResponseTrunkStatusFromString("suspended")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, CreateTrunkResponseTrunkStatus("suspended"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewCreateTrunkResponseTrunkStatusFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewCreateTrunkResponseTrunkStatusFromString("active")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
+	})
+}
+
+func TestEnumListTrunksResponseObjectsItemTrunkStatus(t *testing.T) {
+	t.Run("NewFromString_active", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewListTrunksResponseObjectsItemTrunkStatusFromString("active")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, ListTrunksResponseObjectsItemTrunkStatus("active"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_suspended", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewListTrunksResponseObjectsItemTrunkStatusFromString("suspended")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, ListTrunksResponseObjectsItemTrunkStatus("suspended"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewListTrunksResponseObjectsItemTrunkStatusFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewListTrunksResponseObjectsItemTrunkStatusFromString("active")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
+	})
+}
+
+func TestEnumRetrieveTrunkResponseTrunkStatus(t *testing.T) {
+	t.Run("NewFromString_active", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewRetrieveTrunkResponseTrunkStatusFromString("active")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, RetrieveTrunkResponseTrunkStatus("active"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_suspended", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewRetrieveTrunkResponseTrunkStatusFromString("suspended")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, RetrieveTrunkResponseTrunkStatus("suspended"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewRetrieveTrunkResponseTrunkStatusFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewRetrieveTrunkResponseTrunkStatusFromString("active")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
+	})
+}
+
 func TestEnumUpdateTrunkRequestTransport(t *testing.T) {
 	t.Run("NewFromString_udp", func(t *testing.T) {
 		t.Parallel()
@@ -7603,6 +7690,35 @@ func TestEnumUpdateTrunkRequestWebhookMethod(t *testing.T) {
 
 	t.Run("Ptr", func(t *testing.T) {
 		val, err := NewUpdateTrunkRequestWebhookMethodFromString("POST")
+		assert.NoError(t, err)
+		ptr := val.Ptr()
+		assert.NotNil(t, ptr)
+		assert.Equal(t, val, *ptr)
+	})
+}
+
+func TestEnumUpdateTrunkResponseTrunkStatus(t *testing.T) {
+	t.Run("NewFromString_active", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewUpdateTrunkResponseTrunkStatusFromString("active")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, UpdateTrunkResponseTrunkStatus("active"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_suspended", func(t *testing.T) {
+		t.Parallel()
+		val, err := NewUpdateTrunkResponseTrunkStatusFromString("suspended")
+		assert.NoError(t, err, "valid enum value should not return error")
+		assert.Equal(t, UpdateTrunkResponseTrunkStatus("suspended"), val, "enum value should match expected wire value")
+	})
+
+	t.Run("NewFromString_Invalid", func(t *testing.T) {
+		_, err := NewUpdateTrunkResponseTrunkStatusFromString("invalid_value_that_does_not_exist")
+		assert.Error(t, err)
+	})
+
+	t.Run("Ptr", func(t *testing.T) {
+		val, err := NewUpdateTrunkResponseTrunkStatusFromString("active")
 		assert.NoError(t, err)
 		ptr := val.Ptr()
 		assert.NotNil(t, ptr)

@@ -44,7 +44,7 @@ type CreateTrunkRequest struct {
 	Name string `json:"name" url:"-"`
 	// Direction of the trunk - **`inbound` or `outbound` only** (a trunk is one direction, not both).
 	TrunkDirection *CreateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
-	// Trunk status - `enabled` or `disabled` (note: not `active`).
+	// Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 	TrunkStatus *CreateTrunkRequestTrunkStatus `json:"trunk_status,omitempty" url:"-"`
 	Secure      *bool                          `json:"secure,omitempty" url:"-"`
 	// SIP domain. Auto-generated as `{first8ofUUID}.sip.vobiz.ai` if omitted.
@@ -439,7 +439,7 @@ func (c CreateTrunkRequestTrunkDirection) Ptr() *CreateTrunkRequestTrunkDirectio
 	return &c
 }
 
-// Trunk status - `enabled` or `disabled` (note: not `active`).
+// Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 type CreateTrunkRequestTrunkStatus string
 
 const (
@@ -507,24 +507,25 @@ var (
 )
 
 type CreateTrunkResponse struct {
-	TrunkID                 string `json:"trunk_id" url:"trunk_id"`
-	AccountID               string `json:"account_id" url:"account_id"`
-	Name                    string `json:"name" url:"name"`
-	TrunkDomain             string `json:"trunk_domain" url:"trunk_domain"`
-	TrunkStatus             string `json:"trunk_status" url:"trunk_status"`
-	Secure                  bool   `json:"secure" url:"secure"`
-	TrunkDirection          string `json:"trunk_direction" url:"trunk_direction"`
-	ConcurrentCallsLimit    int    `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
-	CpsLimit                int    `json:"cps_limit" url:"cps_limit"`
-	Description             string `json:"description" url:"description"`
-	Transport               string `json:"transport" url:"transport"`
-	Recording               bool   `json:"recording" url:"recording"`
-	EnableTranscription     bool   `json:"enable_transcription" url:"enable_transcription"`
-	PiiRedaction            bool   `json:"pii_redaction" url:"pii_redaction"`
-	WebhookMethod           string `json:"webhook_method" url:"webhook_method"`
-	RecordingWebhookEnabled bool   `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
-	CreatedAt               string `json:"created_at" url:"created_at"`
-	UpdatedAt               string `json:"updated_at" url:"updated_at"`
+	TrunkID     string `json:"trunk_id" url:"trunk_id"`
+	AccountID   string `json:"account_id" url:"account_id"`
+	Name        string `json:"name" url:"name"`
+	TrunkDomain string `json:"trunk_domain" url:"trunk_domain"`
+	// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+	TrunkStatus             CreateTrunkResponseTrunkStatus `json:"trunk_status" url:"trunk_status"`
+	Secure                  bool                           `json:"secure" url:"secure"`
+	TrunkDirection          string                         `json:"trunk_direction" url:"trunk_direction"`
+	ConcurrentCallsLimit    int                            `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
+	CpsLimit                int                            `json:"cps_limit" url:"cps_limit"`
+	Description             string                         `json:"description" url:"description"`
+	Transport               string                         `json:"transport" url:"transport"`
+	Recording               bool                           `json:"recording" url:"recording"`
+	EnableTranscription     bool                           `json:"enable_transcription" url:"enable_transcription"`
+	PiiRedaction            bool                           `json:"pii_redaction" url:"pii_redaction"`
+	WebhookMethod           string                         `json:"webhook_method" url:"webhook_method"`
+	RecordingWebhookEnabled bool                           `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
+	CreatedAt               string                         `json:"created_at" url:"created_at"`
+	UpdatedAt               string                         `json:"updated_at" url:"updated_at"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -561,7 +562,7 @@ func (c *CreateTrunkResponse) GetTrunkDomain() string {
 	return c.TrunkDomain
 }
 
-func (c *CreateTrunkResponse) GetTrunkStatus() string {
+func (c *CreateTrunkResponse) GetTrunkStatus() CreateTrunkResponseTrunkStatus {
 	if c == nil {
 		return ""
 	}
@@ -703,7 +704,7 @@ func (c *CreateTrunkResponse) SetTrunkDomain(trunkDomain string) {
 
 // SetTrunkStatus sets the TrunkStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CreateTrunkResponse) SetTrunkStatus(trunkStatus string) {
+func (c *CreateTrunkResponse) SetTrunkStatus(trunkStatus CreateTrunkResponseTrunkStatus) {
 	c.TrunkStatus = trunkStatus
 	c.require(createTrunkResponseFieldTrunkStatus)
 }
@@ -841,6 +842,29 @@ func (c *CreateTrunkResponse) String() string {
 	return fmt.Sprintf("%#v", c)
 }
 
+// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+type CreateTrunkResponseTrunkStatus string
+
+const (
+	CreateTrunkResponseTrunkStatusActive    CreateTrunkResponseTrunkStatus = "active"
+	CreateTrunkResponseTrunkStatusSuspended CreateTrunkResponseTrunkStatus = "suspended"
+)
+
+func NewCreateTrunkResponseTrunkStatusFromString(s string) (CreateTrunkResponseTrunkStatus, error) {
+	switch s {
+	case "active":
+		return CreateTrunkResponseTrunkStatusActive, nil
+	case "suspended":
+		return CreateTrunkResponseTrunkStatusSuspended, nil
+	}
+	var t CreateTrunkResponseTrunkStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (c CreateTrunkResponseTrunkStatus) Ptr() *CreateTrunkResponseTrunkStatus {
+	return &c
+}
+
 var (
 	listTrunksResponseFieldMeta    = big.NewInt(1 << 0)
 	listTrunksResponseFieldObjects = big.NewInt(1 << 1)
@@ -968,29 +992,30 @@ var (
 )
 
 type ListTrunksResponseObjectsItem struct {
-	TrunkID                 string  `json:"trunk_id" url:"trunk_id"`
-	AccountID               string  `json:"account_id" url:"account_id"`
-	Name                    string  `json:"name" url:"name"`
-	TrunkDomain             string  `json:"trunk_domain" url:"trunk_domain"`
-	TrunkStatus             string  `json:"trunk_status" url:"trunk_status"`
-	Secure                  bool    `json:"secure" url:"secure"`
-	TrunkDirection          string  `json:"trunk_direction" url:"trunk_direction"`
-	ConcurrentCallsLimit    int     `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
-	CpsLimit                int     `json:"cps_limit" url:"cps_limit"`
-	CredentialUUID          *string `json:"credential_uuid,omitempty" url:"credential_uuid,omitempty"`
-	Description             string  `json:"description" url:"description"`
-	Transport               string  `json:"transport" url:"transport"`
-	Recording               bool    `json:"recording" url:"recording"`
-	EnableTranscription     bool    `json:"enable_transcription" url:"enable_transcription"`
-	PiiRedaction            bool    `json:"pii_redaction" url:"pii_redaction"`
-	WebhookMethod           string  `json:"webhook_method" url:"webhook_method"`
-	RecordingWebhookEnabled bool    `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
-	CreatedAt               string  `json:"created_at" url:"created_at"`
-	UpdatedAt               string  `json:"updated_at" url:"updated_at"`
-	PrimaryUriUuid          *string `json:"primary_uri_uuid,omitempty" url:"primary_uri_uuid,omitempty"`
-	InboundDestination      *string `json:"inbound_destination,omitempty" url:"inbound_destination,omitempty"`
-	PiiEntityTypes          *string `json:"pii_entity_types,omitempty" url:"pii_entity_types,omitempty"`
-	WebhookURL              *string `json:"webhook_url,omitempty" url:"webhook_url,omitempty"`
+	TrunkID     string `json:"trunk_id" url:"trunk_id"`
+	AccountID   string `json:"account_id" url:"account_id"`
+	Name        string `json:"name" url:"name"`
+	TrunkDomain string `json:"trunk_domain" url:"trunk_domain"`
+	// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+	TrunkStatus             ListTrunksResponseObjectsItemTrunkStatus `json:"trunk_status" url:"trunk_status"`
+	Secure                  bool                                     `json:"secure" url:"secure"`
+	TrunkDirection          string                                   `json:"trunk_direction" url:"trunk_direction"`
+	ConcurrentCallsLimit    int                                      `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
+	CpsLimit                int                                      `json:"cps_limit" url:"cps_limit"`
+	CredentialUUID          *string                                  `json:"credential_uuid,omitempty" url:"credential_uuid,omitempty"`
+	Description             string                                   `json:"description" url:"description"`
+	Transport               string                                   `json:"transport" url:"transport"`
+	Recording               bool                                     `json:"recording" url:"recording"`
+	EnableTranscription     bool                                     `json:"enable_transcription" url:"enable_transcription"`
+	PiiRedaction            bool                                     `json:"pii_redaction" url:"pii_redaction"`
+	WebhookMethod           string                                   `json:"webhook_method" url:"webhook_method"`
+	RecordingWebhookEnabled bool                                     `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
+	CreatedAt               string                                   `json:"created_at" url:"created_at"`
+	UpdatedAt               string                                   `json:"updated_at" url:"updated_at"`
+	PrimaryUriUuid          *string                                  `json:"primary_uri_uuid,omitempty" url:"primary_uri_uuid,omitempty"`
+	InboundDestination      *string                                  `json:"inbound_destination,omitempty" url:"inbound_destination,omitempty"`
+	PiiEntityTypes          *string                                  `json:"pii_entity_types,omitempty" url:"pii_entity_types,omitempty"`
+	WebhookURL              *string                                  `json:"webhook_url,omitempty" url:"webhook_url,omitempty"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -1027,7 +1052,7 @@ func (l *ListTrunksResponseObjectsItem) GetTrunkDomain() string {
 	return l.TrunkDomain
 }
 
-func (l *ListTrunksResponseObjectsItem) GetTrunkStatus() string {
+func (l *ListTrunksResponseObjectsItem) GetTrunkStatus() ListTrunksResponseObjectsItemTrunkStatus {
 	if l == nil {
 		return ""
 	}
@@ -1204,7 +1229,7 @@ func (l *ListTrunksResponseObjectsItem) SetTrunkDomain(trunkDomain string) {
 
 // SetTrunkStatus sets the TrunkStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (l *ListTrunksResponseObjectsItem) SetTrunkStatus(trunkStatus string) {
+func (l *ListTrunksResponseObjectsItem) SetTrunkStatus(trunkStatus ListTrunksResponseObjectsItemTrunkStatus) {
 	l.TrunkStatus = trunkStatus
 	l.require(listTrunksResponseObjectsItemFieldTrunkStatus)
 }
@@ -1377,6 +1402,29 @@ func (l *ListTrunksResponseObjectsItem) String() string {
 	return fmt.Sprintf("%#v", l)
 }
 
+// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+type ListTrunksResponseObjectsItemTrunkStatus string
+
+const (
+	ListTrunksResponseObjectsItemTrunkStatusActive    ListTrunksResponseObjectsItemTrunkStatus = "active"
+	ListTrunksResponseObjectsItemTrunkStatusSuspended ListTrunksResponseObjectsItemTrunkStatus = "suspended"
+)
+
+func NewListTrunksResponseObjectsItemTrunkStatusFromString(s string) (ListTrunksResponseObjectsItemTrunkStatus, error) {
+	switch s {
+	case "active":
+		return ListTrunksResponseObjectsItemTrunkStatusActive, nil
+	case "suspended":
+		return ListTrunksResponseObjectsItemTrunkStatusSuspended, nil
+	}
+	var t ListTrunksResponseObjectsItemTrunkStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (l ListTrunksResponseObjectsItemTrunkStatus) Ptr() *ListTrunksResponseObjectsItemTrunkStatus {
+	return &l
+}
+
 var (
 	retrieveTrunkResponseFieldTrunkID                 = big.NewInt(1 << 0)
 	retrieveTrunkResponseFieldAccountID               = big.NewInt(1 << 1)
@@ -1399,24 +1447,25 @@ var (
 )
 
 type RetrieveTrunkResponse struct {
-	TrunkID                 string `json:"trunk_id" url:"trunk_id"`
-	AccountID               string `json:"account_id" url:"account_id"`
-	Name                    string `json:"name" url:"name"`
-	TrunkDomain             string `json:"trunk_domain" url:"trunk_domain"`
-	TrunkStatus             string `json:"trunk_status" url:"trunk_status"`
-	Secure                  bool   `json:"secure" url:"secure"`
-	TrunkDirection          string `json:"trunk_direction" url:"trunk_direction"`
-	ConcurrentCallsLimit    int    `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
-	CpsLimit                int    `json:"cps_limit" url:"cps_limit"`
-	Description             string `json:"description" url:"description"`
-	Transport               string `json:"transport" url:"transport"`
-	Recording               bool   `json:"recording" url:"recording"`
-	EnableTranscription     bool   `json:"enable_transcription" url:"enable_transcription"`
-	PiiRedaction            bool   `json:"pii_redaction" url:"pii_redaction"`
-	WebhookMethod           string `json:"webhook_method" url:"webhook_method"`
-	RecordingWebhookEnabled bool   `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
-	CreatedAt               string `json:"created_at" url:"created_at"`
-	UpdatedAt               string `json:"updated_at" url:"updated_at"`
+	TrunkID     string `json:"trunk_id" url:"trunk_id"`
+	AccountID   string `json:"account_id" url:"account_id"`
+	Name        string `json:"name" url:"name"`
+	TrunkDomain string `json:"trunk_domain" url:"trunk_domain"`
+	// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+	TrunkStatus             RetrieveTrunkResponseTrunkStatus `json:"trunk_status" url:"trunk_status"`
+	Secure                  bool                             `json:"secure" url:"secure"`
+	TrunkDirection          string                           `json:"trunk_direction" url:"trunk_direction"`
+	ConcurrentCallsLimit    int                              `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
+	CpsLimit                int                              `json:"cps_limit" url:"cps_limit"`
+	Description             string                           `json:"description" url:"description"`
+	Transport               string                           `json:"transport" url:"transport"`
+	Recording               bool                             `json:"recording" url:"recording"`
+	EnableTranscription     bool                             `json:"enable_transcription" url:"enable_transcription"`
+	PiiRedaction            bool                             `json:"pii_redaction" url:"pii_redaction"`
+	WebhookMethod           string                           `json:"webhook_method" url:"webhook_method"`
+	RecordingWebhookEnabled bool                             `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
+	CreatedAt               string                           `json:"created_at" url:"created_at"`
+	UpdatedAt               string                           `json:"updated_at" url:"updated_at"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -1453,7 +1502,7 @@ func (r *RetrieveTrunkResponse) GetTrunkDomain() string {
 	return r.TrunkDomain
 }
 
-func (r *RetrieveTrunkResponse) GetTrunkStatus() string {
+func (r *RetrieveTrunkResponse) GetTrunkStatus() RetrieveTrunkResponseTrunkStatus {
 	if r == nil {
 		return ""
 	}
@@ -1595,7 +1644,7 @@ func (r *RetrieveTrunkResponse) SetTrunkDomain(trunkDomain string) {
 
 // SetTrunkStatus sets the TrunkStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (r *RetrieveTrunkResponse) SetTrunkStatus(trunkStatus string) {
+func (r *RetrieveTrunkResponse) SetTrunkStatus(trunkStatus RetrieveTrunkResponseTrunkStatus) {
 	r.TrunkStatus = trunkStatus
 	r.require(retrieveTrunkResponseFieldTrunkStatus)
 }
@@ -1733,6 +1782,29 @@ func (r *RetrieveTrunkResponse) String() string {
 	return fmt.Sprintf("%#v", r)
 }
 
+// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+type RetrieveTrunkResponseTrunkStatus string
+
+const (
+	RetrieveTrunkResponseTrunkStatusActive    RetrieveTrunkResponseTrunkStatus = "active"
+	RetrieveTrunkResponseTrunkStatusSuspended RetrieveTrunkResponseTrunkStatus = "suspended"
+)
+
+func NewRetrieveTrunkResponseTrunkStatusFromString(s string) (RetrieveTrunkResponseTrunkStatus, error) {
+	switch s {
+	case "active":
+		return RetrieveTrunkResponseTrunkStatusActive, nil
+	case "suspended":
+		return RetrieveTrunkResponseTrunkStatusSuspended, nil
+	}
+	var t RetrieveTrunkResponseTrunkStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (r RetrieveTrunkResponseTrunkStatus) Ptr() *RetrieveTrunkResponseTrunkStatus {
+	return &r
+}
+
 type UpdateTrunkRequestTransport string
 
 const (
@@ -1781,6 +1853,7 @@ func (u UpdateTrunkRequestTrunkDirection) Ptr() *UpdateTrunkRequestTrunkDirectio
 	return &u
 }
 
+// Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
 type UpdateTrunkRequestTrunkStatus string
 
 const (
@@ -1847,24 +1920,25 @@ var (
 )
 
 type UpdateTrunkResponse struct {
-	TrunkID                 string `json:"trunk_id" url:"trunk_id"`
-	AccountID               string `json:"account_id" url:"account_id"`
-	Name                    string `json:"name" url:"name"`
-	TrunkDomain             string `json:"trunk_domain" url:"trunk_domain"`
-	TrunkStatus             string `json:"trunk_status" url:"trunk_status"`
-	Secure                  bool   `json:"secure" url:"secure"`
-	TrunkDirection          string `json:"trunk_direction" url:"trunk_direction"`
-	ConcurrentCallsLimit    int    `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
-	CpsLimit                int    `json:"cps_limit" url:"cps_limit"`
-	Description             string `json:"description" url:"description"`
-	Transport               string `json:"transport" url:"transport"`
-	Recording               bool   `json:"recording" url:"recording"`
-	EnableTranscription     bool   `json:"enable_transcription" url:"enable_transcription"`
-	PiiRedaction            bool   `json:"pii_redaction" url:"pii_redaction"`
-	WebhookMethod           string `json:"webhook_method" url:"webhook_method"`
-	RecordingWebhookEnabled bool   `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
-	CreatedAt               string `json:"created_at" url:"created_at"`
-	UpdatedAt               string `json:"updated_at" url:"updated_at"`
+	TrunkID     string `json:"trunk_id" url:"trunk_id"`
+	AccountID   string `json:"account_id" url:"account_id"`
+	Name        string `json:"name" url:"name"`
+	TrunkDomain string `json:"trunk_domain" url:"trunk_domain"`
+	// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+	TrunkStatus             UpdateTrunkResponseTrunkStatus `json:"trunk_status" url:"trunk_status"`
+	Secure                  bool                           `json:"secure" url:"secure"`
+	TrunkDirection          string                         `json:"trunk_direction" url:"trunk_direction"`
+	ConcurrentCallsLimit    int                            `json:"concurrent_calls_limit" url:"concurrent_calls_limit"`
+	CpsLimit                int                            `json:"cps_limit" url:"cps_limit"`
+	Description             string                         `json:"description" url:"description"`
+	Transport               string                         `json:"transport" url:"transport"`
+	Recording               bool                           `json:"recording" url:"recording"`
+	EnableTranscription     bool                           `json:"enable_transcription" url:"enable_transcription"`
+	PiiRedaction            bool                           `json:"pii_redaction" url:"pii_redaction"`
+	WebhookMethod           string                         `json:"webhook_method" url:"webhook_method"`
+	RecordingWebhookEnabled bool                           `json:"recording_webhook_enabled" url:"recording_webhook_enabled"`
+	CreatedAt               string                         `json:"created_at" url:"created_at"`
+	UpdatedAt               string                         `json:"updated_at" url:"updated_at"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -1901,7 +1975,7 @@ func (u *UpdateTrunkResponse) GetTrunkDomain() string {
 	return u.TrunkDomain
 }
 
-func (u *UpdateTrunkResponse) GetTrunkStatus() string {
+func (u *UpdateTrunkResponse) GetTrunkStatus() UpdateTrunkResponseTrunkStatus {
 	if u == nil {
 		return ""
 	}
@@ -2043,7 +2117,7 @@ func (u *UpdateTrunkResponse) SetTrunkDomain(trunkDomain string) {
 
 // SetTrunkStatus sets the TrunkStatus field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (u *UpdateTrunkResponse) SetTrunkStatus(trunkStatus string) {
+func (u *UpdateTrunkResponse) SetTrunkStatus(trunkStatus UpdateTrunkResponseTrunkStatus) {
 	u.TrunkStatus = trunkStatus
 	u.require(updateTrunkResponseFieldTrunkStatus)
 }
@@ -2181,6 +2255,29 @@ func (u *UpdateTrunkResponse) String() string {
 	return fmt.Sprintf("%#v", u)
 }
 
+// Trunk state as reported in responses - `active` or `suspended`. Requests set it with `enabled` (reported as `active`) or `disabled` (reported as `suspended`).
+type UpdateTrunkResponseTrunkStatus string
+
+const (
+	UpdateTrunkResponseTrunkStatusActive    UpdateTrunkResponseTrunkStatus = "active"
+	UpdateTrunkResponseTrunkStatusSuspended UpdateTrunkResponseTrunkStatus = "suspended"
+)
+
+func NewUpdateTrunkResponseTrunkStatusFromString(s string) (UpdateTrunkResponseTrunkStatus, error) {
+	switch s {
+	case "active":
+		return UpdateTrunkResponseTrunkStatusActive, nil
+	case "suspended":
+		return UpdateTrunkResponseTrunkStatusSuspended, nil
+	}
+	var t UpdateTrunkResponseTrunkStatus
+	return "", fmt.Errorf("%s is not a valid %T", s, t)
+}
+
+func (u UpdateTrunkResponseTrunkStatus) Ptr() *UpdateTrunkResponseTrunkStatus {
+	return &u
+}
+
 var (
 	updateTrunkRequestFieldAuthID                  = big.NewInt(1 << 0)
 	updateTrunkRequestFieldTrunkID                 = big.NewInt(1 << 1)
@@ -2213,23 +2310,24 @@ type UpdateTrunkRequest struct {
 	TrunkID string  `json:"-" url:"-"`
 	Name    *string `json:"name,omitempty" url:"-"`
 	// Direction of the trunk - `inbound` or `outbound` only.
-	TrunkDirection       *UpdateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
-	TrunkStatus          *UpdateTrunkRequestTrunkStatus    `json:"trunk_status,omitempty" url:"-"`
-	Secure               *bool                             `json:"secure,omitempty" url:"-"`
-	TrunkDomain          *string                           `json:"trunk_domain,omitempty" url:"-"`
-	Transport            *UpdateTrunkRequestTransport      `json:"transport,omitempty" url:"-"`
-	InboundDestination   *string                           `json:"inbound_destination,omitempty" url:"-"`
-	Description          *string                           `json:"description,omitempty" url:"-"`
-	ConcurrentCallsLimit *int                              `json:"concurrent_calls_limit,omitempty" url:"-"`
-	CpsLimit             *int                              `json:"cps_limit,omitempty" url:"-"`
-	CredentialUUID       *string                           `json:"credential_uuid,omitempty" url:"-"`
-	IpaclUUID            *string                           `json:"ipacl_uuid,omitempty" url:"-"`
-	PrimaryUriUuid       *string                           `json:"primary_uri_uuid,omitempty" url:"-"`
-	FallbackUriUuid      *string                           `json:"fallback_uri_uuid,omitempty" url:"-"`
-	Recording            *bool                             `json:"recording,omitempty" url:"-"`
-	EnableTranscription  *bool                             `json:"enable_transcription,omitempty" url:"-"`
-	PiiRedaction         *bool                             `json:"pii_redaction,omitempty" url:"-"`
-	PiiEntityTypes       *string                           `json:"pii_entity_types,omitempty" url:"-"`
+	TrunkDirection *UpdateTrunkRequestTrunkDirection `json:"trunk_direction,omitempty" url:"-"`
+	// Trunk status to set - `enabled` or `disabled`. Responses report `enabled` as `active` and `disabled` as `suspended`.
+	TrunkStatus          *UpdateTrunkRequestTrunkStatus `json:"trunk_status,omitempty" url:"-"`
+	Secure               *bool                          `json:"secure,omitempty" url:"-"`
+	TrunkDomain          *string                        `json:"trunk_domain,omitempty" url:"-"`
+	Transport            *UpdateTrunkRequestTransport   `json:"transport,omitempty" url:"-"`
+	InboundDestination   *string                        `json:"inbound_destination,omitempty" url:"-"`
+	Description          *string                        `json:"description,omitempty" url:"-"`
+	ConcurrentCallsLimit *int                           `json:"concurrent_calls_limit,omitempty" url:"-"`
+	CpsLimit             *int                           `json:"cps_limit,omitempty" url:"-"`
+	CredentialUUID       *string                        `json:"credential_uuid,omitempty" url:"-"`
+	IpaclUUID            *string                        `json:"ipacl_uuid,omitempty" url:"-"`
+	PrimaryUriUuid       *string                        `json:"primary_uri_uuid,omitempty" url:"-"`
+	FallbackUriUuid      *string                        `json:"fallback_uri_uuid,omitempty" url:"-"`
+	Recording            *bool                          `json:"recording,omitempty" url:"-"`
+	EnableTranscription  *bool                          `json:"enable_transcription,omitempty" url:"-"`
+	PiiRedaction         *bool                          `json:"pii_redaction,omitempty" url:"-"`
+	PiiEntityTypes       *string                        `json:"pii_entity_types,omitempty" url:"-"`
 	// Customer webhook for call-admission events (`CallInitiated` / `Hangup`). Public http/https URL; SSRF-validated. See [Trunk Webhooks](/trunks/webhook).
 	WebhookURL              *string                          `json:"webhook_url,omitempty" url:"-"`
 	WebhookMethod           *UpdateTrunkRequestWebhookMethod `json:"webhook_method,omitempty" url:"-"`

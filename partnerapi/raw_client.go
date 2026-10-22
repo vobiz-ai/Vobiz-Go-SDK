@@ -60,6 +60,7 @@ func (r *RawClient) GetPartnerProfile(
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
 			Response:        &response,
+			ErrorDecoder:    internal.NewErrorDecoder(vobiz.ErrorCodes),
 		},
 	)
 	if err != nil {
@@ -100,6 +101,7 @@ func (r *RawClient) GetPartnerDashboard(
 			QueryParameters: options.QueryParameters,
 			Client:          options.HTTPClient,
 			Response:        &response,
+			ErrorDecoder:    internal.NewErrorDecoder(vobiz.ErrorCodes),
 		},
 	)
 	if err != nil {

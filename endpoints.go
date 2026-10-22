@@ -14,16 +14,20 @@ var (
 	createEndpointRequestFieldUsername    = big.NewInt(1 << 1)
 	createEndpointRequestFieldPassword    = big.NewInt(1 << 2)
 	createEndpointRequestFieldAlias       = big.NewInt(1 << 3)
-	createEndpointRequestFieldApplication = big.NewInt(1 << 4)
+	createEndpointRequestFieldAppID       = big.NewInt(1 << 4)
+	createEndpointRequestFieldApplication = big.NewInt(1 << 5)
 )
 
 type CreateEndpointRequest struct {
 	// Your account Auth ID
-	AuthID      string `json:"-" url:"-"`
-	Username    string `json:"username" url:"-"`
-	Password    string `json:"password" url:"-"`
-	Alias       string `json:"alias" url:"-"`
-	Application int    `json:"application" url:"-"`
+	AuthID   string `json:"-" url:"-"`
+	Username string `json:"username" url:"-"`
+	Password string `json:"password" url:"-"`
+	Alias    string `json:"alias" url:"-"`
+	// ID of the application that handles calls from this endpoint. Application IDs are 17-digit strings; send them as JSON strings.
+	AppID *string `json:"app_id,omitempty" url:"-"`
+	// Not read by the API. Application IDs exceed the range of a JSON integer, and the endpoint is created without an application. Send `app_id` instead.
+	Application *int `json:"application,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -64,9 +68,16 @@ func (c *CreateEndpointRequest) SetAlias(alias string) {
 	c.require(createEndpointRequestFieldAlias)
 }
 
+// SetAppID sets the AppID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (c *CreateEndpointRequest) SetAppID(appID *string) {
+	c.AppID = appID
+	c.require(createEndpointRequestFieldAppID)
+}
+
 // SetApplication sets the Application field and marks it as non-optional;
 // this prevents an empty or null value for this field from being omitted during serialization.
-func (c *CreateEndpointRequest) SetApplication(application int) {
+func (c *CreateEndpointRequest) SetApplication(application *int) {
 	c.Application = application
 	c.require(createEndpointRequestFieldApplication)
 }
@@ -907,6 +918,7 @@ var (
 	updateEndpointRequestFieldEndpointID = big.NewInt(1 << 1)
 	updateEndpointRequestFieldAlias      = big.NewInt(1 << 2)
 	updateEndpointRequestFieldPassword   = big.NewInt(1 << 3)
+	updateEndpointRequestFieldAppID      = big.NewInt(1 << 4)
 )
 
 type UpdateEndpointRequest struct {
@@ -915,6 +927,8 @@ type UpdateEndpointRequest struct {
 	EndpointID string `json:"-" url:"-"`
 	Alias      string `json:"alias" url:"-"`
 	Password   string `json:"password" url:"-"`
+	// ID of the application to attach to this endpoint, as a string.
+	AppID *string `json:"app_id,omitempty" url:"-"`
 
 	// Private bitmask of fields set to an explicit value and therefore not to be omitted
 	explicitFields *big.Int `json:"-" url:"-"`
@@ -953,6 +967,13 @@ func (u *UpdateEndpointRequest) SetAlias(alias string) {
 func (u *UpdateEndpointRequest) SetPassword(password string) {
 	u.Password = password
 	u.require(updateEndpointRequestFieldPassword)
+}
+
+// SetAppID sets the AppID field and marks it as non-optional;
+// this prevents an empty or null value for this field from being omitted during serialization.
+func (u *UpdateEndpointRequest) SetAppID(appID *string) {
+	u.AppID = appID
+	u.require(updateEndpointRequestFieldAppID)
 }
 
 func (u *UpdateEndpointRequest) UnmarshalJSON(data []byte) error {

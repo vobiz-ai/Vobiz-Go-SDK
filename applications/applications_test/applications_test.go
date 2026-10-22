@@ -177,10 +177,14 @@ func TestApplicationsUpdateApplicationWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.UpdateApplicationRequest{
-		AuthID:           "MA_XXXXXX",
-		AppID:            "12345678",
-		AppName:          "Updated Application Name",
-		DefaultNumberApp: true,
+		AuthID: "MA_XXXXXX",
+		AppID:  "12345678",
+		AppName: vobiz.String(
+			"Updated Application Name",
+		),
+		DefaultNumberApp: vobiz.Bool(
+			true,
+		),
 		AnswerURL: vobiz.String(
 			"https://example.com/answer",
 		),
