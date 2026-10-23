@@ -4224,7 +4224,7 @@
       },
       "response": {
         "status": 201,
-        "body": "{\n  \"auth_id\": \"MA_ZKITB8Z2\",\n  \"auth_token\": \"your_auth_token_here\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"status\": \"active\",\n  \"balance\": 0,\n  \"currency\": \"INR\",\n  \"country\": \"IN\",\n  \"created_at\": \"2026-03-25T10:00:00Z\"\n}",
+        "body": "{\n  \"auth_id\": \"MA_XXXXXXXX\",\n  \"auth_token\": \"your_auth_token_here\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"status\": \"active\",\n  \"balance\": 0,\n  \"currency\": \"INR\",\n  \"country\": \"IN\",\n  \"created_at\": \"2026-03-25T10:00:00Z\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -4254,7 +4254,7 @@
         },
         "pathParameters": {
           "customer_auth_id": {
-            "equalTo": "MA_ZKITB8Z2"
+            "equalTo": "MA_XXXXXXXX"
           }
         }
       },
@@ -4444,7 +4444,7 @@
       },
       "response": {
         "status": 201,
-        "body": "{\n  \"session_id\": \"a5f8da3c-b47f-40c3-a3e6-d2c9a0f27065\",\n  \"account_auth_id\": \"MA_E31MAU98\",\n  \"customer_email\": \"customer@example.com\",\n  \"email_dispatched_to\": \"c***@example.com\",\n  \"status\": \"email_sent\",\n  \"expires_at\": \"2026-05-15T19:37:01.316686Z\",\n  \"message\": \"KYC email dispatched successfully\"\n}",
+        "body": "{\n  \"session_id\": \"a5f8da3c-b47f-40c3-a3e6-d2c9a0f27065\",\n  \"account_auth_id\": \"MA_XXXXXXXX\",\n  \"customer_email\": \"customer@example.com\",\n  \"email_dispatched_to\": \"c***@example.com\",\n  \"status\": \"email_sent\",\n  \"expires_at\": \"2026-05-15T19:37:01.316686Z\",\n  \"message\": \"KYC email dispatched successfully\"\n}",
         "headers": {
           "Content-Type": "application/json"
         }

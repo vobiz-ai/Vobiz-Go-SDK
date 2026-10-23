@@ -187,7 +187,7 @@ func TestPartnerAPIPartnerTransferBalanceWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.PartnerTransferBalanceRequest{
-		CustomerAuthID: "MA_ZKITB8Z2",
+		CustomerAuthID: "MA_XXXXXXXX",
 		Amount:         500,
 		Currency:       "INR",
 	}
@@ -200,7 +200,7 @@ func TestPartnerAPIPartnerTransferBalanceWithWireMock(
 	)
 
 	require.NoError(t, invocationErr, "Client method call should succeed")
-	VerifyRequestCount(t, "TestPartnerAPIPartnerTransferBalanceWithWireMock", "POST", "/api/v1/partner/accounts/MA_ZKITB8Z2/transfer-balance", nil, 1)
+	VerifyRequestCount(t, "TestPartnerAPIPartnerTransferBalanceWithWireMock", "POST", "/api/v1/partner/accounts/MA_XXXXXXXX/transfer-balance", nil, 1)
 }
 
 func TestPartnerAPIListCustomerTransactionsWithWireMock(
@@ -330,7 +330,7 @@ func TestPartnerAPICreateKycSessionWithWireMock(
 		option.WithAPIKey("test-value"),
 	)
 	request := &vobiz.CreateKycSessionRequest{
-		AccountAuthID: "MA_ZKITB8Z2",
+		AccountAuthID: "MA_XXXXXXXX",
 	}
 	_, invocationErr := client.PartnerAPI.CreateKycSession(
 		context.TODO(),

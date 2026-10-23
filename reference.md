@@ -9620,7 +9620,7 @@ wallet. Both legs are recorded in each account's ledger. Transfers are
 
 ```go
 request := &vobiz.PartnerTransferBalanceRequest{
-        CustomerAuthID: "MA_ZKITB8Z2",
+        CustomerAuthID: "MA_XXXXXXXX",
         Amount: 500,
         Currency: "INR",
     }
@@ -10112,7 +10112,7 @@ companies). No document uploads required.
 
 ```go
 request := &vobiz.CreateKycSessionRequest{
-        AccountAuthID: "MA_ZKITB8Z2",
+        AccountAuthID: "MA_XXXXXXXX",
     }
 client.PartnerAPI.CreateKycSession(
         context.TODO(),
